@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "861555803481",
+    "project_id": "alphatour-93e47",
+    "storage_bucket": "alphatour-93e47.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:861555803481:android:bea1f3d33efa1c6f01b848",
+        "android_client_info": {
+          "package_name": "com.example.alphatour"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "861555803481-a31npnk7on6egirit0fde5on4qfr397t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBp5rCMAskihCNaKMOZPAkB1b1Mo83bkds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "861555803481-a31npnk7on6egirit0fde5on4qfr397t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
