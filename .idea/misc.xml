@@ -3,11 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AlphaTour/app/src/main/res/drawable/custom_imput.xml" value="0.2265" />
-        <entry key="..\:/AlphaTour/app/src/main/res/drawable/ic_email.xml" value="0.2265" />
-        <entry key="..\:/AlphaTour/app/src/main/res/drawable/ic_lock.xml" value="0.2265" />
-        <entry key="..\:/AlphaTour/app/src/main/res/layout/activity_login.xml" value="0.22826086956521738" />
-        <entry key="..\:/AlphaTour/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_login.xml" value="0.2359375" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_main.xml" value="0.25" />
       </map>
     </option>
   </component>

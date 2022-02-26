@@ -4,4 +4,5 @@
     <string name="password">Password</string>
     <string name="accedi">Accedi</string>
     <string name="registrati">Registrati</string>
+    <string name="password_dimenticata">PASSWORD DIMENTICATA?</string>
 </resources>
