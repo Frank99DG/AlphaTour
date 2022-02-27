@@ -4,4 +4,7 @@
     <string name="password">Password</string>
     <string name="accedi">Inicia sesión</string>
     <string name="registrati">Registrados</string>
+    <string name="password_dimenticata">PASSWORD OLVIDADO?</string>
+    <string name="alternativa">O INICIA SESIÓN CON</string>
+    <string name="nuovo_utente">No tienes una cuenta?</string>
 </resources>
