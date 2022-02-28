@@ -18,12 +18,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_app2" />
 
+
     <EditText
         android:id="@+id/inputEmail"
         android:layout_width="321dp"
         android:layout_height="59dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
         android:autofillHints="no"
         android:background="@drawable/bordi_tondi"
@@ -40,29 +41,24 @@
         app:layout_constraintTop_toBottomOf="@+id/logoApp"
         tools:ignore="TextContrastCheck" />
 
-    
-
-
-
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="317dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="28dp"
+        android:id="@+id/passwordLayout"
+        android:layout_width="321dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/bordi_tondi"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputEmail"
         app:passwordToggleEnabled="true">
 
-
-
         <EditText
-
             android:id="@+id/inputPassword"
             android:layout_width="321dp"
             android:layout_height="59dp"
-            android:layout_marginTop="12dp"
             android:autofillHints="no"
             android:background="@drawable/bordi_tondi"
             android:drawableStart="@drawable/ic_lock"
@@ -73,47 +69,43 @@
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
             android:textColorHint="#757575"
-            app:passwordToggleEnabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.522"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputEmail"
-            tools:ignore="TextContrastCheck" />
+            tools:ignore="SpeakableTextPresentCheck" />
+
+
     </com.google.android.material.textfield.TextInputLayout>
-
-
 
 
     <TextView
         android:id="@+id/textPasswordDimenticata"
         android:layout_width="220dp"
         android:layout_height="21dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:text="@string/password_dimenticata"
         android:textAlignment="center"
         android:textColor="#8B131111"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.235"
+        app:layout_constraintHorizontal_bias="0.314"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
 
-    <Button
-        android:id="@+id/buttonAccedi"
-        android:layout_width="268dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/bordi_tondi_button"
-        android:backgroundTint="#655959"
-        android:text="@string/accedi"
-        android:textColor="#CB090808"
-        android:textColorHint="#121111"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPasswordDimenticata"
-        app:strokeColor="#423A3A" />
+     <Button
+         android:id="@+id/buttonAccedi"
+         android:layout_width="268dp"
+         android:layout_height="60dp"
+         android:layout_marginTop="32dp"
+         android:background="@drawable/bordi_tondi_button"
+         android:backgroundTint="#655959"
+         android:text="@string/accedi"
+         android:textColor="#CB090808"
+         android:textColorHint="#121111"
+         android:textStyle="bold"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHorizontal_bias="0.496"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/textPasswordDimenticata"
+         app:strokeColor="#423A3A" />
 
     <TextView
         android:id="@+id/textAlternativa"
@@ -130,7 +122,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonAccedi" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/socialLayout"
         android:layout_width="341dp"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
@@ -166,19 +158,23 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/socialLayout" />
 
-    <Button
-        android:id="@+id/buttonRegistrati"
-        android:layout_width="319dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/bordi_tondi"
-        android:text="@string/registrati"
-        android:textColor="#CB090808"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textNuovoAccount" />
+     <Button
+         android:id="@+id/buttonRegistrati"
+         android:layout_width="319dp"
+         android:layout_height="54dp"
+         android:layout_marginTop="4dp"
+         android:background="@drawable/bordi_tondi_button"
+         android:text="@string/registrati"
+         android:textColor="#CB090808"
+         android:textStyle="bold"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHorizontal_bias="0.489"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/textNuovoAccount" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
