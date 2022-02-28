@@ -12,5 +12,11 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <item name="materialButtonStyle">@style/Widget.App.Button</item>
+    </style>
+
+    <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button">
+            <item name="backgroundTint" >@color/silver</item> <!-- sfondo bottone -->
     </style>
 </resources>

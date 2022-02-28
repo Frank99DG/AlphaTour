@@ -34,28 +34,54 @@
         android:inputType="textEmailAddress"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
+        android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoApp" />
+        app:layout_constraintTop_toBottomOf="@+id/logoApp"
+        tools:ignore="TextContrastCheck" />
 
-    <EditText
-        android:id="@+id/inputPassword"
-        android:layout_width="321dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="12dp"
-        android:autofillHints="no"
-        android:background="@drawable/bordi_tondi"
-        android:drawableStart="@drawable/ic_lock"
-        android:drawablePadding="12dp"
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
+    
+
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="317dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/inputEmail"
+        app:passwordToggleEnabled="true">
+
+
+
+        <EditText
+
+            android:id="@+id/inputPassword"
+            android:layout_width="321dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="12dp"
+            android:autofillHints="no"
+            android:background="@drawable/bordi_tondi"
+            android:drawableStart="@drawable/ic_lock"
+            android:drawablePadding="12dp"
+            android:ems="10"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColorHint="#757575"
+            app:passwordToggleEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.522"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputEmail"
+            tools:ignore="TextContrastCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
     <TextView
@@ -78,8 +104,11 @@
         android:layout_width="268dp"
         android:layout_height="60dp"
         android:layout_marginTop="28dp"
-        android:background="@drawable/bordi_tondi"
+        android:background="@drawable/bordi_tondi_button"
+        android:backgroundTint="#655959"
         android:text="@string/accedi"
+        android:textColor="#CB090808"
+        android:textColorHint="#121111"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -146,6 +175,7 @@
         android:layout_marginTop="4dp"
         android:background="@drawable/bordi_tondi"
         android:text="@string/registrati"
+        android:textColor="#CB090808"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"

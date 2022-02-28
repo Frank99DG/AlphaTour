@@ -3,12 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/bordi_tondi.xml" value="0.1685" />
-        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/bordi_tondi2.xml" value="0.1685" />
-        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/custom_imput.xml" value="0.2515" />
-        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/AlphaTour/app/src/main/res/drawable/bordi_tondi.xml" value="0.2265" />
+        <entry key="..\:/AlphaTour/app/src/main/res/drawable/bordi_tondi_button.xml" value="0.187" />
+        <entry key="..\:/AlphaTour/app/src/main/res/drawable/ic_email.xml" value="0.187" />
+        <entry key="..\:/AlphaTour/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2265" />
+        <entry key="..\:/AlphaTour/app/src/main/res/layout/activity_login.xml" value="0.22826086956521738" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_login.xml" value="0.2359375" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_welcome.xml" value="0.25" />
       </map>
     </option>
   </component>
