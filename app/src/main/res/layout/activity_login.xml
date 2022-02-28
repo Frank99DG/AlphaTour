@@ -18,29 +18,37 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_app2" />
 
-
-    <EditText
-        android:id="@+id/inputEmail"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailLayout"
         android:layout_width="321dp"
         android:layout_height="59dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
-        android:autofillHints="no"
         android:background="@drawable/bordi_tondi"
-        android:drawableStart="@drawable/ic_email"
-        android:drawablePadding="12dp"
-        android:ems="10"
-        android:hint="@string/email_address"
-        android:inputType="textEmailAddress"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logoApp"
-        tools:ignore="TextContrastCheck" />
+        app:passwordToggleEnabled="false">
 
+        <EditText
+            android:id="@+id/inputEmail"
+            android:layout_width="321dp"
+            android:layout_height="59dp"
+            android:autofillHints="no"
+            android:background="@drawable/bordi_tondi"
+            android:drawableStart="@drawable/ic_email"
+            android:drawablePadding="12dp"
+            android:ems="10"
+            android:hint="@string/email_address"
+            android:inputType="textEmailAddress"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColorHint="#757575"
+            tools:ignore="TextContrastCheck"  />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordLayout"
@@ -52,7 +60,7 @@
         android:background="@drawable/bordi_tondi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmail"
+        app:layout_constraintTop_toBottomOf="@+id/emailLayout"
         app:passwordToggleEnabled="true">
 
         <EditText
@@ -169,12 +177,12 @@
          android:text="@string/registrati"
          android:textColor="#CB090808"
          android:textStyle="bold"
+         android:onClick="openRegisterActivity"
          app:layout_constraintEnd_toEndOf="parent"
          app:layout_constraintHorizontal_bias="0.489"
          app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toBottomOf="@+id/textNuovoAccount" />
-
-
+         app:layout_constraintTop_toBottomOf="@+id/textNuovoAccount"
+         />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,8 +10,10 @@
         <entry key="..\:/AlphaTour/app/src/main/res/layout/activity_login.xml" value="0.22826086956521738" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/bordi_tondi.xml" value="0.2555" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/bordi_tondi_button.xml" value="0.1705" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2295" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_welcome.xml" value="0.25" />
       </map>
     </option>
@@ -21,5 +23,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.264" />
+      </ProjectState>
+    </option>
   </component>
 </project>
