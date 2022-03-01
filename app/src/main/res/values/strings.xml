@@ -13,5 +13,5 @@
     <string name="dati_personali">Dati personali</string>
     <string name="nome_registrazione">Nome</string>
     <string name="cognome_registrazione">Cognome</string>
-    <string name="anno_nascita_registrazione">Anno di Nascita</string>
+    <string name="data_nascita_registrazione">Data di nascita</string>
 </resources>

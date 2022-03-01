@@ -16,7 +16,8 @@
         android:layout_marginEnd="112dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_app2" />
+        app:srcCompat="@drawable/logo_app2"
+        android:contentDescription="@string/app_name" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailLayout"
@@ -31,8 +32,9 @@
         app:layout_constraintTop_toBottomOf="@+id/logoApp"
         app:passwordToggleEnabled="false">
 
+
         <EditText
-            android:id="@+id/inputEmail"
+            android:id="@+id/loginInputEmail"
             android:layout_width="321dp"
             android:layout_height="59dp"
             android:autofillHints="no"
@@ -45,9 +47,7 @@
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
             android:textColorHint="#757575"
-            tools:ignore="TextContrastCheck"  />
-
-
+            tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -64,7 +64,7 @@
         app:passwordToggleEnabled="true">
 
         <EditText
-            android:id="@+id/inputPassword"
+            android:id="@+id/loginInputPassword"
             android:layout_width="321dp"
             android:layout_height="59dp"
             android:autofillHints="no"
@@ -144,14 +144,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/google" />
+            app:srcCompat="@drawable/google"
+            android:contentDescription="@string/alternativa" />
 
         <ImageView
             android:id="@+id/imageFacebook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/facebook" />
+            app:srcCompat="@drawable/facebook"
+            android:contentDescription="@string/alternativa" />
     </LinearLayout>
 
     <TextView
