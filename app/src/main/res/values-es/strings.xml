@@ -10,4 +10,8 @@
     <string name="nuovo_utente">No tienes una cuenta?</string>
     <string name="crea_account">Crea tu cuenta</string>
     <string name="crea_account_bottone">Crea cuenta</string>
+    <string name="dati_personali">Información personal</string>
+    <string name="nome_registrazione">Primer nombre</string>
+    <string name="cognome_registrazione">Apellido</string>
+    <string name="anno_nascita_registrazione">Año de nacimiento</string>
 </resources>
