@@ -10,4 +10,9 @@
     <string name="nuovo_utente">Don´t have an account?</string>
     <string name="crea_account">Create your account</string>
     <string name="crea_account_bottone">Create account</string>
+    <string name="dati_personali">Personal Data</string>
+    <string name="nome_registrazione">Name</string>
+    <string name="cognome_registrazione">Surname</string>
+    <string name="anno_nascita_registrazione">Birth Year</string>
+
 </resources>
