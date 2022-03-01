@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">AlphaTour</string>
+    <string name="frase_apertura">Votre visite à portée de main</string>
     <string name="email_address">Email</string>
     <string name="password">Password</string>
     <string name="accedi">Connectez-vous</string>
@@ -7,4 +8,6 @@
     <string name="password_dimenticata">PASSWORD OUBLIÉ?</string>
     <string name="alternativa">OU CONNECTEZ-VOUS AVEC</string>
     <string name="nuovo_utente">Vous n´avez pas de compte?</string>
+    <string name="crea_account">Créez votre compte</string>
+    <string name="crea_account_bottone">Créez compte</string>
 </resources>
