@@ -9,9 +9,15 @@
     <string name="alternativa">O INICIA SESIÓN CON</string>
     <string name="nuovo_utente">No tienes una cuenta?</string>
     <string name="crea_account">Crea tu cuenta</string>
-    <string name="crea_account_bottone">Crea cuenta</string>
-    <string name="dati_personali">Información personal</string>
-    <string name="nome_registrazione">Primer nombre</string>
-    <string name="cognome_registrazione">Apellido</string>
-    <string name="anno_nascita_registrazione">Año de nacimiento</string>
+    <string name="dati_personali">Información Personal</string>
+    <string name="nome">Primer nombre</string>
+    <string name="cognome">Apellido</string>
+    <string name="data_nascita">Fecha de nacimiento</string>
+    <string name="username">Username</string>
+    <string name="campo_obbligatorio">El campo no puede estar vacío</string>
+    <string name="username_esistente">Username no disponible</string>
+    <string name="username_vincoli">Usar 4 o más caracteres</string>
+    <string name="email_esistente">E-mail ya registrado</string>
+    <string name="email_non_valida">E-mail inválido</string>
+    <string name="password_vincoli">Usa 8 o más caracteres con combinaciones de letras, números y símbolos</string>
 </resources>

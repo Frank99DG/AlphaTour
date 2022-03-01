@@ -9,9 +9,15 @@
     <string name="alternativa">OU CONNECTEZ-VOUS AVEC</string>
     <string name="nuovo_utente">Vous n´avez pas de compte?</string>
     <string name="crea_account">Créez votre compte</string>
-    <string name="crea_account_bottone">Créez compte</string>
     <string name="dati_personali">Données personnelles</string>
-    <string name="nome_registrazione">Prénom</string>
-    <string name="cognome_registrazione">Nom</string>
-    <string name="anno_nascita_registrazione">Année de naissance</string>
+    <string name="nome">Prénom</string>
+    <string name="cognome">Nom</string>
+    <string name="data_nascita">Date de naissance</string>
+    <string name="username">Username</string>
+    <string name="campo_obbligatorio">Le champ ne peut pas être vide</string>
+    <string name="username_esistente">Username indisponible</string>
+    <string name="username_vincoli">Utilisez 4 caractères ou plus</string>
+    <string name="email_esistente">E-mail déjà enregistré</string>
+    <string name="email_non_valida">E-mail invalide</string>
+    <string name="password_vincoli">Utilisez 8 caractères ou plus avec des combinaisons de lettres, de chiffres et de symboles</string>
 </resources>
