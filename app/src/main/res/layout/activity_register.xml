@@ -5,24 +5,242 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="SpeakableTextPresentCheck"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="@drawable/sfondo"
+    tools:context=".RegisterActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".RegisterActivity">
 
-        <TextView
+       !<!-- <TextView
             android:id="@+id/textView2"
             android:layout_width="129dp"
             android:layout_height="28dp"
-            android:layout_marginTop="92dp"
+            android:layout_marginTop="556dp"
             android:text="ISCRIZIONE"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.407"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <ImageView
+            android:id="@+id/logoApp"
+            android:layout_width="181dp"
+            android:layout_height="144dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="124dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo_app2" />
+
+
+        <TextView
+            android:id="@+id/creaAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/crea_account"
+            android:textColor="#8B131111"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.483"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logoApp" />
+
+        <TextView
+            android:id="@+id/datiPersonali"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/dati_personali"
+            android:textColor="#8B131111"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.055"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/creaAccount" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:id="@+id/nomeLayout"
+            android:layout_width="321dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/bordi_tondi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/datiPersonali">
+
+            <EditText
+                android:id="@+id/registerInputNome"
+                android:layout_width="321dp"
+                android:layout_height="59dp"
+                android:autofillHints="no"
+                android:background="@drawable/bordi_tondi"
+                android:ems="10"
+                android:hint="@string/nome"
+                android:inputType="text"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColorHint="#757575"
+                tools:ignore="TextContrastCheck"
+                tools:layout_editor_absoluteX="45dp"
+                tools:layout_editor_absoluteY="301dp" />
+
+            ></com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:id="@+id/cognomeLayout"
+            android:layout_width="321dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bordi_tondi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nomeLayout">
+
+            <EditText
+                android:id="@+id/registerInputCognome"
+                android:layout_width="321dp"
+                android:layout_height="59dp"
+                android:autofillHints="no"
+                android:background="@drawable/bordi_tondi"
+                android:ems="10"
+                android:hint="@string/cognome"
+                android:inputType="text"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColorHint="#757575"
+                tools:ignore="TextContrastCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:id="@+id/dataLayout"
+            android:layout_width="321dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/bordi_tondi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cognomeLayout">
+
+            <EditText
+                android:id="@+id/registerInputDataNascita"
+                android:layout_width="321dp"
+                android:layout_height="59dp"
+                android:autofillHints="no"
+                android:background="@drawable/bordi_tondi"
+                android:ems="10"
+                android:hint="@string/data_nascita"
+                android:inputType="date"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColorHint="#757575"
+                android:onClick="chooseBirthDate"
+                tools:ignore="TextContrastCheck"
+                tools:layout_editor_absoluteX="45dp"
+                tools:layout_editor_absoluteY="472dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:id="@+id/usernameLayout"
+            android:layout_width="321dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bordi_tondi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nomeLayout">
+
+            <EditText
+                android:id="@+id/registerInputUsername"
+                android:layout_width="321dp"
+                android:layout_height="59dp"
+                android:autofillHints="no"
+                android:background="@drawable/bordi_tondi"
+                android:ems="10"
+                android:hint="@string/cognome"
+                android:inputType="text"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColorHint="#757575"
+                tools:ignore="TextContrastCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:id="@+id/emailLayout"
+            android:layout_width="321dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bordi_tondi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nomeLayout">
+
+            <EditText
+                android:id="@+id/registerInputEmail"
+                android:layout_width="321dp"
+                android:layout_height="59dp"
+                android:autofillHints="no"
+                android:background="@drawable/bordi_tondi"
+                android:ems="10"
+                android:hint="@string/cognome"
+                android:inputType="text"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColorHint="#757575"
+                tools:ignore="TextContrastCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:id="@+id/passwordLayout"
+            android:layout_width="321dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bordi_tondi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nomeLayout">
+
+            <EditText
+                android:id="@+id/registerInputPassword"
+                android:layout_width="321dp"
+                android:layout_height="59dp"
+                android:autofillHints="no"
+                android:background="@drawable/bordi_tondi"
+                android:ems="10"
+                android:hint="@string/cognome"
+                android:inputType="text"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColorHint="#757575"
+                tools:ignore="TextContrastCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+       <!-- <Button
+            android:id="@+id/buttonCreaAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            android:onClick="insertUserOnDB"
+            tools:layout_editor_absoluteX="141dp"
+            tools:layout_editor_absoluteY="667dp" />-->
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
