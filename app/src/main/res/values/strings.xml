@@ -8,10 +8,11 @@
     <string name="password_dimenticata">PASSWORD DIMENTICATA?</string>
     <string name="alternativa">O ACCEDI CON</string>
     <string name="nuovo_utente">Non possiedi un account?</string>
-    <string name="crea_account">Crea il tuo account</string>
-    <string name="crea_account_bottone">Crea account</string>
+    <string name="crea_account">Crea account</string>
     <string name="dati_personali">Dati personali</string>
-    <string name="nome_registrazione">Nome</string>
-    <string name="cognome_registrazione">Cognome</string>
-    <string name="data_nascita_registrazione">Data di nascita</string>
+    <string name="nome">Nome</string>
+    <string name="cognome">Cognome</string>
+    <string name="data_nascita">Data di nascita</string>
+    <string name="username">Username</string>
+
 </resources>
