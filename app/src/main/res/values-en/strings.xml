@@ -9,10 +9,16 @@
     <string name="alternativa">OR SIGN IN WITH</string>
     <string name="nuovo_utente">Don´t have an account?</string>
     <string name="crea_account">Create your account</string>
-    <string name="crea_account_bottone">Create account</string>
-    <string name="dati_personali">Personal Data</string>
-    <string name="nome_registrazione">Name</string>
-    <string name="cognome_registrazione">Surname</string>
-    <string name="anno_nascita_registrazione">Birth Year</string>
+    <string name="dati_personali">Personal data</string>
+    <string name="nome">Name</string>
+    <string name="cognome">Surname</string>
+    <string name="data_nascita">Bitrh date</string>
+    <string name="username">Username</string>
+    <string name="campo_obbligatorio">The field cannot be empty</string>
+    <string name="username_esistente">Username not available</string>
+    <string name="username_vincoli">Use 4 or more characters</string>
+    <string name="email_esistente">E-mail already registered</string>
+    <string name="email_non_valida">Invalid email</string>
+    <string name="password_vincoli">Use 8 or more characters with combinations of letters, numbers and symbols</string>
 
 </resources>

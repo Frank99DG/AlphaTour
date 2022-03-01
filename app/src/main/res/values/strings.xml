@@ -14,11 +14,11 @@
     <string name="cognome">Cognome</string>
     <string name="data_nascita">Data di nascita</string>
     <string name="username">Username</string>
-
     <string name="campo_obbligatorio">Il campo non può essere vuoto</string>
     <string name="username_esistente">Username non disponibile</string>
-    <string name="username_vincoli">Utilizzare 4 o piu' caratteri</string>
+    <string name="username_vincoli">Utilizzare 4 o più caratteri</string>
     <string name="email_esistente">E-mail già registrata</string>
     <string name="email_non_valida">E-mail non valida</string>
     <string name="password_vincoli">Utilizzare 8 o più caratteri con combinazioni di lettere, numeri e simboli</string>
+
 </resources>
