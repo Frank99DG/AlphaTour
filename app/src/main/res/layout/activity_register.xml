@@ -26,11 +26,11 @@
 
 
         <TextView
-            android:id="@+id/creaAccount"
+            android:id="@+id/registrazioneUtente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/crea_account"
+            android:text="@string/registrazione_utente"
             android:textColor="#8B131111"
             android:textSize="34sp"
             android:textStyle="bold"
@@ -51,7 +51,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.055"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/creaAccount" />
+            app:layout_constraintTop_toBottomOf="@+id/registrazioneUtente" />
 
 
         <com.google.android.material.textfield.TextInputLayout
