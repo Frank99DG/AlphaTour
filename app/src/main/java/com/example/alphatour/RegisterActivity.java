@@ -59,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
     public void saveUserOnDbRemote(View v) {
 
         String Nome = nome.getText().toString();
-        String Cognome = nome.getText().toString();
+        String Cognome = cognome.getText().toString();
         String DataNascita = dataNascita.getText().toString();
         String Username = username.getText().toString();
         String Email = email.getText().toString();
@@ -96,37 +96,25 @@ public class RegisterActivity extends AppCompatActivity {
             errorFlag = true;
         }
 
-        if(Email.isEmpty()){
-            email.setError(getString(R.string.campo_obbligatorio));
-            email.requestFocus();
-            errorFlag = true;
-        }
-
         if(!Patterns.EMAIL_ADDRESS.matcher(Email).matches()){
             email.setError(getString(R.string.email_non_valida));
             email.requestFocus();
             errorFlag = true;
         }
 
-        if(Password.isEmpty()){
-            password.setError(getString(R.string.campo_obbligatorio));
-            password.requestFocus();
-            errorFlag = true;
-        }
-
-        if(password.length() < 8 /*METTERE CONDIZIONI: min 1 MAIU , min 1 CAR SPECIAL*/){
+        if( password.length() < 8 || !(Password.matches("(.*[0-9].*)")) || !(Password.matches("(.*[|!$%&/()=?^@#§<>,;.:_*+].*)")) ){
             password.setError(getString(R.string.password_vincoli));
             password.requestFocus();
             errorFlag = true;
         }
 
-        if(errorFlag == true) {
+        if(errorFlag) {
             return;
 
         }else {
 
 
-            barraCaricamento.setVisibility(View.GONE);
+            barraCaricamento.setVisibility(View.VISIBLE);
             auth.createUserWithEmailAndPassword(Email, Password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -139,19 +127,19 @@ public class RegisterActivity extends AppCompatActivity {
                                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                             @Override
                                             public void onSuccess(DocumentReference documentReference) {
-                                                Toast.makeText(RegisterActivity.this, "Succeful", Toast.LENGTH_LONG).show();
-                                                barraCaricamento.setVisibility(View.VISIBLE);
+                                                Toast.makeText(RegisterActivity.this, getString(R.string.registrazione_completata), Toast.LENGTH_LONG).show();
+                                                barraCaricamento.setVisibility(View.GONE);
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(RegisterActivity.this, "Failed", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(RegisterActivity.this, getString(R.string.registrazione_fallita) , Toast.LENGTH_LONG).show();
                                         barraCaricamento.setVisibility(View.GONE);
                                     }
                                 });
 
                             } else {
-                                Toast.makeText(RegisterActivity.this, "Failed", Toast.LENGTH_LONG).show();
+                                Toast.makeText(RegisterActivity.this, getString(R.string.registrazione_fallita) , Toast.LENGTH_LONG).show();
                                 barraCaricamento.setVisibility(View.GONE);
                             }
                         }

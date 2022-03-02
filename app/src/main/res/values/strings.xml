@@ -8,7 +8,7 @@
     <string name="password_dimenticata">PASSWORD DIMENTICATA?</string>
     <string name="alternativa">O ACCEDI CON</string>
     <string name="nuovo_utente">Non possiedi un account?</string>
-    <string name="crea_account">Crea account</string>
+    <string name="registrazione_utente">Registrazione utente</string>
     <string name="dati_personali">Dati personali</string>
     <string name="dati_account">Dati account</string>
     <string name="nome">Nome</string>
@@ -21,5 +21,8 @@
     <string name="email_esistente">E-mail già registrata</string>
     <string name="email_non_valida">E-mail non valida</string>
     <string name="password_vincoli">Utilizzare 8 o più caratteri con combinazioni di lettere, numeri e simboli</string>
+    <string name="crea_account">Crea account</string>
+    <string name="registrazione_completata">Registrazione completata</string>
+    <string name="registrazione_fallita">Registrazione fallita</string>
 
 </resources>

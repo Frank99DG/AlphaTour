@@ -8,8 +8,9 @@
     <string name="password_dimenticata">FORGOT PASSWORD?</string>
     <string name="alternativa">OR SIGN IN WITH</string>
     <string name="nuovo_utente">Don´t have an account?</string>
-    <string name="crea_account">Create your account</string>
+    <string name="registrazione_utente">User registration</string>
     <string name="dati_personali">Personal data</string>
+    <string name="dati_account">Account data</string>
     <string name="nome">Name</string>
     <string name="cognome">Surname</string>
     <string name="data_nascita">Bitrh date</string>
@@ -20,5 +21,7 @@
     <string name="email_esistente">E-mail already registered</string>
     <string name="email_non_valida">Invalid email</string>
     <string name="password_vincoli">Use 8 or more characters with combinations of letters, numbers and symbols</string>
-
+    <string name="crea_account">Create account</string>
+    <string name="registrazione_completata">Registration completed</string>
+    <string name="registrazione_fallita">Registration failed </string>
 </resources>
