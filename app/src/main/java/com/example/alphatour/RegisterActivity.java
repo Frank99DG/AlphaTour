@@ -12,27 +12,27 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.button.MaterialButton;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
+
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText nome, cognome, dataNascita, username, email, password,mDateFormat;
-    private FirebaseAuth auth;
-    private FirebaseFirestore db;
+    private EditText nome, cognome, dataNascita, username, email, password;
     private ProgressBar barraCaricamento;
     private DatePickerDialog.OnDateSetListener onDateSetListener;
+    private FirebaseAuth auth;
+    private FirebaseFirestore db;
 
 
     @Override
@@ -56,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    public void insertUserOnDB(View v) {
+    public void saveUserOnDbRemote(View v) {
 
         String Nome = nome.getText().toString();
         String Cognome = nome.getText().toString();
@@ -64,97 +64,117 @@ public class RegisterActivity extends AppCompatActivity {
         String Username = username.getText().toString();
         String Email = email.getText().toString();
         String Password = password.getText().toString();
+        Boolean errorFlag = false;
 
         if(Nome.isEmpty()){
-            nome.setError("@string/campo_obbligatorio");
+            nome.setError(getString(R.string.campo_obbligatorio));
             nome.requestFocus();
-            return;
+            errorFlag = true;
         }
 
         if(Cognome.isEmpty()){
-            cognome.setError("@string/campo_obbligatorio");
+            cognome.setError(getString(R.string.campo_obbligatorio));
             cognome.requestFocus();
-            return;
+            errorFlag = true;
         }
 
         if(DataNascita.isEmpty()){
-            dataNascita.setError("@string/campo_obbligatorio");
+            dataNascita.setError(getString(R.string.campo_obbligatorio));
             dataNascita.requestFocus();
-            return;
+            errorFlag = true;
         }
 
         if(Username.isEmpty()){
-            username.setError("@string/campo_obbligatorio");
+            username.setError(getString(R.string.campo_obbligatorio));
             username.requestFocus();
-            return;
+            errorFlag = true;
+        }
+
+        if(Username.length() < 4 ){
+            username.setError(getString(R.string.username_vincoli));
+            username.requestFocus();
+            errorFlag = true;
         }
 
         if(Email.isEmpty()){
-            email.setError("@string/campo_obbligatorio");
+            email.setError(getString(R.string.campo_obbligatorio));
             email.requestFocus();
-            return;
+            errorFlag = true;
         }
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            email.setError("@string/email_non_valida");
+        if(!Patterns.EMAIL_ADDRESS.matcher(Email).matches()){
+            email.setError(getString(R.string.email_non_valida));
             email.requestFocus();
-            return;
+            errorFlag = true;
         }
 
         if(Password.isEmpty()){
-            password.setError("@string/campo_obbligatorio");
+            password.setError(getString(R.string.campo_obbligatorio));
             password.requestFocus();
-            return;
+            errorFlag = true;
         }
 
         if(password.length() < 8 /*METTERE CONDIZIONI: min 1 MAIU , min 1 CAR SPECIAL*/){
-            password.setError("@string/password_vincoli");
+            password.setError(getString(R.string.password_vincoli));
             password.requestFocus();
-            return;
+            errorFlag = true;
         }
 
-        barraCaricamento
+        if(errorFlag == true) {
+            return;
+
+        }else {
 
 
+            barraCaricamento.setVisibility(View.GONE);
+            auth.createUserWithEmailAndPassword(Email, Password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Utente utente = new Utente(Nome, Cognome, DataNascita, Username, Email);
 
-        Map<String, Object> user = new HashMap<>();
-        user.put("Nome", Nome);
-        user.put("Cognome", Cognome);
-        user.put("Data di Nascita", DataNascita);
-        user.put("Username", Username);
-        user.put("Email", Email);
-        user.put("Password", Password);
+                                db.collection("Utenti")
+                                        .add(utente)
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                                Toast.makeText(RegisterActivity.this, "Succeful", Toast.LENGTH_LONG).show();
+                                                barraCaricamento.setVisibility(View.VISIBLE);
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(RegisterActivity.this, "Failed", Toast.LENGTH_LONG).show();
+                                        barraCaricamento.setVisibility(View.GONE);
+                                    }
+                                });
 
-        db.collection("user")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(RegisterActivity.this, "Succeful", Toast.LENGTH_LONG).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(RegisterActivity.this, "Failed", Toast.LENGTH_LONG).show();
-            }
-        });
+                            } else {
+                                Toast.makeText(RegisterActivity.this, "Failed", Toast.LENGTH_LONG).show();
+                                barraCaricamento.setVisibility(View.GONE);
+                            }
+                        }
+                    });
+        }
+
 
 
     }
 
     public void chooseBirthDate(View v){
 
-        final Calendar calendar=Calendar.getInstance();
-        int year=calendar.get(Calendar.YEAR);
-        int month=calendar.get(Calendar.MONTH);
-        int day=calendar.get(Calendar.DAY_OF_MONTH);
+        final Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog datePickerDialog= new DatePickerDialog(this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                 onDateSetListener,year,month,day);
         datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         datePickerDialog.show();
 
-        onDateSetListener=new DatePickerDialog.OnDateSetListener() {
+        onDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month=month+1;

@@ -14,26 +14,6 @@
         android:layout_height="wrap_content"
         tools:context=".RegisterActivity">
 
-       !<!-- <TextView
-            android:id="@+id/textView2"
-            android:layout_width="129dp"
-            android:layout_height="28dp"
-            android:layout_marginTop="556dp"
-            android:text="ISCRIZIONE"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.407"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />-->
-
-        <ProgressBar
-            android:id="@+id/progressBar5"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="181dp"
-            tools:layout_editor_absoluteY="341dp" />
-
         <ImageView
             android:id="@+id/logoApp"
             android:layout_width="181dp"
@@ -97,11 +77,11 @@
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:textColorHint="#757575"
-                tools:ignore="TextContrastCheck"
+                tools:ignore="TextContrastCheck,SpeakableTextPresentCheck"
                 tools:layout_editor_absoluteX="45dp"
                 tools:layout_editor_absoluteY="301dp" />
 
-            ></com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
 
@@ -128,7 +108,7 @@
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:textColorHint="#757575"
-                tools:ignore="TextContrastCheck" />
+                tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -152,14 +132,29 @@
                 android:ems="10"
                 android:hint="@string/data_nascita"
                 android:inputType="date"
+                android:onClick="chooseBirthDate"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:textColorHint="#757575"
-                android:onClick="chooseBirthDate"
-                tools:ignore="TextContrastCheck"
+                tools:ignore="TextContrastCheck,SpeakableTextPresentCheck"
                 tools:layout_editor_absoluteX="45dp"
                 tools:layout_editor_absoluteY="472dp" />
         </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/datiAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/dati_account"
+            android:textColor="#8B131111"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.053"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dataLayout" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -171,7 +166,7 @@
             android:background="@drawable/bordi_tondi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nomeLayout">
+            app:layout_constraintTop_toBottomOf="@+id/datiAccount">
 
             <EditText
                 android:id="@+id/registerInputUsername"
@@ -180,13 +175,16 @@
                 android:autofillHints="no"
                 android:background="@drawable/bordi_tondi"
                 android:ems="10"
-                android:hint="@string/cognome"
+                android:hint="@string/username"
                 android:inputType="text"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:textColorHint="#757575"
-                tools:ignore="TextContrastCheck" />
+                tools:ignore="TextContrastCheck,SpeakableTextPresentCheck"
+                tools:layout_editor_absoluteX="45dp"
+                tools:layout_editor_absoluteY="472dp" />
         </com.google.android.material.textfield.TextInputLayout>
+
 
         <com.google.android.material.textfield.TextInputLayout
 
@@ -197,7 +195,7 @@
             android:background="@drawable/bordi_tondi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nomeLayout">
+            app:layout_constraintTop_toBottomOf="@+id/usernameLayout">
 
             <EditText
                 android:id="@+id/registerInputEmail"
@@ -206,12 +204,12 @@
                 android:autofillHints="no"
                 android:background="@drawable/bordi_tondi"
                 android:ems="10"
-                android:hint="@string/cognome"
-                android:inputType="text"
+                android:hint="@string/email_address"
+                android:inputType="textEmailAddress"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:textColorHint="#757575"
-                tools:ignore="TextContrastCheck" />
+                tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -223,7 +221,8 @@
             android:background="@drawable/bordi_tondi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nomeLayout">
+            app:layout_constraintTop_toBottomOf="@+id/emailLayout"
+            app:passwordToggleEnabled="true">
 
             <EditText
                 android:id="@+id/registerInputPassword"
@@ -232,24 +231,37 @@
                 android:autofillHints="no"
                 android:background="@drawable/bordi_tondi"
                 android:ems="10"
-                android:hint="@string/cognome"
-                android:inputType="text"
+                android:hint="@string/password"
+                android:inputType="textPassword"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:textColorHint="#757575"
                 tools:ignore="TextContrastCheck" />
-
         </com.google.android.material.textfield.TextInputLayout>
-       <!-- <Button
+
+        <ProgressBar
+            android:id="@+id/registerBarraCaricamento"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.635" />
+
+        <Button
             android:id="@+id/buttonCreaAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
-            android:onClick="insertUserOnDB"
-            tools:layout_editor_absoluteX="141dp"
-            tools:layout_editor_absoluteY="667dp" />-->
-
-
+            android:layout_marginTop="20dp"
+            android:onClick="saveUserOnDbRemote"
+            android:text="@string/crea_account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.523"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@
     <string name="nuovo_utente">Non possiedi un account?</string>
     <string name="crea_account">Crea account</string>
     <string name="dati_personali">Dati personali</string>
+    <string name="dati_account">Dati account</string>
     <string name="nome">Nome</string>
     <string name="cognome">Cognome</string>
     <string name="data_nascita">Data di nascita</string>
