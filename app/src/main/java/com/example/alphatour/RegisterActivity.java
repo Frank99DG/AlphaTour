@@ -7,15 +7,18 @@ import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -25,9 +28,11 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText nome, cognome, dataNascita, username, email, password,mDateFormat;
-    FirebaseFirestore db;
-    DatePickerDialog.OnDateSetListener onDateSetListener;
+    private EditText nome, cognome, dataNascita, username, email, password,mDateFormat;
+    private FirebaseAuth auth;
+    private FirebaseFirestore db;
+    private ProgressBar barraCaricamento;
+    private DatePickerDialog.OnDateSetListener onDateSetListener;
 
 
     @Override
@@ -37,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-
+        auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
         nome = findViewById(R.id.registerInputNome);
@@ -47,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
         email = findViewById(R.id.registerInputEmail);
         password = findViewById(R.id.registerInputPassword);
 
-
+        barraCaricamento = findViewById(R.id.registerBarraCaricamento);
 
     }
 
@@ -59,6 +64,58 @@ public class RegisterActivity extends AppCompatActivity {
         String Username = username.getText().toString();
         String Email = email.getText().toString();
         String Password = password.getText().toString();
+
+        if(Nome.isEmpty()){
+            nome.setError("@string/campo_obbligatorio");
+            nome.requestFocus();
+            return;
+        }
+
+        if(Cognome.isEmpty()){
+            cognome.setError("@string/campo_obbligatorio");
+            cognome.requestFocus();
+            return;
+        }
+
+        if(DataNascita.isEmpty()){
+            dataNascita.setError("@string/campo_obbligatorio");
+            dataNascita.requestFocus();
+            return;
+        }
+
+        if(Username.isEmpty()){
+            username.setError("@string/campo_obbligatorio");
+            username.requestFocus();
+            return;
+        }
+
+        if(Email.isEmpty()){
+            email.setError("@string/campo_obbligatorio");
+            email.requestFocus();
+            return;
+        }
+
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            email.setError("@string/email_non_valida");
+            email.requestFocus();
+            return;
+        }
+
+        if(Password.isEmpty()){
+            password.setError("@string/campo_obbligatorio");
+            password.requestFocus();
+            return;
+        }
+
+        if(password.length() < 8 /*METTERE CONDIZIONI: min 1 MAIU , min 1 CAR SPECIAL*/){
+            password.setError("@string/password_vincoli");
+            password.requestFocus();
+            return;
+        }
+
+        barraCaricamento
+
+
 
         Map<String, Object> user = new HashMap<>();
         user.put("Nome", Nome);
