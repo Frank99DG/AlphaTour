@@ -8,6 +8,7 @@
     <string name="password_dimenticata">PASSWORD DIMENTICATA?</string>
     <string name="alternativa">O ACCEDI CON</string>
     <string name="nuovo_utente">Non possiedi un account?</string>
+    <string name="login_fallito">Acesso fallito! Email o/e password errate</string>
     <string name="registrazione_utente">Registrazione utente</string>
     <string name="dati_personali">Dati personali</string>
     <string name="dati_account">Dati account</string>

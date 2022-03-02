@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -128,6 +129,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             @Override
                                             public void onSuccess(DocumentReference documentReference) {
                                                 Toast.makeText(RegisterActivity.this, getString(R.string.registrazione_completata), Toast.LENGTH_LONG).show();
+                                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                                 barraCaricamento.setVisibility(View.GONE);
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {

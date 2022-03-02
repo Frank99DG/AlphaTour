@@ -8,6 +8,7 @@
     <string name="password_dimenticata">PASSWORD OLVIDADO?</string>
     <string name="alternativa">O INICIA SESIÓN CON</string>
     <string name="nuovo_utente">No tienes una cuenta?</string>
+    <string name="login_fallito">¡Error de inicio de sesion! Correo electrónico o/y contraseña incorrectos</string>
     <string name="registrazione_utente">Registro de usuario</string>
     <string name="dati_personali">Información Personal</string>
     <string name="dati_account">Datos de la cuenta</string>

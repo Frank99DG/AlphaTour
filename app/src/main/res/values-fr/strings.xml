@@ -8,6 +8,7 @@
     <string name="password_dimenticata">PASSWORD OUBLIÉ?</string>
     <string name="alternativa">OU CONNECTEZ-VOUS AVEC</string>
     <string name="nuovo_utente">Vous n´avez pas de compte?</string>
+    <string name="login_fallito">Échec de la connexion! Mauvais email ou/et mot de passe</string>
     <string name="registrazione_utente">Enregistrement de l´utilisateur</string>
     <string name="dati_personali">Données personnelles</string>
     <string name="dati_account">Données de compte</string>
