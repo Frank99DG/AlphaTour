@@ -12,8 +12,8 @@
         android:id="@+id/logoApp"
         android:layout_width="181dp"
         android:layout_height="144dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="112dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -34,7 +34,7 @@
 
 
         <EditText
-            android:id="@+id/loginInputEmail"
+            android:id="@+id/recoveryInputEmail"
             android:layout_width="321dp"
             android:layout_height="59dp"
             android:autofillHints="no"
@@ -85,36 +85,38 @@
 
     <TextView
         android:id="@+id/textPasswordDimenticata"
-        android:layout_width="220dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="224dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:onClick="openForgotPasswordActivity"
         android:text="@string/password_dimenticata"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textColor="#8B131111"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.314"
+        app:layout_constraintHorizontal_bias="0.24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordLayout"
+        tools:ignore="TouchTargetSizeCheck" />
 
-     <Button
-         android:id="@+id/buttonAccedi"
-         android:layout_width="268dp"
-         android:layout_height="60dp"
-         android:layout_marginTop="32dp"
-         android:background="@drawable/bordi_tondi_button"
-         android:backgroundTint="#655959"
-         android:text="@string/accedi"
-         android:textColor="#CB090808"
-         android:textColorHint="#121111"
-         android:textStyle="bold"
-         android:onClick="userLogin"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintHorizontal_bias="0.496"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toBottomOf="@+id/textPasswordDimenticata"
-         app:strokeColor="#423A3A" />
+    <Button
+        android:id="@+id/buttonAccedi"
+        android:layout_width="268dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bordi_tondi_button"
+        android:backgroundTint="#655959"
+        android:onClick="userLogin"
+        android:text="@string/accedi"
+        android:textColor="#CB090808"
+        android:textColorHint="#121111"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPasswordDimenticata"
+        app:strokeColor="#423A3A" />
 
     <TextView
         android:id="@+id/textAlternativa"
@@ -161,7 +163,7 @@
         android:id="@+id/textNuovoAccount"
         android:layout_width="227dp"
         android:layout_height="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="40dp"
         android:text="@string/nuovo_utente"
         android:textAlignment="center"
         android:textColor="#8B131111"
@@ -171,7 +173,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/socialLayout" />
 
-     <Button
+    <Button
          android:id="@+id/buttonRegistrati"
          android:layout_width="319dp"
          android:layout_height="54dp"
