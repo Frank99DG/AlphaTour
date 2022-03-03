@@ -14,16 +14,16 @@
         android:layout_height="wrap_content"
         tools:context=".RegisterActivity">
 
+
         <ImageView
             android:id="@+id/logoApp"
             android:layout_width="181dp"
             android:layout_height="144dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="124dp"
+            android:layout_marginEnd="112dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/logo_app2" />
-
 
         <TextView
             android:id="@+id/registrazioneUtente"
@@ -257,7 +257,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:onClick="saveUserOnDbRemote"
+            android:onClick="saveUserOnDb"
             android:text="@string/crea_account"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
