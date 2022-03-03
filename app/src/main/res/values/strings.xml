@@ -6,6 +6,10 @@
     <string name="accedi">Accedi</string>
     <string name="registrati">Registrati</string>
     <string name="password_dimenticata">PASSWORD DIMENTICATA?</string>
+    <string name="commento_recupero_password">Inserisci l’email del tuo account di seguito per ripristinare la tua password.</string>
+    <string name="invia_email">Invia email</string>
+    <string name="controlla_email">Controlla la tua email per ripristinare la tua password </string>
+    <string name="errore_generico">Prova di nuovo! Qualcosa è andato storto</string>
     <string name="alternativa">O ACCEDI CON</string>
     <string name="nuovo_utente">Non possiedi un account?</string>
     <string name="login_fallito">Acesso fallito! Email o/e password errate</string>

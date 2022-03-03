@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        email = findViewById(R.id.loginInputEmail);
+        email = findViewById(R.id.recoveryInputEmail);
         password = findViewById(R.id.loginInputPassword);
         barraCaricamento = findViewById(R.id.loginBarraCaricamento);
     }
@@ -43,10 +43,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    public void userLogin(View v) {
 
-        String Email = email.getText().toString();
-        String Password = password.getText().toString();
+    public void openForgotPasswordActivity(View v){
+        startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+    }
+
+
+    public boolean inputControl(String Email, String Password){
+
         Boolean errorFlag = false;
 
         if (Email.isEmpty()) {
@@ -67,6 +71,19 @@ public class LoginActivity extends AppCompatActivity {
             password.requestFocus();
             errorFlag = true;
         }
+
+        return errorFlag;
+
+    }
+
+
+    public void userLogin(View v) {
+
+        String Email = email.getText().toString();
+        String Password = password.getText().toString();
+
+        Boolean errorFlag = inputControl(Email, Password);
+
 
         if (errorFlag) {
             return;
