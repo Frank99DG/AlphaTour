@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.DatePicker;
@@ -38,6 +39,15 @@ import io.grpc.Context;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    //CHIAVI PER ONSAVEINSTANCESTATE
+    private static final String KEY_NOME="NomeUtente";
+    private static final String KEY_COGNOME="CognomeUtente";
+    private static final String KEY_DATA_NASCITA="CognomeUtente";
+    private static final String KEY_USERNAME="UsernameUtente";
+    private static final String KEY_EMAIL="EmailUtente";
+    private static final String KEY_PASSWORD="PasswordUtente";
+
+    //attributi privati per db e edittex data
     private EditText nome, cognome, dataNascita, username, email, password;
     private ProgressBar barraCaricamento;
     private String idUtente;
@@ -56,17 +66,45 @@ public class RegisterActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        nome = findViewById(R.id.registerInputNome);
-        cognome = findViewById(R.id.registerInputCognome);
-        dataNascita = findViewById(R.id.registerInputDataNascita);
-        username = findViewById(R.id.registerInputUsername);
-        email = findViewById(R.id.registerInputEmail);
-        password = findViewById(R.id.registerInputPassword);
+            nome = findViewById(R.id.registerInputNome);
+            cognome = findViewById(R.id.registerInputCognome);
+            dataNascita = findViewById(R.id.registerInputDataNascita);
+            username = findViewById(R.id.registerInputUsername);
+            email = findViewById(R.id.registerInputEmail);
+            password = findViewById(R.id.registerInputPassword);
+
 
         barraCaricamento = findViewById(R.id.registerBarraCaricamento);
 
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        //Log.i("tag1","Entra in onSave");
+        outState.putCharSequence(KEY_NOME, nome.getText());
+        outState.putCharSequence(KEY_COGNOME, cognome.getText());
+        outState.putCharSequence(KEY_DATA_NASCITA, dataNascita.getText());
+        outState.putCharSequence(KEY_USERNAME, username.getText());
+        outState.putCharSequence(KEY_EMAIL, email.getText());
+        outState.putCharSequence(KEY_PASSWORD, password.getText());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        //Log.i("tag2","Entra in onRestore");
+
+        this.nome.setText(savedInstanceState.getCharSequence(KEY_NOME));
+        this.cognome.setText(savedInstanceState.getCharSequence(KEY_COGNOME));
+        this.dataNascita.setText(savedInstanceState.getCharSequence(KEY_DATA_NASCITA));
+        this.username.setText(savedInstanceState.getCharSequence(KEY_USERNAME));
+        this.email.setText(savedInstanceState.getCharSequence(KEY_EMAIL));
+        this.password.setText(savedInstanceState.getCharSequence(KEY_PASSWORD));
+
+    }
 
     public void chooseBirthDate(View v){
 
@@ -218,13 +256,14 @@ public class RegisterActivity extends AppCompatActivity {
         }else {
 
             long result=saveUserOnDbLocal(Nome,Cognome,DataNascita,Username,Email);
-            saveUserOnDbRemote(Nome,Cognome,DataNascita,Username,Email,Password);
 
             if(result==-1){
-
+                Toast.makeText(RegisterActivity.this, getString(R.string.registrazione_fallita), Toast.LENGTH_LONG).show();
             }else{
-
+                saveUserOnDbRemote(Nome,Cognome,DataNascita,Username,Email,Password);
             }
+
+
 
         }
 
@@ -232,11 +271,4 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
-    public void saveUser(){
-
-    }
 }
