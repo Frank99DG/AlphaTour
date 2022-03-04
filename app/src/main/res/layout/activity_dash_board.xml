@@ -18,7 +18,7 @@
         android:id="@+id/button8"
         android:layout_width="150dp"
         android:layout_height="70dp"
-        android:drawableBottom="@drawable/ic_dashBoard"
+        android:drawableBottom="@drawable/ic_dashboard"
         tools:layout_editor_absoluteX="2dp"
         tools:layout_editor_absoluteY="660dp" />
 
