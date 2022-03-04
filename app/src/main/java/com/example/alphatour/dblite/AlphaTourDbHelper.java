@@ -21,6 +21,12 @@ public class AlphaTourDbHelper extends SQLiteOpenHelper {
     }
 
     @Override
+    public void onConfigure(SQLiteDatabase db) {
+        super.onConfigure(db);
+        db.setForeignKeyConstraintsEnabled(true);
+    }
+
+    @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
             db.execSQL(CommandBbAlphaTour.Command.DELETE_USER_TABLE); // drop Table if exists Utente
     }

@@ -139,7 +139,7 @@ public class RegisterActivity extends AppCompatActivity {
         return errorFlag;
     }
 
-    public void saveUserOnDbLocal(String Nome,String Cognome,String DataNascita,String Username,String Email){
+    public long saveUserOnDbLocal(String Nome,String Cognome,String DataNascita,String Username,String Email){
 
         AlphaTourDbHelper dbAlpha = new AlphaTourDbHelper(this);
         SQLiteDatabase db = dbAlpha.getWritableDatabase();
@@ -155,9 +155,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         newRowId=db.insert(AlphaTourContract.AlphaTourEntry.NOME_TABELLA_UTENTE,AlphaTourContract.AlphaTourEntry.COLUMN_NAME_NULLABLE,valori);
 
-        //SQLiteDatabase db1 = dbAlpha.getWritableDatabase();
-        //Cursor cursor=db1.;
-
+         return newRowId;
 
     }
 
@@ -219,8 +217,14 @@ public class RegisterActivity extends AppCompatActivity {
 
         }else {
 
-            //saveUserOnDbLocal(Nome,Cognome,DataNascita,Username,Email);
+            long result=saveUserOnDbLocal(Nome,Cognome,DataNascita,Username,Email);
             saveUserOnDbRemote(Nome,Cognome,DataNascita,Username,Email,Password);
+
+            if(result==-1){
+
+            }else{
+
+            }
 
         }
 
