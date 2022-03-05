@@ -6,27 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".DashBoardActivity">
 
-    <Button
-        android:id="@+id/button12"
-        android:layout_width="122dp"
+    <LinearLayout
+        android:layout_width="412dp"
         android:layout_height="69dp"
-        android:text="Button"
-        app:layout_constraintStart_toEndOf="@+id/button11"
-        tools:layout_editor_absoluteY="660dp" />
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="150dp"
-        android:layout_height="70dp"
-        android:drawableBottom="@drawable/ic_dashboard"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="660dp" />
+        <Button
+            android:id="@+id/button12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableBottom="@drawable/ic_dashboard" />
 
-    <Button
-        android:id="@+id/button11"
-        android:layout_width="137dp"
-        android:layout_height="70dp"
-        android:text="Button"
-        app:layout_constraintStart_toEndOf="@+id/button8"
-        tools:layout_editor_absoluteY="660dp" />
+        <Button
+            android:id="@+id/button11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableBottom="@drawable/ic_eventi_disponibili"
+            app:iconPadding="8dp" />
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableBottom="@drawable/ic_percorso" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableBottom="@drawable/ic_profilo" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
