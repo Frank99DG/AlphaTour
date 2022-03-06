@@ -20,6 +20,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
+    //CHIAVI PER ONSAVEINSTANCESTATE
+    private static final String KEY_EMAIL="EmailUtente";
+    private static final String KEY_PASSWORD="PasswordUtente";
+
     private EditText email, password;
     private ProgressBar barraCaricamento;
     private FirebaseAuth auth;
@@ -46,6 +50,27 @@ public class LoginActivity extends AppCompatActivity {
 
     public void openForgotPasswordActivity(View v){
         startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        //Log.i("tag1","Entra in onSave");
+
+        outState.putCharSequence(KEY_EMAIL, email.getText());
+        outState.putCharSequence(KEY_PASSWORD, password.getText());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        //Log.i("tag2","Entra in onRestore");
+
+        this.email.setText(savedInstanceState.getCharSequence(KEY_EMAIL));
+        this.password.setText(savedInstanceState.getCharSequence(KEY_PASSWORD));
+
     }
 
 
