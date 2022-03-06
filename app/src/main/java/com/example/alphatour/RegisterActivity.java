@@ -227,6 +227,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     barraCaricamento.setVisibility(View.GONE);
                                 }
                             });
+                            finish();
 
                         } else {
                             Toast.makeText(RegisterActivity.this, "failed firebase" , Toast.LENGTH_LONG).show();
@@ -258,7 +259,7 @@ public class RegisterActivity extends AppCompatActivity {
             long result=saveUserOnDbLocal(Nome,Cognome,DataNascita,Username,Email);
 
             if(result==-1){
-                Toast.makeText(RegisterActivity.this, getString(R.string.registrazione_fallita), Toast.LENGTH_LONG).show();
+                Toast.makeText(RegisterActivity.this, "Errore db local", Toast.LENGTH_LONG).show();
             }else{
                 saveUserOnDbRemote(Nome,Cognome,DataNascita,Username,Email,Password);
             }
