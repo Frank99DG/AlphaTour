@@ -131,16 +131,19 @@
                 android:background="@drawable/bordi_tondi"
                 android:ems="10"
                 android:hint="@string/data_nascita"
-                android:inputType="none"
+                android:inputType="date"
                 android:onClick="chooseBirthDate"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
+                android:focusableInTouchMode="false"
                 android:textColorHint="#757575"
                 tools:ignore="TextContrastCheck,SpeakableTextPresentCheck"
                 tools:layout_editor_absoluteX="45dp"
                 tools:layout_editor_absoluteY="472dp" />
         </com.google.android.material.textfield.TextInputLayout>
-
+           <!--android:clickable="false"
+           android:cursorVisible="false"
+            android:focusable="true"-->
 
         <TextView
             android:id="@+id/datiAccount"
