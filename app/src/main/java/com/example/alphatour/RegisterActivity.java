@@ -224,6 +224,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             Toast.makeText(RegisterActivity.this, getString(R.string.registrazione_completata), Toast.LENGTH_LONG).show();
                                             startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                             barraCaricamento.setVisibility(View.GONE);
+                                            finish();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -261,9 +262,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         }else {
 
-            long result=saveUserOnDbLocal(Nome,Cognome,DataNascita,Username,Email);
+            long result = saveUserOnDbLocal(Nome,Cognome,DataNascita,Username,Email);
 
-            if(result==-1){
+            if(result == -1){
                 Toast.makeText(RegisterActivity.this, "Errore db local", Toast.LENGTH_LONG).show();
             }else{
                 saveUserOnDbRemote(Nome,Cognome,DataNascita,Username,Email,Password);

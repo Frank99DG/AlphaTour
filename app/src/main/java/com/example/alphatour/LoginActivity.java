@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (task.isSuccessful()) {
 
-                                startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+                                startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
                                 barraCaricamento.setVisibility(View.GONE);
                             } else {
                                 Toast.makeText(LoginActivity.this, getString(R.string.login_fallito), Toast.LENGTH_LONG).show();
