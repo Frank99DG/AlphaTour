@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 
 public class LoginActivity extends AppCompatActivity {
- //matteo
+
     //CHIAVI PER ONSAVEINSTANCESTATE
     private static final String KEY_EMAIL="EmailUtente";
     private static final String KEY_PASSWORD="PasswordUtente";
