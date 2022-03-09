@@ -29,5 +29,11 @@
     <string name="crea_account">Crea account</string>
     <string name="registrazione_completata">Registrazione completata</string>
     <string name="registrazione_fallita">Registrazione fallita</string>
+    <string-array name="tipo_evento">
+        <item>Museo</item>
+        <item>Mostra</item>
+        <item>Sito Archeologico</item>
+        <item>Fiera</item>
+    </string-array>
 
 </resources>
