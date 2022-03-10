@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        email = findViewById(R.id.recoveryInputEmail);
+        email = findViewById(R.id.loginInputEmail); // recoveryInputEmail
         password = findViewById(R.id.loginInputPassword);
         barraCaricamento = findViewById(R.id.loginBarraCaricamento);
     }
