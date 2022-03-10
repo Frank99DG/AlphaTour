@@ -17,11 +17,10 @@
         android:id="@+id/notificationNumberContainer"
         android:layout_width="18dp"
         android:layout_height="18dp"
-
         app:cardBackgroundColor="#E91E63"
-        app:cardCornerRadius="50dp"
+        app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@+id/notificationIcon"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/notificationIcon">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
