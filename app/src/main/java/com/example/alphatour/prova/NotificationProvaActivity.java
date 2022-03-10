@@ -19,8 +19,8 @@ public class NotificationProvaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_prova);
 
-        button = findViewById(R.id.button);
-        notificationCounter = new NotificationCounter(findViewById(R.id.notificationIcon));
+        button = findViewById(R.id.bottone);
+        notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
