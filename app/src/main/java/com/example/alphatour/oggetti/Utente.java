@@ -1,6 +1,7 @@
-package com.example.alphatour;
+package com.example.alphatour.oggetti;
 
 public class Utente {
+
     public String nome,cognome,dataNascita,username,email;
 
     public Utente(){
