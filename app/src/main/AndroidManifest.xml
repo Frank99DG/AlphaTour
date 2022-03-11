@@ -12,7 +12,7 @@
 
         <activity
             android:name=".prova.NotificationProvaActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".prova.SearchProvaActivity"
             android:exported="false" />
@@ -33,16 +33,18 @@
             android:exported="false" />
         <activity
             android:name=".WelcomeActivity"
-            android:exported="true">
+            android:exported="false">
 
+        </activity>
+        <activity
+            android:name=".prova.Dashboard_percorso_prova"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
     </application>
 
 </manifest>
