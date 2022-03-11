@@ -17,12 +17,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class LoginActivity extends AppCompatActivity {
 
     //CHIAVI PER ONSAVEINSTANCESTATE
     private static final String KEY_EMAIL="EmailUtente";
     private static final String KEY_PASSWORD="PasswordUtente";
+    private static final String EMAIL_CURATORE="@curatore.it";
 
     private EditText email, password;
     private ProgressBar barraCaricamento;
@@ -37,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        email = findViewById(R.id.loginInputEmail); // recoveryInputEmail
+        email = findViewById(R.id.loginInputEmail);
         password = findViewById(R.id.loginInputPassword);
         barraCaricamento = findViewById(R.id.loginBarraCaricamento);
     }
@@ -123,8 +127,15 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (task.isSuccessful()) {
 
-                                startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
-                                barraCaricamento.setVisibility(View.GONE);
+                                Pattern pattern= Pattern.compile(EMAIL_CURATORE);
+                                 Matcher matcher=pattern.matcher(email.getText());
+                                if(matcher.find()) {
+                                    Toast.makeText(LoginActivity.this, "E' UN CURATORE", Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
+                                    barraCaricamento.setVisibility(View.GONE);
+                                }else{
+                                    Toast.makeText(LoginActivity.this, "NON E' UN CURATORE", Toast.LENGTH_LONG).show();
+                                }
                             } else {
                                 Toast.makeText(LoginActivity.this, getString(R.string.login_fallito), Toast.LENGTH_LONG).show();
                                 barraCaricamento.setVisibility(View.GONE);
