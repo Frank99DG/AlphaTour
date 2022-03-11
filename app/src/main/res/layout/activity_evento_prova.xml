@@ -38,7 +38,7 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/textEvento"
-      tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+      tools:ignore="TextContrastCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
   <EditText
       android:id="@+id/eventoInputCittà"
@@ -57,29 +57,30 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/eventoInputNome"
-      tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+      tools:ignore="TextContrastCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
   <Spinner
       android:id="@+id/spinner"
       android:layout_width="144dp"
       android:layout_height="33dp"
-      android:layout_marginTop="12dp"
-      android:layout_marginEnd="44dp"
+      android:layout_marginTop="20dp"
+      android:layout_marginEnd="36dp"
       android:entries="@array/tipo_evento"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/eventoInputCittà" />
+      app:layout_constraintTop_toBottomOf="@+id/eventoInputCittà"
+      tools:ignore="TouchTargetSizeCheck" />
 
   <TextView
       android:id="@+id/textSelezionaTipoEvento"
-      android:layout_width="176dp"
-      android:layout_height="21dp"
-      android:layout_marginTop="24dp"
+      android:layout_width="170dp"
+      android:layout_height="27dp"
+      android:layout_marginTop="28dp"
       android:text="Seleziona il tipo di evento "
       android:textAlignment="center"
       android:textColor="#8B131111"
       android:textStyle="bold"
       app:layout_constraintEnd_toStartOf="@+id/spinner"
-      app:layout_constraintHorizontal_bias="0.957"
+      app:layout_constraintHorizontal_bias="0.704"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/eventoInputCittà" />
 
