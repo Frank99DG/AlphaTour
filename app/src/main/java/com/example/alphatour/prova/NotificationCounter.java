@@ -11,7 +11,7 @@ public class NotificationCounter {
     private TextView notificationNumber;
 
     private final int MAX_NUMBER = 99;
-    private int notification_number_counter= 1;
+    private int notification_number_counter= 0;
 
     public NotificationCounter(View view){
         notificationNumber = view.findViewById(R.id.notificationNumber);
