@@ -17,7 +17,7 @@ public class Luogo {
 
         Zona zona1=new Zona("Stanza1",Zona.getElementiZona());
         Zona zona2=new Zona("Stanza2",Zona.getElementiZona());
-        zoneLuogo.addVertex(zona1);
+
         zoneLuogo.addVertex(zona2);
         zoneLuogo.addEdge(zona1,zona2);
     }

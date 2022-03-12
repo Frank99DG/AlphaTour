@@ -37,7 +37,7 @@
 
         </activity>
         <activity
-            android:name=".prova.Dashboard_percorso_prova"
+            android:name=".prova.DashBoardCuratore_prova"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

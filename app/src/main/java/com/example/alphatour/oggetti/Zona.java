@@ -33,10 +33,7 @@ public class Zona {
     }
 
     public void setElementiZona(Graph<Elemento, DefaultEdge> elementiZona) {
-        Elemento statua =new Elemento("Statua","Questa è una bella statua","foto","codiceQr","attività","codiceSensore");
-        Elemento quadro =new Elemento("Quadro","Questa è un bel quadro","foto","codiceQr","attività","codiceSensore");
-        elementiZona.addVertex(statua);
-        elementiZona.addVertex(quadro);
-        elementiZona.addEdge(statua,quadro);
+
+
     }
 }

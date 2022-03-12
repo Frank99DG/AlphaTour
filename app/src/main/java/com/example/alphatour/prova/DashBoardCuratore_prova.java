@@ -15,26 +15,38 @@ import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleDirectedGraph;
 import org.jgrapht.graph.SimpleGraph;
 
-public class Dashboard_percorso_prova extends AppCompatActivity {
+public class DashBoardCuratore_prova extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard_percorso_prova);
+        setContentView(R.layout.activity_dash_board_curatore_prova);
         provaM();
     }
 
     public void provaM(){
 
-        Graph<Zona, DefaultEdge> zoneLuogo = new SimpleDirectedGraph<>(DefaultEdge.class);
+
+        Elemento statua =new Elemento("Statua","Questa è una bella statua","foto","codiceQr","attività","codiceSensore");
+        Elemento quadro =new Elemento("Quadro","Questa è un bel quadro","foto","codiceQr","attività","codiceSensore");
+
+
         Graph<Elemento,DefaultEdge> elementiZona = new SimpleGraph<>(DefaultEdge.class);
 
+        elementiZona.addVertex(statua);
+        elementiZona.addVertex(quadro);
+        elementiZona.addEdge(statua,quadro);
+
+        Zona zona1=new Zona("Stanza",elementiZona);
+
+        Graph<Zona, DefaultEdge> zoneLuogo = new SimpleDirectedGraph<>(DefaultEdge.class);
+        zoneLuogo.addVertex(zona1);
 
         Luogo luogo =new Luogo("Museo arcivescovile","Manfredonia","Museo",zoneLuogo);
-        Zona zona=new Zona("Stanza",elementiZona);
-        zona.setElementiZona(elementiZona);
-        luogo.setZoneLuogo(zoneLuogo);
-        zoneLuogo=luogo.getZoneLuogo();
+
+
         Log.i("tagpez",zoneLuogo.toString());
+
+
     }
 }
