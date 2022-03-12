@@ -33,5 +33,13 @@ public class Luogo {
         this.zoneLuogo = zoneLuogo;
     }
 
-
+    @Override
+    public String toString() {
+        return "Luogo{" +
+                "nome='" + nome + '\'' +
+                ", citta='" + citta + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", zoneLuogo='" + zoneLuogo.toString() +
+                '}';
+    }
 }
