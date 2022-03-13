@@ -43,9 +43,9 @@ public class Zona {
 
     @Override
     public String toString() {
-        return "Zona{" +
+        return "* Zona:" +
                 "nome='" + nome + '\'' +
                 ", elementiZona='" + elementiZona.toString() +
-                '}';
+                '*';
     }
 }

@@ -72,13 +72,13 @@ public class Elemento {
 
     @Override
     public String toString() {
-        return "Elemento{" +
+        return "* Elemento:" +
                 "titolo='" + titolo + '\'' +
                 ", descrizione='" + descrizione + '\'' +
                 ", foto='" + foto + '\'' +
                 ", codiceQr='" + codiceQr + '\'' +
                 ", attivita='" + attivita + '\'' +
                 ", codiceSensore='" + codiceSensore +
-                '}';
+                '*';
     }
 }

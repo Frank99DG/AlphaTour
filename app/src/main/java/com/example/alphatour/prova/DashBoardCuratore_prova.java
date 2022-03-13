@@ -23,7 +23,7 @@ import org.jgrapht.graph.SimpleGraph;
 
 public class DashBoardCuratore_prova extends AppCompatActivity {
 
-    private EditText nomeLuogo, cittaLuogo, tipoLuogo, nomeZona, titolo1, descrizione1, foto1, codiceQr1, attivita1, codiceSensore1,titolo2, descrizione2, foto2, codiceQr2, attivita2, codiceSensore2;
+    private EditText nomeLuogo, cittaLuogo, tipoLuogo, nomeZona, nomeZona2, titolo1, descrizione1, foto1, codiceQr1, attivita1, codiceSensore1,titolo2, descrizione2, foto2, codiceQr2, attivita2, codiceSensore2;
     private FirebaseFirestore db;
 
 
@@ -38,6 +38,7 @@ public class DashBoardCuratore_prova extends AppCompatActivity {
         cittaLuogo = findViewById(R.id.cittaLuogo);
         tipoLuogo = findViewById(R.id.tipoLuogo);
         nomeZona = findViewById(R.id.nomeZona);
+        nomeZona2 = findViewById(R.id.nomeZona2);
         titolo1 = findViewById(R.id.titolo1);
         descrizione1 = findViewById(R.id.descrizione1);
         foto1 = findViewById(R.id.foto1);
@@ -59,6 +60,7 @@ public class DashBoardCuratore_prova extends AppCompatActivity {
         String CittaLuogo = cittaLuogo.getText().toString();
         String TipoLuogo = tipoLuogo.getText().toString();
         String NomeZona = nomeZona.getText().toString();
+        String NomeZona2=nomeZona2.getText().toString();
         String Titolo1 = titolo1.getText().toString();
         String Descrizione1 = descrizione1.getText().toString();
         String Foto1 = foto1.getText().toString();
@@ -84,9 +86,12 @@ public class DashBoardCuratore_prova extends AppCompatActivity {
         elementiZona.addEdge(elemento1,elemento2);
 
         Zona zona1 = new Zona(NomeZona,elementiZona);
+        Zona zona2=new Zona(NomeZona2,elementiZona);
 
         Graph<Zona, DefaultEdge> zoneLuogo = new SimpleDirectedGraph<>(DefaultEdge.class);
         zoneLuogo.addVertex(zona1);
+        zoneLuogo.addVertex(zona2);
+        zoneLuogo.addEdge(zona1,zona2);
 
         Luogo luogo = new Luogo(NomeLuogo,CittaLuogo,TipoLuogo,zoneLuogo);
 

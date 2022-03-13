@@ -36,11 +36,11 @@
         android:id="@+id/tipoLuogo"
         android:layout_width="206dp"
         android:layout_height="34dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintHorizontal_bias="0.419"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cittaLuogo"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -49,13 +49,26 @@
         android:id="@+id/nomeZona"
         android:layout_width="233dp"
         android:layout_height="37dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.429"
+        app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Zona"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/nomeZona2"
+        android:layout_width="233dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nomeZona"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
@@ -74,12 +87,23 @@
         android:id="@+id/Zona"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Zona"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tipoLuogo" />
+
+    <TextView
+        android:id="@+id/Zona2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:text="Zona2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nomeZona" />
 
     <EditText
         android:id="@+id/titolo1"
@@ -230,23 +254,24 @@
         android:id="@+id/Elemento1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="54dp"
-        android:layout_marginTop="53dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="16dp"
         android:text="Elemento1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nomeZona" />
+        app:layout_constraintTop_toBottomOf="@+id/nomeZona2" />
 
     <TextView
         android:id="@+id/Elemento2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="175dp"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="48dp"
         android:text="Elemento2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/Elemento1"
-        app:layout_constraintTop_toBottomOf="@+id/nomeZona" />
+        app:layout_constraintTop_toBottomOf="@+id/nomeZona2" />
 
     <Button
         android:id="@+id/bottoneAggiungi"

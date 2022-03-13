@@ -35,11 +35,11 @@ public class Luogo {
 
     @Override
     public String toString() {
-        return "Luogo{" +
+        return "* Luogo:" +
                 "nome='" + nome + '\'' +
                 ", citta='" + citta + '\'' +
                 ", tipo='" + tipo + '\'' +
                 ", zoneLuogo='" + zoneLuogo.toString() +
-                '}';
+                '*';
     }
 }
