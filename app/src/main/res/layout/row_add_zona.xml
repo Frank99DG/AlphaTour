@@ -3,16 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".AddPlaceCuratorActivity">
 
 
     <Button
         android:id="@+id/buttonAggiungiElemento"
         android:layout_width="136dp"
         android:layout_height="35dp"
-        android:layout_marginTop="360dp"
-        android:layout_marginEnd="180dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="192dp"
         android:text="+ Elemento"
+        android:onClick="addViewElemento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,7 +23,7 @@
         android:layout_width="63dp"
         android:layout_height="31dp"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="364dp"
+        android:layout_marginTop="8dp"
         android:text="Zona"
         android:textColor="#000000"
         android:textSize="16sp"
@@ -38,10 +40,23 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="184dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Nome"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/zona" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutElementi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputNomeZona">
+
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
