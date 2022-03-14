@@ -1,20 +1,34 @@
 package com.example.alphatour;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddPlaceCuratorActivity extends AppCompatActivity {
 
     FloatingActionButton bottone;
     EditText nomeLuogo;
+    ConstraintLayout layoutList;
+    Button addZona;
+    AppCompatSpinner spinnerLuogo;
+
+    List<String> listaTipoLuogo=new ArrayList<>();
+
     private   Animation rotateOpen;
     private   Animation rotateClose;
     private   Animation fromBottom;
@@ -32,8 +46,38 @@ public class AddPlaceCuratorActivity extends AppCompatActivity {
         rotateClose= AnimationUtils.loadAnimation(this,R.anim.rotate_close_animation);
         fromBottom= AnimationUtils.loadAnimation(this,R.anim.from_bottom_animation);
         toBottom= AnimationUtils.loadAnimation(this,R.anim.to_bottom_animation);
+
+        layoutList=findViewById(R.id.layoutLuogo);
+        addZona=findViewById(R.id.buttonAggiungiZona);
+        spinnerLuogo=findViewById(R.id.spinnerTipologiaLuogo);
+
+        listaTipoLuogo.add("Tipologia luogo");
+        listaTipoLuogo.add("Museo");
+        listaTipoLuogo.add("Fiera");
+        listaTipoLuogo.add("Area Archeologica");
+
+        ArrayAdapter arrayAdapter=new ArrayAdapter(this, android.R.layout.simple_spinner_item,listaTipoLuogo);
+        spinnerLuogo.setAdapter(arrayAdapter);
     }
 
+
+    public void addZona(View v){
+
+        addView();
+    }
+
+    private void addView() {
+
+        View viewAddPlace= getLayoutInflater().inflate(R.layout.row_add_zona,null,false);
+        EditText nomeZona= (EditText) viewAddPlace.findViewById(R.id.inputNomeZona);
+        Button addElemento=(Button) viewAddPlace.findViewById(R.id.buttonAggiungiElemento);
+        layoutList.addView(viewAddPlace);
+    }
+
+    private void removeView(View v) {
+
+        layoutList.removeView(v);
+    }
 
 
     public void aggiungiLuogo(View v){

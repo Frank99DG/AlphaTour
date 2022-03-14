@@ -10,8 +10,8 @@
         android:id="@+id/buttonAggiungiElemento"
         android:layout_width="136dp"
         android:layout_height="35dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="195dp"
+        android:layout_marginTop="360dp"
+        android:layout_marginEnd="180dp"
         android:text="+ Elemento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,11 +21,12 @@
         android:layout_width="63dp"
         android:layout_height="31dp"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="364dp"
         android:text="Zona"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/buttonAggiungiElemento"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,11 +35,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="184dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Nome"
+        android:hint="Nome"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/zona" />
 </androidx.constraintlayout.widget.ConstraintLayout>

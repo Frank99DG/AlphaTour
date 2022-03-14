@@ -10,6 +10,7 @@
     tools:context=".AddPlaceCuratorActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutLuogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -20,7 +21,7 @@
             android:layout_height="35dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="68dp"
-            android:text="TextView"
+            android:text="Luogo"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +37,7 @@
             android:layout_marginTop="8dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Nome"
+            android:hint="Nome"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/luogo" />
 
@@ -48,7 +49,7 @@
             android:layout_marginTop="8dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Città"
+            android:hint="Città"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputNomeLuogo" />
 
@@ -75,7 +76,7 @@
             android:layout_height="37dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
-            android:text="TextView"
+            android:text="Zone"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -120,6 +121,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="16dp"
             android:text="+ Zona"
+            android:onClick="addZona"
             app:layout_constraintStart_toEndOf="@+id/zone"
             app:layout_constraintTop_toBottomOf="@+id/frameTipologiaLuogo" />
 
