@@ -23,7 +23,8 @@ public class AddPlaceCuratorActivity extends AppCompatActivity {
 
     FloatingActionButton bottone;
     EditText nomeLuogo;
-    ConstraintLayout layoutList;
+    LinearLayout layoutListZona;
+    LinearLayout layoutListElemento;
     Button addZona;
     AppCompatSpinner spinnerLuogo;
 
@@ -47,7 +48,8 @@ public class AddPlaceCuratorActivity extends AppCompatActivity {
         fromBottom= AnimationUtils.loadAnimation(this,R.anim.from_bottom_animation);
         toBottom= AnimationUtils.loadAnimation(this,R.anim.to_bottom_animation);
 
-        layoutList=findViewById(R.id.layoutLuogo);
+        layoutListZona=findViewById(R.id.linearLayoutZone);
+        layoutListElemento=findViewById(R.id.linearLayoutElementi);
         addZona=findViewById(R.id.buttonAggiungiZona);
         spinnerLuogo=findViewById(R.id.spinnerTipologiaLuogo);
 
@@ -61,22 +63,33 @@ public class AddPlaceCuratorActivity extends AppCompatActivity {
     }
 
 
-    public void addZona(View v){
 
-        addView();
-    }
-
-    private void addView() {
+    public void addViewZona(View v) {
 
         View viewAddPlace= getLayoutInflater().inflate(R.layout.row_add_zona,null,false);
-        EditText nomeZona= (EditText) viewAddPlace.findViewById(R.id.inputNomeZona);
-        Button addElemento=(Button) viewAddPlace.findViewById(R.id.buttonAggiungiElemento);
-        layoutList.addView(viewAddPlace);
+        /*EditText nomeZona= (EditText) viewAddPlace.findViewById(R.id.inputNomeZona);
+        Button addElemento=(Button) viewAddPlace.findViewById(R.id.buttonAggiungiElemento);*/
+        layoutListZona.addView(viewAddPlace);
     }
 
-    private void removeView(View v) {
+    public void removeViewZona(View v) {
 
-        layoutList.removeView(v);
+        layoutListZona.removeView(v);
+    }
+
+
+
+    public void addViewElemento(View v) {
+
+        View viewAddElement= getLayoutInflater().inflate(R.layout.row_add_elemento,null,false);
+        /*EditText nomeZona= (EditText) viewAddPlace.findViewById(R.id.inputNomeZona);
+        Button addElemento=(Button) viewAddPlace.findViewById(R.id.buttonAggiungiElemento);*/
+        layoutListElemento.addView(viewAddElement);
+    }
+
+    public void removeViewElemento(View v) {
+
+        layoutListElemento.removeView(v);
     }
 
 

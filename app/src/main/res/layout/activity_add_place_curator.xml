@@ -10,7 +10,7 @@
     tools:context=".AddPlaceCuratorActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutLuogo"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -121,9 +121,18 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="16dp"
             android:text="+ Zona"
-            android:onClick="addZona"
+            android:onClick="addViewZona"
             app:layout_constraintStart_toEndOf="@+id/zone"
             app:layout_constraintTop_toBottomOf="@+id/frameTipologiaLuogo" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutZone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonAggiungiZona"></LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
