@@ -117,10 +117,11 @@
             android:id="@+id/buttonAggiungiZona"
             android:layout_width="96dp"
             android:layout_height="40dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="16dp"
             android:text="+ Zona"
-            app:layout_constraintTop_toBottomOf="@+id/frameTipologiaLuogo"
-            tools:layout_editor_absoluteX="106dp" />
+            app:layout_constraintStart_toEndOf="@+id/zone"
+            app:layout_constraintTop_toBottomOf="@+id/frameTipologiaLuogo" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,27 +10,35 @@
         android:id="@+id/buttonAggiungiElemento"
         android:layout_width="136dp"
         android:layout_height="35dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="195dp"
         android:text="+ Elemento"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="5dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/zona"
         android:layout_width="63dp"
         android:layout_height="31dp"
-        android:text="zona"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="9dp"
+        android:text="Zona"
         android:textColor="#000000"
         android:textSize="16sp"
-        tools:layout_editor_absoluteX="17dp"
-        tools:layout_editor_absoluteY="9dp" />
+        app:layout_constraintEnd_toStartOf="@+id/buttonAggiungiElemento"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/inputNomeZona"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="184dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Nome"
-        tools:layout_editor_absoluteX="17dp"
-        tools:layout_editor_absoluteY="40dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/zona" />
 </androidx.constraintlayout.widget.ConstraintLayout>

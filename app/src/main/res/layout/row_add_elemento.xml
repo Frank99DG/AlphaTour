@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/inputDescrizione"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="81dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Descrizione"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputNomeElemento" />
+
+    <EditText
+        android:id="@+id/inputFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="81dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Nome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputDescrizione" />
+
+    <EditText
+        android:id="@+id/inputCodiceQr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="81dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="CodiceQr"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputFoto" />
+
+    <EditText
+        android:id="@+id/inputAttivita"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="81dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Attività"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputCodiceQr" />
+
+    <EditText
+        android:id="@+id/inputCodiceSensore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="81dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Codice Sensore"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputAttivita" />
+
+    <TextView
+        android:id="@+id/elemento"
+        android:layout_width="78dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="213dp"
+        android:text="Elemento"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/inputNomeElemento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="81dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Titolo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/elemento" />
+</androidx.constraintlayout.widget.ConstraintLayout>
