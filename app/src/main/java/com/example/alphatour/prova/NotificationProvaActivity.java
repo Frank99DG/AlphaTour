@@ -1,6 +1,8 @@
 package com.example.alphatour.prova;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +16,7 @@ public class NotificationProvaActivity extends AppCompatActivity {
         Button button;
         NotificationCounter notificationCounter;
         ImageView openFragment;
+        ImageView closeNotification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,20 +26,18 @@ public class NotificationProvaActivity extends AppCompatActivity {
         button = findViewById(R.id.bottone);
         notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
         openFragment = findViewById(R.id.notificationIcon);
+        closeNotification = findViewById(R.id.closeNotification);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               notificationCounter.increaseNumber();
-            }
-        });
 
-        openFragment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MyDialogFragment myDialogFragment= new MyDialogFragment();
-                myDialogFragment.show(getSupportFragmentManager(),"MyFragment");
-            }
-        });
     }
+
+
+    public void increaseNotification(View v){
+        notificationCounter.increaseNumber();
+    }
+
+    public void openFragment(View v){
+        getSupportFragmentManager().beginTransaction().replace(R.id.container,new NotificheFragment()).commit();
+    }
+
 }
