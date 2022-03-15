@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AlphaTour">
         <activity
+            android:name=".ImageProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddPlaceCuratorActivity"
             android:exported="true">
             <intent-filter>
@@ -18,7 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".prova.NotificationProvaActivity"
             android:exported="false" />
@@ -33,7 +35,7 @@
             android:exported="false" />
         <activity
             android:name=".prova.EventoProvaActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
@@ -45,10 +47,10 @@
             android:exported="false" />
         <activity
             android:name=".WelcomeActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".prova.DashBoardCuratore_prova"
-            android:exported="false"/>
+            android:exported="false" />
     </application>
 
 </manifest>

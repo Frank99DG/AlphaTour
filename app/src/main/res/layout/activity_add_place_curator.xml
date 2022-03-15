@@ -70,19 +70,6 @@
                 android:layout_height="48dp" />
         </FrameLayout>
 
-        <TextView
-            android:id="@+id/zone"
-            android:layout_width="59dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:text="Zone"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frameTipologiaLuogo"
-            tools:text="Zone" />
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addLuogo"
             android:layout_width="wrap_content"
@@ -114,25 +101,56 @@
             app:layout_constraintEnd_toEndOf="@+id/addLuogo"
             app:layout_constraintTop_toBottomOf="@+id/addLuogo" />
 
-        <Button
-            android:id="@+id/buttonAggiungiZona"
-            android:layout_width="96dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="16dp"
-            android:text="+ Zona"
-            android:onClick="addViewZona"
-            app:layout_constraintStart_toEndOf="@+id/zone"
+
+        <TextView
+            android:id="@+id/zona"
+            android:layout_width="63dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:text="Zona"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/buttonAggiungiElemento"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/frameTipologiaLuogo" />
+
+
+        <Button
+            android:id="@+id/buttonAggiungiElemento"
+            android:layout_width="136dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="292dp"
+            android:layout_marginEnd="168dp"
+            android:onClick="addViewElemento"
+            android:text="+ Elemento"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/inputNomeZona"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:hint="Nome"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/zona" />
 
         <LinearLayout
             android:id="@+id/linearLayoutZone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonAggiungiZona"></LinearLayout>
+            app:layout_constraintTop_toBottomOf="@+id/inputNomeZona"></LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
