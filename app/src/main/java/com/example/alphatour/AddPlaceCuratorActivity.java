@@ -31,6 +31,7 @@ public class AddPlaceCuratorActivity extends AppCompatActivity {
     int elementiCreati=0;
 
     List<String> listaTipoLuogo=new ArrayList<>();
+    List<View>elementList=new ArrayList<>();
 
     private   Animation rotateOpen;
     private   Animation rotateClose;
@@ -70,7 +71,6 @@ public class AddPlaceCuratorActivity extends AppCompatActivity {
     public void addViewZona(View v) {
 
         View viewAddPlace= getLayoutInflater().inflate(R.layout.row_add_zona,null,false);
-        /*EditText nomeZona= (EditText) viewAddPlace.findViewById(R.id.inputNomeZona);*/
         Button addElemento=(Button) viewAddPlace.findViewById(R.id.buttonAggiungiElemento);
         Button removeZona=(Button) viewAddPlace.findViewById(R.id.buttonDeletePlace);
 
@@ -81,8 +81,8 @@ public class AddPlaceCuratorActivity extends AppCompatActivity {
                     removeViewZonaAndElemento(viewAddPlace);
                 }else{
                     removeViewZonaAndElemento(viewAddPlace);
-                    for(int i=0;i<elementiCreati;i++) {
-                        removeViewZonaAndElemento(viewAddElement);
+                    for(int i=0;i<elementList.size();i++) {
+                        removeViewZonaAndElemento(elementList.get(i));
                     }
 
                 }
@@ -106,6 +106,7 @@ public class AddPlaceCuratorActivity extends AppCompatActivity {
         });
 
         layoutListZona.addView(viewAddElement);
+        elementList.add(viewAddElement);
         elementiCreati++;
     }
 
