@@ -58,5 +58,15 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/buttonDeletePlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="44dp"
+        android:text="Elimina"
+        app:layout_constraintStart_toEndOf="@+id/inputNomeZona"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

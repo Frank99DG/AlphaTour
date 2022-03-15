@@ -25,8 +25,10 @@ public class AddPlaceCuratorActivity extends AppCompatActivity {
     EditText nomeLuogo;
     LinearLayout layoutListZona;
     LinearLayout layoutListElemento;
-    Button addZona;
+    Button addZona,addElemento;
     AppCompatSpinner spinnerLuogo;
+    View viewAddElement;
+    int elementiCreati=0;
 
     List<String> listaTipoLuogo=new ArrayList<>();
 
@@ -51,6 +53,7 @@ public class AddPlaceCuratorActivity extends AppCompatActivity {
         layoutListZona=findViewById(R.id.linearLayoutZone);
         layoutListElemento=findViewById(R.id.linearLayoutElementi);
         addZona=findViewById(R.id.buttonAggiungiZona);
+        addElemento=findViewById(R.id.buttonAggiungiElemento);
         spinnerLuogo=findViewById(R.id.spinnerTipologiaLuogo);
 
         listaTipoLuogo.add("Tipologia luogo");
@@ -67,29 +70,48 @@ public class AddPlaceCuratorActivity extends AppCompatActivity {
     public void addViewZona(View v) {
 
         View viewAddPlace= getLayoutInflater().inflate(R.layout.row_add_zona,null,false);
-        /*EditText nomeZona= (EditText) viewAddPlace.findViewById(R.id.inputNomeZona);
-        Button addElemento=(Button) viewAddPlace.findViewById(R.id.buttonAggiungiElemento);*/
+        /*EditText nomeZona= (EditText) viewAddPlace.findViewById(R.id.inputNomeZona);*/
+        Button addElemento=(Button) viewAddPlace.findViewById(R.id.buttonAggiungiElemento);
+        Button removeZona=(Button) viewAddPlace.findViewById(R.id.buttonDeletePlace);
+
+        removeZona.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(viewAddElement==null) {
+                    removeViewZonaAndElemento(viewAddPlace);
+                }else{
+                    removeViewZonaAndElemento(viewAddPlace);
+                    for(int i=0;i<elementiCreati;i++) {
+                        removeViewZonaAndElemento(viewAddElement);
+                    }
+
+                }
+            }
+        });
         layoutListZona.addView(viewAddPlace);
     }
-
-    public void removeViewZona(View v) {
-
-        layoutListZona.removeView(v);
-    }
-
 
 
     public void addViewElemento(View v) {
 
-        View viewAddElement= getLayoutInflater().inflate(R.layout.row_add_elemento,null,false);
-        /*EditText nomeZona= (EditText) viewAddPlace.findViewById(R.id.inputNomeZona);
-        Button addElemento=(Button) viewAddPlace.findViewById(R.id.buttonAggiungiElemento);*/
-        layoutListElemento.addView(viewAddElement);
+        viewAddElement= getLayoutInflater().inflate(R.layout.row_add_elemento,null,false);
+        /*EditText nomeZona= (EditText) viewAddPlace.findViewById(R.id.inputNomeZona);*/
+        Button removeElemento=(Button) viewAddElement.findViewById(R.id.buttonDeleteElement);
+
+        removeElemento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                removeViewZonaAndElemento(viewAddElement);
+            }
+        });
+
+        layoutListZona.addView(viewAddElement);
+        elementiCreati++;
     }
 
-    public void removeViewElemento(View v) {
+    public void removeViewZonaAndElemento(View v) {
 
-        layoutListElemento.removeView(v);
+        layoutListZona.removeView(v);
     }
 
 
