@@ -37,6 +37,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:24.0.1'
     implementation 'com.google.firebase:firebase-auth:21.0.1'
     implementation 'org.jgrapht:jgrapht-core:1.5.1'
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
