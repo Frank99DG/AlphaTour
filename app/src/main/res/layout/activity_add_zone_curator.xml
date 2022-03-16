@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="SpeakableTextPresentCheck"
+    android:fillViewport="true"
+    android:background="@drawable/sfondo"
+    tools:context=".AddZoneCuratorActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/zona"
+            android:layout_width="84dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="148dp"
+            android:text="Zona"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonAggiungiElemento"
+            android:layout_width="136dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="148dp"
+            android:onClick="addViewElemento"
+            android:text="+ Elemento"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/zona"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/inputNomeZona"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:hint="Nome"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/zona" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutZone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputNomeZona"></LinearLayout>
+
+        <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/addLuogo"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="516dp"
+      android:backgroundTint="@android:color/darker_gray"
+      android:clickable="true"
+      android:focusable="true"
+      android:onClick="aggiungiLuogo"
+      android:tint="@android:color/white"
+      android:visibility="gone"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.898"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:srcCompat="@drawable/ic_arrow_right" />
+
+  <EditText
+      android:id="@+id/textNomeLuogo"
+      android:layout_width="214dp"
+      android:layout_height="59dp"
+      android:layout_marginTop="20dp"
+      android:layout_marginEnd="8dp"
+      android:ems="10"
+      android:focusable="true"
+      android:hint="nome luogo"
+      android:inputType="text"
+      android:visibility="gone"
+      app:layout_constraintEnd_toEndOf="@+id/addLuogo"
+      app:layout_constraintTop_toBottomOf="@+id/addLuogo" />
+-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

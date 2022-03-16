@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -21,35 +22,17 @@ import java.util.List;
 
 public class AddPlaceCuratorActivity extends AppCompatActivity {
 
-    FloatingActionButton bottone;
-    EditText nomeLuogo;
-    LinearLayout layoutListZona;
-    Button addZona,addElemento;
     AppCompatSpinner spinnerLuogo;
 
     List<String> listaTipoLuogo=new ArrayList<>();
     List<View>elementList=new ArrayList<>();
 
-    private   Animation rotateOpen;
-    private   Animation rotateClose;
-    private   Animation fromBottom;
-    private   Animation toBottom;
-    private  boolean clicked=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_place_curator);
 
-        bottone=findViewById(R.id.addLuogo);
-        nomeLuogo=findViewById(R.id.textNomeLuogo);
-        rotateOpen= AnimationUtils.loadAnimation(this,R.anim.rotate_open_animation);
-        rotateClose= AnimationUtils.loadAnimation(this,R.anim.rotate_close_animation);
-        fromBottom= AnimationUtils.loadAnimation(this,R.anim.from_bottom_animation);
-        toBottom= AnimationUtils.loadAnimation(this,R.anim.to_bottom_animation);
-
-        layoutListZona=findViewById(R.id.linearLayoutZone);
-        addElemento=findViewById(R.id.buttonAggiungiElemento);
         spinnerLuogo=findViewById(R.id.spinnerTipologiaLuogo);
 
         listaTipoLuogo.add("Tipologia luogo");
@@ -59,58 +42,13 @@ public class AddPlaceCuratorActivity extends AppCompatActivity {
 
         ArrayAdapter arrayAdapter=new ArrayAdapter(this, android.R.layout.simple_spinner_item,listaTipoLuogo);
         spinnerLuogo.setAdapter(arrayAdapter);
-    }
-
-
-    public void addViewElemento(View v) {
-
-        final View viewAddElement= getLayoutInflater().inflate(R.layout.row_add_elemento,null,false);
-        Button removeElemento=(Button) viewAddElement.findViewById(R.id.buttonDeleteElement);
-
-        removeElemento.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                    removeViewElemento(viewAddElement);
-            }
-        });
-
-        layoutListZona.addView(viewAddElement);
-    }
-
-    public void removeViewElemento(View v) {
-
-        layoutListZona.removeView(v);
-    }
-
-
-    public void aggiungiLuogo(View v){
-
-        setVisibility(clicked);
-        setAnimation(clicked);
-        clicked=!clicked; //stessa cosa che fare if then else
 
     }
 
-    private void setVisibility(boolean clicked) {
 
-        if(!clicked){
-            nomeLuogo.setVisibility(View.VISIBLE);
-        }else{
-            nomeLuogo.setVisibility(View.INVISIBLE);
-        }
-    }
+    public void openFirstZoneActivity(View v){
+        startActivity(new Intent(AddPlaceCuratorActivity.this, AddZoneCuratorActivity.class));
 
-    private void setAnimation(boolean clicked) {
-
-        if(!clicked){
-            bottone.startAnimation(rotateOpen);
-            nomeLuogo.startAnimation(fromBottom);
-
-        }else{
-            nomeLuogo.startAnimation(toBottom);
-            bottone.startAnimation(rotateClose);
-
-        }
     }
 
 }
