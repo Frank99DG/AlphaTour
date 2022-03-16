@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AlphaTour">
         <activity
-            android:name=".ImageProfileActivity"
+            android:name=".ProfileActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,9 +18,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
+       <activity
             android:name=".AddPlaceCuratorActivity"
             android:exported="false"/>
+           <!--<intent-filter>
+              <action android:name="android.intent.action.MAIN" />
+
+              <category android:name="android.intent.category.LAUNCHER" />
+           </intent-filter>
+       </activity>-->
         <activity
             android:name=".prova.NotificationProvaActivity"
             android:exported="false" />
@@ -35,9 +41,6 @@
             android:exported="false" />
         <activity
             android:name=".prova.EventoProvaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"

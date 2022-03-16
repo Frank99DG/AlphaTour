@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
 
-    <Button
+    <!--<Button
         android:id="@+id/buttonDeleteElement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,7 +16,21 @@
         android:text="Elimina"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/elemento"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <ImageView
+        android:id="@+id/buttonDeleteElement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="15dp"
+        android:src="@drawable/ic_close_elemento"
+        app:layout_constraintEnd_toStartOf="@+id/elemento"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
 
     <EditText
         android:id="@+id/inputDescrizione"
@@ -30,12 +44,12 @@
         android:inputType="textMultiLine"
         android:maxLines="20"
         android:minLines="10"
-        android:text="Descrizione"
+        android:hint="Descrizione"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputNomeElemento" />
 
-    <EditText
+    <Button
         android:id="@+id/inputFoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,7 +58,8 @@
         android:layout_marginEnd="81dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Nome"
+        android:hint="Nome"
+        android:onClick="uploadImageElemento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputDescrizione" />
@@ -58,7 +73,7 @@
         android:layout_marginEnd="81dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="CodiceQr"
+        android:hint="CodiceQr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputFoto" />
@@ -72,7 +87,7 @@
         android:layout_marginEnd="81dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Attività"
+        android:hint="Attività"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +102,7 @@
         android:layout_marginEnd="81dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Codice Sensore"
+        android:hint="Codice Sensore"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputAttivita" />
@@ -99,7 +114,7 @@
         android:layout_marginStart="120dp"
         android:layout_marginTop="18dp"
         android:layout_marginEnd="213dp"
-        android:text="Elemento"
+        android:hint="Elemento"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +130,7 @@
         android:layout_marginEnd="81dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Titolo"
+        android:hint="Titolo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/elemento" />
