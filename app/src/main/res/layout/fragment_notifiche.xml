@@ -53,13 +53,6 @@
                 android:layout_weight="1"
                 android:text="notifica 2" />
 
-            <TextView
-                android:id="@+id/notifica3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="notifica 3" />
-
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
