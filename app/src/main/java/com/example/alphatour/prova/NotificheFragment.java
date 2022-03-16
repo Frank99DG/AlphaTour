@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.alphatour.R;
@@ -21,6 +22,7 @@ public class NotificheFragment extends Fragment {
     private TextView tvMyText;
     private String myNot;
     private TextView notifica2;
+    LinearLayout layoutList;
 
     public NotificheFragment() {
         // Required empty public constructor
@@ -37,17 +39,21 @@ public class NotificheFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notifiche,container,false);
         closeNotification = view.findViewById(R.id.closeNotification);
-        tvMyText = view.findViewById(R.id.notifica1);
+       // tvMyText = view.findViewById(R.id.notifica1);
         creaPercorso = view.findViewById(R.id.creaPercorso);
-        notifica2 = view.findViewById(R.id.notifica2);
-
+        //notifica2 = view.findViewById(R.id.notifica2);
+        layoutList = view.findViewById(R.id.layout_list);
+/*
         Bundle data = getArguments();
         if(data!= null){
             myStr= data.getString("myData");
             myNot = data.getString("myData1");
             if(myNot!=null)notifica2.setText(myNot);
             tvMyText.setText(myStr);
+
         }
+ */
+
 
         closeNotification.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +62,33 @@ public class NotificheFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    public void addView() {
+
+
+        View cricketerView = getLayoutInflater().inflate(R.layout.row_add_notify, null, false);
+        TextView textView = (TextView) cricketerView.findViewById(R.id.textNotify);
+        ImageView imageClose = (ImageView) cricketerView.findViewById(R.id.closeNotify);
+
+
+        imageClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeView(cricketerView);
+            }
+        });
+
+        layoutList.addView(cricketerView);
+
+
+
+    }
+
+
+
+    public void removeView(View view) {
+        layoutList.removeView(view);
     }
 
 }

@@ -28,7 +28,7 @@ public class NotificationProvaActivity extends AppCompatActivity {
     ImageView closeNotification;
     NotificheFragment myFragment = new NotificheFragment();
     Bundle data = new Bundle();
-    // LinearLayout layoutList;
+
 
 
     @Override
@@ -41,7 +41,7 @@ public class NotificationProvaActivity extends AppCompatActivity {
         notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
         openFragment = findViewById(R.id.notificationIcon);
         closeNotification = findViewById(R.id.closeNotification);
-        // layoutList = findViewById(R.id.layout_list);
+
 
 
     }
@@ -52,39 +52,19 @@ public class NotificationProvaActivity extends AppCompatActivity {
     }
 
     public void openFragment(View v) {
-        data.putString("myData", "Welcome to AlphaTour");
-        myFragment.setArguments(data);
+       // data.putString("myData", "Welcome to AlphaTour");
+      //  myFragment.setArguments(data);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, myFragment).commit();
     }
 
     public void creaPercorso(View v) {
-        data.putString("myData1", "Sei un grande hai creato un percorso");
-        myFragment.setArguments(data);
+       // data.putString("myData1", "Sei un grande hai creato un percorso");
+        //myFragment.setArguments(data);
         increaseNotification(v);
+        myFragment.addView();
     }
+
+
+
+
 }
-
-
-/*
-    private void addView(){
-
-
-        View cricketerView = getLayoutInflater().inflate(R.layout.row_add_notify,null,false);
-        TextView textView = (TextView)cricketerView.findViewById(R.id.textNotify);
-        ImageView imageClose = (ImageView)cricketerView.findViewById(R.id.closeNotify);
-
-        imageClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removeView(cricketerView);
-            }
-        });
-
-
-        layoutList.addView(cricketerView);
-
-    }
-    private void removeView(View view){
-        layoutList.removeView(view);
-    }
-*/
