@@ -22,15 +22,12 @@ import java.util.List;
 
 public class NotificationProvaActivity extends AppCompatActivity {
 
-    Button button;
     Button creaPercorso;
     NotificationCounter notificationCounter;
     ImageView openFragment;
     ImageView closeNotification;
     NotificheFragment myFragment = new NotificheFragment();
     Bundle data = new Bundle();
-    TextView tvMyText;
-    String myNot;
 
 
 
@@ -43,32 +40,23 @@ public class NotificationProvaActivity extends AppCompatActivity {
         notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
         openFragment = findViewById(R.id.notificationIcon);
         closeNotification = findViewById(R.id.closeNotification);
-        tvMyText = findViewById(R.id.textNotify);
+
         getSupportFragmentManager().beginTransaction().replace(R.id.container,myFragment).hide(myFragment).commit();
 
     }
 
 
     public void openFragment(View v) {
-       // data.putString("myData", "Welcome to AlphaTour");
-      //  myFragment.setArguments(data);
+
         getSupportFragmentManager().beginTransaction().replace(R.id.container, myFragment).show(myFragment).commit();
 
     }
 
     public void creaPercorso(View v) {
-        data.putString("myData1", "Sei un grande hai creato un percorso");
+        data.putString("Notifica", "Sei un grande hai creato un percorso");
         myFragment.setArguments(data);
-        /*if(data!= null){
-            myNot = data.getString("myData1");
-            tvMyText.setText(myNot);
-        }
-
-         */
         notificationCounter.increaseNumber();
         myFragment.addView(notificationCounter);
-
-
     }
 
 

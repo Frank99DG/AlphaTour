@@ -21,10 +21,9 @@ public class NotificheFragment extends Fragment {
     Button creaPercorso;
     private String myStr;
     private TextView tvMyText;
-    private String myNot;
-    private TextView notifica2;
+    private String myNotify;
     LinearLayout layoutList;
-    Bundle data = getArguments();
+
 
     public NotificheFragment() {
         // Required empty public constructor
@@ -39,26 +38,11 @@ public class NotificheFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_notifiche,container,false);
         closeNotification = view.findViewById(R.id.closeNotification);
-        tvMyText = view.findViewById(R.id.textNotify);
         creaPercorso = view.findViewById(R.id.creaPercorso);
-        //notifica2 = view.findViewById(R.id.notifica2);
         layoutList = view.findViewById(R.id.layout_list);
-
-
-
-/*
-        Bundle data = getArguments();
-        if(data!= null){
-            myStr= data.getString("myData");
-            myNot = data.getString("myData1");
-            if(myNot!=null)notifica2.setText(myNot);
-            tvMyText.setText(myStr);
-
-        }
- */
-
 
         closeNotification.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,12 +57,15 @@ public class NotificheFragment extends Fragment {
 
 
             View notifica = getLayoutInflater().inflate(R.layout.row_add_notify, null, false);
-            TextView tvMyText = (TextView) notifica.findViewById(R.id.textNotify);
+            TextView textNotify = (TextView) notifica.findViewById(R.id.textNotify);
             ImageView imageClose = (ImageView) notifica.findViewById(R.id.closeNotify);
 
+            Bundle data = getArguments();
             if(data!= null){
-            myNot = data.getString("myData1");
-            tvMyText.setText(myNot);
+            myNotify = data.getString("Notifica");
+            textNotify.setText(myNotify);
+
+
         }
 
             imageClose.setOnClickListener(new View.OnClickListener() {
