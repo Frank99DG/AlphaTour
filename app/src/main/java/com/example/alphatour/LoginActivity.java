@@ -135,6 +135,8 @@ public class LoginActivity extends AppCompatActivity {
                                     barraCaricamento.setVisibility(View.GONE);
                                 }else{
                                     Toast.makeText(LoginActivity.this, "NON E' UN CURATORE", Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+                                    barraCaricamento.setVisibility(View.GONE);
                                 }
                             } else {
                                 Toast.makeText(LoginActivity.this, getString(R.string.login_fallito), Toast.LENGTH_LONG).show();
