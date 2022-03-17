@@ -11,13 +11,13 @@
         android:layout_marginBottom="20dp"
         android:orientation="horizontal">
 
+        <!-- android:text="<-"-->
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
             android:onClick="previousMonthAction"
-            android:text="<-"
             android:textColor="#3F51B5"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -32,13 +32,13 @@
             android:textColor="@color/Black"
             android:textSize="20dp" />
 
+        <!-- android:text="->"-->
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
             android:onClick="nextMonthAction"
-            android:text="->"
             android:textColor="#3F51B5"
             android:textSize="20sp"
             android:textStyle="bold" />

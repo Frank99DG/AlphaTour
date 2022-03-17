@@ -8,49 +8,44 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    ImageView cover;
-    CircleImageView profile;
-    FloatingActionButton fab,changeProfile;
+    private CircleImageView profile;
+    private FloatingActionButton fab,changeProfile;
+    private TextView textWelcome,textNomeAndCognome,textEmail,textDataNascita,textUsername;
+    private ProgressBar progressBar;
+    private ImageView imageView;
+    private FirebaseAuth authprofile;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        //cover=findViewById(R.id.coverImg);
-        //fab=findViewById(R.id.floatingButton);
+       // getSupportActionBar().setTitle("Home");
+
         changeProfile=findViewById(R.id.changeProfile);
         profile=findViewById(R.id.profile_image);
     }
 
-   /* public void pickerImage(View v){
-
-        ImagePicker.with(this)
-                //.galleryOnly() apre solo la galleria
-                .crop()//Crop image(Optional), Check Customization for more option
-                .compress(1024)			//Final image size will be less than 1 MB(Optional)
-                .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)*/
-                //.start(10);
-    //}*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        /*if(requestCode==10) {
-            Uri uri = data.getData();
-            cover.setImageURI(uri);
-        }else{*/
             Uri uri = data.getData();
             profile.setImageURI(uri);
-        //}
     }
 
     public void changeProfile(View v){

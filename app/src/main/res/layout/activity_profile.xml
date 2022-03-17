@@ -70,6 +70,8 @@
             android:layout_margin="15dp"
             android:background="@color/white">
 
+            <!-- Mostra nome e cognome utente -->
+
             <ImageView
                 android:id="@+id/icProfile"
                 android:layout_width="25dp"
@@ -86,6 +88,7 @@
                 android:textSize="18sp"/>
 
             <View
+                android:id="@+id/dividerName"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_below="@+id/nomeUtenteProfilo"
@@ -93,7 +96,95 @@
                 android:background="@android:color/darker_gray" />
 
 
+            <!-- Mostra email utente -->
 
+            <ImageView
+                android:id="@+id/icEmail"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_email"
+                android:layout_below="@+id/dividerName"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/emailUtenteProfilo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/icEmail"
+                android:hint="Loading..."
+                android:layout_below="@id/dividerName"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"/>
+
+            <View
+                android:id="@+id/dividerEmail"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/emailUtenteProfilo"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/darker_gray" />
+
+            <!-- Mostra dataNascita-->
+
+
+            <ImageView
+                android:id="@+id/icDataNascita"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_data_nascita_profilo"
+                android:layout_below="@+id/dividerEmail"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/dataNascitaUtenteProfilo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/icDataNascita"
+                android:hint="Loading..."
+                android:layout_below="@id/dividerEmail"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"/>
+
+            <View
+                android:id="@+id/dividerDataNascita"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/dataNascitaUtenteProfilo"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/darker_gray" />
+
+
+            <!-- Mostra Username-->
+
+
+            <ImageView
+                android:id="@+id/icUsername"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_username"
+                android:layout_below="@+id/dividerDataNascita"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/usernameUtenteProfilo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/icUsername"
+                android:hint="Loading..."
+                android:layout_below="@id/dividerDataNascita"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"/>
+
+            <View
+                android:id="@+id/dividerUsername"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/usernameUtenteProfilo"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/darker_gray" />
 
 
         </RelativeLayout>
