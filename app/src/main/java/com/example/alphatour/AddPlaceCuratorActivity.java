@@ -25,8 +25,6 @@ public class AddPlaceCuratorActivity extends AppCompatActivity {
     AppCompatSpinner spinnerLuogo;
 
     List<String> listaTipoLuogo=new ArrayList<>();
-    List<View>elementList=new ArrayList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

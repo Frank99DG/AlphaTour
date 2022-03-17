@@ -12,10 +12,11 @@
 
     <TextView
         android:id="@+id/luogo"
-        android:layout_width="192dp"
-        android:layout_height="26dp"
+        android:layout_width="190dp"
+        android:layout_height="34dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
+        android:fontFamily="@font/alata"
         android:text="Dati Luogo"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -96,7 +97,8 @@
         android:layout_width="290dp"
         android:layout_height="56dp"
         android:layout_marginTop="32dp"
-        android:text="+ Zona"
+        android:text="Aggiungi Zona"
+        android:drawableEnd="@drawable/ic_add"
         android:onClick="openFirstZoneActivity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"

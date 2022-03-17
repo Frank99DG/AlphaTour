@@ -10,6 +10,15 @@ public class Elemento {
     }
 
 
+    public Elemento(String titolo,String descrizione,String codiceQr,String attivita,String codiceSensore){
+
+        this.titolo=titolo;
+        this.descrizione=descrizione;
+        this.codiceQr=codiceQr;
+        this.attivita=attivita;
+        this.codiceSensore=codiceSensore;
+    }
+
 
     public Elemento(String titolo,String descrizione,String foto,String codiceQr,String attivita,String codiceSensore){
 

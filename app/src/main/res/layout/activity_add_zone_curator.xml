@@ -21,6 +21,7 @@
             android:layout_height="53dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="148dp"
+            android:fontFamily="@font/alata"
             android:text="Zona"
             android:textColor="#000000"
             android:textSize="24sp"
@@ -30,11 +31,12 @@
 
         <Button
             android:id="@+id/buttonAggiungiElemento"
-            android:layout_width="136dp"
-            android:layout_height="48dp"
+            android:layout_width="146dp"
+            android:layout_height="46dp"
             android:layout_marginTop="148dp"
+            android:drawableEnd="@drawable/ic_add"
             android:onClick="addViewElemento"
-            android:text="+ Elemento"
+            android:text="Elemento"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/zona"
@@ -54,7 +56,7 @@
             app:layout_constraintTop_toBottomOf="@+id/zona" />
 
         <LinearLayout
-            android:id="@+id/linearLayoutZone"
+            android:id="@+id/listaElementiLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -62,7 +64,32 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputNomeZona"></LinearLayout>
+            app:layout_constraintTop_toBottomOf="@+id/inputNomeZona" />
+
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="329dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="48dp"
+            android:text="Se hai terminato passa alla nuova zona"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listaElementiLayout" />
+
+        <Button
+            android:id="@+id/buttonAggiungiZona"
+            android:layout_width="275dp"
+            android:layout_height="58dp"
+            android:onClick="inputControl"
+            android:text="Aggiungi Zona"
+            android:drawableEnd="@drawable/ic_add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
       android:id="@+id/addLuogo"
