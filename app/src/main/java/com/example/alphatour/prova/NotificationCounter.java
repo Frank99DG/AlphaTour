@@ -28,6 +28,13 @@ public class NotificationCounter {
         }
     }
 
+    public void decreaseNumber(){
+        notification_number_counter--;
+        if(notification_number_counter < 0){
+            Log.d("Counter", "Min Number Reached");
+        }else notificationNumber.setText(String.valueOf(notification_number_counter));
+    }
+
 
 
 }

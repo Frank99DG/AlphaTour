@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ public class NotificheFragment extends Fragment {
     private String myNot;
     private TextView notifica2;
     LinearLayout layoutList;
+    Bundle data = getArguments();
 
     public NotificheFragment() {
         // Required empty public constructor
@@ -39,10 +41,13 @@ public class NotificheFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notifiche,container,false);
         closeNotification = view.findViewById(R.id.closeNotification);
-       // tvMyText = view.findViewById(R.id.notifica1);
+        tvMyText = view.findViewById(R.id.textNotify);
         creaPercorso = view.findViewById(R.id.creaPercorso);
         //notifica2 = view.findViewById(R.id.notifica2);
         layoutList = view.findViewById(R.id.layout_list);
+
+
+
 /*
         Bundle data = getArguments();
         if(data!= null){
@@ -58,37 +63,41 @@ public class NotificheFragment extends Fragment {
         closeNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().remove(NotificheFragment.this).commit();
+                getFragmentManager().beginTransaction().hide(NotificheFragment.this).commit();
             }
         });
         return view;
     }
 
-    public void addView() {
+    public void addView(NotificationCounter notificationCounter) {
 
 
-        View cricketerView = getLayoutInflater().inflate(R.layout.row_add_notify, null, false);
-        TextView textView = (TextView) cricketerView.findViewById(R.id.textNotify);
-        ImageView imageClose = (ImageView) cricketerView.findViewById(R.id.closeNotify);
+            View notifica = getLayoutInflater().inflate(R.layout.row_add_notify, null, false);
+            TextView tvMyText = (TextView) notifica.findViewById(R.id.textNotify);
+            ImageView imageClose = (ImageView) notifica.findViewById(R.id.closeNotify);
 
+            if(data!= null){
+            myNot = data.getString("myData1");
+            tvMyText.setText(myNot);
+        }
 
-        imageClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removeView(cricketerView);
-            }
-        });
+            imageClose.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    notificationCounter.decreaseNumber();
+                    removeView(notifica);
 
-        layoutList.addView(cricketerView);
+                }
+            });
 
-
+            layoutList.addView(notifica);
 
     }
 
-
-
     public void removeView(View view) {
+
         layoutList.removeView(view);
+
     }
 
 }
