@@ -68,11 +68,9 @@ public class CalendarActivityProva extends AppCompatActivity implements Calendar
 
             }else {
 
-                daysInMonthArray.add(String.valueOf(i + dayOfWeek));
+                daysInMonthArray.add(String.valueOf(i - dayOfWeek));
             }
-
         }
-
         return daysInMonthArray;
     }
 
@@ -92,7 +90,7 @@ public class CalendarActivityProva extends AppCompatActivity implements Calendar
 
     public void nextMonthAction(View view) {
 
-        selectedDate.plusMonths(1);
+        selectedDate = selectedDate.plusMonths(1);
         setMonthView();
     }
 
