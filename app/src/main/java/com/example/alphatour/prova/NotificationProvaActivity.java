@@ -60,4 +60,10 @@ public class NotificationProvaActivity extends AppCompatActivity {
     }
 
 
+    public void buttonNotify(View view) {
+        data.putString("Notifica", "Notifica a caso");
+        myFragment.setArguments(data);
+        notificationCounter.increaseNumber();
+        myFragment.addView(notificationCounter);
+    }
 }
