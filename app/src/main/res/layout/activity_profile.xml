@@ -1,73 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:background="@color/LightGrey">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="320dp"
+        android:background="#5CC09F">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="320dp"
-            android:background="#5CC09F">
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_marginStart="132dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="132dp"
+                android:src="@drawable/imageprofile"
+                app:civ_border_color="#FFFFFF"
+                app:civ_border_width="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profile_image"
-                    android:layout_width="170dp"
-                    android:layout_height="170dp"
-                    android:layout_marginStart="132dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginEnd="132dp"
-                    android:src="@drawable/imageprofile"
-                    app:civ_border_color="#FFFFFF"
-                    app:civ_border_width="5dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/changeProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/silver"
+                android:clickable="true"
+                android:onClick="changeProfile"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+                app:layout_constraintEnd_toEndOf="@+id/profile_image"
+                app:srcCompat="@drawable/ic_photo_camera" />
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/changeProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/silver"
-                    android:clickable="true"
-                    android:onClick="changeProfile"
-                    app:layout_constraintBottom_toBottomOf="@+id/profile_image"
-                    app:layout_constraintEnd_toEndOf="@+id/profile_image"
-                    app:srcCompat="@drawable/ic_photo_camera" />
-
-                <TextView
-                    android:id="@+id/showWelcome"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/profile_image"
-                    android:layout_marginStart="153dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="153dp"
-                    android:hint="Loading..."
-                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                    android:textColor="@color/white"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_image" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </RelativeLayout>
+            <TextView
+                android:id="@+id/showWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_image"
+                android:layout_marginStart="153dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="153dp"
+                android:hint="Loading..."
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="15dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginTop="-58dp"
+        android:layout_marginBottom="197dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:background="@drawable/bordi_tondi_button"
         android:padding="15dp">
 
@@ -96,7 +92,6 @@
             android:layout_marginTop="20dp"
             android:background="@android:color/darker_gray" />
 
-
         <!-- Mostra email utente -->
 
         <ImageView
@@ -105,7 +100,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/dividerName"
             android:layout_marginTop="20dp"
-            android:background="@drawable/ic_email" />
+            android:background="@drawable/ic_email_profilo" />
 
         <TextView
             android:id="@+id/emailUtenteProfilo"
@@ -156,7 +151,6 @@
             android:layout_marginTop="20dp"
             android:background="@android:color/darker_gray" />
 
-
         <!-- Mostra Username-->
 
 
@@ -197,10 +191,16 @@
             android:elevation="10dp"
             android:visibility="gone" />
 
-
     </RelativeLayout>
 
-    </LinearLayout>
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="150dp"
+        android:layout_marginLeft="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-118dp"
+        android:text="Modifica profilo"
+        android:onClick="updateProfile1"/>
 
 
-</ScrollView>
+</LinearLayout>

@@ -140,4 +140,9 @@ public class ProfileActivity extends AppCompatActivity {
                 .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)*/
                 .start(20);
     }
+
+    public void updateProfile1(View v){
+        Intent intent=new Intent(this,UpdateProfileActivity.class);
+        startActivity(intent);
+    }
 }
