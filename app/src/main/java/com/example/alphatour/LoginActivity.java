@@ -26,7 +26,6 @@ public class LoginActivity extends AppCompatActivity {
     //CHIAVI PER ONSAVEINSTANCESTATE
     private static final String KEY_EMAIL="EmailUtente";
     private static final String KEY_PASSWORD="PasswordUtente";
-    private static final String EMAIL_CURATORE="@curatore.it";
 
     private EditText email, password;
     private ProgressBar barraCaricamento;
@@ -126,18 +125,10 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if (task.isSuccessful()) {
+                                    Toast.makeText(LoginActivity.this, "Accesso compiuto", Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(LoginActivity.this, AddPlaceCuratorActivity.class/*DashBoardActivity.class*/));
+                                    barraCaricamento.setVisibility(View.GONE);
 
-                                Pattern pattern= Pattern.compile(EMAIL_CURATORE);
-                                 Matcher matcher=pattern.matcher(email.getText());
-                                if(matcher.find()) {
-                                    Toast.makeText(LoginActivity.this, "E' UN CURATORE", Toast.LENGTH_LONG).show();
-                                    startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
-                                    barraCaricamento.setVisibility(View.GONE);
-                                }else{
-                                    Toast.makeText(LoginActivity.this, "NON E' UN CURATORE", Toast.LENGTH_LONG).show();
-                                    startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
-                                    barraCaricamento.setVisibility(View.GONE);
-                                }
                             } else {
                                 Toast.makeText(LoginActivity.this, getString(R.string.login_fallito), Toast.LENGTH_LONG).show();
                                 barraCaricamento.setVisibility(View.GONE);
