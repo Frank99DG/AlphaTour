@@ -26,6 +26,10 @@
             </intent-filter>
         </activity>
         -->
+
+        <activity
+            android:name=".UpdateProfileActivity"
+            android:exported="false" />
         <activity
             android:name=".AddPlaceCuratorActivity"
             android:exported="false" />
