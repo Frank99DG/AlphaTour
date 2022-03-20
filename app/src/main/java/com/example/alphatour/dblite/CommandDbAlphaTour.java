@@ -15,6 +15,13 @@ public final class CommandDbAlphaTour {
         public static final String TPO_INTEGER="INTEGER";
         public static final String PRIMARY_KEY="primary key";
         public static final String CREATE_TABLE="create Table";
+        public static final String SELECT="select";
+        public static final String WHERE="where";
+        public static final String FROM="from";
+        public static final String SELECT_ALL="select * from";
+        public static final String VALUE="?";
+        public static final String EGUAL="=";
+        public static final String UPDATE_TABLE="update Table";
         public static final String DROP_TABLE="drop Table if exists";
         public static final String SEPARATORE_STRINGA=",";
         public static final String SPACE=" ";
@@ -31,5 +38,10 @@ public final class CommandDbAlphaTour {
 
         /*eliminazione tabella utente*/
         public static final String DELETE_USER_TABLE=DROP_TABLE+SPACE+AlphaTourContract.AlphaTourEntry.NOME_TABELLA_UTENTE;
+
+        //aggiornamento dati utente
+        public static final String SELECT_USER_PROFILE=SELECT+SPACE+AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_ID+SPACE+
+                FROM+SPACE+AlphaTourContract.AlphaTourEntry.NOME_TABELLA_UTENTE+SPACE+WHERE+SPACE+
+                AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_EMAIL+SPACE+EGUAL+SPACE+"?";
     }
 }

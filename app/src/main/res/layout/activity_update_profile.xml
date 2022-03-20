@@ -77,7 +77,7 @@
                 android:background="@android:color/darker_gray" />
 
             <EditText
-                android:id="@+id/updateFullName"
+                android:id="@+id/updateName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/dividerNameUpdate"
@@ -137,7 +137,7 @@
                 android:layout_below="@+id/dividerCognomeUpdate"
                 android:layout_marginStart="50dp"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="1dp"
+                android:layout_marginTop="7dp"
                 android:layout_marginBottom="-20dp"
                 android:hint="Inserisci il cognome"
                 android:inputType="textPersonName"
@@ -193,6 +193,7 @@
                 android:layout_marginBottom="-20dp"
                 android:hint="Inserisci email"
                 android:inputType="textPersonName"
+                android:layout_marginTop="7dp"
                 android:padding="6dp"
                 android:textColor="#555555"
                 android:textSize="18sp" />
@@ -246,6 +247,7 @@
                 android:layout_marginBottom="-20dp"
                 android:hint="Inserisci data nascita"
                 android:inputType="textPersonName"
+                android:layout_marginTop="7dp"
                 android:padding="6dp"
                 android:textColor="#555555"
                 android:textSize="18sp" />
@@ -279,7 +281,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@id/icUsernameUpdate"
                 android:layout_marginStart="50dp"
-                android:hint="Email"
+                android:hint="Username"
                 android:textSize="18sp" />
 
             <View
@@ -298,6 +300,7 @@
                 android:layout_marginStart="50dp"
                 android:layout_marginBottom="-20dp"
                 android:hint="Inserisci username"
+                android:layout_marginTop="7dp"
                 android:inputType="textPersonName"
                 android:padding="6dp"
                 android:textColor="#555555"
