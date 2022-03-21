@@ -263,9 +263,9 @@ public class RegisterActivity extends AppCompatActivity {
             if(result == -1){
                 Toast.makeText(RegisterActivity.this, "Errore db local", Toast.LENGTH_LONG).show();
             }else{
-                //saveUserOnDbRemote(Nome,Cognome,DataNascita,Username,Email,Password);
-                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                barraCaricamento.setVisibility(View.GONE);
+                saveUserOnDbRemote(Nome,Cognome,DataNascita,Username,Email,Password);
+                //startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                //barraCaricamento.setVisibility(View.GONE);
                 finish();
             }
 

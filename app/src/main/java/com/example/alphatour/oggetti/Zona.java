@@ -1,5 +1,4 @@
 package com.example.alphatour.oggetti;
-
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleGraph;
@@ -13,11 +12,13 @@ public class Zona {
 
     }
 
+    public Zona(String nome){
+        this.nome = nome;
+    }
+
     public Zona(String nome, Graph elementiZona){
         this.nome = nome;
         this.elementiZona = elementiZona;
-
-
     }
 
 

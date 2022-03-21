@@ -5,9 +5,8 @@ import org.jgrapht.graph.SimpleDirectedGraph;
 
 public class Luogo {
 
-    public String nome,citta,tipologia;
+    public String nome,citta,tipologia,idCuratore;
     public static Graph<Zona,DefaultEdge> zoneLuogo = new SimpleDirectedGraph<>(DefaultEdge.class);
-
 
     public Luogo(){
 
@@ -19,10 +18,18 @@ public class Luogo {
         this.tipologia = tipologia;
     }
 
-    public Luogo(String nome, String citta, String tipologia, Graph zoneLuogo){
+    public Luogo(String nome, String citta, String tipologia, String idCuratore){
         this.nome = nome;
         this.citta = citta;
         this.tipologia = tipologia;
+        this.idCuratore = idCuratore;
+    }
+
+    public Luogo(String nome, String citta, String tipologia, String idCuratore, Graph zoneLuogo){
+        this.nome = nome;
+        this.citta = citta;
+        this.tipologia = tipologia;
+        this.idCuratore = idCuratore;
         this.zoneLuogo = zoneLuogo;
     }
 

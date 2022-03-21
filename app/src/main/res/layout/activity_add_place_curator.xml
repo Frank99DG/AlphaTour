@@ -7,7 +7,7 @@
     tools:ignore="SpeakableTextPresentCheck"
     android:fillViewport="true"
     android:background="@drawable/sfondo"
-    tools:context=".AddPlaceCuratorActivity">
+    tools:context=".AddPlaceActivity">
 
 
     <TextView
@@ -21,52 +21,69 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/descrizioneCreaLuogo" />
 
-    <EditText
-        android:id="@+id/inputNomeLuogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Nome"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/luogo" />
 
-    <EditText
-        android:id="@+id/inputCittaLuogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nomeLuogoLayout"
+        android:layout_width="208dp"
+        android:layout_height="56dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="44dp"
-        android:ems="10"
-        android:hint="Città"
-        android:inputType="textPersonName"
+        android:layout_marginTop="28dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputNomeLuogo" />
+        app:layout_constraintTop_toBottomOf="@+id/luogo">
 
-    <FrameLayout
-            android:id="@+id/frameTipologiaLuogo"
+        <EditText
+            android:id="@+id/inputNomeLuogo"
             android:layout_width="208dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="44dp"
-            android:hint="Tipologia"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputCittaLuogo">
+            android:layout_height="56dp"
+            android:background="@drawable/bordi_tondi"
+            android:ems="10"
+            android:hint="Nome"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+/
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cittaLuogoLayout"
+        android:layout_width="208dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nomeLuogoLayout">
 
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/spinnerTipologiaLuogo"
+        <EditText
+            android:id="@+id/inputCittaLuogo"
             android:layout_width="208dp"
-            android:layout_height="48dp" />
+            android:layout_height="56dp"
+            android:background="@drawable/bordi_tondi"
+            android:ems="10"
+            android:hint="Città"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    </FrameLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tipologiaLuogoLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="208dp"
+        android:layout_height="56dp"
+        android:layout_margin="35dp"
+        android:hint="Tipologia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cittaLuogoLayout">
+
+        <AutoCompleteTextView
+            android:id="@+id/inputTipologia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/descrizioneCreaLuogo"
         android:layout_width="343dp"
         android:layout_height="76dp"
         android:layout_marginTop="80dp"
@@ -79,10 +96,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/descrizioneCreaZona"
         android:layout_width="343dp"
         android:layout_height="76dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:text="Inizia a creare le zone che compongono il luogo"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -90,22 +107,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameTipologiaLuogo" />
+        app:layout_constraintTop_toBottomOf="@+id/tipologiaLuogoLayout" />
+
 
     <Button
         android:id="@+id/buttonAggiungiZona"
         android:layout_width="290dp"
         android:layout_height="56dp"
         android:layout_marginTop="32dp"
-        android:text="Aggiungi Zona"
         android:drawableEnd="@drawable/ic_add"
-        android:onClick="openFirstZoneActivity"
+        android:onClick="savePlaceOnDb"
+        android:text="Aggiungi Zona"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/descrizioneCreaZona" />
 
-
+    <ProgressBar
+        android:id="@+id/placeBarraCaricamento"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
