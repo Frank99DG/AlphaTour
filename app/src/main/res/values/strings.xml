@@ -43,4 +43,8 @@
     <string name="close">Chiudi</string>
 
     <string name="password_corrente">Password Corrente*</string>
+    <string name="password_nuova">Nuova Password*</string>
+    <string name="password_corrente_hint">Password Corrente</string>
+    <string name="password_nuova_hint">Nuova Password</string>
+    <string name="modifica_passord">Modifica Password</string>
 </resources>
