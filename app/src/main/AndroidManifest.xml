@@ -16,6 +16,9 @@
             android:name=".WeekViewActivityProva"
             android:exported="false" />
         <activity
+            android:name=".ChangePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".DashboardCuratoreActivity"
             android:exported="false" />
         <activity
