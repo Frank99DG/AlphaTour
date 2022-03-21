@@ -17,6 +17,7 @@ public class DashBoardActivity extends AppCompatActivity  {
     private ActionBarDrawerToggle toggle;
 
     DrawerLayout activity_dash_board;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,11 @@ public class DashBoardActivity extends AppCompatActivity  {
         toggle = new ActionBarDrawerToggle(this, activity_dash_board,R.string.open,R.string.close);
         activity_dash_board.addDrawerListener(toggle);
         toggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        navigationView = findViewById(R.id.navView);
+        /*navigationView.setNavigationItemSelectedListener();*/
 
 
 
