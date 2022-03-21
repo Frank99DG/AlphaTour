@@ -119,6 +119,9 @@ public class UpdateProfileActivity extends AppCompatActivity {
     }
 
     public void openChangePasswordActivity(View view) {
+
+        Intent intent =new Intent(UpdateProfileActivity.this,ChangePasswordActivity.class);
+        startActivity(intent);
     }
 
     public void buttonUpdateProfile(View view) {

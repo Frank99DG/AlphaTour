@@ -190,10 +190,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/dividerEmailUpdate"
                 android:layout_marginStart="50dp"
+                android:layout_marginTop="7dp"
                 android:layout_marginBottom="-20dp"
                 android:hint="Inserisci email"
                 android:inputType="textPersonName"
-                android:layout_marginTop="7dp"
                 android:padding="6dp"
                 android:textColor="#555555"
                 android:textSize="18sp" />
