@@ -42,5 +42,5 @@
     <string name="open">Apri</string>
     <string name="close">Chiudi</string>
 
-
+    <string name="password_corrente">Password Corrente*</string>
 </resources>
