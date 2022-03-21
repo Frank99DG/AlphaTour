@@ -15,22 +15,19 @@ import com.google.android.material.navigation.NavigationView;
 public class DashBoardActivity extends AppCompatActivity  {
 
     private ActionBarDrawerToggle toggle;
-    private Object DrawerLayout;
+
+    DrawerLayout activity_dash_board;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
 
-        toggle = new ActionBarDrawerToggle(this, (androidx.drawerlayout.widget.DrawerLayout) DrawerLayout, R.string.open,R.string.close);
-        ((DrawerLayout) DrawerLayout).addDrawerListener(toggle);
+        toggle = new ActionBarDrawerToggle(this, activity_dash_board,R.string.open,R.string.close);
+        activity_dash_board.addDrawerListener(toggle);
         toggle.syncState();
 
-        /*getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        R.id.navView.setNavigationItemSelectedListener();
-        when(it.itemId){
 
-        }*/
 
     }
 
@@ -39,6 +36,7 @@ public class DashBoardActivity extends AppCompatActivity  {
         if(toggle.onOptionsItemSelected(item)){
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 }
