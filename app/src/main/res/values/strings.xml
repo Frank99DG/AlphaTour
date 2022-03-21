@@ -39,5 +39,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="back" translatable="false"><![CDATA[<-]]></string>
     <string name="forward" translatable="false"><![CDATA[->]]></string>
+    <string name="open">Apri</string>
+    <string name="close">Chiudi</string>
+
 
 </resources>

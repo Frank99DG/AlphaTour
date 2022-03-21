@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/bordi_tondi"
-        android:hint="Cerca qui..."
+        android:queryhint="Cerca qui"
         android:textColorHint="#000000"
         app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
