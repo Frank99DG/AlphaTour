@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
@@ -31,11 +32,30 @@ public class DashBoardActivity extends AppCompatActivity  {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         navigationView = findViewById(R.id.navView);
-        /*navigationView.setNavigationItemSelectedListener();*/
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
+                switch (item.getItemId()) {
+                    case R.id.elem_1:
+                        Toast.makeText(DashBoardActivity.this, "Clicca su Profilo", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.elem_2:
+                        Toast.makeText(DashBoardActivity.this, "Clicca su Percorso", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.elem_3:
+                        Toast.makeText(DashBoardActivity.this, "Clicca su Impostazioni", Toast.LENGTH_SHORT).show();
+                        break;
 
+                    case R.id.elem_4:
+                        Toast.makeText(DashBoardActivity.this, "Clicca su Zona", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                return true;
+            }
+        });
 
-    }
+ }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
