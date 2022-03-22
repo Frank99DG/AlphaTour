@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.alphatour">
+    package="com.example.alphatour" >
 
     <application
         android:allowBackup="true"
@@ -8,7 +8,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AlphaTour">
+        android:theme="@style/Theme.AlphaTour" >
+        <activity
+            android:name=".DashboardActivity"
+            android:exported="false"
+            android:label="@string/title_activity_dashboard"
+            android:theme="@style/Theme.AlphaTour.NoActionBar" />
         <activity
             android:name=".prova.DailyCalendarActivityProva"
             android:exported="false" />
@@ -54,9 +59,6 @@
             android:name=".prova.SearchProvaActivity"
             android:exported="false" />
         <activity
-            android:name=".DashBoardActivity"
-            android:exported="false" />
-        <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity
@@ -67,7 +69,7 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -77,9 +79,6 @@
         <activity
             android:name=".WelcomeActivity"
             android:exported="false" />
-        <!--<activity
-            android:name=".prova.DashBoardCuratore_prova"
-            android:exported="false" />-->
     </application>
 
 </manifest>

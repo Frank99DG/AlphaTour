@@ -17,6 +17,15 @@
     </style>
 
     <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button">
-            <item name="backgroundTint" >@color/silver</item> <!-- sfondo bottone -->
+        <item name="backgroundTint">@color/silver</item> <!-- sfondo bottone -->
     </style>
+
+    <style name="Theme.AlphaTour.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.AlphaTour.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.AlphaTour.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

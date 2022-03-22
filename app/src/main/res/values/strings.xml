@@ -68,5 +68,16 @@
     <string name="password_necessaria">Modifica Password</string>
     <string name="password_necessaria_set_error">Per favore inserisci la password attuale per autenticarti</string>
     <string name="riautenticazione_con_successo">Sei autenticato con successo, ora puoi modificare la tua password!</string>
+    <string name="title_activity_dashboard">dashboardActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
 
 </resources>
