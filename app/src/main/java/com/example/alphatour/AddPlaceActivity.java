@@ -15,7 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
-import com.example.alphatour.oggetti.Luogo;
+import com.example.alphatour.oggetti.Place;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,12 +28,12 @@ import java.util.Objects;
 
 public class AddPlaceActivity extends AppCompatActivity {
 
-    private EditText nomeLuogo,citta;
-    private AutoCompleteTextView tipologia;
-    private List<String> lista_tipologie = new ArrayList<String>();
+    private EditText namePlace,city;
+    private AutoCompleteTextView typology;
+    private List<String> typology_list = new ArrayList<String>();
     private ArrayAdapter<String> adapterItems;
-    private String idCuratore;
-    private ProgressBar barraCaricamento;
+    private String idCurator;
+    private ProgressBar loadingBar;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
 
@@ -48,47 +48,47 @@ public class AddPlaceActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-            nomeLuogo = findViewById(R.id.inputNomeLuogo);
-            citta = findViewById(R.id.inputCittaLuogo);
-            tipologia = findViewById(R.id.inputTipologia);
-            lista_tipologie.add(getString(R.string.museo));
-            lista_tipologie.add(getString(R.string.fiera));
-            lista_tipologie.add(getString(R.string.sito_archeologico));
-            lista_tipologie.add(getString(R.string.mostra));
-            adapterItems = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, lista_tipologie );
-            tipologia.setAdapter(adapterItems);
-            tipologia.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            namePlace = findViewById(R.id.inputNamePlace);
+            city = findViewById(R.id.inputCityPlace);
+            typology = findViewById(R.id.inputTypologyPlace);
+            typology_list.add(getString(R.string.museo));
+            typology_list.add(getString(R.string.fiera));
+            typology_list.add(getString(R.string.sito_archeologico));
+            typology_list.add(getString(R.string.mostra));
+            adapterItems = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, typology_list );
+            typology.setAdapter(adapterItems);
+            typology.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                     String item = parent.getItemAtPosition(position).toString();
                 }
             });
 
-        barraCaricamento = findViewById(R.id.placeBarraCaricamento);
+        loadingBar = findViewById(R.id.placeLoadingBar);
     }
 
 
 
-    public boolean inputControl(String NomeLuogo, String Citta, String Tipologia){
+    public boolean inputControl(String NamePlace, String City, String Typology){
 
         Boolean errorFlag = false;
 
-        if (NomeLuogo.isEmpty()) {
-            nomeLuogo.setError(getString(R.string.campo_obbligatorio));
-            nomeLuogo.requestFocus();
+        if (NamePlace.isEmpty()) {
+            namePlace.setError(getString(R.string.campo_obbligatorio));
+            namePlace.requestFocus();
             errorFlag = true;
         }
 
-        if (Citta.isEmpty()) {
-            citta.setError(getString(R.string.campo_obbligatorio));
-            citta.requestFocus();
+        if (City.isEmpty()) {
+            city.setError(getString(R.string.campo_obbligatorio));
+            city.requestFocus();
             errorFlag = true;
         }
 
 
-        if (Tipologia.isEmpty()) {
-            tipologia.setError(getString(R.string.campo_obbligatorio));
-            tipologia.requestFocus();
+        if (Typology.isEmpty()) {
+            typology.setError(getString(R.string.campo_obbligatorio));
+            typology.requestFocus();
             errorFlag = true;
         }
 
@@ -96,27 +96,27 @@ public class AddPlaceActivity extends AppCompatActivity {
 
     }
 
-    public void savePlaceOnDbRemote(String NomeLuogo,String Citta,String Tipologia){
+    public void savePlaceOnDbRemote(String NamePlace,String City,String Typology){
 
-        barraCaricamento.setVisibility(View.VISIBLE);
+        loadingBar.setVisibility(View.VISIBLE);
 
-        idCuratore = Objects.requireNonNull(auth.getCurrentUser()).getUid();
-        Luogo luogo = new Luogo(NomeLuogo, Citta, Tipologia, idCuratore);
+        idCurator = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+        Place place = new Place(NamePlace, City, Typology, idCurator);
 
-        db.collection("Luoghi")
-                .add(luogo)
+        db.collection("Places")
+                .add(place)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Toast.makeText(AddPlaceActivity.this, "Luogo Salvato", Toast.LENGTH_LONG).show();
                         startActivity(new Intent(AddPlaceActivity.this, AddZoneActivity.class));
-                        barraCaricamento.setVisibility(View.GONE);
+                        loadingBar.setVisibility(View.GONE);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(AddPlaceActivity.this, "Salvataggio Luogo non riuscito" , Toast.LENGTH_LONG).show();
-                        barraCaricamento.setVisibility(View.GONE);
+                        loadingBar.setVisibility(View.GONE);
                     }
                 });
 
@@ -126,27 +126,27 @@ public class AddPlaceActivity extends AppCompatActivity {
 
     public void savePlaceOnDb(View v) {
 
-        String NomeLuogo = nomeLuogo.getText().toString();
-        String Citta = citta.getText().toString();
-        String Tipologia = tipologia.getText().toString();
+        String NamePlace = namePlace.getText().toString();
+        String City = city.getText().toString();
+        String Typology = typology.getText().toString();
 
-        Log.i("tipologia",Tipologia);
+        Log.i("tipologia",Typology);
 
-        boolean errorFlag = inputControl(NomeLuogo, Citta, Tipologia);
+        boolean errorFlag = inputControl(NamePlace, City, Typology);
 
         if(errorFlag) {
             return;
 
         }else {
 
-            //long result = saveUserOnDbLocal(NomeLuogo,Citta,Tipologia);
+            //long result = saveUserOnDbLocal(NamePlace,City,Typology);
 
             //if(result == -1){
                 //Toast.makeText(RegisterActivity.this, "Errore db local", Toast.LENGTH_LONG).show();
             //}else{
-                savePlaceOnDbRemote(NomeLuogo,Citta,Tipologia);
+                savePlaceOnDbRemote(NamePlace,City,Typology);
                 //startActivity(new Intent(AddPlaceActivity.this, AddZoneActivity.class));
-                //barraCaricamento.setVisibility(View.GONE);
+                //loadingBar.setVisibility(View.GONE);
                 //finish();
             }
 

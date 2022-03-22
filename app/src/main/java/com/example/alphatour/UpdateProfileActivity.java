@@ -44,11 +44,11 @@ public class UpdateProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
         editNome=findViewById(R.id.updateName);
-        editCognome=findViewById(R.id.updateCognome);
+        editCognome=findViewById(R.id.updateSurname);
         editEmail=findViewById(R.id.updateEmail);
-        editDataNascita=findViewById(R.id.updateDataNascita);
+        editDataNascita=findViewById(R.id.updateDateBirth);
         editUsername=findViewById(R.id.updateUsername);
-        progressBar=findViewById(R.id.profileUpdateBarraCaricamento);
+        progressBar=findViewById(R.id.profileUpdateLoadingBar);
 
         authprofile = FirebaseAuth.getInstance();
         utente=authprofile.getCurrentUser();

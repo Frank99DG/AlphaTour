@@ -27,7 +27,7 @@ public class invioProva extends AppCompatActivity {
 
         ageText = findViewById(R.id.mAge);
         button1 = findViewById(R.id.button1);
-        button2 = findViewById(R.id.button2);
+        button2 = findViewById(R.id.buttonUpdateProfile);
         button_path = findViewById(R.id.create_path);
 
     }

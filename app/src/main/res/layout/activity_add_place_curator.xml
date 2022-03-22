@@ -11,7 +11,7 @@
 
 
     <TextView
-        android:id="@+id/luogo"
+        android:id="@+id/textPlace"
         android:layout_width="190dp"
         android:layout_height="34dp"
         android:layout_marginStart="32dp"
@@ -21,20 +21,20 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descrizioneCreaLuogo" />
+        app:layout_constraintTop_toBottomOf="@+id/descriptionCreatePlace" />
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/nomeLuogoLayout"
+        android:id="@+id/namePlaceLayout"
         android:layout_width="208dp"
         android:layout_height="56dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="28dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/luogo">
+        app:layout_constraintTop_toBottomOf="@+id/textPlace">
 
         <EditText
-            android:id="@+id/inputNomeLuogo"
+            android:id="@+id/inputNamePlace"
             android:layout_width="208dp"
             android:layout_height="56dp"
             android:background="@drawable/bordi_tondi"
@@ -42,19 +42,19 @@
             android:hint="Nome"
             android:inputType="textPersonName" />
     </com.google.android.material.textfield.TextInputLayout>
-/
+
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/cittaLuogoLayout"
+        android:id="@+id/cityPlaceLayout"
         android:layout_width="208dp"
         android:layout_height="56dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nomeLuogoLayout">
+        app:layout_constraintTop_toBottomOf="@+id/namePlaceLayout">
 
         <EditText
-            android:id="@+id/inputCittaLuogo"
+            android:id="@+id/inputCityPlace"
             android:layout_width="208dp"
             android:layout_height="56dp"
             android:background="@drawable/bordi_tondi"
@@ -65,17 +65,17 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tipologiaLuogoLayout"
+        android:id="@+id/typologyPlaceLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="208dp"
         android:layout_height="56dp"
         android:layout_margin="35dp"
         android:hint="Tipologia"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cittaLuogoLayout">
+        app:layout_constraintTop_toBottomOf="@+id/cityPlaceLayout">
 
         <AutoCompleteTextView
-            android:id="@+id/inputTipologia"
+            android:id="@+id/inputTypologyPlace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none" />
@@ -83,7 +83,7 @@
 
 
     <TextView
-        android:id="@+id/descrizioneCreaLuogo"
+        android:id="@+id/descriptionCreatePlace"
         android:layout_width="343dp"
         android:layout_height="76dp"
         android:layout_marginTop="80dp"
@@ -96,7 +96,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/descrizioneCreaZona"
+        android:id="@+id/descriptionCreateFirstZone"
         android:layout_width="343dp"
         android:layout_height="76dp"
         android:layout_marginTop="32dp"
@@ -107,11 +107,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tipologiaLuogoLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/typologyPlaceLayout" />
 
 
     <Button
-        android:id="@+id/buttonAggiungiZona"
+        android:id="@+id/buttonAddZone"
         android:layout_width="290dp"
         android:layout_height="56dp"
         android:layout_marginTop="32dp"
@@ -121,10 +121,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descrizioneCreaZona" />
+        app:layout_constraintTop_toBottomOf="@+id/descriptionCreateFirstZone" />
 
     <ProgressBar
-        android:id="@+id/placeBarraCaricamento"
+        android:id="@+id/placeLoadingBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

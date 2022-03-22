@@ -12,14 +12,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.alphatour.prova.CalendarActivityProva;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -29,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String KEY_PASSWORD="PasswordUtente";
 
     private EditText email, password;
-    private ProgressBar barraCaricamento;
+    private ProgressBar loadingBar;
     private FirebaseAuth auth;
 
 
@@ -43,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
         email = findViewById(R.id.loginInputEmail);
         password = findViewById(R.id.loginInputPassword);
-        barraCaricamento = findViewById(R.id.loginBarraCaricamento);
+        loadingBar = findViewById(R.id.loginLoadingBar);
     }
 
     @Override
@@ -119,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
 
         } else {
 
-            barraCaricamento.setVisibility(View.VISIBLE);
+            loadingBar.setVisibility(View.VISIBLE);
             auth.signInWithEmailAndPassword(Email, Password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -128,11 +124,11 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                     Toast.makeText(LoginActivity.this, "Accesso compiuto", Toast.LENGTH_LONG).show();
                                     startActivity(new Intent(LoginActivity.this, AddPlaceActivity.class /*AddPlaceActivity.class*//*DashBoardActivity.class*/));
-                                    barraCaricamento.setVisibility(View.GONE);
+                                    loadingBar.setVisibility(View.GONE);
 
                             } else {
                                 Toast.makeText(LoginActivity.this, getString(R.string.login_fallito), Toast.LENGTH_LONG).show();
-                                barraCaricamento.setVisibility(View.GONE);
+                                loadingBar.setVisibility(View.GONE);
                             }
 
                         }

@@ -54,11 +54,11 @@ public class ProfileActivity extends AppCompatActivity {
         profile=findViewById(R.id.profile_image);
 
         textWelcome=findViewById(R.id.showWelcome);
-        textNomeAndCognome=findViewById(R.id.nomeUtenteProfilo);
-        textEmail=findViewById(R.id.emailUtenteProfilo);
-        textDataNascita=findViewById(R.id.dataNascitaUtenteProfilo);
-        textUsername=findViewById(R.id.usernameUtenteProfilo);
-        progressBar=findViewById(R.id.profileBarraCaricamento);
+        textNomeAndCognome=findViewById(R.id.profileNameUser);
+        textEmail=findViewById(R.id.profileEmailUser);
+        textDataNascita=findViewById(R.id.profileDateBirthUser);
+        textUsername=findViewById(R.id.profileUsernameUser);
+        progressBar=findViewById(R.id.profileLoadingBar);
 
         authprofile = FirebaseAuth.getInstance();
         FirebaseUser utente=authprofile.getCurrentUser();

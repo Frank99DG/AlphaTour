@@ -60,7 +60,7 @@
                 android:background="@drawable/ic_profile" />
 
             <TextView
-                android:id="@+id/nomeUtenteProfiloUpdate"
+                android:id="@+id/profileUpdateNameUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@id/icProfileUpdate"
@@ -114,7 +114,7 @@
                 android:background="@drawable/ic_profile" />
 
             <TextView
-                android:id="@+id/cognomeUtenteProfiloUpdate"
+                android:id="@+id/profileUpdateSurnameUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@id/icProfileSurnameUpdate"
@@ -123,7 +123,7 @@
                 android:textSize="18sp" />
 
             <View
-                android:id="@+id/dividerCognomeUpdate"
+                android:id="@+id/dividerSurnameUpdate"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="50dp"
@@ -131,10 +131,10 @@
                 android:background="@android:color/darker_gray" />
 
             <EditText
-                android:id="@+id/updateCognome"
+                android:id="@+id/updateSurname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/dividerCognomeUpdate"
+                android:layout_below="@+id/dividerSurnameUpdate"
                 android:layout_marginStart="50dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="7dp"
@@ -165,10 +165,10 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/ic_email_profilo" />
+                android:background="@drawable/ic_email_profile" />
 
             <TextView
-                android:id="@+id/emailUtenteProfiloUpdate"
+                android:id="@+id/profileUpdateEmailUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@id/icEmailUpdate"
@@ -219,10 +219,10 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/ic_data_nascita_profilo" />
+                android:background="@drawable/ic_date_birth_profile" />
 
             <TextView
-                android:id="@+id/dataNascitaUtenteProfiloUpdate"
+                android:id="@+id/profileUpdateDateBirthUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@id/icDataNascitaUpdate"
@@ -231,7 +231,7 @@
                 android:textSize="18sp" />
 
             <View
-                android:id="@+id/dividerDataNascitaUpdate"
+                android:id="@+id/dividerDateBirthUpdate"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="50dp"
@@ -239,10 +239,10 @@
                 android:background="@android:color/darker_gray" />
 
             <EditText
-                android:id="@+id/updateDataNascita"
+                android:id="@+id/updateDateBirth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/dividerDataNascitaUpdate"
+                android:layout_below="@+id/dividerDateBirthUpdate"
                 android:layout_marginStart="50dp"
                 android:layout_marginBottom="-20dp"
                 android:hint="Inserisci data nascita"
@@ -276,7 +276,7 @@
                 android:background="@drawable/ic_username" />
 
             <TextView
-                android:id="@+id/usernameUtenteProfiloUpdate"
+                android:id="@+id/profileUpdateUsernameUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@id/icUsernameUpdate"
@@ -315,7 +315,7 @@
 
 
         <ProgressBar
-            android:id="@+id/profileUpdateBarraCaricamento"
+            android:id="@+id/profileUpdateLoadingBar"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -327,7 +327,7 @@
     </RelativeLayout>
 
         <Button
-            android:id="@+id/updateProfile"
+            android:id="@+id/buttonUpdateProfile2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="78dp"
@@ -337,7 +337,7 @@
             android:text="Aggiorna Profilo" />
 
         <TextView
-            android:id="@+id/textPasswordDimenticata"
+            android:id="@+id/textPasswordForgotten"
             android:layout_width="224dp"
             android:layout_height="30dp"
             android:layout_marginTop="5dp"

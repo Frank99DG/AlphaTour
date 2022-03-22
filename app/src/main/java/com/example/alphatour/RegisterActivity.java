@@ -63,9 +63,9 @@ public class RegisterActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
 
-                nome = findViewById(R.id.registerInputNome);
-                cognome = findViewById(R.id.registerInputCognome);
-                dataNascita = findViewById(R.id.registerInputDataNascita);
+                nome = findViewById(R.id.registerInputName);
+                cognome = findViewById(R.id.registerInputSurname);
+                dataNascita = findViewById(R.id.registerInputDateBirth);
                 username = findViewById(R.id.registerInputUsername);
                 email = findViewById(R.id.registerInputEmail);
                 password = findViewById(R.id.registerInputPassword);
@@ -73,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-        barraCaricamento = findViewById(R.id.registerBarraCaricamento);
+        barraCaricamento = findViewById(R.id.registerLoadingBar);
 
     }
 

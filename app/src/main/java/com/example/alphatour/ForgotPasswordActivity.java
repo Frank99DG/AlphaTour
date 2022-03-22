@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class ForgotPasswordActivity extends AppCompatActivity {
 
     private EditText email;
-    private ProgressBar barraCaricamento;
+    private ProgressBar loadingBar;
     private FirebaseAuth auth;
 
 
@@ -29,7 +29,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         email = findViewById(R.id.recoveryInputEmail);
-        barraCaricamento = findViewById(R.id.recoveryBarraCaricamento);
+        loadingBar = findViewById(R.id.recoveryLoadingBar);
 
     }
 
@@ -66,16 +66,16 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
         } else {
 
-            barraCaricamento.setVisibility(View.VISIBLE);
+            loadingBar.setVisibility(View.VISIBLE);
             auth.sendPasswordResetEmail(Email).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
                         Toast.makeText(ForgotPasswordActivity.this, getString(R.string.controlla_email), Toast.LENGTH_SHORT).show();
-                        barraCaricamento.setVisibility(View.GONE);
+                        loadingBar.setVisibility(View.GONE);
                     } else {
                         Toast.makeText(ForgotPasswordActivity.this, getString(R.string.errore_generico), Toast.LENGTH_SHORT).show();
-                        barraCaricamento.setVisibility(View.GONE);
+                        loadingBar.setVisibility(View.GONE);
                     }
                 }
             });

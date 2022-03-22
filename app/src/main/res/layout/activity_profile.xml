@@ -76,7 +76,7 @@
             android:background="@drawable/ic_profile" />
 
         <TextView
-            android:id="@+id/nomeUtenteProfilo"
+            android:id="@+id/profileNameUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@id/icProfile"
@@ -88,7 +88,7 @@
             android:id="@+id/dividerName"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@+id/nomeUtenteProfilo"
+            android:layout_below="@+id/profileNameUser"
             android:layout_marginTop="20dp"
             android:background="@android:color/darker_gray" />
 
@@ -100,10 +100,10 @@
             android:layout_height="25dp"
             android:layout_below="@+id/dividerName"
             android:layout_marginTop="20dp"
-            android:background="@drawable/ic_email_profilo" />
+            android:background="@drawable/ic_email_profile" />
 
         <TextView
-            android:id="@+id/emailUtenteProfilo"
+            android:id="@+id/profileEmailUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/dividerName"
@@ -117,7 +117,7 @@
             android:id="@+id/dividerEmail"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@+id/emailUtenteProfilo"
+            android:layout_below="@+id/profileEmailUser"
             android:layout_marginTop="20dp"
             android:background="@android:color/darker_gray" />
 
@@ -125,19 +125,19 @@
 
 
         <ImageView
-            android:id="@+id/icDataNascita"
+            android:id="@+id/icDateBirth"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_below="@+id/dividerEmail"
             android:layout_marginTop="20dp"
-            android:background="@drawable/ic_data_nascita_profilo" />
+            android:background="@drawable/ic_date_birth_profile" />
 
         <TextView
-            android:id="@+id/dataNascitaUtenteProfilo"
+            android:id="@+id/profileDateBirthUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/dividerEmail"
-            android:layout_alignStart="@id/icDataNascita"
+            android:layout_alignStart="@id/icDateBirth"
             android:layout_marginStart="50dp"
             android:layout_marginTop="20dp"
             android:hint="Loading..."
@@ -147,7 +147,7 @@
             android:id="@+id/dividerDataNascita"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@+id/dataNascitaUtenteProfilo"
+            android:layout_below="@+id/profileDateBirthUser"
             android:layout_marginTop="20dp"
             android:background="@android:color/darker_gray" />
 
@@ -163,7 +163,7 @@
             android:background="@drawable/ic_username" />
 
         <TextView
-            android:id="@+id/usernameUtenteProfilo"
+            android:id="@+id/profileUsernameUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/dividerDataNascita"
@@ -177,24 +177,23 @@
             android:id="@+id/dividerUsername"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@+id/usernameUtenteProfilo"
+            android:layout_below="@+id/profileUsernameUser"
             android:layout_marginTop="20dp"
             android:background="@android:color/darker_gray" />
 
         <ProgressBar
-            android:id="@+id/profileBarraCaricamento"
+            android:id="@+id/profileLoadingBar"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:elevation="10dp"
             android:visibility="gone" />
 
     </RelativeLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonUpdateProfile"
         android:layout_width="150dp"
         android:layout_marginLeft="120dp"
         android:layout_height="wrap_content"

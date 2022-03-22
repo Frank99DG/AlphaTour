@@ -21,14 +21,11 @@ public class AddZoneActivity extends AppCompatActivity {
 
 
 
-    private int numeroZona = 1;
-
-    Button aggiungiElemento;
-    LinearLayout listaLayout;
-
-    private EditText nomeZona,titolo,descrizione,foto,codiceQr,attivita,codiceSensore;
-
-    ArrayList<Element> listaElementi = new ArrayList<>();
+    private int zoneNumber = 1;
+    private EditText nameZone,title,description,photo,qrCode,activity,sensorCode;
+    Button addElement;
+    LinearLayout layout_list;
+    ArrayList<Element> element_list = new ArrayList<>();
 
     /*FloatingActionButton bottone;
     EditText nomeLuogo;
@@ -43,120 +40,113 @@ public class AddZoneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_zone_curator);
 
-        /*bottone=findViewById(R.id.addLuogo);
-        nomeLuogo=findViewById(R.id.textNomeLuogo);
-        rotateOpen= AnimationUtils.loadAnimation(this,R.anim.rotate_open_animation);
-        rotateClose= AnimationUtils.loadAnimation(this,R.anim.rotate_close_animation);
-        fromBottom= AnimationUtils.loadAnimation(this,R.anim.from_bottom_animation);
-        toBottom= AnimationUtils.loadAnimation(this,R.anim.to_bottom_animation);*/
-
-        aggiungiElemento = findViewById(R.id.buttonAggiungiElemento);
-        nomeZona = findViewById(R.id.inputNomeZona);
-        listaLayout = findViewById(R.id.listaElementiLayout);
+        addElement = findViewById(R.id.buttonAggiungiElemento);
+        nameZone = findViewById(R.id.inputNomeZona);
+        layout_list = findViewById(R.id.listaElementiLayout);
 
     }
 
 
     public void addViewElemento(View v) {
 
-        final View elementView = getLayoutInflater().inflate(R.layout.row_add_elemento,null,false);
+        final View elementView = getLayoutInflater().inflate(R.layout.row_add_element,null,false);
         ImageView removeElement = (ImageView) elementView.findViewById(R.id.buttonDeleteElement);
 
         removeElement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                listaLayout.removeView(elementView);
+                layout_list.removeView(elementView);
             }
         });
 
-        listaLayout.addView(elementView);
+        layout_list.addView(elementView);
     }
 
 
     public void /*boolean*/ inputControl(View v){
-        listaElementi.clear();
+        element_list.clear();
         Boolean errorFlag = false;
 
-        String NomeZona = nomeZona.getText().toString();
-        if(NomeZona.isEmpty()){
-            nomeZona.setError(getString(R.string.campo_obbligatorio));
-            nomeZona.requestFocus();
+        String NameZone = nameZone.getText().toString();
+        if(NameZone.isEmpty()){
+            nameZone.setError(getString(R.string.campo_obbligatorio));
+            nameZone.requestFocus();
         }
 
-        for(int i = 0; i < listaLayout.getChildCount(); i++){
+        for(int i = 0; i < layout_list.getChildCount(); i++){
 
-            View elementView = listaLayout.getChildAt(i);
+            View elementView = layout_list.getChildAt(i);
 
-             titolo = elementView.findViewById(R.id.inputTitolo);
-             descrizione = elementView.findViewById(R.id.inputDescrizione);
+             title = elementView.findViewById(R.id.inputTitle);
+             description = elementView.findViewById(R.id.inputDescription);
              //foto = elementView.findViewById( );
-             codiceQr = elementView.findViewById(R.id.inputCodiceQr);
-             attivita = elementView.findViewById(R.id.inputAttivita);
-             codiceSensore = elementView.findViewById(R.id.inputCodiceSensore);
+             qrCode = elementView.findViewById(R.id.inputQrCode);
+             activity = elementView.findViewById(R.id.inputActivity);
+             sensorCode = elementView.findViewById(R.id.inputSensorCode);
 
-             Element elemento = new Element();
+             Element element = new Element();
 
-             String Titolo = titolo.getText().toString();
-             String Descrizione = descrizione.getText().toString();
-             //String Foto = foto.getText().toString();
-             String CodiceQr = codiceQr.getText().toString();
-             String Attivita = attivita.getText().toString();
-             String CodiceSensore = codiceSensore.getText().toString();
+             String Title = title.getText().toString();
+             String Description= description.getText().toString();
+             //String Photo = foto.getText().toString();
+             String QrCode = qrCode.getText().toString();
+             String Activity = activity.getText().toString();
+             String SensorCode = sensorCode.getText().toString();
 
 
-            if(Titolo.isEmpty()){
-                titolo.setError(getString(R.string.campo_obbligatorio));
-                titolo.requestFocus();
+            if(Title.isEmpty()){
+                title.setError(getString(R.string.campo_obbligatorio));
+                title.requestFocus();
                 errorFlag = true;
             }else{
-                elemento.setTitolo(Titolo);
+                element.setTitle(Title);
             }
 
-            if(Descrizione.isEmpty()){
-                descrizione.setError(getString(R.string.campo_obbligatorio));
-                descrizione.requestFocus();
+            if(Description.isEmpty()){
+                description.setError(getString(R.string.campo_obbligatorio));
+                description.requestFocus();
                 errorFlag = true;
             }else{
-                elemento.setDescrizione(Descrizione);
+                element.setDescription(Description);
             }
 
-            if(CodiceQr.isEmpty()){
-                codiceQr.setError(getString(R.string.campo_obbligatorio));
-                codiceQr.requestFocus();
+            if(QrCode.isEmpty()){
+                qrCode.setError(getString(R.string.campo_obbligatorio));
+                qrCode.requestFocus();
                 errorFlag = true;
             }else{
-                elemento.setCodiceQr(CodiceQr);
+                element.setQrCode(QrCode);
             }
 
-            if(Attivita.isEmpty()){
-                attivita.setError(getString(R.string.campo_obbligatorio));
-                attivita.requestFocus();
+            if(Activity.isEmpty()){
+                activity.setError(getString(R.string.campo_obbligatorio));
+                activity.requestFocus();
                 errorFlag = true;
             }else{
-                elemento.setAttivita(Attivita);
+                element.setActivity(Activity);
             }
 
-            if(CodiceSensore.isEmpty()){
-                codiceSensore.setError(getString(R.string.campo_obbligatorio));
-                codiceSensore.requestFocus();
+            if(SensorCode.isEmpty()){
+                sensorCode.setError(getString(R.string.campo_obbligatorio));
+                sensorCode.requestFocus();
                 errorFlag = true;
             }else{
-                elemento.setCodiceSensore(CodiceSensore);
+                element.setSensorCode(SensorCode);
             }
 
             if(!errorFlag){
-                listaElementi.add(elemento);
+                element_list.add(element);
             }
 
         }
 
-        if(listaLayout.getChildCount() == 0){
+        if(layout_list.getChildCount() == 0){
             Toast.makeText(this,"Aggiungi almeno un elemento", Toast.LENGTH_SHORT).show();
-        }else if( listaElementi.size() < listaLayout.getChildCount() || NomeZona.isEmpty()){
+        }else if( element_list.size() < layout_list.getChildCount() || NameZone.isEmpty()){
             Toast.makeText(this,"Completa correttamente i campi", Toast.LENGTH_SHORT).show();
         }else {
-            Log.i("elementi", listaElementi.toString());
+            Log.i("elementi", element_list.toString());
             Toast.makeText(this,"Zona ed elementi salvati", Toast.LENGTH_SHORT).show();
         }
 
@@ -180,37 +170,5 @@ public class AddZoneActivity extends AppCompatActivity {
 
     }
 
-/*
-    public void aggiungiLuogo(View v){
-
-        setVisibility(clicked);
-        setAnimation(clicked);
-        clicked=!clicked; //stessa cosa che fare if then else
-
-    }
-
-    private void setVisibility(boolean clicked) {
-
-        if(!clicked){
-            nomeLuogo.setVisibility(View.VISIBLE);
-        }else{
-            nomeLuogo.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    private void setAnimation(boolean clicked) {
-
-        if(!clicked){
-            bottone.startAnimation(rotateOpen);
-            nomeLuogo.startAnimation(fromBottom);
-
-        }else{
-            nomeLuogo.startAnimation(toBottom);
-            bottone.startAnimation(rotateClose);
-
-        }
-    }
-
- */
 
 }

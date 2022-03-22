@@ -8,7 +8,7 @@
     tools:context=".WelcomeActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/logoApp"
         android:layout_width="184dp"
         android:layout_height="177dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,7 +20,7 @@
         app:srcCompat="@drawable/logo_app2" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textSlogan"
         android:layout_width="316dp"
         android:layout_height="40dp"
         android:text="@string/frase_apertura"
@@ -32,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/logoApp"
         app:layout_constraintVertical_bias="0.101" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

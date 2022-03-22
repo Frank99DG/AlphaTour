@@ -84,7 +84,7 @@
 
 
     <TextView
-        android:id="@+id/textPasswordDimenticata"
+        android:id="@+id/textPasswordForgotten"
         android:layout_width="224dp"
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
@@ -101,7 +101,7 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <Button
-        android:id="@+id/buttonAccedi"
+        android:id="@+id/buttonSignIn"
         android:layout_width="268dp"
         android:layout_height="60dp"
         android:layout_marginTop="8dp"
@@ -115,11 +115,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPasswordDimenticata"
+        app:layout_constraintTop_toBottomOf="@+id/textPasswordForgotten"
         app:strokeColor="#423A3A" />
 
     <TextView
-        android:id="@+id/textAlternativa"
+        android:id="@+id/textAlternative"
         android:layout_width="132dp"
         android:layout_height="20dp"
         android:layout_marginTop="20dp"
@@ -130,7 +130,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAccedi" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonSignIn" />
 
     <LinearLayout
         android:id="@+id/socialLayout"
@@ -140,7 +140,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textAlternativa">
+        app:layout_constraintTop_toBottomOf="@+id/textAlternative">
 
         <ImageView
             android:id="@+id/imageGoogle"
@@ -160,7 +160,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textNuovoAccount"
+        android:id="@+id/textNewAccount"
         android:layout_width="227dp"
         android:layout_height="24dp"
         android:layout_marginTop="40dp"
@@ -174,7 +174,7 @@
         app:layout_constraintTop_toBottomOf="@+id/socialLayout" />
 
     <Button
-         android:id="@+id/buttonRegistrati"
+         android:id="@+id/buttonSignUp"
          android:layout_width="319dp"
          android:layout_height="54dp"
          android:layout_marginTop="4dp"
@@ -186,11 +186,11 @@
          app:layout_constraintEnd_toEndOf="parent"
          app:layout_constraintHorizontal_bias="0.489"
          app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toBottomOf="@+id/textNuovoAccount"
+         app:layout_constraintTop_toBottomOf="@+id/textNewAccount"
          />
 
     <ProgressBar
-        android:id="@+id/loginBarraCaricamento"
+        android:id="@+id/loginLoadingBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

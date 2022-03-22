@@ -25,7 +25,7 @@
             app:srcCompat="@drawable/logo_app2" />
 
         <TextView
-            android:id="@+id/registrazioneUtente"
+            android:id="@+id/registrationUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -40,7 +40,7 @@
 
 
         <TextView
-            android:id="@+id/datiPersonali"
+            android:id="@+id/personalData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -51,21 +51,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.055"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/registrazioneUtente" />
+            app:layout_constraintTop_toBottomOf="@+id/registrationUser" />
 
         <com.google.android.material.textfield.TextInputLayout
 
-            android:id="@+id/nomeLayout"
+            android:id="@+id/nameLayout"
             android:layout_width="321dp"
             android:layout_height="59dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/bordi_tondi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/datiPersonali">
+            app:layout_constraintTop_toBottomOf="@+id/personalData">
 
             <EditText
-                android:id="@+id/registerInputNome"
+                android:id="@+id/registerInputName"
                 android:layout_width="321dp"
                 android:layout_height="59dp"
                 android:autofillHints="no"
@@ -86,17 +86,17 @@
 
         <com.google.android.material.textfield.TextInputLayout
 
-            android:id="@+id/cognomeLayout"
+            android:id="@+id/surnameLayout"
             android:layout_width="321dp"
             android:layout_height="59dp"
             android:layout_marginTop="24dp"
             android:background="@drawable/bordi_tondi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nomeLayout">
+            app:layout_constraintTop_toBottomOf="@+id/nameLayout">
 
             <EditText
-                android:id="@+id/registerInputCognome"
+                android:id="@+id/registerInputSurname"
                 android:layout_width="321dp"
                 android:layout_height="59dp"
                 android:autofillHints="no"
@@ -113,17 +113,17 @@
 
         <com.google.android.material.textfield.TextInputLayout
 
-            android:id="@+id/dataLayout"
+            android:id="@+id/dateLayout"
             android:layout_width="321dp"
             android:layout_height="59dp"
             android:layout_marginTop="28dp"
             android:background="@drawable/bordi_tondi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cognomeLayout">
+            app:layout_constraintTop_toBottomOf="@+id/surnameLayout">
 
             <EditText
-                android:id="@+id/registerInputDataNascita"
+                android:id="@+id/registerInputDateBirth"
                 android:layout_width="321dp"
                 android:layout_height="59dp"
                 android:autofillHints="no"
@@ -145,7 +145,7 @@
             android:focusable="true"-->
 
         <TextView
-            android:id="@+id/datiAccount"
+            android:id="@+id/accountData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -156,7 +156,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.053"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dataLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/dateLayout" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -168,7 +168,7 @@
             android:background="@drawable/bordi_tondi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/datiAccount">
+            app:layout_constraintTop_toBottomOf="@+id/accountData">
 
             <EditText
                 android:id="@+id/registerInputUsername"
@@ -242,7 +242,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <ProgressBar
-            android:id="@+id/registerBarraCaricamento"
+            android:id="@+id/registerLoadingBar"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -255,7 +255,7 @@
             app:layout_constraintVertical_bias="0.635" />
 
         <Button
-            android:id="@+id/buttonCreaAccount"
+            android:id="@+id/buttonCreateAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
