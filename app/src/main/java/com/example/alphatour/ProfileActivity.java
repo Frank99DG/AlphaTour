@@ -1,20 +1,17 @@
 package com.example.alphatour;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.alphatour.oggetti.Utente;
+import com.example.alphatour.oggetti.User;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,8 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firestore.v1.Document;
-import com.google.firestore.v1.TransactionOptions;
 
 import java.util.List;
 
@@ -94,7 +89,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                             //recupero dati
                             registrato=true;
-                            Utente utente = d.toObject(Utente.class);
+                            User utente = d.toObject(User.class);
                             nome=utente.nome;
                             cognome= utente.cognome;
                             email=utente.email;

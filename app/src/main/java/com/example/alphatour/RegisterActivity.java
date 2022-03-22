@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.example.alphatour.dblite.AlphaTourContract;
 import com.example.alphatour.dblite.AlphaTourDbHelper;
-import com.example.alphatour.oggetti.Utente;
+import com.example.alphatour.oggetti.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -209,7 +209,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             idUtente = Objects.requireNonNull(auth.getCurrentUser()).getUid();
-                            Utente utente = new Utente(Nome, Cognome, DataNascita, Username, Email);
+                            User utente = new User(Nome, Cognome, DataNascita, Username, Email);
 
                             DocumentReference documentReference = db.collection("Utenti").document(idUtente);
 

@@ -17,22 +17,16 @@ import android.widget.Toast;
 import com.example.alphatour.dblite.AlphaTourContract;
 import com.example.alphatour.dblite.AlphaTourDbHelper;
 import com.example.alphatour.dblite.CommandDbAlphaTour;
-import com.example.alphatour.oggetti.Utente;
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.example.alphatour.oggetti.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
-import java.util.Objects;
 
 public class UpdateProfileActivity extends AppCompatActivity {
 
@@ -86,7 +80,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
                             //recupero dati
                             registrato=true;
-                            Utente utente = d.toObject(Utente.class);
+                            User utente = d.toObject(User.class);
                             nome=utente.nome;
                             cognome= utente.cognome;
                             email=utente.email;
@@ -229,7 +223,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
     public void updateUserOnDbRemote(String Nome,String Cognome,String DataNascita,String Username,String Email){
 
         progressBar.setVisibility(View.VISIBLE);
-        Utente utenteUpdate=new Utente(Nome,Cognome,DataNascita,Username,Email);
+        User utenteUpdate=new User(Nome,Cognome,DataNascita,Username,Email);
         db.collection("Utenti").document(utente.getUid()).
                 set(utenteUpdate).
                 addOnSuccessListener(new OnSuccessListener<Void>() {

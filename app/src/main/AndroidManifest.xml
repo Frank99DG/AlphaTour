@@ -41,12 +41,12 @@
         <activity
             android:name=".UpdateProfileActivity"
             android:exported="false" />
-       <!-- <activity
-            android:name=".AddPlaceCuratorActivity"
+        <activity
+            android:name=".AddPlaceActivity"
             android:exported="false" />
         <activity
-            android:name=".AddZoneCuratorActivity"
-            android:exported="false" />-->
+            android:name=".AddZoneActivity"
+            android:exported="false" />
         <activity
             android:name=".prova.NotificationProvaActivity"
             android:exported="false" />

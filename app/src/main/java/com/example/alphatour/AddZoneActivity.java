@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
-import com.example.alphatour.oggetti.Elemento;
+import com.example.alphatour.oggetti.Element;
 
 import java.util.ArrayList;
 
@@ -28,7 +28,7 @@ public class AddZoneActivity extends AppCompatActivity {
 
     private EditText nomeZona,titolo,descrizione,foto,codiceQr,attivita,codiceSensore;
 
-    ArrayList<Elemento> listaElementi = new ArrayList<>();
+    ArrayList<Element> listaElementi = new ArrayList<>();
 
     /*FloatingActionButton bottone;
     EditText nomeLuogo;
@@ -95,7 +95,7 @@ public class AddZoneActivity extends AppCompatActivity {
              attivita = elementView.findViewById(R.id.inputAttivita);
              codiceSensore = elementView.findViewById(R.id.inputCodiceSensore);
 
-             Elemento elemento = new Elemento();
+             Element elemento = new Element();
 
              String Titolo = titolo.getText().toString();
              String Descrizione = descrizione.getText().toString();
