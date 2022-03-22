@@ -51,8 +51,9 @@
     <string name="password_corrente_hint">Password Corrente</string>
     <string name="password_nuova_hint">Nuova Password</string>
     <string name="modifica_passord">Modifica Password</string>
-    <string name="errore_visualizzazione_dati_profilo">Qualcosa è andato storto! I dati dell'utente non sono disponibili </string>
+    <string name="errore_visualizzazione_dati_profilo">Qualcosa è andato storto! I dati dell’utente non sono disponibili </string>
     <string name="password_necessaria">Modifica Password</string>
     <string name="password_necessaria_set_error">Per favore inserisci la password attuale per autenticarti</string>
+    <string name="riautenticazione_con_successo">Sei autenticato con successo, ora puoi modificare la tua password!</string>
 
 </resources>
