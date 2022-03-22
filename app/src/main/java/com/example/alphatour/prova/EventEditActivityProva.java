@@ -36,6 +36,12 @@ public class EventEditActivityProva extends AppCompatActivity {
         eventTimeTV = findViewById(R.id.eventTimeTV);
     }
 
+
     public void saveEventAction(View view) {
+
+        String eventName = eventNameET.getText().toString();
+        EventProva newEvent = new EventProva(eventName, CalendarUtilsProva.selectedDate, time);
+        EventProva.eventsList.add(newEvent);
+        finish();
     }
 }

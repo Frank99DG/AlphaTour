@@ -10,11 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.alphatour.prova.CalendarAdapterProva;
 import com.example.alphatour.prova.CalendarUtilsProva;
+import com.example.alphatour.prova.EventAdapter;
 import com.example.alphatour.prova.EventEditActivityProva;
+import com.example.alphatour.prova.EventProva;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,6 +26,7 @@ public class WeekViewActivityProva extends AppCompatActivity implements Calendar
 
     private TextView monthYearText;
     private RecyclerView calendarRecycleView;
+    private ListView eventListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,7 @@ public class WeekViewActivityProva extends AppCompatActivity implements Calendar
 
         calendarRecycleView = findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
+        eventListView = findViewById(R.id.eventListView);
     }
 
     private void setWeekView() {
@@ -47,6 +52,7 @@ public class WeekViewActivityProva extends AppCompatActivity implements Calendar
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         calendarRecycleView.setLayoutManager(layoutManager);
         calendarRecycleView.setAdapter(calendarAdapter);
+        setEventAdapter();
     }
 
 
@@ -71,6 +77,18 @@ public class WeekViewActivityProva extends AppCompatActivity implements Calendar
             setWeekView();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setEventAdapter();
+    }
+
+    private void setEventAdapter() {
+
+        ArrayList<EventProva> dailyEvents = EventProva.eventsForDate(CalendarUtilsProva.selectedDate);
+        EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEvents);
+        eventListView.setAdapter(eventAdapter);
+    }
 
     public void newEventAction(View view) {
 
