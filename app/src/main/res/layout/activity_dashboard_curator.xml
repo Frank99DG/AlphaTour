@@ -25,12 +25,12 @@
             android:background="#FFFBFB">>
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tv_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:background="#F1ECEC"
-                android:text="ALPHA TOUR"
+                android:text="@string/txt_view_String"
                 android:textColor="@color/black"
                 android:textSize="34sp" />
         </RelativeLayout>
@@ -47,6 +47,7 @@
             <!--Row 1-->
             <!--Column 1-->
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_city"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginLeft="30dp"
@@ -70,15 +71,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="104dp"
                         android:layout_gravity="center_horizontal"
+                        android:contentDescription="@string/im_view"
                         tools:srcCompat="@drawable/skyline">
 
                     </ImageView>
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/tv_city"
                         android:layout_width="74dp"
                         android:layout_height="wrap_content"
-                        android:text="CITTÀ"
+                        android:text="@string/tv_city"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -90,6 +92,7 @@
             </androidx.cardview.widget.CardView>
             <!-- Column 2-->
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_museum"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginLeft="30dp"
@@ -111,15 +114,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="111dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/museum">
+                        android:background="@drawable/museum"
+                        android:contentDescription="@string/im_view">
 
 
                     </ImageView>
 
                     <TextView
+                        android:id="@+id/tv_museum"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="MUSEI"
+                        android:text="@string/tv_museum"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -134,6 +139,7 @@
             <!-- Row 2-->
             <!-- Column 1-->
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_show"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginLeft="30dp"
@@ -155,14 +161,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="104dp"
                         android:layout_gravity="center_horizontal"
+                        android:contentDescription="@string/im_view"
                         android:src="@drawable/event_d">
 
                     </ImageView>
 
                     <TextView
+                        android:id="@+id/tv_show"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="MOSTRE"
+                        android:text="@string/tv_show"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -175,6 +183,7 @@
             </androidx.cardview.widget.CardView>
             <!-- Column 2-->
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_monument"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginLeft="30dp"
@@ -196,14 +205,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="104dp"
                         android:layout_gravity="center_horizontal"
+                        android:contentDescription="@string/im_view"
                         android:src="@drawable/venus">
 
                     </ImageView>
 
                     <TextView
+                        android:id="@+id/tv_monument"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="MONUMENTI"
+                        android:text="@string/tv_monument"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -227,18 +238,28 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/tb_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Eventi" />
+            android:text="@string/tb_user" />
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/tb_event"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Calendario" />
+            android:text="@string/tb_event" />
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/tb_calendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="I miei percorsi" />
+            android:text="@string/tb_calendar" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tb_routes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tb_routes" />
+
     </com.google.android.material.tabs.TabLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
