@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="WEEKLY"
+        android:text="weekly"
         android:background="@null"
         android:onClick="weeklyAction"
         android:textColor="#3F51B5"

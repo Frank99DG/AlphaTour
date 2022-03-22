@@ -6,13 +6,23 @@
     android:orientation="vertical"
     tools:context=".prova.WeekViewActivityProva">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Daily"
+        android:background="@null"
+        android:onClick="dailyAction"
+        android:textColor="#3F51B5"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:orientation="horizontal">
-
 
         <Button
             android:layout_width="0dp"

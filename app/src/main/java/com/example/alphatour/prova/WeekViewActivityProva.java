@@ -95,4 +95,7 @@ public class WeekViewActivityProva extends AppCompatActivity implements Calendar
 
         startActivity(new Intent(this, EventEditActivityProva.class));
     }
+
+    public void dailyAction(View view) {
+    }
 }
