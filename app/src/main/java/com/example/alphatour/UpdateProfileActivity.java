@@ -30,33 +30,33 @@ import java.util.List;
 
 public class UpdateProfileActivity extends AppCompatActivity {
 
-    private EditText editNome,editCognome,editEmail,editDataNascita,editUsername;
-    private String nome,cognome,dataNascita,email,username,idUtenteLocal;
+    private EditText editName,editSurname,editEmail,editDateOfBirth,editUsername;
+    private String name,surname,dateOfBirth,email,username,idUtenteLocal;
     private String emailLocal;
-    private ProgressBar progressBar;
-    boolean registrato=false;
-    private FirebaseAuth authprofile;
-    FirebaseUser utente;
+    private ProgressBar loadingBar;
+    boolean registered = false;
+    private FirebaseAuth auth;
+    FirebaseUser user;
     private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
-        editNome=findViewById(R.id.updateName);
-        editCognome=findViewById(R.id.updateSurname);
-        editEmail=findViewById(R.id.updateEmail);
-        editDataNascita=findViewById(R.id.updateDateBirth);
-        editUsername=findViewById(R.id.updateUsername);
-        progressBar=findViewById(R.id.profileUpdateLoadingBar);
+        editName = findViewById(R.id.updateName);
+        editSurname = findViewById(R.id.updateSurname);
+        editEmail = findViewById(R.id.updateEmail);
+        editDateOfBirth=findViewById(R.id.updateDateBirth);
+        editUsername = findViewById(R.id.updateUsername);
+        loadingBar = findViewById(R.id.profileUpdateLoadingBar);
 
-        authprofile = FirebaseAuth.getInstance();
-        utente=authprofile.getCurrentUser();
-        db=FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+        db = FirebaseFirestore.getInstance();
        /* String em=editEmail.getText().toString();
         String em1=em.toString();
         emailLocal=new String[]{em1};*/
-        visualizzaProfilo(utente);
+        visualizzaProfilo(user);
 
 
     }
@@ -65,9 +65,9 @@ public class UpdateProfileActivity extends AppCompatActivity {
     private void visualizzaProfilo(FirebaseUser utente) {
 
         String idUtente=utente.getUid();
-        progressBar.setVisibility(View.VISIBLE);
+        loadingBar.setVisibility(View.VISIBLE);
 
-        db.collection("Utenti").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("Users").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
@@ -79,20 +79,20 @@ public class UpdateProfileActivity extends AppCompatActivity {
                         if(d.getId().matches(idUtente)){ // controllo se l'id dell'utente esiste
 
                             //recupero dati
-                            registrato=true;
-                            User utente = d.toObject(User.class);
-                            nome=utente.nome;
-                            cognome= utente.cognome;
-                            email=utente.email;
-                            emailLocal=utente.email;
-                            dataNascita= utente.dataNascita;
-                            username=utente.username;
+                            registered =true;
+                            User user = d.toObject(User.class);
+                            name = user.name;
+                            surname = user.surname;
+                            email = user.email;
+                            emailLocal = user.email;
+                            dateOfBirth = user.dateOfBirth ;
+                            username=user.username;
 
                             //stampa dati nelle editText
-                            editNome.setText(nome);
-                            editCognome.setText(cognome);
+                            editName.setText(name);
+                            editSurname.setText(surname);
                             editEmail.setText(email);
-                            editDataNascita.setText(dataNascita);
+                            editDateOfBirth.setText(dateOfBirth);
                             editUsername.setText(username);
 
                         }
@@ -100,10 +100,10 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
                     }
 
-                    if(registrato==false){
+                    if(registered == false){
                         Toast.makeText(UpdateProfileActivity.this,"Utente non registrato",Toast.LENGTH_LONG).show();
                     }else{
-                        progressBar.setVisibility(View.GONE);
+                        loadingBar.setVisibility(View.GONE);
                     }
 
                 }
@@ -119,12 +119,13 @@ public class UpdateProfileActivity extends AppCompatActivity {
     }
 
     public void buttonUpdateProfile(View view) {
-        updateProfile(utente);
+
+        updateProfile(user);
     }
 
     private void updateProfile(FirebaseUser utente){
 
-        Boolean controllo=inputControl(editNome.getText().toString(),editCognome.getText().toString(),editDataNascita.getText().toString(),
+        Boolean controllo=inputControl(editName.getText().toString(),editSurname.getText().toString(),editDateOfBirth.getText().toString(),
                 editUsername.getText().toString(),editEmail.getText().toString());
 
         if(controllo){
@@ -132,18 +133,18 @@ public class UpdateProfileActivity extends AppCompatActivity {
         }else{
 
             //recupero dati modificati
-            nome=editNome.getText().toString();
-            cognome=editCognome.getText().toString();
-            email=editEmail.getText().toString();
-            dataNascita=editDataNascita.getText().toString();
-            username=editUsername.getText().toString();
+            name = editName.getText().toString();
+            surname = editSurname.getText().toString();
+            email = editEmail.getText().toString();
+            dateOfBirth = editDateOfBirth.getText().toString();
+            username = editUsername.getText().toString();
 
             //salvataggio modifiche su SQLITE
 
-            int update=updateUserOnDbLocal(nome,cognome,dataNascita,username,email,emailLocal);
+            int update=updateUserOnDbLocal(name,surname,dateOfBirth,username,email,emailLocal);
             startActivity(new Intent(UpdateProfileActivity.this, ProfileActivity.class));
 
-            updateUserOnDbRemote(nome,cognome,dataNascita,username,email);
+            updateUserOnDbRemote(name,surname,dateOfBirth,username,email);
 
 
             //salvataggio modifiche su Firebase
@@ -151,24 +152,24 @@ public class UpdateProfileActivity extends AppCompatActivity {
         }
     }
 
-    public boolean inputControl(String Nome,String Cognome,String DataNascita,String Username,String Email){
+    public boolean inputControl(String Name,String Surname,String DateOfBirth,String Username,String Email){
         Boolean errorFlag = false;
 
-        if(Nome.isEmpty()){
-            editNome.setError(getString(R.string.campo_obbligatorio));
-            editNome.requestFocus();
+        if(Name.isEmpty()){
+            editName.setError(getString(R.string.campo_obbligatorio));
+            editName.requestFocus();
             errorFlag = true;
         }
 
-        if(Cognome.isEmpty()){
-            editCognome.setError(getString(R.string.campo_obbligatorio));
-            editCognome.requestFocus();
+        if(Surname.isEmpty()){
+            editSurname.setError(getString(R.string.campo_obbligatorio));
+            editSurname.requestFocus();
             errorFlag = true;
         }
 
-        if(DataNascita.isEmpty()){
-            editDataNascita.setError(getString(R.string.campo_obbligatorio));
-            editDataNascita.requestFocus();
+        if(DateOfBirth.isEmpty()){
+            editDateOfBirth.setError(getString(R.string.campo_obbligatorio));
+            editDateOfBirth.requestFocus();
             errorFlag = true;
         }
 
@@ -193,7 +194,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         return errorFlag;
     }
 
-    public int updateUserOnDbLocal(String Nome,String Cognome,String DataNascita,String Username,String Email,String EmailLocal){
+    public int updateUserOnDbLocal(String Name,String Surname,String DateOfBirth,String Username,String Email,String EmailLocal){
 
         AlphaTourDbHelper dbAlpha = new AlphaTourDbHelper(this);
         //recupero idUtente
@@ -205,40 +206,40 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
         //aggiornamento dati utente
 
-        db=dbAlpha.getWritableDatabase();
-        ContentValues valori = new ContentValues();
+        db = dbAlpha.getWritableDatabase();
+        ContentValues values = new ContentValues();
 
-        valori.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_NOME,Nome);
-        valori.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_COGNOME,Cognome);
-        valori.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_DATA_NASCITA,DataNascita);
-        valori.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_USERNAME,Username);
-        valori.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_EMAIL,Email);
+        values.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_NOME,Name);
+        values.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_COGNOME,Surname);
+        values.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_DATA_NASCITA,DateOfBirth);
+        values.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_USERNAME,Username);
+        values.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_EMAIL,Email);
 
-        return db.update(AlphaTourContract.AlphaTourEntry.NOME_TABELLA_UTENTE,valori,AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_ID+
+        return db.update(AlphaTourContract.AlphaTourEntry.NOME_TABELLA_UTENTE,values,AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_ID+
                 CommandDbAlphaTour.Command.EGUAL+CommandDbAlphaTour.Command.VALUE,new String[] {idUtenteLocal});
 
 
     }
 
-    public void updateUserOnDbRemote(String Nome,String Cognome,String DataNascita,String Username,String Email){
+    public void updateUserOnDbRemote(String Name,String Surname,String DateOfBirth,String Username,String Email){
 
-        progressBar.setVisibility(View.VISIBLE);
-        User utenteUpdate=new User(Nome,Cognome,DataNascita,Username,Email);
-        db.collection("Utenti").document(utente.getUid()).
-                set(utenteUpdate).
+        loadingBar.setVisibility(View.VISIBLE);
+        User userUpdate = new User(Name,Surname,DateOfBirth,Username,Email);
+        db.collection("Users").document(user.getUid()).
+                set(userUpdate).
                 addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(UpdateProfileActivity.this, "Account aggiornato correttamente", Toast.LENGTH_LONG).show();
                         startActivity(new Intent(UpdateProfileActivity.this, ProfileActivity.class));
-                        progressBar.setVisibility(View.GONE);
+                        loadingBar.setVisibility(View.GONE);
                         finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(UpdateProfileActivity.this, "Non è stato possibile aggiornare l'account", Toast.LENGTH_LONG).show();
-                progressBar.setVisibility(View.GONE);
+                loadingBar.setVisibility(View.GONE);
             }
         });
 

@@ -35,11 +35,11 @@ public class ProfileActivity extends AppCompatActivity {
     private CircleImageView profile;
     private FloatingActionButton changeProfile;
     private TextView textWelcome,textNomeAndCognome,textEmail,textDataNascita,textUsername;
-    private String nome,cognome,dataNascita,email,username;
-    private ProgressBar progressBar;
-    private FirebaseAuth authprofile;
+    private String name, surname, dateOfBirth,email,username;
+    private ProgressBar loadingBar;
+    private FirebaseAuth auth;
     private FirebaseFirestore db;
-    boolean registrato=false;
+    boolean registered = false;
 
 
 
@@ -50,33 +50,33 @@ public class ProfileActivity extends AppCompatActivity {
 
        // getSupportActionBar().setTitle("Home");
 
-        changeProfile=findViewById(R.id.changeProfile);
-        profile=findViewById(R.id.profile_image);
+        changeProfile = findViewById(R.id.changeProfile);
+        profile = findViewById(R.id.profile_image);
 
-        textWelcome=findViewById(R.id.showWelcome);
-        textNomeAndCognome=findViewById(R.id.profileNameUser);
-        textEmail=findViewById(R.id.profileEmailUser);
-        textDataNascita=findViewById(R.id.profileDateBirthUser);
-        textUsername=findViewById(R.id.profileUsernameUser);
-        progressBar=findViewById(R.id.profileLoadingBar);
+        textWelcome = findViewById(R.id.showWelcome);
+        textNomeAndCognome = findViewById(R.id.profileNameUser);
+        textEmail = findViewById(R.id.profileEmailUser);
+        textDataNascita = findViewById(R.id.profileDateBirthUser);
+        textUsername = findViewById(R.id.profileUsernameUser);
+        loadingBar = findViewById(R.id.profileLoadingBar);
 
-        authprofile = FirebaseAuth.getInstance();
-        FirebaseUser utente=authprofile.getCurrentUser();
-        db=FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        db = FirebaseFirestore.getInstance();
 
-        if(utente==null){
+        if(user == null){
             Toast.makeText(ProfileActivity.this,"Si è verificato un errrore: i dati dell'utente non sono disponibili !!!",Toast.LENGTH_LONG).show();
         }else{
-            progressBar.setVisibility(View.VISIBLE);
-            visualizzaProfiloUtente(utente);
+            loadingBar.setVisibility(View.VISIBLE);
+            showUserProfile(user);
         }
     }
 
-    private void visualizzaProfiloUtente(FirebaseUser utente) {
+    private void showUserProfile(FirebaseUser user) {
 
-        String idUtente=utente.getUid();
+        String idUser = user.getUid();
 
-        db.collection("Utenti").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("Users").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
@@ -85,22 +85,22 @@ public class ProfileActivity extends AppCompatActivity {
 
                     for(DocumentSnapshot d: listaDocumenti){
 
-                        if(d.getId().matches(idUtente)){ // controllo se l'id dell'utente esiste
+                        if(d.getId().matches(idUser)){ // controllo se l'id dell'utente esiste
 
                             //recupero dati
-                            registrato=true;
-                            User utente = d.toObject(User.class);
-                            nome=utente.nome;
-                            cognome= utente.cognome;
-                            email=utente.email;
-                            dataNascita= utente.dataNascita;
-                            username=utente.username;
+                            registered = true;
+                            User user = d.toObject(User.class);
+                            name = user.name;
+                            surname = user.surname;
+                            email = user.email;
+                            dateOfBirth = user.dateOfBirth;
+                            username = user.username;
 
                             //stampa dati nelle editText
-                            textWelcome.setText("Benvenuto, "+nome+" "+cognome);
-                            textNomeAndCognome.setText(nome+" "+cognome);
+                            textWelcome.setText("Benvenuto, "+name+" "+ surname);
+                            textNomeAndCognome.setText(name +" "+ surname);
                             textEmail.setText(email);
-                            textDataNascita.setText(dataNascita);
+                            textDataNascita.setText(dateOfBirth);
                             textUsername.setText(username);
 
                         }
@@ -108,10 +108,10 @@ public class ProfileActivity extends AppCompatActivity {
 
                     }
 
-                    if(registrato==false){
+                    if(registered == false){
                         Toast.makeText(ProfileActivity.this,"Utente non registrato",Toast.LENGTH_LONG).show();
                     }else{
-                        progressBar.setVisibility(View.GONE);
+                        loadingBar.setVisibility(View.GONE);
                     }
 
                 }
