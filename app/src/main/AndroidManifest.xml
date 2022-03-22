@@ -13,7 +13,7 @@
             android:name=".prova.EventEditActivityProva"
             android:exported="false" />
         <activity
-            android:name=".WeekViewActivityProva"
+            android:name=".prova.WeekViewActivityProva"
             android:exported="false" />
         <activity
             android:name=".ChangePasswordActivity"

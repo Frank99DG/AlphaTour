@@ -1,4 +1,4 @@
-package com.example.alphatour;
+package com.example.alphatour.prova;
 
 import static com.example.alphatour.prova.CalendarUtilsProva.daysInWeekArray;
 import static com.example.alphatour.prova.CalendarUtilsProva.monthYearFromDate;
@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.alphatour.R;
 import com.example.alphatour.prova.CalendarAdapterProva;
 import com.example.alphatour.prova.CalendarUtilsProva;
 import com.example.alphatour.prova.EventAdapter;

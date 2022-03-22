@@ -11,10 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.alphatour.R;
-import com.example.alphatour.WeekViewActivityProva;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
