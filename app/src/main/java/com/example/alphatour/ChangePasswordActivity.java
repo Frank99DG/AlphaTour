@@ -126,6 +126,45 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
 
     private void changePassword(FirebaseUser user) {
-        Toast.makeText(ChangePasswordActivity.this, "change password", Toast.LENGTH_LONG).show();
+        String newPassword=editPasswordNew.getText().toString();
+
+        if(TextUtils.isEmpty(newPassword)){
+            Toast.makeText(ChangePasswordActivity.this,R.string.password_necessaria,
+                    Toast.LENGTH_SHORT).show();
+            editPasswordNew.setError(getString(R.string.nuova_password_necessaria_set_error));
+            editPasswordNew.requestFocus();
+        }else{
+            if(newPassword.matches(currentPassword)){
+                editPasswordNew.setError(getString(R.string.nuova_password_uguale));
+                editPasswordNew.requestFocus();
+            }else{
+                progressBar.setVisibility(View.VISIBLE);
+
+                user.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        if (task.isSuccessful()) {
+
+                            Toast.makeText(ChangePasswordActivity.this, R.string.password_changed,
+                                    Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(ChangePasswordActivity.this, ProfileActivity.class);
+                            startActivity(intent);
+                            finish();
+                            progressBar.setVisibility(View.GONE);
+                        }else{
+                            try{
+                                throw task.getException();
+                            }catch (Exception e){
+                                Toast.makeText(ChangePasswordActivity.this, e.getMessage(),
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                    }
+                });
+            }
+        }
     }
 }

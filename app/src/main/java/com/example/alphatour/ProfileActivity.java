@@ -76,7 +76,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         String idUser = user.getUid();
 
-        db.collection("Users").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("Utenti").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
@@ -90,7 +90,7 @@ public class ProfileActivity extends AppCompatActivity {
                             //recupero dati
                             registered = true;
                             User user = d.toObject(User.class);
-                            name = user.name;
+                            name = user.nome;
                             surname = user.surname;
                             email = user.email;
                             dateOfBirth = user.dateOfBirth;

@@ -67,7 +67,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         String idUtente=utente.getUid();
         loadingBar.setVisibility(View.VISIBLE);
 
-        db.collection("Users").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("Utenti").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
@@ -81,7 +81,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
                             //recupero dati
                             registered =true;
                             User user = d.toObject(User.class);
-                            name = user.name;
+                            name = user.nome;
                             surname = user.surname;
                             email = user.email;
                             emailLocal = user.email;

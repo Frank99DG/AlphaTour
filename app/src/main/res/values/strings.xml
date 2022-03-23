@@ -69,6 +69,10 @@
     <string name="password_necessaria_set_error">Per favore inserisci la password attuale per autenticarti</string>
     <string name="nuova_password_necessaria_set_error">Per favore inserisci la nuova password</string>
     <string name="riautenticazione_con_successo">Sei autenticato con successo, ora puoi modificare la tua password!</string>
+
+    <string name="nuova_password_uguale">La password inserita è uguale a quella attuale!</string>
+    <string name="password_changed">La password è stata modificata!</string>
+
     <string name="title_activity_dashboard">dashboardActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
