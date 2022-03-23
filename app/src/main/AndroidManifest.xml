@@ -54,9 +54,6 @@
             android:name=".prova.NotificationProvaActivity"
             android:exported="false" />
         <activity
-            android:name=".prova.SearchProvaActivity"
-            android:exported="false" />
-        <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity
