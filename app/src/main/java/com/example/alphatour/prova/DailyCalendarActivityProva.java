@@ -13,7 +13,10 @@ import android.widget.TextView;
 
 import com.example.alphatour.R;
 
+import java.time.LocalTime;
 import java.time.format.TextStyle;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class DailyCalendarActivityProva extends AppCompatActivity {
@@ -48,6 +51,28 @@ public class DailyCalendarActivityProva extends AppCompatActivity {
         monthDayText.setText(CalendarUtilsProva.monthDayFromDate(selectedDate));
         String dayOfWeek = selectedDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault());
         dayOfWeekTV.setText(dayOfWeek);
+        setHourAdapter();
+    }
+
+    private void setHourAdapter() {
+
+        HourAdapterProva hourAdapter = new HourAdapterProva(getApplicationContext(), hourEventList());
+        hourListView.setAdapter(hourAdapter);
+    }
+
+
+    private ArrayList<HourEventProva> hourEventList() {
+
+        ArrayList<HourEventProva> list = new ArrayList<>();
+        for(int hour = 0; hour < 24;hour++){
+
+            LocalTime time = LocalTime.of(hour, 0);
+            ArrayList<EventProva> events = EventProva.eventsForDateAndTime(selectedDate, time);
+            HourEventProva hourEvent = new HourEventProva(time, events);
+            list.add(hourEvent);
+        }
+
+        return list;
     }
 
 

@@ -42,7 +42,7 @@ public class CalendarActivityProva extends AppCompatActivity implements Calendar
     private void setMonthView() {
 
         monthYearText.setText(monthYearFromDate(CalendarUtilsProva.selectedDate));
-        ArrayList<LocalDate> daysInMonth = daysInMonthArray(CalendarUtilsProva.selectedDate);
+        ArrayList<LocalDate> daysInMonth = daysInMonthArray();
 
         CalendarAdapterProva calendarAdapter = new CalendarAdapterProva(daysInMonth, this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
