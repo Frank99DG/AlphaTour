@@ -46,10 +46,10 @@ public class invioProva extends AppCompatActivity {
 
 
     public void send(View view){
-
-        age = Integer.parseInt(ageText.getText().toString().trim());
-
         Intent i = new Intent(invioProva.this, NotificationProvaActivity.class);
-        i.putExtra(NotificationProvaActivity.AGE,age);
+        //age = Integer.parseInt(ageText.getText().toString().trim());
+        //i.putExtra(NotificationProvaActivity.N_NOTIFY,n_notify);
+
+        //i.putExtra(NotificationProvaActivity.AGE,age);
     }
 }
