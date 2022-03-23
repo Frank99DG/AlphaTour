@@ -19,6 +19,20 @@ public class EventProva {
         return events;
     }
 
+    public static ArrayList<EventProva> eventsForDateAndTime(LocalDate date, LocalTime time){
+
+        ArrayList<EventProva> events = new ArrayList<>();
+
+        for(EventProva event : eventsList){
+
+            int eventHour = event.time.getHour();
+            int cellHour = time.getHour();
+            if(event.getDate().equals(date) && eventHour == cellHour)
+                events.add(event);
+        }
+        return events;
+    }
+
     private String name;
     private LocalDate date;
     private LocalTime time;

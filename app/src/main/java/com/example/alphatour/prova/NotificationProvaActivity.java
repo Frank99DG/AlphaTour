@@ -1,25 +1,16 @@
 package com.example.alphatour.prova;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.LifecycleOwner;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.alphatour.R;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class NotificationProvaActivity extends AppCompatActivity {
 
@@ -28,14 +19,15 @@ public class NotificationProvaActivity extends AppCompatActivity {
     private TextView ageText;
     private int age;
     private int n_notify;
+    private int a=0;
 
-    Button creaPercorso;
+    Button createPath;
     NotificationCounter notificationCounter;
     ImageView openFragment;
     ImageView closeNotification;
     NotificheFragment myFragment = new NotificheFragment();
     Bundle data = new Bundle();
-    int a=0;
+
     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
 
@@ -46,7 +38,7 @@ public class NotificationProvaActivity extends AppCompatActivity {
 
         ageText = findViewById(R.id.mAge2);
 
-        creaPercorso = findViewById(R.id.creaPercorso);
+        createPath = findViewById(R.id.createPath);
         notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
         openFragment = findViewById(R.id.notificationIcon);
         closeNotification = findViewById(R.id.closeNotification);
@@ -57,50 +49,28 @@ public class NotificationProvaActivity extends AppCompatActivity {
 
         ft.replace(R.id.container,myFragment).hide(myFragment).commit();
 
-
-
-
-/*
         if(n_notify>0) {
-
-           // for (a = 0; a < n_notify; a++) {
-                data.putString("Notifica", "Sei un grande hai creato un percorso");
-                myFragment.setArguments(data);
+            for (a = 0; a < n_notify; a++) {
                 notificationCounter.increaseNumber();
-                //myFragment.addView(notificationCounter);
-                if (myFragment.isHidden()) {
-
-                    myFragment.addView(notificationCounter);
-
-                }
-         //   }
-
+            }
         }
 
- */
-    }
-
-
-
-
-    public void fairoba(){
-        data.putString("Notifica", "Sei un grande hai creato un percorso");
-        myFragment.setArguments(data);
-        notificationCounter.increaseNumber();
-        myFragment.addView(notificationCounter);
 
     }
+
 
     public void openFragment(View v) {
 
-        ft.show(myFragment).commit();
-        boolean b=myFragment.isHidden();
-        boolean c=myFragment.isAdded();
+        getSupportFragmentManager().beginTransaction().show(myFragment).commit();
 
+        for (a = 0; a < n_notify; a++){
+            notifyPath();
+            if(a==n_notify-1) n_notify =0;
+        }
     }
 
-    public void creaPercorso(View v) {
-        data.putString("Notifica", "Sei un grande hai creato un percorso");
+    public void createPath(View v) {
+        data.putString("Notify", "You have created a path");
         myFragment.setArguments(data);
         notificationCounter.increaseNumber();
         myFragment.addView(notificationCounter);
@@ -108,9 +78,16 @@ public class NotificationProvaActivity extends AppCompatActivity {
 
 
     public void buttonNotify(View view) {
-        data.putString("Notifica", "Notifica a caso");
+        data.putString("Notify", "Random notify");
         myFragment.setArguments(data);
         notificationCounter.increaseNumber();
         myFragment.addView(notificationCounter);
+    }
+
+    public void notifyPath(){
+        data.putString("Notify", "Sei un grande hai creato un percorso");
+        myFragment.setArguments(data);
+        myFragment.addView(notificationCounter);
+
     }
 }

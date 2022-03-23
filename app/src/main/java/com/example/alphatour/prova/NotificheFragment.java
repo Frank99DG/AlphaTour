@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +17,12 @@ import com.example.alphatour.R;
 public class NotificheFragment extends Fragment {
 
     ImageView closeNotification;
-    Button creaPercorso;
-    private String myStr;
-    private TextView tvMyText;
+    Button createPath;
     private String myNotify;
     LinearLayout layoutList;
 
 
     public NotificheFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -41,7 +37,7 @@ public class NotificheFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_notifiche,container,false);
         closeNotification = view.findViewById(R.id.closeNotification);
-        creaPercorso = view.findViewById(R.id.creaPercorso);
+        createPath = view.findViewById(R.id.createPath);
         layoutList = view.findViewById(R.id.layout_list);
 
         closeNotification.setOnClickListener(new View.OnClickListener() {
@@ -55,30 +51,27 @@ public class NotificheFragment extends Fragment {
 
     public void addView(NotificationCounter notificationCounter) {
 
-
-            View notifica = getLayoutInflater().inflate(R.layout.row_add_notify, null, false);
-            TextView textNotify = (TextView) notifica.findViewById(R.id.textNotify);
-            ImageView imageClose = (ImageView) notifica.findViewById(R.id.closeNotify);
+            View notify = getLayoutInflater().inflate(R.layout.row_add_notify, null, false);
+            TextView textNotify = (TextView) notify.findViewById(R.id.textNotify);
+            ImageView imageClose = (ImageView) notify.findViewById(R.id.closeNotify);
 
             Bundle data = getArguments();
             if(data!= null){
-            myNotify = data.getString("Notifica");
+            myNotify = data.getString("Notify");
             textNotify.setText(myNotify);
+            }
 
-
-        }
+            layoutList.addView(notify);
 
             imageClose.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     notificationCounter.decreaseNumber();
-                    removeView(notifica);
+                    removeView(notify);
 
                 }
             });
-
-            layoutList.addView(notifica);
-
     }
 
     public void removeView(View view) {
