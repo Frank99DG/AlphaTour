@@ -19,8 +19,8 @@ public class SearchProvaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_prova);
-        searchView = findViewById(R.id.search);
+        //setContentView(R.layout.activity_search_prova);
+       // searchView = findViewById(R.id.search);
         searchView.clearFocus();
 
     }
