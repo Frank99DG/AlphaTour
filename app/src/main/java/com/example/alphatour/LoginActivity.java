@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.alphatour.prova.CalendarActivityProva;
+import com.example.alphatour.wizard.PercorsoWizard;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -124,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (task.isSuccessful()) {
                                     Toast.makeText(LoginActivity.this, "Accesso compiuto", Toast.LENGTH_LONG).show();
-                                    startActivity(new Intent(LoginActivity.this, CalendarActivityProva.class /*AddPlaceActivity.class*//*DashBoardActivity.class*/));
+                                    startActivity(new Intent(LoginActivity.this, PercorsoWizard.class /*AddPlaceActivity.class*//*DashBoardActivity.class*/));
                                     loadingBar.setVisibility(View.GONE);
 
                             } else {

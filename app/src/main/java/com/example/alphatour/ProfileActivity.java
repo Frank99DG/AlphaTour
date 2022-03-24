@@ -90,10 +90,10 @@ public class ProfileActivity extends AppCompatActivity {
                             //recupero dati
                             registered = true;
                             User user = d.toObject(User.class);
-                            name = user.nome;
+                            name = user.name;
                             surname = user.surname;
                             email = user.email;
-                            dateOfBirth = user.dateOfBirth;
+                            dateOfBirth = user.dateBirth;
                             username = user.username;
 
                             //stampa dati nelle editText
