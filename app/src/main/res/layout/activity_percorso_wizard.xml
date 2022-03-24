@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PercorsoWizard">
+    tools:context=".wizard.PercorsoWizard">
 
-   <!-- <com.stepstone.stepper.StepperLayout
+    <com.stepstone.stepper.StepperLayout
         android:id="@+id/stepperLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:ms_stepperType="tabs">
 
-    </com.stepstone.stepper.StepperLayout>-->
+    </com.stepstone.stepper.StepperLayout>
 
 </RelativeLayout>
