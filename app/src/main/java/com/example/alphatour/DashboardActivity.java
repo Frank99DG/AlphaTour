@@ -7,13 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-public class DashboardCuratoreActivity extends AppCompatActivity {
+public class DashboardActivity extends AppCompatActivity {
     CardView cv1,cv2,cv3,cv4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard_curator);
+        setContentView(R.layout.activity_dashboard);
 
         cv1 = (CardView) findViewById(R.id.cv_city);
         cv2 = (CardView) findViewById(R.id.cv_museum);
