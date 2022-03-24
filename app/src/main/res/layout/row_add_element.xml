@@ -81,7 +81,7 @@
         android:layout_marginEnd="81dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Nome"
+        android:text="@string/photo_button"
         android:onClick="uploadImageElemento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

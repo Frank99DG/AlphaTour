@@ -72,6 +72,7 @@
 
     <string name="nuova_password_uguale">La password inserita è uguale a quella attuale!</string>
     <string name="password_changed">La password è stata modificata!</string>
+    <string name="photo_button">Aggiungi Foto</string>
 
     <string name="title_activity_dashboard">dashboardActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

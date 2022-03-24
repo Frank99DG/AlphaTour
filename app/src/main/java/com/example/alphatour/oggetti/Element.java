@@ -1,9 +1,14 @@
 package com.example.alphatour.oggetti;
 
+import android.widget.ImageView;
+
+import java.io.File;
+
 public class Element {
 
 
-    private String title,description,photo,qrCode,activity,sensorCode;
+    private String title,description,qrCode,activity,sensorCode;
+    private Byte photo;
 
     public Element(){
 
@@ -20,7 +25,7 @@ public class Element {
     }
 
 
-    public Element(String title, String description, String photo, String qrCode, String activity, String sensorCode){
+    public Element(String title, String description, Byte photo, String qrCode, String activity, String sensorCode){
 
         this.title=title;
         this.description=description;
@@ -38,7 +43,7 @@ public class Element {
         this.description = description;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(Byte photo) {
         this.photo = photo;
     }
 
@@ -62,7 +67,7 @@ public class Element {
         return description;
     }
 
-    public String getPhoto() {
+    public Byte getPhoto() {
         return photo;
     }
 

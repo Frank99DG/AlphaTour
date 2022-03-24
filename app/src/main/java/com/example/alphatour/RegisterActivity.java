@@ -178,21 +178,21 @@ public class RegisterActivity extends AppCompatActivity {
         return errorFlag;
     }
 
-    public long saveUserOnDbLocal(String Nome,String Cognome,String DataNascita,String Username,String Email){
+    public long saveUserOnDbLocal(String Name,String Surname,String DateBirth,String Username,String Email){
 
         AlphaTourDbHelper dbAlpha = new AlphaTourDbHelper(this);
         SQLiteDatabase db = dbAlpha.getWritableDatabase();
-        ContentValues valori = new ContentValues();
+        ContentValues values = new ContentValues();
         long newRowId;
 
         //valori.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_ID,2);
-        valori.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_NAME,Nome);
-        valori.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_SURNAME,Cognome);
-        valori.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_DATE_BIRTH,DataNascita);
-        valori.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_USERNAME,Username);
-        valori.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_EMAIL,Email);
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_NAME,Name);
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_SURNAME,Surname);
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_DATE_BIRTH,DateBirth);
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_USERNAME,Username);
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_EMAIL,Email);
 
-        newRowId=db.insert(AlphaTourContract.AlphaTourEntry.NAME_TABLE_USER,AlphaTourContract.AlphaTourEntry.COLUMN_NAME_NULLABLE,valori);
+        newRowId=db.insert(AlphaTourContract.AlphaTourEntry.NAME_TABLE_USER,AlphaTourContract.AlphaTourEntry.COLUMN_NAME_NULLABLE,values);
 
          return newRowId;
 
