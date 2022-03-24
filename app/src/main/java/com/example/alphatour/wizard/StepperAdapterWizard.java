@@ -16,11 +16,22 @@ public class StepperAdapterWizard extends AbstractFragmentStepAdapter {
 
     @Override
     public Step createStep(int position) {
-        return null;
+
+        switch (position){
+
+            case 0:
+                return new Step1();
+            case 1:
+                return new Step2();
+            case 2:
+                return new Step3();
+            default: return new Step1();
+
+        }
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return 3; //perchè gli step sono 3
     }
 }

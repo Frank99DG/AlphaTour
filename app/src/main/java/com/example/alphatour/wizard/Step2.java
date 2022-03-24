@@ -14,15 +14,14 @@ import com.example.alphatour.R;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
 
-
-public class Step1 extends Fragment implements Step {
+public class Step2 extends Fragment implements Step {
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_step1, container, false);
+        return inflater.inflate(R.layout.fragment_step2, container, false);
     }
 
     @Nullable
