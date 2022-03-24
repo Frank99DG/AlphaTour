@@ -76,7 +76,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         String idUser = user.getUid();
 
-        db.collection("Utenti").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("Users").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 

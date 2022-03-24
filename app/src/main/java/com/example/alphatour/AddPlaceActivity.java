@@ -32,7 +32,7 @@ public class AddPlaceActivity extends AppCompatActivity {
     private AutoCompleteTextView typology;
     private List<String> typology_list = new ArrayList<String>();
     private ArrayAdapter<String> adapterItems;
-    private String idCurator;
+    private String idUser;
     private ProgressBar loadingBar;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
@@ -100,8 +100,8 @@ public class AddPlaceActivity extends AppCompatActivity {
 
         loadingBar.setVisibility(View.VISIBLE);
 
-        idCurator = Objects.requireNonNull(auth.getCurrentUser()).getUid();
-        Place place = new Place(NamePlace, City, Typology, idCurator);
+        idUser = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+        Place place = new Place(NamePlace, City, Typology, idUser);
 
         db.collection("Places")
                 .add(place)

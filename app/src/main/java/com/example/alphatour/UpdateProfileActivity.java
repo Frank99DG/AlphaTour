@@ -201,7 +201,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         SQLiteDatabase db = dbAlpha.getReadableDatabase();
         Cursor cursor=db.rawQuery(CommandDbAlphaTour.Command.SELECT_USER_PROFILE,new String[]{emailLocal});
         if(cursor.moveToFirst()){
-            idUtenteLocal= cursor.getString(cursor.getColumnIndexOrThrow(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_ID));
+            idUtenteLocal= cursor.getString(cursor.getColumnIndexOrThrow(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_ID));
         }
 
         //aggiornamento dati utente
@@ -209,14 +209,14 @@ public class UpdateProfileActivity extends AppCompatActivity {
         db = dbAlpha.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_NOME,Name);
-        values.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_COGNOME,Surname);
-        values.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_DATA_NASCITA,DateOfBirth);
-        values.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_USERNAME,Username);
-        values.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_EMAIL,Email);
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_NAME,Name);
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_SURNAME,Surname);
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_DATE_BIRTH,DateOfBirth);
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_USERNAME,Username);
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_EMAIL,Email);
 
-        return db.update(AlphaTourContract.AlphaTourEntry.NOME_TABELLA_UTENTE,values,AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_ID+
-                CommandDbAlphaTour.Command.EGUAL+CommandDbAlphaTour.Command.VALUE,new String[] {idUtenteLocal});
+        return db.update(AlphaTourContract.AlphaTourEntry.NAME_TABLE_USER,values,AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_ID+
+                CommandDbAlphaTour.Command.EQUAL+CommandDbAlphaTour.Command.VALUE,new String[] {idUtenteLocal});
 
 
     }

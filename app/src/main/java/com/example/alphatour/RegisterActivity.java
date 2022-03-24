@@ -36,17 +36,17 @@ import java.util.Objects;
 public class RegisterActivity extends AppCompatActivity {
 
     //CHIAVI PER ONSAVEINSTANCESTATE
-    private static final String KEY_NOME="NomeUtente";
-    private static final String KEY_COGNOME="CognomeUtente";
-    private static final String KEY_DATA_NASCITA="CognomeUtente";
-    private static final String KEY_USERNAME="UsernameUtente";
-    private static final String KEY_EMAIL="EmailUtente";
-    private static final String KEY_PASSWORD="PasswordUtente";
+    private static final String KEY_NAME="NameUser";
+    private static final String KEY_SURNAME="SurnameUser";
+    private static final String KEY_DATE_BIRTH="DateBirthUser";
+    private static final String KEY_USERNAME="UsernameUser";
+    private static final String KEY_EMAIL="EmailUser";
+    private static final String KEY_PASSWORD="PasswordUser";
 
     //attributi privati per db e edittex data
-    private EditText nome, cognome, dataNascita, username, email, password;
-    private ProgressBar barraCaricamento;
-    private String idUtente;
+    private EditText name, surname, dateBirth, username, email, password;
+    private ProgressBar loadingBar;
+    private String idUser;
     private DatePickerDialog.OnDateSetListener onDateSetListener;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
@@ -63,9 +63,9 @@ public class RegisterActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
 
-                nome = findViewById(R.id.registerInputName);
-                cognome = findViewById(R.id.registerInputSurname);
-                dataNascita = findViewById(R.id.registerInputDateBirth);
+                name = findViewById(R.id.registerInputName);
+                surname = findViewById(R.id.registerInputSurname);
+                dateBirth = findViewById(R.id.registerInputDateBirth);
                 username = findViewById(R.id.registerInputUsername);
                 email = findViewById(R.id.registerInputEmail);
                 password = findViewById(R.id.registerInputPassword);
@@ -73,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-        barraCaricamento = findViewById(R.id.registerLoadingBar);
+        loadingBar = findViewById(R.id.registerLoadingBar);
 
     }
 
@@ -82,9 +82,9 @@ public class RegisterActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
 
         //Log.i("tag1","Entra in onSave");
-        outState.putCharSequence(KEY_NOME, nome.getText());
-        outState.putCharSequence(KEY_COGNOME, cognome.getText());
-        outState.putCharSequence(KEY_DATA_NASCITA, dataNascita.getText());
+        outState.putCharSequence(KEY_NAME, name.getText());
+        outState.putCharSequence(KEY_SURNAME, surname.getText());
+        outState.putCharSequence(KEY_DATE_BIRTH, dateBirth.getText());
         outState.putCharSequence(KEY_USERNAME, username.getText());
         outState.putCharSequence(KEY_EMAIL, email.getText());
         outState.putCharSequence(KEY_PASSWORD, password.getText());
@@ -96,9 +96,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         //Log.i("tag2","Entra in onRestore");
 
-        this.nome.setText(savedInstanceState.getCharSequence(KEY_NOME));
-        this.cognome.setText(savedInstanceState.getCharSequence(KEY_COGNOME));
-        this.dataNascita.setText(savedInstanceState.getCharSequence(KEY_DATA_NASCITA));
+        this.name.setText(savedInstanceState.getCharSequence(KEY_NAME));
+        this.surname.setText(savedInstanceState.getCharSequence(KEY_SURNAME));
+        this.dateBirth.setText(savedInstanceState.getCharSequence(KEY_DATE_BIRTH));
         this.username.setText(savedInstanceState.getCharSequence(KEY_USERNAME));
         this.email.setText(savedInstanceState.getCharSequence(KEY_EMAIL));
         this.password.setText(savedInstanceState.getCharSequence(KEY_PASSWORD));
@@ -117,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month=month+1;
                 String date=dayOfMonth+"/"+month+"/"+year;
-                dataNascita.setText(date);
+                dateBirth.setText(date);
 
             }
         };
@@ -131,24 +131,24 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    public boolean inputControl(String Nome,String Cognome,String DataNascita,String Username,String Email,String Password){
+    public boolean inputControl(String Name,String Surname,String DateBirth,String Username,String Email,String Password){
         Boolean errorFlag = false;
 
-        if(Nome.isEmpty()){
-            nome.setError(getString(R.string.campo_obbligatorio));
-            nome.requestFocus();
+        if(Name.isEmpty()){
+            name.setError(getString(R.string.campo_obbligatorio));
+            name.requestFocus();
             errorFlag = true;
         }
 
-        if(Cognome.isEmpty()){
-            cognome.setError(getString(R.string.campo_obbligatorio));
-            cognome.requestFocus();
+        if(Surname.isEmpty()){
+            surname.setError(getString(R.string.campo_obbligatorio));
+            surname.requestFocus();
             errorFlag = true;
         }
 
-        if(DataNascita.isEmpty()){
-            dataNascita.setError(getString(R.string.campo_obbligatorio));
-            dataNascita.requestFocus();
+        if(DateBirth.isEmpty()){
+            dateBirth.setError(getString(R.string.campo_obbligatorio));
+            dateBirth.requestFocus();
             errorFlag = true;
         }
 
@@ -186,54 +186,54 @@ public class RegisterActivity extends AppCompatActivity {
         long newRowId;
 
         //valori.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_ID,2);
-        valori.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_NOME,Nome);
-        valori.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_COGNOME,Cognome);
-        valori.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_DATA_NASCITA,DataNascita);
-        valori.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_USERNAME,Username);
-        valori.put(AlphaTourContract.AlphaTourEntry.NOME_COLONNA_UTENTE_EMAIL,Email);
+        valori.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_NAME,Nome);
+        valori.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_SURNAME,Cognome);
+        valori.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_DATE_BIRTH,DataNascita);
+        valori.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_USERNAME,Username);
+        valori.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_EMAIL,Email);
 
-        newRowId=db.insert(AlphaTourContract.AlphaTourEntry.NOME_TABELLA_UTENTE,AlphaTourContract.AlphaTourEntry.COLUMN_NAME_NULLABLE,valori);
+        newRowId=db.insert(AlphaTourContract.AlphaTourEntry.NAME_TABLE_USER,AlphaTourContract.AlphaTourEntry.COLUMN_NAME_NULLABLE,valori);
 
          return newRowId;
 
     }
 
 
-    public void saveUserOnDbRemote(String Nome,String Cognome,String DataNascita,String Username,String Email,String Password){
+    public void saveUserOnDbRemote(String Name,String Surname,String DateBirth,String Username,String Email,String Password){
 
-        barraCaricamento.setVisibility(View.VISIBLE);
+        loadingBar.setVisibility(View.VISIBLE);
         auth.createUserWithEmailAndPassword(Email, Password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (task.isSuccessful()) {
-                            idUtente = Objects.requireNonNull(auth.getCurrentUser()).getUid();
-                            User utente = new User(Nome, Cognome, DataNascita, Username, Email);
+                            idUser = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+                            User user = new User(Name, Surname, DateBirth, Username, Email);
 
-                            DocumentReference documentReference = db.collection("Users").document(idUtente);
+                            DocumentReference documentReference = db.collection("Users").document(idUser);
 
-                            documentReference.set(utente)
+                            documentReference.set(user)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             Toast.makeText(RegisterActivity.this, getString(R.string.registrazione_completata), Toast.LENGTH_LONG).show();
                                             startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                                            barraCaricamento.setVisibility(View.GONE);
+                                            loadingBar.setVisibility(View.GONE);
                                             finish();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     Toast.makeText(RegisterActivity.this, getString(R.string.registrazione_fallita) , Toast.LENGTH_LONG).show();
-                                    barraCaricamento.setVisibility(View.GONE);
+                                    loadingBar.setVisibility(View.GONE);
                                 }
                             });
                             finish();
 
                         } else {
                             Toast.makeText(RegisterActivity.this, "failed firebase" , Toast.LENGTH_LONG).show();
-                            barraCaricamento.setVisibility(View.GONE);
+                            loadingBar.setVisibility(View.GONE);
                         }
                     }
                 });
@@ -243,27 +243,27 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void saveUserOnDb(View v) {
 
-        String Nome = nome.getText().toString();
-        String Cognome = cognome.getText().toString();
-        String DataNascita = dataNascita.getText().toString();
+        String Name = name.getText().toString();
+        String Surname = surname.getText().toString();
+        String DateBirth = dateBirth.getText().toString();
         String Username = username.getText().toString();
         String Email = email.getText().toString();
         String Password = password.getText().toString();
 
 
-        boolean errorFlag = inputControl(Nome,Cognome,DataNascita,Username,Email,Password);
+        boolean errorFlag = inputControl(Name,Surname,DateBirth,Username,Email,Password);
 
         if(errorFlag) {
             return;
 
         }else {
 
-            long result = saveUserOnDbLocal(Nome,Cognome,DataNascita,Username,Email);
+            long result = saveUserOnDbLocal(Name,Surname,DateBirth,Username,Email);
 
             if(result == -1){
                 Toast.makeText(RegisterActivity.this, "Errore db local", Toast.LENGTH_LONG).show();
             }else{
-                saveUserOnDbRemote(Nome,Cognome,DataNascita,Username,Email,Password);
+                saveUserOnDbRemote(Name,Surname,DateBirth,Username,Email,Password);
                 //startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                 //barraCaricamento.setVisibility(View.GONE);
                 finish();

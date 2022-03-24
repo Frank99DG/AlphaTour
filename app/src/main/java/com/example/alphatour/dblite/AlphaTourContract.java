@@ -11,13 +11,13 @@ public final class AlphaTourContract {
     public static abstract class AlphaTourEntry implements BaseColumns{
         /*tabella Utente*/
         public static final String COLUMN_NAME_NULLABLE="null";
-        public static final String NOME_TABELLA_UTENTE="Utente";
-        public static final String NOME_COLONNA_UTENTE_ID="idUtente";
-        public static final String NOME_COLONNA_UTENTE_NOME="nomeUtente";
-        public static final String NOME_COLONNA_UTENTE_COGNOME="cognomeUtente";
-        public static final String NOME_COLONNA_UTENTE_DATA_NASCITA="dataNascitaUtente";
-        public static final String NOME_COLONNA_UTENTE_USERNAME="usernameUtente";
-        public static final String NOME_COLONNA_UTENTE_EMAIL="emailUtente";
+        public static final String NAME_TABLE_USER="User";
+        public static final String NAME_COLUMN_USER_ID="idUser";
+        public static final String NAME_COLUMN_USER_NAME="nameUser";
+        public static final String NAME_COLUMN_USER_SURNAME="surnameUser";
+        public static final String NAME_COLUMN_USER_DATE_BIRTH="dateBirthUser";
+        public static final String NAME_COLUMN_USER_USERNAME="usernameUser";
+        public static final String NAME_COLUMN_USER_EMAIL="emailUser";
 
     }
 }
