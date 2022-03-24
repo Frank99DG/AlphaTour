@@ -211,7 +211,7 @@ public class RegisterActivity extends AppCompatActivity {
                             idUtente = Objects.requireNonNull(auth.getCurrentUser()).getUid();
                             User utente = new User(Nome, Cognome, DataNascita, Username, Email);
 
-                            DocumentReference documentReference = db.collection("Utenti").document(idUtente);
+                            DocumentReference documentReference = db.collection("Users").document(idUtente);
 
                             documentReference.set(utente)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
