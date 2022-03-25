@@ -14,10 +14,9 @@ import android.widget.TextView;
 
 public class NotifyFragment extends Fragment {
 
-    ImageView closeNotification;
-    Button createPath;
+    private ImageView closeNotification;
     private String myNotify;
-    LinearLayout layoutList;
+    private LinearLayout layoutList;
 
 
     public NotifyFragment() {
@@ -35,7 +34,6 @@ public class NotifyFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_notifiche,container,false);
         closeNotification = view.findViewById(R.id.closeNotification);
-        createPath = view.findViewById(R.id.createPath);
         layoutList = view.findViewById(R.id.layout_list);
 
         closeNotification.setOnClickListener(new View.OnClickListener() {

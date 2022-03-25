@@ -121,7 +121,7 @@
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="111dp"
+                        android:layout_height="96dp"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/museum"
                         android:contentDescription="@string/im_view">
@@ -315,7 +315,7 @@
 
     <FrameLayout
         android:id="@+id/container"
-        android:name="com.example.alphatour.prova.NotificheFragment"
+        android:name="com.example.alphatour.NotifyFragment"
         android:layout_width="300dp"
         android:layout_height="500dp"
         android:layout_marginStart="72dp"

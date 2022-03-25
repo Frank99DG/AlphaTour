@@ -21,14 +21,14 @@ public class DashboardActivity extends AppCompatActivity {
     private int n_notify;
     private int a=0;
 
-    Button createPath;
-    NotificationCounter notificationCounter;
-    ImageView openFragment;
-    ImageView closeNotification;
-    NotifyFragment myFragment = new NotifyFragment();
-    Bundle data = new Bundle();
+    private Button createPath;
+    private NotificationCounter notificationCounter;
+    private ImageView openFragment;
+    private ImageView closeNotification;
+    private NotifyFragment myFragment = new NotifyFragment();
+    private Bundle data = new Bundle();
 
-    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+    private FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
 
     @Override
@@ -36,7 +36,7 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        //DESIRè
+        /*DESIRè
         CardView cv1,cv2,cv3,cv4;
 
         cv1 = (CardView) findViewById(R.id.cv_city);
@@ -50,7 +50,7 @@ public class DashboardActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Funonzia",Toast.LENGTH_LONG);
             }
         });
-        //DESIRè
+        */
 
         ageText = findViewById(R.id.mAge2);
 
@@ -101,7 +101,7 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     public void notifyPath(){
-        data.putString("Notify", "Sei un grande hai creato un percorso");
+        data.putString("Notify", "You have created a path");
         myFragment.setArguments(data);
         myFragment.addView(notificationCounter);
 
