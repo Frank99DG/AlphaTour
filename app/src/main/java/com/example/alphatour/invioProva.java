@@ -1,4 +1,4 @@
-package com.example.alphatour.prova;
+package com.example.alphatour;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-import com.example.alphatour.R;
 
 
 public class invioProva extends AppCompatActivity {
@@ -38,15 +36,15 @@ public class invioProva extends AppCompatActivity {
 
 
     public void start(View view){
-        Intent i = new Intent(invioProva.this, NotificationProvaActivity.class);
-        i.putExtra(NotificationProvaActivity.N_NOTIFY,n_notify);
+        Intent i = new Intent(invioProva.this, DashboardActivity.class);
+        i.putExtra(DashboardActivity.N_NOTIFY,n_notify);
         startActivity(i);
     }
 
 
 
     public void send(View view){
-        Intent i = new Intent(invioProva.this, NotificationProvaActivity.class);
+        Intent i = new Intent(invioProva.this, DashboardActivity.class);
         //age = Integer.parseInt(ageText.getText().toString().trim());
         //i.putExtra(NotificationProvaActivity.N_NOTIFY,n_notify);
 

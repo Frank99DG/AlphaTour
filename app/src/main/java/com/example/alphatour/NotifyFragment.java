@@ -1,4 +1,4 @@
-package com.example.alphatour.prova;
+package com.example.alphatour;
 
 import android.os.Bundle;
 
@@ -12,9 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.alphatour.R;
-
-public class NotificheFragment extends Fragment {
+public class NotifyFragment extends Fragment {
 
     ImageView closeNotification;
     Button createPath;
@@ -22,7 +20,7 @@ public class NotificheFragment extends Fragment {
     LinearLayout layoutList;
 
 
-    public NotificheFragment() {
+    public NotifyFragment() {
     }
 
     @Override
@@ -43,7 +41,7 @@ public class NotificheFragment extends Fragment {
         closeNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().hide(NotificheFragment.this).commit();
+                getFragmentManager().beginTransaction().hide(NotifyFragment.this).commit();
             }
         });
         return view;

@@ -18,7 +18,7 @@
             android:label="@string/title_activity_navigation"
             android:theme="@style/Theme.AlphaTour.NoActionBar" />
         <activity
-            android:name=".prova.invioProva"
+            android:name=".invioProva"
             android:exported="false" />
         <activity
             android:name=".prova.DailyCalendarActivityProva"
@@ -33,7 +33,7 @@
             android:name=".ChangePasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".DashboardActivity"
+            android:name=".prova.DashboardActivityProva"
             android:exported="false" />
         <activity
             android:name=".prova.CalendarActivityProva"
@@ -59,7 +59,7 @@
             android:name=".AddZoneActivity"
             android:exported="false" />
         <activity
-            android:name=".prova.NotificationProvaActivity"
+            android:name=".DashboardActivity"
             android:exported="false" />
         <activity
             android:name=".ForgotPasswordActivity"

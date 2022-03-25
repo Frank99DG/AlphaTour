@@ -18,22 +18,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <RelativeLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:background="#FFFBFB">>
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:minHeight="?attr/actionBarSize"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:theme="?attr/actionBarTheme">
 
-            <TextView
-                android:id="@+id/tv_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="#F1ECEC"
-                android:text="@string/txt_view_String"
-                android:textColor="@color/black"
-                android:textSize="34sp" />
-        </RelativeLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <include
+                    android:id="@+id/notification_icon_prova"
+                    layout="@layout/notification_icon_prova"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:layout_editor_absoluteY="16dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.Toolbar>
 
         <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"
@@ -49,7 +58,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_city"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="2dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginBottom="20dp"
@@ -61,7 +70,7 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="133dp"
+                    android:layout_height="109dp"
                     android:layout_margin="16dp"
                     android:gravity="center_horizontal|center_vertical"
                     android:orientation="vertical">
@@ -69,7 +78,7 @@
                     <ImageView
                         android:id="@+id/imageView"
                         android:layout_width="wrap_content"
-                        android:layout_height="104dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center_horizontal"
                         android:contentDescription="@string/im_view"
                         tools:srcCompat="@drawable/skyline">
@@ -158,8 +167,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="104dp"
+                        android:layout_width="60dp"
+                        android:layout_height="75dp"
                         android:layout_gravity="center_horizontal"
                         android:contentDescription="@string/im_view"
                         android:src="@drawable/event_d">
@@ -203,7 +212,7 @@
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="104dp"
+                        android:layout_height="81dp"
                         android:layout_gravity="center_horizontal"
                         android:contentDescription="@string/im_view"
                         android:src="@drawable/venus">
@@ -262,4 +271,56 @@
             android:text="@string/tb_routes" />
 
     </com.google.android.material.tabs.TabLayout>
+
+
+    <Button
+        android:id="@+id/createPath"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="48dp"
+        android:onClick="createPath"
+        android:text="Create Path"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonNotify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="108dp"
+        android:onClick="buttonNotify"
+        android:text="Notify"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/mAge2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginBottom="156dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:name="com.example.alphatour.prova.NotificheFragment"
+        android:layout_width="300dp"
+        android:layout_height="500dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

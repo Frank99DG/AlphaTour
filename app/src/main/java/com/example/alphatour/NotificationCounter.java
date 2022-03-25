@@ -1,4 +1,4 @@
-package com.example.alphatour.prova;
+package com.example.alphatour;
 
 import android.util.Log;
 import android.view.View;
