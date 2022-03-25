@@ -17,14 +17,10 @@ public class DashboardActivity extends AppCompatActivity {
     public static final String AGE = "AGE";
     public static final String N_NOTIFY = "N_NOTIFY";
     private TextView ageText;
-    private int age;
     private int n_notify;
     private int a=0;
 
-    private Button createPath;
     private NotificationCounter notificationCounter;
-    private ImageView openFragment;
-    private ImageView closeNotification;
     private NotifyFragment myFragment = new NotifyFragment();
     private Bundle data = new Bundle();
 
@@ -53,11 +49,9 @@ public class DashboardActivity extends AppCompatActivity {
         */
 
         ageText = findViewById(R.id.mAge2);
-
-        createPath = findViewById(R.id.createPath);
         notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
-        openFragment = findViewById(R.id.notificationIcon);
-        closeNotification = findViewById(R.id.closeNotification);
+
+
 
         Intent i = getIntent();
         n_notify = i.getIntExtra(N_NOTIFY,0);
@@ -105,5 +99,10 @@ public class DashboardActivity extends AppCompatActivity {
         myFragment.setArguments(data);
         myFragment.addView(notificationCounter);
 
+    }
+
+    public void back_SecondActivity(View view) {
+        Intent i = new Intent(DashboardActivity.this, invioProva.class);
+        startActivity(i);
     }
 }

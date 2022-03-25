@@ -10,9 +10,10 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginBottom="212dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginBottom="420dp"
         android:text="Age"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -20,33 +21,24 @@
         android:id="@+id/mAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="68dp"
-        android:layout_marginBottom="196dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="404dp"
         android:ems="10"
         android:inputType="number"
         android:minHeight="48dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/otherActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginBottom="100dp"
-        android:text="send data"
-        android:onClick="send"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/buttonUpdateProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="100dp"
-        android:text="Start"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="68dp"
         android:onClick="start"
+        android:text="Go to other activity"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -54,10 +46,14 @@
         android:id="@+id/create_path"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="71dp"
-        android:layout_marginTop="396dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="552dp"
+        android:layout_marginBottom="15dp"
         android:onClick="create_path"
         android:text="create path"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/otherActivity"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

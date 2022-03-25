@@ -24,8 +24,6 @@ public class invioProva extends AppCompatActivity {
         setContentView(R.layout.activity_invio_prova);
 
         ageText = findViewById(R.id.mAge);
-        button1 = findViewById(R.id.button1);
-        button2 = findViewById(R.id.buttonUpdateProfile);
         button_path = findViewById(R.id.create_path);
 
     }
@@ -42,12 +40,14 @@ public class invioProva extends AppCompatActivity {
     }
 
 
-
+/*
     public void send(View view){
         Intent i = new Intent(invioProva.this, DashboardActivity.class);
-        //age = Integer.parseInt(ageText.getText().toString().trim());
-        //i.putExtra(NotificationProvaActivity.N_NOTIFY,n_notify);
+        age = Integer.parseInt(ageText.getText().toString().trim());
+        i.putExtra(NotificationProvaActivity.N_NOTIFY,n_notify);
 
-        //i.putExtra(NotificationProvaActivity.AGE,age);
+        i.putExtra(NotificationProvaActivity.AGE,age);
     }
+
+ */
 }
