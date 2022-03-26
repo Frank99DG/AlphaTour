@@ -1,8 +1,13 @@
 package com.example.alphatour.oggetti;
 
+import android.net.Uri;
+
+import java.util.HashMap;
+
 public class User {
 
     public String name,surname,dateBirth,username,email;
+    public HashMap<String,Object> image;
 
     public User(){
 
@@ -15,6 +20,22 @@ public class User {
         this.dateBirth = dateBirth;
         this.username = username;
         this.email = email;
+
+    }
+
+    public User(String name, String surname, String dateBirth, String username, HashMap<String,Object> image, String email){
+        this.name = name;
+        this.surname = surname;
+        this.dateBirth = dateBirth;
+        this.username = username;
+        this.image=image;
+        this.email = email;
+
+    }
+
+    public User(HashMap<String,Object> image){
+
+        this.image=image;
 
     }
 

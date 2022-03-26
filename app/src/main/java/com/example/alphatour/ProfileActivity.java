@@ -1,5 +1,6 @@
 package com.example.alphatour;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +14,11 @@ import android.widget.Toast;
 
 import com.example.alphatour.oggetti.User;
 import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,7 +30,12 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -37,9 +47,12 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView textWelcome,textNomeAndCognome,textEmail,textDataNascita,textUsername;
     private String name, surname, dateOfBirth,email,username;
     private ProgressBar loadingBar;
+    private FirebaseUser user;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
     boolean registered = false;
+    private StorageReference storegeProfilePick;
+    private StorageTask uploadTask;
 
 
 
@@ -61,9 +74,9 @@ public class ProfileActivity extends AppCompatActivity {
         loadingBar = findViewById(R.id.profileLoadingBar);
 
         auth = FirebaseAuth.getInstance();
-        FirebaseUser user = auth.getCurrentUser();
+        user = auth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
-
+        storegeProfilePick= FirebaseStorage.getInstance().getReference();
         if(user == null){
             Toast.makeText(ProfileActivity.this,"Si è verificato un errrore: i dati dell'utente non sono disponibili !!!",Toast.LENGTH_LONG).show();
         }else{
@@ -127,6 +140,61 @@ public class ProfileActivity extends AppCompatActivity {
 
             Uri uri = data.getData();
             profile.setImageURI(uri);
+            saveImageProfile(uri);
+    }
+
+    private void saveImageProfile(Uri uri) {
+        loadingBar.setVisibility(View.VISIBLE);
+        if(uri!=null) {
+            final StorageReference fileRef = storegeProfilePick.child(auth.getCurrentUser().getUid());
+
+            uploadTask = fileRef.putFile(uri);
+
+            uploadTask.continueWithTask(new Continuation() {
+                @Override
+                public Object then(@NonNull Task task) throws Exception {
+
+                    if (!task.isSuccessful()) {
+                        throw task.getException();
+                    }
+                    return fileRef.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener() {
+                @Override
+                public void onComplete(@NonNull Task task) {
+                    if (task.isSuccessful()) {
+
+                        Uri downloadUrl = (Uri) task.getResult();
+                        String myUri= downloadUrl.toString();
+                        HashMap<String,Object> userMap=new HashMap<>();
+                        userMap.put("Image",myUri);
+
+                        User userUpdate = new User(userMap);
+                        db.collection("Users").document(user.getUid()).
+                                set(userUpdate).
+                                addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Toast.makeText(ProfileActivity.this, "Hai aggiornato l'immagine di profilo", Toast.LENGTH_LONG).show();
+                                        loadingBar.setVisibility(View.GONE);
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(ProfileActivity.this, "Non è stato possibile aggiornare l'immagine di profilo!", Toast.LENGTH_LONG).show();
+                                loadingBar.setVisibility(View.GONE);
+                            }
+                        });
+
+                    }
+
+
+                    }
+            });
+        }else{
+            Toast.makeText(ProfileActivity.this,"Immagine non selezionata!",Toast.LENGTH_LONG).show();
+        }
+
     }
 
     public void changeProfile(View v){

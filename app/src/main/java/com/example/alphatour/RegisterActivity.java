@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.appsearch.StorageInfo;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -28,6 +30,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 
 import java.util.Calendar;
 import java.util.Objects;
@@ -50,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener onDateSetListener;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
+
 
 
     @Override
@@ -209,6 +214,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             idUser = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+
                             User user = new User(Name, Surname, DateBirth, Username, Email);
 
                             DocumentReference documentReference = db.collection("Users").document(idUser);
@@ -239,6 +245,7 @@ public class RegisterActivity extends AppCompatActivity {
                 });
 
     }
+
 
 
     public void saveUserOnDb(View v) {

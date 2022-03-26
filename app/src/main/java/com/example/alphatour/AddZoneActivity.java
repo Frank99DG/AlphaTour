@@ -1,8 +1,11 @@
 package com.example.alphatour;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +17,7 @@ import android.widget.Toast;
 
 
 import com.example.alphatour.oggetti.Element;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import java.util.ArrayList;
 
@@ -51,6 +55,7 @@ public class AddZoneActivity extends AppCompatActivity {
 
         final View elementView = getLayoutInflater().inflate(R.layout.row_add_element,null,false);
         ImageView removeElement = (ImageView) elementView.findViewById(R.id.buttonDeleteElement);
+        Button addPhoto=(Button) elementView.findViewById(R.id.inputPhoto);
 
         removeElement.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +65,25 @@ public class AddZoneActivity extends AppCompatActivity {
             }
         });
 
+        addPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ImagePicker.with(AddZoneActivity.this)
+                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)*/
+                        .start(20);
+            }
+        });
+
         layout_list.addView(elementView);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Uri uri = data.getData();
+        Toast.makeText(AddZoneActivity.this,R.string.upload_photo,Toast.LENGTH_LONG).show();
+        //salvataggio foto
     }
 
 

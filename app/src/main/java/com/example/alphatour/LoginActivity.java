@@ -125,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (task.isSuccessful()) {
                                     Toast.makeText(LoginActivity.this, "Accesso compiuto", Toast.LENGTH_LONG).show();
-                                    startActivity(new Intent(LoginActivity.this, PercorsoWizard.class /*AddPlaceActivity.class*//*DashBoardActivity.class*/));
+                                    startActivity(new Intent(LoginActivity.this, ProfileActivity.class /*AddPlaceActivity.class*//*DashBoardActivity.class*/));
                                     loadingBar.setVisibility(View.GONE);
 
                             } else {
