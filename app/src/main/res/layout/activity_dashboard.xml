@@ -90,7 +90,7 @@
                         android:id="@+id/tv_route"
                         android:layout_width="74dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/tv_city"
+                        android:text="@string/tv_route"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -224,7 +224,7 @@
                         android:id="@+id/tv_calendar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/tv_monument"
+                        android:text="@string/tv_calendar"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -259,11 +259,6 @@
             android:layout_height="wrap_content"
             android:text="@string/tb_event" />
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tb_calendar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tb_calendar" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tb_routes"
