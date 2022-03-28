@@ -18,7 +18,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <SearchView
+        <ListView
+            android:id="@+id/listview"
             android:layout_width="match_parent"
             android:layout_height="61dp" />
 
@@ -244,4 +245,5 @@
             android:text="@string/tb_routes" />
 
     </com.google.android.material.tabs.TabLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

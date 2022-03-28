@@ -43,6 +43,7 @@
     <string name="tb_event">EVENTI</string>
     <string name="tb_routes">I MIEI PERCORSI</string>
     <string name="im_view"> </string>
+    <string name="search">Search</string>
     <!--activity_dashboard_curatore(des)end-->
 
     <string-array name="tipo_evento">
