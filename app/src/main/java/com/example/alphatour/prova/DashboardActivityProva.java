@@ -17,10 +17,10 @@ public class DashboardActivityProva extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_prova);
 
-        cv1 = (CardView) findViewById(R.id.cv_city);
+        cv1 = (CardView) findViewById(R.id.cv_route);
         cv2 = (CardView) findViewById(R.id.cv_museum);
         cv3 = (CardView) findViewById(R.id.cv_show);
-        cv4 = (CardView) findViewById(R.id.cv_monument);
+        cv4 = (CardView) findViewById(R.id.cv_calendar);
 
         cv1.setOnClickListener(new View.OnClickListener() {
             @Override

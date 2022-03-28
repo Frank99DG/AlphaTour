@@ -35,13 +35,12 @@
     <string name="mostra">Mostra</string>
     <!--activity_dashboard_curatore(des)start-->
     <string name="txt_view_String">ALPHATOUR</string>
-    <string name="tv_city">CITTÀ</string>
-    <string name="tv_museum">MUSEI</string>
-    <string name="tv_show">MOSTRE</string>
-    <string name="tv_monument">MONUMENTI</string>
+    <string name="tv_route">CREA PERCORSO</string>
+    <string name="tv_museum">GESTISCI MUSEO</string>
+    <string name="tv_show">CREA EVENTO</string>
+    <string name="tv_calendar">CALENDARIO</string>
     <string name="tb_user">ICONA UTENTE</string>
     <string name="tb_event">EVENTI</string>
-    <string name="tb_calendar">CALENDARIO</string>
     <string name="tb_routes">I MIEI PERCORSI</string>
     <string name="im_view"> </string>
     <!--activity_dashboard_curatore(des)end-->

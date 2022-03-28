@@ -18,22 +18,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <RelativeLayout
+        <SearchView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:background="#FFFBFB">>
-
-            <TextView
-                android:id="@+id/tv_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="#F1ECEC"
-                android:text="@string/txt_view_String"
-                android:textColor="@color/black"
-                android:textSize="34sp" />
-        </RelativeLayout>
+            android:layout_height="61dp" />
 
         <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"
@@ -47,7 +34,7 @@
             <!--Row 1-->
             <!--Column 1-->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cv_city"
+                android:id="@+id/cv_route"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginLeft="30dp"
@@ -69,18 +56,18 @@
                     <ImageView
                         android:id="@+id/imageView"
                         android:layout_width="wrap_content"
-                        android:layout_height="104dp"
+                        android:layout_height="95dp"
                         android:layout_gravity="center_horizontal"
                         android:contentDescription="@string/im_view"
-                        tools:srcCompat="@drawable/skyline">
+                        tools:srcCompat="@drawable/route">
 
                     </ImageView>
 
                     <TextView
-                        android:id="@+id/tv_city"
+                        android:id="@+id/tv_route"
                         android:layout_width="74dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/tv_city"
+                        android:text="@string/tv_route"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -112,7 +99,7 @@
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="111dp"
+                        android:layout_height="95dp"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/museum"
                         android:contentDescription="@string/im_view">
@@ -159,7 +146,7 @@
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="104dp"
+                        android:layout_height="95dp"
                         android:layout_gravity="center_horizontal"
                         android:contentDescription="@string/im_view"
                         android:src="@drawable/event_d">
@@ -183,7 +170,7 @@
             </androidx.cardview.widget.CardView>
             <!-- Column 2-->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cv_monument"
+                android:id="@+id/cv_calendar"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginLeft="30dp"
@@ -203,21 +190,22 @@
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="104dp"
+                        android:layout_height="95dp"
                         android:layout_gravity="center_horizontal"
                         android:contentDescription="@string/im_view"
-                        android:src="@drawable/venus">
+                        android:src="@drawable/venus"
+                        app:srcCompat="@drawable/calendar">
 
                     </ImageView>
 
                     <TextView
-                        android:id="@+id/tv_monument"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tv_calendar"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/tv_monument"
+                        android:text="@string/tv_calendar"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="14sp"
+                        android:textSize="13sp"
                         android:textStyle="bold">
 
                     </TextView>
@@ -248,12 +236,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tb_event" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tb_calendar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tb_calendar" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tb_routes"

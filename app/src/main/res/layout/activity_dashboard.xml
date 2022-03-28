@@ -57,7 +57,7 @@
             <!--Row 1-->
             <!--Column 1-->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cv_city"
+                android:id="@+id/cv_route"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_marginLeft="30dp"
@@ -87,7 +87,7 @@
                     </ImageView>
 
                     <TextView
-                        android:id="@+id/tv_city"
+                        android:id="@+id/tv_route"
                         android:layout_width="74dp"
                         android:layout_height="wrap_content"
                         android:text="@string/tv_city"
@@ -193,7 +193,7 @@
             </androidx.cardview.widget.CardView>
             <!-- Column 2-->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cv_monument"
+                android:id="@+id/cv_calendar"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginLeft="30dp"
@@ -221,7 +221,7 @@
                     </ImageView>
 
                     <TextView
-                        android:id="@+id/tv_monument"
+                        android:id="@+id/tv_calendar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/tv_monument"
