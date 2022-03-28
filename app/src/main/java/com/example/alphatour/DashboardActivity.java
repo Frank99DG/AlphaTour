@@ -32,21 +32,13 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        /*DESIRè
-        CardView cv1,cv2,cv3,cv4;
 
-        cv1 = (CardView) findViewById(R.id.cv_city);
-        cv2 = (CardView) findViewById(R.id.cv_museum);
-        cv3 = (CardView) findViewById(R.id.cv_show);
-        cv4 = (CardView) findViewById(R.id.cv_monument);
+        if (savedInstanceState != null) {
+            //Restore the fragment's instance
+            myFragment = (NotifyFragment) getSupportFragmentManager().getFragment(savedInstanceState, "myFragmentName");
 
-        cv1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"Funonzia",Toast.LENGTH_LONG);
-            }
-        });
-        */
+        }
+
 
         ageText = findViewById(R.id.mAge2);
         notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
@@ -66,6 +58,14 @@ public class DashboardActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        //Save the fragment's instance
+        getSupportFragmentManager().putFragment(outState, "myFragment", myFragment);
     }
 
 

@@ -32,17 +32,23 @@ public class NotifyFragment extends Fragment {
      //   outState.putCharSequence(KEY_NOTIFY, myNotify.getText());
         outState.putString(KEY_NOTIFY, myNotify);
     }
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
+        if (savedInstanceState != null) {
+            //Restore the fragment's state here
+            this.myNotify = savedInstanceState.getString("KEY_NOTIFY");
+        }
+    }
 
-
-
-
+/*
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
-      //  this.myNotify = savedInstanceState.getString("KEY_NOTIFY");
+        this.myNotify = savedInstanceState.getString("KEY_NOTIFY");
     }
-
+ */
 
 
 
