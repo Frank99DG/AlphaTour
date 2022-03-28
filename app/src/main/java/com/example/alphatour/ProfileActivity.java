@@ -5,8 +5,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -27,14 +30,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -46,6 +53,7 @@ public class ProfileActivity extends AppCompatActivity {
     private FloatingActionButton changeProfile;
     private TextView textWelcome,textNomeAndCognome,textEmail,textDataNascita,textUsername;
     private String name, surname, dateOfBirth,email,username;
+    private String image;
     private ProgressBar loadingBar;
     private FirebaseUser user;
     private FirebaseAuth auth;
@@ -53,6 +61,7 @@ public class ProfileActivity extends AppCompatActivity {
     boolean registered = false;
     private StorageReference storegeProfilePick;
     private StorageTask uploadTask;
+    private  int i=0;
 
 
 
@@ -98,23 +107,52 @@ public class ProfileActivity extends AppCompatActivity {
 
                     for(DocumentSnapshot d: listaDocumenti){
 
-                        if(d.getId().matches(idUser)){ // controllo se l'id dell'utente esiste
+                        if(d.getId().matches(idUser)) { // controllo se l'id dell'utente esiste
 
                             //recupero dati
                             registered = true;
                             User user = d.toObject(User.class);
                             name = user.name;
+                            i=-1;
                             surname = user.surname;
                             email = user.email;
                             dateOfBirth = user.dateBirth;
                             username = user.username;
+                            image = user.image;
+
+                            if (image != null){
+                                final StorageReference fileRef = storegeProfilePick.child(auth.getCurrentUser().getUid());
+
+                                try{
+                                    File localFile= File.createTempFile("tempfile",".png");
+                                    fileRef.getFile(localFile)
+                                            .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                                                @Override
+                                                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                                    Bitmap bitmap= BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                                                    profile.setImageBitmap(bitmap);
+                                                }
+                                            }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+
+                                        }
+                                    });
+                                }catch(IOException e){
+                                    e.printStackTrace();
+                                }
+                        }
 
                             //stampa dati nelle editText
+                            i=-2;
                             textWelcome.setText("Benvenuto, "+name+" "+ surname);
                             textNomeAndCognome.setText(name +" "+ surname);
                             textEmail.setText(email);
                             textDataNascita.setText(dateOfBirth);
                             textUsername.setText(username);
+                            if(image!=null) {
+                                //profile.setImageURI(Uri.parse(image));
+                            }
 
                         }
 
@@ -139,6 +177,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
             Uri uri = data.getData();
+
             profile.setImageURI(uri);
             saveImageProfile(uri);
     }
@@ -164,14 +203,16 @@ public class ProfileActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task task) {
                     if (task.isSuccessful()) {
 
+                        //scarico il link di Storage dell'immagine
                         Uri downloadUrl = (Uri) task.getResult();
                         String myUri= downloadUrl.toString();
-                        HashMap<String,Object> userMap=new HashMap<>();
-                        userMap.put("Image",myUri);
 
-                        User userUpdate = new User(userMap);
+                        //aggiorno il campo immagine
+                        HashMap<String,Object> userMap=new HashMap<>();
+                        userMap.put("image",myUri);
+
                         db.collection("Users").document(user.getUid()).
-                                set(userUpdate).
+                        update("image", myUri).
                                 addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
@@ -188,11 +229,11 @@ public class ProfileActivity extends AppCompatActivity {
 
                     }
 
-
-                    }
+                }
             });
         }else{
             Toast.makeText(ProfileActivity.this,"Immagine non selezionata!",Toast.LENGTH_LONG).show();
+            loadingBar.setVisibility(View.GONE);
         }
 
     }

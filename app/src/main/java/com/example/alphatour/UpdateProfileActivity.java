@@ -26,6 +26,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class UpdateProfileActivity extends AppCompatActivity {
@@ -67,7 +68,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         String idUtente=utente.getUid();
         loadingBar.setVisibility(View.VISIBLE);
 
-        db.collection("Utenti").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("Users").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
@@ -225,8 +226,15 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
         loadingBar.setVisibility(View.VISIBLE);
         User userUpdate = new User(Name,Surname,DateOfBirth,Username,Email);
+        HashMap<String,Object> userMap=new HashMap<>();
+        userMap.put("name",Name);
+        userMap.put("surname",Surname);
+        userMap.put("email",Email);
+        userMap.put("dateBirth",DateOfBirth);
+        userMap.put("username",Username);
+
         db.collection("Users").document(user.getUid()).
-                set(userUpdate).
+                update("name",Name,"surname",Surname,"email",Email,"dateBirth",DateOfBirth,"username",Username).
                 addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
