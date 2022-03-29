@@ -18,8 +18,9 @@ public class EventEditActivityProva extends AppCompatActivity {
 
     private EditText eventNameET, hourEventET;
     private TextView eventDateTV, eventTimeTV;
-    private LocalTime time, timeSelected;
-    int hour,minute;
+    private LocalTime time;
+    private LocalTime timeSelected;
+    private int hour,minute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class EventEditActivityProva extends AppCompatActivity {
 
                 hour = selectedHour;
                 minute = selectedMinute;
+                timeSelected = LocalTime.of(hour,minute);
                 hourEventET.setText(String.format(Locale.getDefault(), "%02d:%02d",hour,minute));
             }
         };
@@ -58,7 +60,6 @@ public class EventEditActivityProva extends AppCompatActivity {
 
         timePickerDialog.setTitle("Select time");
         timePickerDialog.show();
-        timeSelected = LocalTime.of(hour,minute);
     }
 
 
