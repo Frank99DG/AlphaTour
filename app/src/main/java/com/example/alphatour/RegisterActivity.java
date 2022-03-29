@@ -196,6 +196,7 @@ public class RegisterActivity extends AppCompatActivity {
         values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_DATE_BIRTH,DateBirth);
         values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_USERNAME,Username);
         values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_EMAIL,Email);
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_IMAGE,"null");
 
         newRowId=db.insert(AlphaTourContract.AlphaTourEntry.NAME_TABLE_USER,AlphaTourContract.AlphaTourEntry.COLUMN_NAME_NULLABLE,values);
 
@@ -270,7 +271,7 @@ public class RegisterActivity extends AppCompatActivity {
             if(result == -1){
                 Toast.makeText(RegisterActivity.this, "Errore db local", Toast.LENGTH_LONG).show();
             }else{
-                saveUserOnDbRemote(Name,Surname,DateBirth,Username,Email,Password);
+                  saveUserOnDbRemote(Name,Surname,DateBirth,Username,Email,Password);
                 //startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                 //barraCaricamento.setVisibility(View.GONE);
                 finish();

@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -15,6 +18,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.alphatour.dblite.AlphaTourContract;
+import com.example.alphatour.dblite.AlphaTourDbHelper;
+import com.example.alphatour.dblite.CommandDbAlphaTour;
 import com.example.alphatour.oggetti.User;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.tasks.Continuation;
@@ -54,6 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView textWelcome,textNomeAndCognome,textEmail,textDataNascita,textUsername;
     private String name, surname, dateOfBirth,email,username;
     private String image;
+    private String idUtenteLocal;
     private ProgressBar loadingBar;
     private FirebaseUser user;
     private FirebaseAuth auth;
@@ -179,10 +186,31 @@ public class ProfileActivity extends AppCompatActivity {
             Uri uri = data.getData();
 
             profile.setImageURI(uri);
-            saveImageProfile(uri);
+            saveImageProfileOnDbRemote(uri);
+            int value=saveImageProfileOnDbLocal(uri);
+           /* if(value){
+
+            }*/
     }
 
-    private void saveImageProfile(Uri uri) {
+    // salva l'uri dell'immagine di profilo
+    private int saveImageProfileOnDbLocal(Uri uri) {
+
+        AlphaTourDbHelper dbAlpha = new AlphaTourDbHelper(this);
+        //recupero idUtente
+        SQLiteDatabase db = dbAlpha.getReadableDatabase();
+        Cursor cursor=db.rawQuery(CommandDbAlphaTour.Command.SELECT_USER_PROFILE,new String[]{email});
+        if(cursor.moveToFirst()){
+            idUtenteLocal= cursor.getString(cursor.getColumnIndexOrThrow(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_ID));
+        }
+        db = dbAlpha.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_IMAGE,uri.toString());
+       return db.update(AlphaTourContract.AlphaTourEntry.NAME_TABLE_USER,values,AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_ID+
+                CommandDbAlphaTour.Command.EQUAL+CommandDbAlphaTour.Command.VALUE,new String[] {idUtenteLocal});
+    }
+
+    private void saveImageProfileOnDbRemote(Uri uri) {
         loadingBar.setVisibility(View.VISIBLE);
         if(uri!=null) {
             final StorageReference fileRef = storegeProfilePick.child(auth.getCurrentUser().getUid());

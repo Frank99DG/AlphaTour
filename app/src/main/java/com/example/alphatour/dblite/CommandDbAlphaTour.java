@@ -33,7 +33,8 @@ public final class CommandDbAlphaTour {
                 AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_SURNAME+SPACE+TYPE_TEXT+COMMA+
                 AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_DATE_BIRTH+SPACE+TYPE_TEXT+COMMA+
                 AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_USERNAME+SPACE+TYPE_TEXT+COMMA+
-                AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_EMAIL+SPACE+TYPE_TEXT+")";
+                AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_EMAIL+SPACE+TYPE_TEXT+COMMA+
+                AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_IMAGE+SPACE+TYPE_TEXT+")";
         //create table Utente(idUtente INTEGER primary key,nomeUtente TEXT,cognomeUtente TEXT,dataNascitaUtente TEXT,usernameUtente TEXT,emailUtente TEXT)
 
         /*eliminazione tabella utente*/

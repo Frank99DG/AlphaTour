@@ -18,6 +18,7 @@ public final class AlphaTourContract {
         public static final String NAME_COLUMN_USER_DATE_BIRTH="dateBirthUser";
         public static final String NAME_COLUMN_USER_USERNAME="usernameUser";
         public static final String NAME_COLUMN_USER_EMAIL="emailUser";
+        public static final String NAME_COLUMN_USER_IMAGE="imageUser";
 
     }
 }
