@@ -44,7 +44,8 @@
         android:layout_gravity="center"
         android:textSize="20sp"
         android:ems="10"
-        android:inputType="text"/>
+        android:inputType="date"
+        android:focusableInTouchMode="false"/>
 
     <TextView
         android:id="@+id/eventDateTV"
