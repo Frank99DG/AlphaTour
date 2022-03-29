@@ -1,5 +1,6 @@
 package com.example.alphatour;
 
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -35,6 +36,15 @@ public class NotificationCounter {
         }else notificationNumber.setText(String.valueOf(notification_number_counter));
     }
 
+    public TextView getNotificationNumber() {
+        return notificationNumber;
+    }
 
+    public void setNotificationNumber(TextView notificationNumber) {
+        this.notificationNumber = notificationNumber;
+    }
 
+    public void setTextNotify(Bundle d, String abcd){
+        this.notificationNumber.setText(d.getCharSequence(abcd));
+    }
 }

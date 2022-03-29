@@ -14,11 +14,13 @@ import android.widget.Toast;
 
 public class DashboardActivity extends AppCompatActivity {
 
+    private static final String KEY_DIOCANE="DIOCANE";
     public static final String AGE = "AGE";
     public static final String N_NOTIFY = "N_NOTIFY";
     private TextView ageText;
     private int n_notify;
     private int a=0;
+    private TextView sadp;
 
     private NotificationCounter notificationCounter;
     private NotifyFragment myFragment = new NotifyFragment();
@@ -32,17 +34,20 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-
+/*
         if (savedInstanceState != null) {
             //Restore the fragment's instance
-            myFragment = (NotifyFragment) getSupportFragmentManager().getFragment(savedInstanceState, "myFragmentName");
+           // myFragment = (NotifyFragment) getSupportFragmentManager().getFragment(savedInstanceState, "myFragmentName");
 
         }
 
 
+ */
+
+
+
         ageText = findViewById(R.id.mAge2);
         notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
-
 
 
         Intent i = getIntent();
@@ -65,7 +70,14 @@ public class DashboardActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
 
         //Save the fragment's instance
-        getSupportFragmentManager().putFragment(outState, "myFragment", myFragment);
+      //  getSupportFragmentManager().putFragment(outState, "myFragment", myFragment);
+       outState.putCharSequence(KEY_DIOCANE, notificationCounter.getNotificationNumber().getText());
+    }
+
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+       this.notificationCounter.setTextNotify(savedInstanceState,KEY_DIOCANE);
     }
 
 

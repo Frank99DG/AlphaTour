@@ -39,6 +39,10 @@ public class invioProva extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void aaaaa(View view){
+        Intent i = new Intent(invioProva.this, provaaaaaaaa.class);
+        startActivity(i);
+    }
 
 /*
     public void send(View view){
