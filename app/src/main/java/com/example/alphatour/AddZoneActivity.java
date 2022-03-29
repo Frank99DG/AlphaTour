@@ -27,7 +27,7 @@ public class AddZoneActivity extends AppCompatActivity {
 
     private int zoneNumber = 1;
     private EditText nameZone,title,description,photo,qrCode,activity,sensorCode;
-    Button addElement;
+    Button addElement, generateQrCode;
     LinearLayout layout_list;
     ArrayList<Element> element_list = new ArrayList<>();
 
@@ -47,6 +47,7 @@ public class AddZoneActivity extends AppCompatActivity {
         addElement = findViewById(R.id.buttonAggiungiElemento);
         nameZone = findViewById(R.id.inputNomeZona);
         layout_list = findViewById(R.id.listaElementiLayout);
+        generateQrCode = findViewById(R.id.inputQrCode);
 
     }
 
@@ -187,6 +188,10 @@ public class AddZoneActivity extends AppCompatActivity {
         String Password = password.getText().toString();
     }*/
 
+    public void generateQrCode(View v){
+
+        startActivity(new Intent(this, GenerateQrCodeActivity.class));
+    }
 
     public void createZoneActivity(View v){
         startActivity(new Intent(this, AddZoneActivity.class));

@@ -72,30 +72,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputTitle" />
 
-    <Button
-        android:id="@+id/inputPhoto"
+    <ProgressBar
+        android:id="@+id/qrCodeLoadingBar"
+        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.54" />
+
+    <Button
+        android:id="@+id/inputPhoto"
+        android:layout_width="184dp"
+        android:layout_height="54dp"
         android:layout_marginStart="120dp"
         android:layout_marginTop="38dp"
         android:layout_marginEnd="81dp"
         android:ems="10"
-        android:text="@string/photo_button"
         android:onClick="uploadImageElemento"
+        android:text="@string/photo_button"
+        android:background="@drawable/bordi_tondi_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputDescription" />
 
-    <EditText
+    <Button
         android:id="@+id/inputQrCode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="184dp"
+        android:layout_height="54dp"
         android:layout_marginStart="120dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="81dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="CodiceQr"
+        android:hint="GENERA CODICE QR"
+        android:onClick="generateQrCode"
+        android:textColorHint="#FDFCFC"
+        android:background="@drawable/bordi_tondi_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputPhoto" />

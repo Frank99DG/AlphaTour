@@ -88,4 +88,6 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_activity_navigation">NavigationActivity</string>
 
+    <string name="qr_generator">Il tuo codice apparirà qui</string>
+    <string name="qr_embedded">Aggiungi il testo da inserire nel QR Code</string>
 </resources>
