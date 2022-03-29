@@ -1,9 +1,8 @@
-package com.example.alphatour.prova;
+package com.example.alphatour.calendar;
 
-import static com.example.alphatour.prova.CalendarUtilsProva.selectedDate;
+import static com.example.alphatour.calendar.CalendarUtils.selectedDate;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,10 +15,9 @@ import com.example.alphatour.R;
 import java.time.LocalTime;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
-public class DailyCalendarActivityProva extends AppCompatActivity {
+public class DailyCalendarActivity extends AppCompatActivity {
 
     private TextView monthDayText;
     private TextView dayOfWeekTV;
@@ -29,7 +27,7 @@ public class DailyCalendarActivityProva extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_daily_calendar_prova);
+        setContentView(R.layout.activity_daily_calendar);
         initWidgets();
     }
 
@@ -48,7 +46,7 @@ public class DailyCalendarActivityProva extends AppCompatActivity {
 
     private void setDayView() {
 
-        monthDayText.setText(CalendarUtilsProva.monthDayFromDate(selectedDate));
+        monthDayText.setText(CalendarUtils.monthDayFromDate(selectedDate));
         String dayOfWeek = selectedDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault());
         dayOfWeekTV.setText(dayOfWeek);
         setHourAdapter();
@@ -56,19 +54,19 @@ public class DailyCalendarActivityProva extends AppCompatActivity {
 
     private void setHourAdapter() {
 
-        HourAdapterProva hourAdapter = new HourAdapterProva(getApplicationContext(), hourEventList());
+        HourAdapter hourAdapter = new HourAdapter(getApplicationContext(), hourEventList());
         hourListView.setAdapter(hourAdapter);
     }
 
 
-    private ArrayList<HourEventProva> hourEventList() {
+    private ArrayList<HourEvent> hourEventList() {
 
-        ArrayList<HourEventProva> list = new ArrayList<>();
+        ArrayList<HourEvent> list = new ArrayList<>();
         for(int hour = 0; hour < 24;hour++){
 
             LocalTime time = LocalTime.of(hour, 0);
             ArrayList<EventProva> events = EventProva.eventsForDateAndTime(selectedDate, time);
-            HourEventProva hourEvent = new HourEventProva(time, events);
+            HourEvent hourEvent = new HourEvent(time, events);
             list.add(hourEvent);
         }
 
@@ -78,19 +76,19 @@ public class DailyCalendarActivityProva extends AppCompatActivity {
 
     public void previousDayAction(View view) {
 
-        CalendarUtilsProva.selectedDate = CalendarUtilsProva.selectedDate.minusDays(1);
+        CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusDays(1);
         setDayView();
     }
 
 
     public void nextDayAction(View view) {
 
-        CalendarUtilsProva.selectedDate = CalendarUtilsProva.selectedDate.plusDays(1);
+        CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusDays(1);
         setDayView();
     }
 
     public void newEventAction(View view) {
 
-        startActivity(new Intent(this, EventEditActivityProva.class));
+        startActivity(new Intent(this, EventEditActivity.class));
     }
 }

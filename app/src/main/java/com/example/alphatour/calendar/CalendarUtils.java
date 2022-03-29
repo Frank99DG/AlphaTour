@@ -1,4 +1,4 @@
-package com.example.alphatour.prova;
+package com.example.alphatour.calendar;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -7,7 +7,7 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class CalendarUtilsProva {
+public class CalendarUtils {
 
     public static LocalDate selectedDate;
 
@@ -59,7 +59,7 @@ public class CalendarUtilsProva {
         YearMonth prevYearMonth = YearMonth.from(prevMonth);
         int prevDaysInMonth = prevYearMonth.lengthOfMonth();
 
-        LocalDate firstOfMonth = CalendarUtilsProva.selectedDate.withDayOfMonth(1);
+        LocalDate firstOfMonth = CalendarUtils.selectedDate.withDayOfMonth(1);
         int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
 
         for(int i = 1; i <= 42; i++){

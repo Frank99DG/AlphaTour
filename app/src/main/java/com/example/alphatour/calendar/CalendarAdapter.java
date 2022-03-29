@@ -1,4 +1,4 @@
-package com.example.alphatour.prova;
+package com.example.alphatour.calendar;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -13,12 +13,12 @@ import com.example.alphatour.R;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class CalendarAdapterProva extends RecyclerView.Adapter<CalendarViewHolderProva> {
+public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
 
     private final ArrayList<LocalDate> days;
     private final OnItemListener onItemListener;
 
-    public CalendarAdapterProva(ArrayList<LocalDate> days, OnItemListener onItemListener) {
+    public CalendarAdapter(ArrayList<LocalDate> days, OnItemListener onItemListener) {
 
         this.days = days;
         this.onItemListener = onItemListener;
@@ -26,10 +26,10 @@ public class CalendarAdapterProva extends RecyclerView.Adapter<CalendarViewHolde
 
     @NonNull
     @Override
-    public CalendarViewHolderProva onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CalendarViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.calendar_cell_prova, parent, false);
+        View view = inflater.inflate(R.layout.calendar_cell, parent, false);
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
 
         if(days.size() > 15) //month view
@@ -38,21 +38,21 @@ public class CalendarAdapterProva extends RecyclerView.Adapter<CalendarViewHolde
             layoutParams.height = (int) parent.getHeight();
 
 
-        return new CalendarViewHolderProva(view, onItemListener, days);
+        return new CalendarViewHolder(view, onItemListener, days);
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull CalendarViewHolderProva holder, int position) {
+    public void onBindViewHolder(@NonNull CalendarViewHolder holder, int position) {
 
         final LocalDate date = days.get(position);
 
         holder.dayOfMonth.setText(String.valueOf(date.getDayOfMonth()));
 
-        if(date.equals(CalendarUtilsProva.selectedDate))
+        if(date.equals(CalendarUtils.selectedDate))
             holder.parentView.setBackgroundColor(Color.LTGRAY);
 
-        if(date.getMonth().equals(CalendarUtilsProva.selectedDate.getMonth()))
+        if(date.getMonth().equals(CalendarUtils.selectedDate.getMonth()))
             holder.dayOfMonth.setTextColor(Color.BLACK);
         else
             holder.dayOfMonth.setTextColor(Color.LTGRAY);

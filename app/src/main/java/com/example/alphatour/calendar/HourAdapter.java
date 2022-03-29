@@ -1,4 +1,4 @@
-package com.example.alphatour.prova;
+package com.example.alphatour.calendar;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,9 +16,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HourAdapterProva extends ArrayAdapter<HourEventProva> {
+public class HourAdapter extends ArrayAdapter<HourEvent> {
 
-    public HourAdapterProva(@NonNull Context context, List<HourEventProva> hourEvents) {
+    public HourAdapter(@NonNull Context context, List<HourEvent> hourEvents) {
 
         super(context, 0, hourEvents);
     }
@@ -27,10 +27,10 @@ public class HourAdapterProva extends ArrayAdapter<HourEventProva> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        HourEventProva event = getItem(position);
+        HourEvent event = getItem(position);
 
         if(convertView == null)
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.hour_cell_prova, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.hour_cell, parent, false);
 
         setHour(convertView, event.time);
         setEvents(convertView, event.events);
@@ -42,7 +42,7 @@ public class HourAdapterProva extends ArrayAdapter<HourEventProva> {
     private void setHour(View convertView, LocalTime time) {
 
         TextView timeTV = convertView.findViewById(R.id.timeTV);
-        timeTV.setText(CalendarUtilsProva.formattedShortTime(time));
+        timeTV.setText(CalendarUtils.formattedShortTime(time));
     }
 
 

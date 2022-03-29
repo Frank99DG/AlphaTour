@@ -1,7 +1,7 @@
-package com.example.alphatour.prova;
+package com.example.alphatour.calendar;
 
-import static com.example.alphatour.prova.CalendarUtilsProva.daysInWeekArray;
-import static com.example.alphatour.prova.CalendarUtilsProva.monthYearFromDate;
+import static com.example.alphatour.calendar.CalendarUtils.daysInWeekArray;
+import static com.example.alphatour.calendar.CalendarUtils.monthYearFromDate;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -14,16 +14,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.alphatour.R;
-import com.example.alphatour.prova.CalendarAdapterProva;
-import com.example.alphatour.prova.CalendarUtilsProva;
-import com.example.alphatour.prova.EventAdapter;
-import com.example.alphatour.prova.EventEditActivityProva;
-import com.example.alphatour.prova.EventProva;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class WeekViewActivityProva extends AppCompatActivity implements CalendarAdapterProva.OnItemListener{
+public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener{
 
     private TextView monthYearText;
     private RecyclerView calendarRecycleView;
@@ -32,7 +27,7 @@ public class WeekViewActivityProva extends AppCompatActivity implements Calendar
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_week_view_prova);
+        setContentView(R.layout.activity_week_view);
         initWidgets();
         setWeekView();
     }
@@ -46,10 +41,10 @@ public class WeekViewActivityProva extends AppCompatActivity implements Calendar
 
     private void setWeekView() {
 
-        monthYearText.setText(monthYearFromDate(CalendarUtilsProva.selectedDate));
-        ArrayList<LocalDate> days = daysInWeekArray(CalendarUtilsProva.selectedDate);
+        monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
+        ArrayList<LocalDate> days = daysInWeekArray(CalendarUtils.selectedDate);
 
-        CalendarAdapterProva calendarAdapter = new CalendarAdapterProva(days, this);
+        CalendarAdapter calendarAdapter = new CalendarAdapter(days, this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         calendarRecycleView.setLayoutManager(layoutManager);
         calendarRecycleView.setAdapter(calendarAdapter);
@@ -59,14 +54,14 @@ public class WeekViewActivityProva extends AppCompatActivity implements Calendar
 
     public void previousWeekAction(View view) {
 
-        CalendarUtilsProva.selectedDate = CalendarUtilsProva.selectedDate.minusWeeks(1);
+        CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusWeeks(1);
         setWeekView();
     }
 
 
     public void nextWeekAction(View view) {
 
-        CalendarUtilsProva.selectedDate = CalendarUtilsProva.selectedDate.plusWeeks(1);
+        CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusWeeks(1);
         setWeekView();
     }
 
@@ -74,7 +69,7 @@ public class WeekViewActivityProva extends AppCompatActivity implements Calendar
     @Override
     public void onItemClick(int position, LocalDate date) {
 
-            CalendarUtilsProva.selectedDate = date;
+            CalendarUtils.selectedDate = date;
             setWeekView();
     }
 
@@ -86,19 +81,19 @@ public class WeekViewActivityProva extends AppCompatActivity implements Calendar
 
     private void setEventAdapter() {
 
-        ArrayList<EventProva> dailyEvents = EventProva.eventsForDate(CalendarUtilsProva.selectedDate);
+        ArrayList<EventProva> dailyEvents = EventProva.eventsForDate(CalendarUtils.selectedDate);
         EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEvents);
         eventListView.setAdapter(eventAdapter);
     }
 
     public void newEventAction(View view) {
 
-        startActivity(new Intent(this, EventEditActivityProva.class));
+        startActivity(new Intent(this, EventEditActivity.class));
     }
 
 
     public void dailyAction(View view) {
 
-        startActivity(new Intent(this, DailyCalendarActivityProva.class));
+        startActivity(new Intent(this, DailyCalendarActivity.class));
     }
 }

@@ -1,14 +1,14 @@
-package com.example.alphatour.prova;
+package com.example.alphatour.calendar;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class HourEventProva {
+public class HourEvent {
 
     LocalTime time;
     ArrayList<EventProva> events;
 
-    public HourEventProva(LocalTime time, ArrayList<EventProva> events) {
+    public HourEvent(LocalTime time, ArrayList<EventProva> events) {
         this.time = time;
         this.events = events;
     }

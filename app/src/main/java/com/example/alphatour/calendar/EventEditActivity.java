@@ -1,4 +1,4 @@
-package com.example.alphatour.prova;
+package com.example.alphatour.calendar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,7 +14,7 @@ import com.example.alphatour.R;
 import java.time.LocalTime;
 import java.util.Locale;
 
-public class EventEditActivityProva extends AppCompatActivity {
+public class EventEditActivity extends AppCompatActivity {
 
     private EditText eventNameET, hourEventET;
     private TextView eventDateTV, eventTimeTV;
@@ -26,11 +26,11 @@ public class EventEditActivityProva extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_edit_prova);
+        setContentView(R.layout.activity_event_edit);
         initWidgets();
         time = LocalTime.now();
-        eventDateTV.setText("Date: " + CalendarUtilsProva.formattedDate(CalendarUtilsProva.selectedDate));
-        eventTimeTV.setText("Time: " + CalendarUtilsProva.formattedTime(time));
+        eventDateTV.setText("Date: " + CalendarUtils.formattedDate(CalendarUtils.selectedDate));
+        eventTimeTV.setText("Time: " + CalendarUtils.formattedTime(time));
     }
 
     private void initWidgets() {
@@ -66,7 +66,7 @@ public class EventEditActivityProva extends AppCompatActivity {
     public void saveEventAction(View view) {
 
         String eventName = eventNameET.getText().toString();
-        EventProva newEvent = new EventProva(eventName, CalendarUtilsProva.selectedDate, timeSelected);
+        EventProva newEvent = new EventProva(eventName, CalendarUtils.selectedDate, timeSelected);
         EventProva.eventsList.add(newEvent);
         finish();
     }

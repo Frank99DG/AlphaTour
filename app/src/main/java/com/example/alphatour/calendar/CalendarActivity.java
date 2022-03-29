@@ -1,7 +1,7 @@
-package com.example.alphatour.prova;
+package com.example.alphatour.calendar;
 
-import static com.example.alphatour.prova.CalendarUtilsProva.daysInMonthArray;
-import static com.example.alphatour.prova.CalendarUtilsProva.monthYearFromDate;
+import static com.example.alphatour.calendar.CalendarUtils.daysInMonthArray;
+import static com.example.alphatour.calendar.CalendarUtils.monthYearFromDate;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -17,7 +17,7 @@ import com.example.alphatour.R;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class CalendarActivityProva extends AppCompatActivity implements CalendarAdapterProva.OnItemListener{
+public class CalendarActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener{
 
     private TextView monthYearText;
     private RecyclerView calendarRecycleView;
@@ -26,9 +26,9 @@ public class CalendarActivityProva extends AppCompatActivity implements Calendar
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar_prova);
+        setContentView(R.layout.activity_calendar);
         initWidgets();
-        CalendarUtilsProva.selectedDate = LocalDate.now();
+        CalendarUtils.selectedDate = LocalDate.now();
         setMonthView();
     }
 
@@ -41,10 +41,10 @@ public class CalendarActivityProva extends AppCompatActivity implements Calendar
 
     private void setMonthView() {
 
-        monthYearText.setText(monthYearFromDate(CalendarUtilsProva.selectedDate));
+        monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
         ArrayList<LocalDate> daysInMonth = daysInMonthArray();
 
-        CalendarAdapterProva calendarAdapter = new CalendarAdapterProva(daysInMonth, this);
+        CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         calendarRecycleView.setLayoutManager(layoutManager);
         calendarRecycleView.setAdapter(calendarAdapter);
@@ -53,14 +53,14 @@ public class CalendarActivityProva extends AppCompatActivity implements Calendar
 
     public void previousMonthAction(View view){
 
-        CalendarUtilsProva.selectedDate = CalendarUtilsProva.selectedDate.minusMonths(1);
+        CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusMonths(1);
         setMonthView();
 
     }
 
     public void nextMonthAction(View view) {
 
-        CalendarUtilsProva.selectedDate = CalendarUtilsProva.selectedDate.plusMonths(1);
+        CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusMonths(1);
         setMonthView();
     }
 
@@ -68,13 +68,13 @@ public class CalendarActivityProva extends AppCompatActivity implements Calendar
     public void onItemClick(int position, LocalDate date) {
 
         if(date != null) {
-            CalendarUtilsProva.selectedDate = date;
+            CalendarUtils.selectedDate = date;
             setMonthView();
         }
     }
 
     public void weeklyAction(View view) {
 
-        startActivity(new Intent(this, WeekViewActivityProva.class));
+        startActivity(new Intent(this, WeekViewActivity.class));
     }
 }

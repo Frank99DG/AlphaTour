@@ -1,4 +1,4 @@
-package com.example.alphatour.prova;
+package com.example.alphatour.calendar;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -27,11 +27,11 @@ public class EventAdapter extends ArrayAdapter<EventProva> {
         EventProva event = getItem(position);
 
         if(convertView == null)
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.event_cell_prova, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.event_cell, parent, false);
 
         TextView eventCellTV = convertView.findViewById(R.id.eventCellTV);
 
-        String eventTitle = event.getName() + " " + CalendarUtilsProva.formattedTime(event.getTime());
+        String eventTitle = event.getName() + " " + CalendarUtils.formattedTime(event.getTime());
         eventCellTV.setText(eventTitle);
         return convertView;
     }

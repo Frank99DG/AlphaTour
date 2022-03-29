@@ -21,13 +21,13 @@
             android:name=".invioProva"
             android:exported="false" />
         <activity
-            android:name=".prova.DailyCalendarActivityProva"
+            android:name=".calendar.DailyCalendarActivity"
             android:exported="false" />
         <activity
-            android:name=".prova.EventEditActivityProva"
+            android:name=".calendar.EventEditActivity"
             android:exported="false" />
         <activity
-            android:name=".prova.WeekViewActivityProva"
+            android:name=".calendar.WeekViewActivity"
             android:exported="false" />
         <activity
             android:name=".ChangePasswordActivity"
@@ -36,7 +36,7 @@
             android:name=".prova.DashboardActivityProva"
             android:exported="false" />
         <activity
-            android:name=".prova.CalendarActivityProva"
+            android:name=".calendar.CalendarActivity"
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"

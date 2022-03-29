@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".prova.DailyCalendarActivityProva">
+    tools:context=".calendar.DailyCalendarActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
