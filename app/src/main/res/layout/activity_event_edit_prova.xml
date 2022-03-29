@@ -27,6 +27,26 @@
         android:inputType="text"/>
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Ora Inizio:"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/hourEventET"
+        android:layout_width="wrap_content"
+        android:onClick="popTimePicker"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:ems="10"
+        android:inputType="text"/>
+
+    <TextView
         android:id="@+id/eventDateTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -2,21 +2,24 @@ package com.example.alphatour.prova;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.example.alphatour.R;
 
 import java.time.LocalTime;
+import java.util.Locale;
 
 public class EventEditActivityProva extends AppCompatActivity {
 
-    private EditText eventNameET;
+    private EditText eventNameET, hourEventET;
     private TextView eventDateTV, eventTimeTV;
-
-    private LocalTime time;
+    private LocalTime time, timeSelected;
+    int hour,minute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,15 +35,37 @@ public class EventEditActivityProva extends AppCompatActivity {
     private void initWidgets() {
 
         eventNameET = findViewById(R.id.eventNameET);
+        hourEventET = findViewById(R.id.hourEventET);
         eventDateTV = findViewById(R.id.eventDateTV);
         eventTimeTV = findViewById(R.id.eventTimeTV);
+
+    }
+
+
+    public void popTimePicker(View view) {
+
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+
+                hour = selectedHour;
+                minute = selectedMinute;
+                hourEventET.setText(String.format(Locale.getDefault(), "%02d:%02d",hour,minute));
+            }
+        };
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, onTimeSetListener, hour, minute, true);
+
+        timePickerDialog.setTitle("Select time");
+        timePickerDialog.show();
+        timeSelected = LocalTime.of(hour,minute);
     }
 
 
     public void saveEventAction(View view) {
 
         String eventName = eventNameET.getText().toString();
-        EventProva newEvent = new EventProva(eventName, CalendarUtilsProva.selectedDate, time);
+        EventProva newEvent = new EventProva(eventName, CalendarUtilsProva.selectedDate, timeSelected);
         EventProva.eventsList.add(newEvent);
         finish();
     }
