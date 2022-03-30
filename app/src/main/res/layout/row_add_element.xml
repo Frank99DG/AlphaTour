@@ -109,7 +109,7 @@
         android:layout_marginEnd="81dp"
         android:ems="10"
         android:hint="GENERA CODICE QR"
-        android:onClick="generateQrCode"
+        android:onClick="generateQrCodeActivity"
         android:textColorHint="#FDFCFC"
         android:background="@drawable/bordi_tondi_button"
         app:layout_constraintEnd_toEndOf="parent"

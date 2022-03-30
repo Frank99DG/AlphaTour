@@ -188,7 +188,7 @@ public class AddZoneActivity extends AppCompatActivity {
         String Password = password.getText().toString();
     }*/
 
-    public void generateQrCode(View v){
+    public void generateQrCodeActivity(View v){
 
         startActivity(new Intent(this, GenerateQrCodeActivity.class));
     }
