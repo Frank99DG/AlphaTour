@@ -40,6 +40,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:24.0.1'
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'com.google.firebase:firebase-auth:21.0.1'
+    implementation ('eu.livotov.labs.android:CAMView:2.0.1@aar') {transitive=true}
     implementation 'org.jgrapht:jgrapht-core:1.5.1'
     implementation 'com.github.dhaval2404:imagepicker:2.1'
     implementation 'de.hdodenhof:circleimageview:3.1.0'

@@ -92,4 +92,5 @@
     <string name="qr_embedded">Aggiungi il testo da inserire nel QR Code</string>
     <string name="qr_generate">Genera QR Code</string>
     <string name="qr_data_missing">Per favore inserisci il codice per generare il QR Code</string>
+    <string name="scann_data">I dati scansionati appariranno qui</string>
 </resources>

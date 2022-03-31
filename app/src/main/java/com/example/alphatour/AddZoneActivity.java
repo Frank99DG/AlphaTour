@@ -4,7 +4,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +16,8 @@ import android.widget.Toast;
 
 
 import com.example.alphatour.oggetti.Element;
+import com.example.alphatour.qrcode.GenerateQrCodeActivity;
+import com.example.alphatour.qrcode.ScanQrCodeActivity;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import java.util.ArrayList;
@@ -191,6 +192,11 @@ public class AddZoneActivity extends AppCompatActivity {
     public void generateQrCodeActivity(View v){
 
         startActivity(new Intent(this, GenerateQrCodeActivity.class));
+    }
+
+    public void scanQrCode(View v){
+
+        startActivity(new Intent(this, ScanQrCodeActivity.class));
     }
 
     public void createZoneActivity(View v){

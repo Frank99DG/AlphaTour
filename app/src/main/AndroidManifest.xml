@@ -23,7 +23,10 @@
             android:name=".invioProva"
             android:exported="false" />
         <activity
-            android:name=".GenerateQrCodeActivity"
+            android:name=".qrcode.GenerateQrCodeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".qrcode.ScanQrCodeActivity"
             android:exported="false" />
         <activity
             android:name=".calendar.DailyCalendarActivity"

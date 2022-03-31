@@ -116,7 +116,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputPhoto" />
 
-    <EditText
+    <Button
         android:id="@+id/inputActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -125,7 +125,8 @@
         android:layout_marginEnd="81dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Attività"
+        android:text="Attività"
+        android:onClick="scanQrCode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
