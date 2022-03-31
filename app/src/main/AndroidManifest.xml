@@ -78,6 +78,8 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
+        <activity android:name=".provaaaaaaaa"
+            android:exported="false"/>
         <activity
             android:name=".LoginActivity"
             android:exported="true">

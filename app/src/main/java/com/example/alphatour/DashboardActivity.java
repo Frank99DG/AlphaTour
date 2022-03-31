@@ -20,8 +20,9 @@ public class DashboardActivity extends AppCompatActivity {
     private TextView ageText;
     private int n_notify;
     private int a=0;
+    private int temp=0;
+    private boolean polpetta=false;
     private TextView sadp;
-
     private NotificationCounter notificationCounter;
     private NotifyFragment myFragment = new NotifyFragment();
     private Bundle data = new Bundle();
@@ -49,18 +50,43 @@ public class DashboardActivity extends AppCompatActivity {
         ageText = findViewById(R.id.mAge2);
         notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
 
-
+/*
         Intent i = getIntent();
         n_notify = i.getIntExtra(N_NOTIFY,0);
         ageText.setText("Counter is: "+n_notify);
 
+ */
+
+
+
+
+
         ft.replace(R.id.container,myFragment).hide(myFragment).commit();
+
+
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (invioProva.getN_notify() != 0){
+            n_notify= invioProva.getN_notify();
+            ageText.setText("Counter is: " + n_notify);
+        }
 
         if(n_notify>0) {
             for (a = 0; a < n_notify; a++) {
                 notificationCounter.increaseNumber();
+                invioProva.decremento_n_notify();
             }
-        }
+            polpetta=true;
+        }else polpetta = false;
+
+
+
 
 
     }
@@ -81,13 +107,16 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
 
+
+
     public void openFragment(View v) {
 
         getSupportFragmentManager().beginTransaction().show(myFragment).commit();
 
-        for (a = 0; a < n_notify; a++){
-            notifyPath();
-            if(a==n_notify-1) n_notify =0;
+        if(polpetta) {
+            for (a = 0; a < n_notify; a++) {
+                notifyPath();
+            }polpetta=false;
         }
     }
 

@@ -16,7 +16,7 @@ public class invioProva extends AppCompatActivity {
      private Button button2;
      private Button button_path;
      private int age;
-     private int n_notify;
+     private static int n_notify=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +28,28 @@ public class invioProva extends AppCompatActivity {
 
     }
 
+    public static void decremento_n_notify(){
+        n_notify--;
+    }
+
     public void create_path(View view){
         n_notify++;
     }
 
+    public static int getN_notify() {
+        return n_notify;
+    }
+
+    public void setN_notify(int n_notify) {
+        this.n_notify = n_notify;
+    }
+
+
+
 
     public void start(View view){
         Intent i = new Intent(invioProva.this, DashboardActivity.class);
-        i.putExtra(DashboardActivity.N_NOTIFY,n_notify);
+        //i.putExtra(DashboardActivity.N_NOTIFY,n_notify);
         startActivity(i);
     }
 
@@ -43,6 +57,8 @@ public class invioProva extends AppCompatActivity {
         Intent i = new Intent(invioProva.this, provaaaaaaaa.class);
         startActivity(i);
     }
+
+
 
 /*
     public void send(View view){
