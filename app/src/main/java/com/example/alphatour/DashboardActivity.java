@@ -34,37 +34,20 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-
 /*
         if (savedInstanceState != null) {
             //Restore the fragment's instance
            // myFragment = (NotifyFragment) getSupportFragmentManager().getFragment(savedInstanceState, "myFragmentName");
-
         }
-
-
- */
-
-
-
-        ageText = findViewById(R.id.mAge2);
-        notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
-
-/*
-        Intent i = getIntent();
+         Intent i = getIntent();
         n_notify = i.getIntExtra(N_NOTIFY,0);
         ageText.setText("Counter is: "+n_notify);
 
  */
 
-
-
-
-
+        ageText = findViewById(R.id.mAge2);
+        notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
         ft.replace(R.id.container,myFragment).hide(myFragment).commit();
-
-
-
 
     }
 
@@ -72,23 +55,13 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if (invioProva.getN_notify() != 0){
+        if(invioProva.getN_notify()>0  ){
             n_notify= invioProva.getN_notify();
+            for(a=0;  a<n_notify; a++) {
+                notificationCounter.increaseNumber();
+            }invioProva.setN_notify(0);
             ageText.setText("Counter is: " + n_notify);
         }
-
-        if(n_notify>0) {
-            for (a = 0; a < n_notify; a++) {
-                notificationCounter.increaseNumber();
-                invioProva.decremento_n_notify();
-            }
-            polpetta=true;
-        }else polpetta = false;
-
-
-
-
-
     }
 
     @Override
@@ -96,7 +69,7 @@ public class DashboardActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
 
         //Save the fragment's instance
-      //  getSupportFragmentManager().putFragment(outState, "myFragment", myFragment);
+        //getSupportFragmentManager().putFragment(outState, "myFragment", myFragment);
        outState.putCharSequence(KEY_DIOCANE, notificationCounter.getNotificationNumber().getText());
     }
 
@@ -106,17 +79,13 @@ public class DashboardActivity extends AppCompatActivity {
        this.notificationCounter.setTextNotify(savedInstanceState,KEY_DIOCANE);
     }
 
-
-
-
     public void openFragment(View v) {
 
         getSupportFragmentManager().beginTransaction().show(myFragment).commit();
 
-        if(polpetta) {
-            for (a = 0; a < n_notify; a++) {
-                notifyPath();
-            }polpetta=false;
+        for (a = 0; a < n_notify; a++){
+            notifyPath();
+            if(a==n_notify-1) n_notify =0;
         }
     }
 
@@ -146,7 +115,6 @@ public class DashboardActivity extends AppCompatActivity {
         Intent i = new Intent(DashboardActivity.this, invioProva.class);
         startActivity(i);
     }
-
 
 
 }

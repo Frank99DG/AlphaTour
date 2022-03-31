@@ -28,10 +28,6 @@ public class invioProva extends AppCompatActivity {
 
     }
 
-    public static void decremento_n_notify(){
-        n_notify--;
-    }
-
     public void create_path(View view){
         n_notify++;
     }
@@ -40,12 +36,9 @@ public class invioProva extends AppCompatActivity {
         return n_notify;
     }
 
-    public void setN_notify(int n_notify) {
-        this.n_notify = n_notify;
+    public static void setN_notify(int n_notify) {
+        invioProva.n_notify = n_notify;
     }
-
-
-
 
     public void start(View view){
         Intent i = new Intent(invioProva.this, DashboardActivity.class);
@@ -57,8 +50,6 @@ public class invioProva extends AppCompatActivity {
         Intent i = new Intent(invioProva.this, provaaaaaaaa.class);
         startActivity(i);
     }
-
-
 
 /*
     public void send(View view){
