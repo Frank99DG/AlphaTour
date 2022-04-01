@@ -94,4 +94,6 @@
     <string name="qr_data_missing">Per favore inserisci il codice per generare il QR Code</string>
     <string name="scann_data">I dati scansionati appariranno qui</string>
     <string name="modify_object">Modifica Oggetto</string>
+    <string name="title_activity_hamburger">HamburgerActivity</string>
+    <string name="profile">Profilo</string>
 </resources>
