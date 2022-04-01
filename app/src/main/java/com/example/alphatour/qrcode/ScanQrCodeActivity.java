@@ -6,11 +6,15 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.alphatour.ModifyObjectActivity;
 import com.example.alphatour.R;
 
 import eu.livotov.labs.android.camview.ScannerLiveView;
@@ -20,6 +24,8 @@ public class ScanQrCodeActivity extends AppCompatActivity {
 
     private TextView scanText;
     private ScannerLiveView scannerLiveView;
+    private Button modifyObject;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +33,7 @@ public class ScanQrCodeActivity extends AppCompatActivity {
 
         scannerLiveView=findViewById(R.id.scannerLayout);
         scanText=findViewById(R.id.textScan);
+        modifyObject=findViewById(R.id.buttonModifyObject);
 
         if(checkPermission()){
             Toast.makeText(this,"Permission granted",Toast.LENGTH_LONG).show();
@@ -53,6 +60,14 @@ public class ScanQrCodeActivity extends AppCompatActivity {
             @Override
             public void onCodeScanned(String data) {
                  scanText.setText(data);
+                 modifyObject.setVisibility(View.VISIBLE);
+                 modifyObject.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                     public void onClick(View view) {
+                         Intent intent= new Intent(ScanQrCodeActivity.this, ModifyObjectActivity.class);
+                         startActivity(intent);
+                     }
+                 });
             }
         });
 
@@ -97,4 +112,5 @@ public class ScanQrCodeActivity extends AppCompatActivity {
 
         }
     }
+
 }

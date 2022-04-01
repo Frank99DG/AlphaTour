@@ -89,8 +89,9 @@
     <string name="title_activity_navigation">NavigationActivity</string>
 
     <string name="qr_generator">Il tuo codice apparirà qui</string>
-    <string name="qr_embedded">Aggiungi il testo da inserire nel QR Code</string>
+    <string name="qr_embedded">Aggiungi il nome oggetto da inserire nel QR Code</string>
     <string name="qr_generate">Genera QR Code</string>
     <string name="qr_data_missing">Per favore inserisci il codice per generare il QR Code</string>
     <string name="scann_data">I dati scansionati appariranno qui</string>
+    <string name="modify_object">Modifica Oggetto</string>
 </resources>

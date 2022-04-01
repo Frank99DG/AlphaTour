@@ -27,10 +27,12 @@ public class AddZoneActivity extends AppCompatActivity {
 
 
     private int zoneNumber = 1;
-    private EditText nameZone,title,description,photo,qrCode,activity,sensorCode;
-    Button addElement, generateQrCode;
-    LinearLayout layout_list;
-    ArrayList<Element> element_list = new ArrayList<>();
+    private EditText nameZone,title,description,activity,sensorCode;
+    private Button addElement, generateQrCode,photo;
+    private LinearLayout layout_list;
+    private ArrayList<Element> element_list = new ArrayList<>();
+    private boolean flagPhoto=false;
+    private boolean flagQrCode=false;
 
     /*FloatingActionButton bottone;
     EditText nomeLuogo;
@@ -84,6 +86,7 @@ public class AddZoneActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         Uri uri = data.getData();
+        flagPhoto=true;
         Toast.makeText(AddZoneActivity.this,R.string.upload_photo,Toast.LENGTH_LONG).show();
         //salvataggio foto
     }
@@ -91,7 +94,7 @@ public class AddZoneActivity extends AppCompatActivity {
 
     public void /*boolean*/ inputControl(View v){
         element_list.clear();
-        Boolean errorFlag = false;
+
 
         String NameZone = nameZone.getText().toString();
         if(NameZone.isEmpty()){
@@ -105,20 +108,42 @@ public class AddZoneActivity extends AppCompatActivity {
 
              title = elementView.findViewById(R.id.inputTitle);
              description = elementView.findViewById(R.id.inputDescription);
-             //foto = elementView.findViewById( );
-             qrCode = elementView.findViewById(R.id.inputQrCode);
-             activity = elementView.findViewById(R.id.inputActivity);
+             photo= elementView.findViewById(R.id.inputPhoto);
+             generateQrCode = elementView.findViewById(R.id.inputQrCode);
+             //activity = elementView.findViewById(R.id.inputActivity);
              sensorCode = elementView.findViewById(R.id.inputSensorCode);
 
              Element element = new Element();
 
              String Title = title.getText().toString();
              String Description= description.getText().toString();
-             //String Photo = foto.getText().toString();
-             String QrCode = qrCode.getText().toString();
-             String Activity = activity.getText().toString();
+            // String Activity = activity.getText().toString();
              String SensorCode = sensorCode.getText().toString();
 
+            boolean control=inputElementControl(Title,Description,flagPhoto,flagQrCode,SensorCode,element);
+
+
+            if(!control){
+                element_list.add(element);
+            }
+
+        }
+
+        if(layout_list.getChildCount() == 0){
+            Toast.makeText(this,"Aggiungi almeno un elemento", Toast.LENGTH_SHORT).show();
+        }else if( element_list.size() < layout_list.getChildCount() || NameZone.isEmpty()){
+            Toast.makeText(this,"Completa correttamente i campi", Toast.LENGTH_SHORT).show();
+        }else {
+            Log.i("elementi", element_list.toString());
+            Toast.makeText(this,"Zona ed elementi salvati", Toast.LENGTH_SHORT).show();
+        }
+
+        //return errorFlag;
+    }
+
+    private boolean inputElementControl(String Title, String Description, boolean flagPhoto, boolean flagQrCode, String SensorCode,Element element) {
+
+            Boolean errorFlag = false;
 
             if(Title.isEmpty()){
                 title.setError(getString(R.string.campo_obbligatorio));
@@ -136,21 +161,29 @@ public class AddZoneActivity extends AppCompatActivity {
                 element.setDescription(Description);
             }
 
-            if(QrCode.isEmpty()){
-                qrCode.setError(getString(R.string.campo_obbligatorio));
-                qrCode.requestFocus();
-                errorFlag = true;
+            if(flagPhoto==false){
+                photo.setError(getString(R.string.campo_obbligatorio));
+                photo.requestFocus();
+                errorFlag=true;
             }else{
-                element.setQrCode(QrCode);
+
             }
 
-            if(Activity.isEmpty()){
+            if(flagQrCode==false){
+                generateQrCode.setError(getString(R.string.campo_obbligatorio));
+                generateQrCode.requestFocus();
+                errorFlag = true;
+            }else{
+                //element.setQrCode(QrCode);
+            }
+
+            /*if(Activity.isEmpty()){
                 activity.setError(getString(R.string.campo_obbligatorio));
                 activity.requestFocus();
                 errorFlag = true;
             }else{
                 element.setActivity(Activity);
-            }
+            }*/
 
             if(SensorCode.isEmpty()){
                 sensorCode.setError(getString(R.string.campo_obbligatorio));
@@ -159,24 +192,11 @@ public class AddZoneActivity extends AppCompatActivity {
             }else{
                 element.setSensorCode(SensorCode);
             }
+            return errorFlag;
 
-            if(!errorFlag){
-                element_list.add(element);
-            }
-
-        }
-
-        if(layout_list.getChildCount() == 0){
-            Toast.makeText(this,"Aggiungi almeno un elemento", Toast.LENGTH_SHORT).show();
-        }else if( element_list.size() < layout_list.getChildCount() || NameZone.isEmpty()){
-            Toast.makeText(this,"Completa correttamente i campi", Toast.LENGTH_SHORT).show();
-        }else {
-            Log.i("elementi", element_list.toString());
-            Toast.makeText(this,"Zona ed elementi salvati", Toast.LENGTH_SHORT).show();
-        }
-
-        //return errorFlag;
     }
+
+
 
 
     /*public void saveElements(View v) {

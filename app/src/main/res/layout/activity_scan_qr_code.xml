@@ -10,21 +10,36 @@
     <eu.livotov.labs.android.camview.ScannerLiveView
         android:id="@+id/scannerLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
+
     <TextView
         android:id="@+id/textScan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textAllCaps="false"
-        android:textAlignment="center"
-        android:padding="10dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="58dp"
-        android:textColor="@color/BurlyWood"
+        android:layout_marginBottom="98dp"
         android:background="@color/DarkBlue"
-        android:textSize="18sp"
-        android:text="@string/scann_data"/>
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/scann_data"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/BurlyWood"
+        android:textSize="18sp" />
+
+
+    <Button
+        android:id="@+id/buttonModifyObject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="665dp"
+        android:layout_marginEnd="20dp"
+        android:padding="12dp"
+        android:background="@drawable/bordi_tondi_button"
+        android:visibility="gone"
+        android:text="@string/modify_object"
+        android:textAllCaps="false" />
 
 
 </RelativeLayout>

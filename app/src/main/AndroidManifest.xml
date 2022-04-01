@@ -23,6 +23,9 @@
             android:name=".invioProva"
             android:exported="false" />
         <activity
+            android:name=".ModifyObjectActivity"
+            android:exported="false" />
+        <activity
             android:name=".qrcode.GenerateQrCodeActivity"
             android:exported="false" />
         <activity
