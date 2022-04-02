@@ -18,9 +18,7 @@ import java.util.List;
 
 public class DashboardActivityProva extends AppCompatActivity {
     CardView cv1,cv2,cv3,cv4;
-    ListView listView;
-    String[] name = {"aaaaa","bbbbb","ccccc","ddddd","eeeee","fffff","ggggg","hhhhh","iiiii"};
-    ArrayAdapter<String> arrayAdapter;
+
 
 
     @Override
@@ -28,9 +26,6 @@ public class DashboardActivityProva extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_prova);
 
-        listView = findViewById(R.id.listview);
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,name);
-        listView.setAdapter(arrayAdapter);
 
 
         cv1 = (CardView) findViewById(R.id.cv_route);
@@ -46,32 +41,4 @@ public class DashboardActivityProva extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.menu,menu);
-
-        MenuItem menuItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setQueryHint("Type here to search");
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-                arrayAdapter.getFilter().filter(newText);
-
-                return false;
-            }
-        });
-
-
-        return super.onCreateOptionsMenu(menu);
-    }
 }

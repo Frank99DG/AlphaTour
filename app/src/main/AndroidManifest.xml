@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AlphaTour">
         <activity
+            android:name=".SearchViewProva"
+            android:exported="false" />
+        <activity
             android:name=".wizard.PercorsoWizard"
             android:exported="false" />
         <activity
@@ -87,12 +90,12 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
-        <activity android:name=".provaaaaaaaa"
-            android:exported="false"/>
+        <activity
+            android:name=".provaaaaaaaa"
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".WelcomeActivity"
             android:exported="false" />
