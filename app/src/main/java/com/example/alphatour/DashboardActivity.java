@@ -14,19 +14,16 @@ import android.widget.Toast;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    private static final String KEY_DIOCANE="DIOCANE";
-    public static final String AGE = "AGE";
-    public static final String N_NOTIFY = "N_NOTIFY";
+    // public static final String AGE = "AGE";
+    //  public static final String N_NOTIFY = "N_NOTIFY";
+
+    private static final String KEY_COUNTER="KEY_COUNTER";
     private TextView ageText;
     private int n_notify;
     private int a=0;
-    private int temp=0;
-    private boolean polpetta=false;
-    private TextView sadp;
     private NotificationCounter notificationCounter;
     private NotifyFragment myFragment = new NotifyFragment();
     private Bundle data = new Bundle();
-
     private FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
 
@@ -70,21 +67,21 @@ public class DashboardActivity extends AppCompatActivity {
 
         //Save the fragment's instance
         //getSupportFragmentManager().putFragment(outState, "myFragment", myFragment);
-       outState.putCharSequence(KEY_DIOCANE, notificationCounter.getNotificationNumber().getText());
+       outState.putCharSequence(KEY_COUNTER, notificationCounter.getNotificationNumber().getText());
     }
 
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
-       this.notificationCounter.setTextNotify(savedInstanceState,KEY_DIOCANE);
+       this.notificationCounter.setTextNotify(savedInstanceState,KEY_COUNTER);
     }
 
     public void openFragment(View v) {
 
         getSupportFragmentManager().beginTransaction().show(myFragment).commit();
 
-        for (a = 0; a < n_notify; a++){
-            notifyPath();
+        for (a = 0; a < n_notify; a++){             //Ciclo per aggiungere n_notify da
+            notifyPath();                           //un'altra activity al fragment
             if(a==n_notify-1) n_notify =0;
         }
     }
