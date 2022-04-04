@@ -34,4 +34,5 @@
     <string name="friday">VIE</string>
     <string name="saturday">SÁB</string>
     <string name="sunday">DOM</string>
+    <string name="new_event">Nuevo Evento</string>
 </resources>

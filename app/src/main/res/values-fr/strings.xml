@@ -34,5 +34,6 @@
     <string name="friday">VEN</string>
     <string name="saturday">SAM</string>
     <string name="sunday">DIM</string>
+    <string name="new_event">Nouvel Évènement</string>
 
 </resources>

@@ -105,5 +105,7 @@
     <string name="friday">VEN</string>
     <string name="saturday">SAB</string>
     <string name="sunday">DOM</string>
+    <string name="new_event">Nuovo Evento</string>
+
 
 </resources>
