@@ -25,5 +25,14 @@
     <string name="crea_account">Créer un compte</string>
     <string name="registrazione_completata">Inscription terminée</string>
     <string name="registrazione_fallita">Échec de l´enregistrement</string>
+    <string name="date">Date</string>
+    <string name="weekly">Hebdomadaire</string>
+    <string name="monday">LUN</string>
+    <string name="tuesday">MAR</string>
+    <string name="wednesday">MER</string>
+    <string name="thursday">JEU</string>
+    <string name="friday">VEN</string>
+    <string name="saturday">SAM</string>
+    <string name="sunday">DIM</string>
 
 </resources>

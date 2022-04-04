@@ -25,4 +25,13 @@
     <string name="crea_account">Crear una cuenta</string>
     <string name="registrazione_completata">Registro completado</string>
     <string name="registrazione_fallita">Registro fallido </string>
+    <string name="date">Fecha</string>
+    <string name="weekly">Semanal</string>
+    <string name="monday">LUN</string>
+    <string name="tuesday">MAR</string>
+    <string name="wednesday">MIÉ</string>
+    <string name="thursday">JUE</string>
+    <string name="friday">VIE</string>
+    <string name="saturday">SÁB</string>
+    <string name="sunday">DOM</string>
 </resources>

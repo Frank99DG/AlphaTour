@@ -96,4 +96,14 @@
     <string name="modify_object">Modifica Oggetto</string>
     <string name="title_activity_hamburger">HamburgerActivity</string>
     <string name="profile">Profilo</string>
+    <string name="date">Data</string>
+    <string name="weekly">Settimanale</string>
+    <string name="monday">LUN</string>
+    <string name="tuesday">MAR</string>
+    <string name="wednesday">MER</string>
+    <string name="thursday">GIO</string>
+    <string name="friday">VEN</string>
+    <string name="saturday">SAB</string>
+    <string name="sunday">DOM</string>
+
 </resources>
