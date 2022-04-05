@@ -116,7 +116,7 @@
         android:layout_height="56dp"
         android:layout_marginTop="32dp"
         android:drawableEnd="@drawable/ic_add"
-        android:onClick="savePlaceOnDb"
+        android:onClick="openFirstZoneActivity"
         android:text="Aggiungi Zona"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"

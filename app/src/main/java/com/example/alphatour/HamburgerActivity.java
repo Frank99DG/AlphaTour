@@ -5,6 +5,7 @@ import android.view.Menu;
 
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -13,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.alphatour.databinding.ActivityHamburgerBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 public class HamburgerActivity extends AppCompatActivity {
 
@@ -23,12 +25,14 @@ public class HamburgerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityHamburgerBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+       /* binding = ActivityHamburgerBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());*/
+        setContentView(R.layout.activity_hamburger);
 
-
-        DrawerLayout drawer = binding.drawerLayout;
-        NavigationView navigationView = binding.navView;
+        Toolbar toolbar =findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -40,6 +44,7 @@ public class HamburgerActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -47,5 +52,9 @@ public class HamburgerActivity extends AppCompatActivity {
         return true;
     }
 
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController= Navigation.findNavController(this,R.id.nav_host_fragment_content_hamburger);
+        return NavigationUI.navigateUp(navController,mAppBarConfiguration)|| super.onSupportNavigateUp();
+    }
 }

@@ -157,7 +157,18 @@ public class AddPlaceActivity extends AppCompatActivity {
 
 
     public void openFirstZoneActivity(View v){
-        startActivity(new Intent(AddPlaceActivity.this, AddZoneActivity.class));
+
+        String NamePlace = namePlace.getText().toString();
+        String City = city.getText().toString();
+        String Typology = typology.getText().toString();
+        boolean errorFlag = inputControl(NamePlace, City, Typology);
+
+        if(errorFlag) {
+            return;
+
+        }else {
+            startActivity(new Intent(AddPlaceActivity.this, AddZoneActivity.class));
+        }
 
     }
 

@@ -22,13 +22,13 @@ public class PercorsoWizard extends AppCompatActivity {
         setContentView(R.layout.activity_percorso_wizard);
 
         stepperLayout=findViewById(R.id.stepperLayout);
-        button=findViewById(R.id.buttonShare);
+       // button=findViewById(R.id.buttonShare);
 
         StepAdapter stepAdapter=new StepperAdapterWizard(getSupportFragmentManager(),getApplicationContext());
         stepperLayout.setAdapter(stepAdapter);
     }
 
-    public void ShareFile(View view) {
+   /* public void ShareFile(View view) {
 
         String textMessage="send intent";
         Intent sendIntent=new Intent();
@@ -37,5 +37,5 @@ public class PercorsoWizard extends AppCompatActivity {
         sendIntent.setType("text/plain");
         startActivity(sendIntent);
 
-    }
+    }*/
 }

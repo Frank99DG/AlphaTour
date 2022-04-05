@@ -31,6 +31,7 @@ public class AddZoneActivity extends AppCompatActivity {
     private Button addElement, generateQrCode,photo;
     private LinearLayout layout_list;
     private ArrayList<Element> element_list = new ArrayList<>();
+    private Uri uri;
     private boolean flagPhoto=false;
     private boolean flagQrCode=false;
 
@@ -54,6 +55,15 @@ public class AddZoneActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(GenerateQrCodeActivity.getQrFlag()==true){
+            photo.setTextColor(getResources().getColor(R.color.white));
+        }
+
+    }
 
     public void addViewElemento(View v) {
 
@@ -85,9 +95,14 @@ public class AddZoneActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Uri uri = data.getData();
-        flagPhoto=true;
-        Toast.makeText(AddZoneActivity.this,R.string.upload_photo,Toast.LENGTH_LONG).show();
+        uri = data.getData();
+        if(uri!=null) {
+            flagPhoto = true;
+            photo.setTextColor(getResources().getColor(R.color.white));
+            Toast.makeText(AddZoneActivity.this, R.string.upload_photo, Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(AddZoneActivity.this, "Non hai aggiunto la foto!", Toast.LENGTH_LONG).show();
+        }
         //salvataggio foto
     }
 
@@ -120,7 +135,7 @@ public class AddZoneActivity extends AppCompatActivity {
             // String Activity = activity.getText().toString();
              String SensorCode = sensorCode.getText().toString();
 
-            boolean control=inputElementControl(Title,Description,flagPhoto,flagQrCode,SensorCode,element);
+            boolean control=inputElementControl(Title,Description,flagPhoto,SensorCode,element);
 
 
             if(!control){
@@ -141,7 +156,7 @@ public class AddZoneActivity extends AppCompatActivity {
         //return errorFlag;
     }
 
-    private boolean inputElementControl(String Title, String Description, boolean flagPhoto, boolean flagQrCode, String SensorCode,Element element) {
+    private boolean inputElementControl(String Title, String Description, boolean flagPhoto, String SensorCode,Element element) {
 
             Boolean errorFlag = false;
 
@@ -162,19 +177,18 @@ public class AddZoneActivity extends AppCompatActivity {
             }
 
             if(flagPhoto==false){
-                photo.setError(getString(R.string.campo_obbligatorio));
-                photo.requestFocus();
+
+                photo.setTextColor(getResources().getColor(R.color.red));
                 errorFlag=true;
             }else{
-
+                element.setPhoto(uri);
             }
 
-            if(flagQrCode==false){
-                generateQrCode.setError(getString(R.string.campo_obbligatorio));
-                generateQrCode.requestFocus();
+            if(GenerateQrCodeActivity.getQrFlag()==false){
+                generateQrCode.setTextColor(getResources().getColor(R.color.red));
                 errorFlag = true;
             }else{
-                //element.setQrCode(QrCode);
+                element.setQrCode(GenerateQrCodeActivity.getBitmap());
             }
 
             /*if(Activity.isEmpty()){
@@ -211,7 +225,8 @@ public class AddZoneActivity extends AppCompatActivity {
 
     public void generateQrCodeActivity(View v){
 
-        startActivity(new Intent(this, GenerateQrCodeActivity.class));
+        Intent intent=new Intent(this, GenerateQrCodeActivity.class);
+        startActivity(intent);
     }
 
     public void scanQrCode(View v){

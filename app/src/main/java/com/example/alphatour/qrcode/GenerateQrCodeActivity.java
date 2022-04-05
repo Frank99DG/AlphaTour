@@ -2,6 +2,8 @@ package com.example.alphatour.qrcode;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -27,7 +29,8 @@ public class GenerateQrCodeActivity extends AppCompatActivity {
     private TextInputEditText qrData;
     private Button generateQrCode;
     private QRGEncoder qrgEncoder;
-    private Bitmap bitmap;
+    private static Bitmap bitmap;
+    public static boolean qrFlag=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,22 @@ public class GenerateQrCodeActivity extends AppCompatActivity {
         qrCodeImage=findViewById(R.id.qrImage);
         qrData=findViewById(R.id.idQrText);
         generateQrCode=findViewById(R.id.buttonGenerateQrCode);
+    }
+
+    public static boolean getQrFlag() {
+        return qrFlag;
+    }
+
+    public void setQrFlag(boolean qrFlag) {
+        this.qrFlag = qrFlag;
+    }
+
+    public static Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 
     public void generateQrCode(View view) {
@@ -62,6 +81,8 @@ public class GenerateQrCodeActivity extends AppCompatActivity {
                 bitmap= qrgEncoder.encodeAsBitmap();
                 qrCodeView.setVisibility(View.GONE);
                 qrCodeImage.setImageBitmap(bitmap);
+                setQrFlag(true);
+                setBitmap(bitmap);
 
             }catch(WriterException e){
 
@@ -73,4 +94,5 @@ public class GenerateQrCodeActivity extends AppCompatActivity {
 
         }
     }
+
 }
