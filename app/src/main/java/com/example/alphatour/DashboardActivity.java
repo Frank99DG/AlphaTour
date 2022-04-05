@@ -1,16 +1,12 @@
 package com.example.alphatour;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -23,8 +19,10 @@ public class DashboardActivity extends AppCompatActivity {
     private int a=0;
     private NotificationCounter notificationCounter;
     private NotifyFragment myFragment = new NotifyFragment();
+    private MenuFragmentProva myFragmentMenu = new MenuFragmentProva();
     private Bundle data = new Bundle();
     private FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+    private FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
 
     @Override
@@ -45,6 +43,7 @@ public class DashboardActivity extends AppCompatActivity {
         ageText = findViewById(R.id.mAge2);
         notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
         ft.replace(R.id.container,myFragment).hide(myFragment).commit();
+        fragmentTransaction.replace(R.id.menu,myFragmentMenu).hide(myFragmentMenu).commit();
 
     }
 
@@ -113,5 +112,8 @@ public class DashboardActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void menu(View view){
+        getSupportFragmentManager().beginTransaction().show(myFragmentMenu).commit();
+    }
 
 }

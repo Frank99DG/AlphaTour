@@ -19,12 +19,14 @@ public class StepperAdapterWizard extends AbstractFragmentStepAdapter {
 
         switch (position){
 
-            case 0:
-                return new Step1();
             case 1:
                 return new Step2();
             case 2:
                 return new Step3();
+            case 3:
+                return new Step4();
+            case 4:
+                return new Step5();
             default: return new Step1();
 
         }
@@ -32,6 +34,6 @@ public class StepperAdapterWizard extends AbstractFragmentStepAdapter {
 
     @Override
     public int getCount() {
-        return 3; //perchè gli step sono 3
+        return 5; //perchè gli step sono 5
     }
 }
