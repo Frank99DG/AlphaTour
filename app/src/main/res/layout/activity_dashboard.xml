@@ -283,6 +283,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottons"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="480dp"
@@ -354,8 +355,8 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/menu"
         android:name="com.example.alphatour.MenuFragmentProva"
-        android:layout_width="250sp"
-        android:layout_height="500sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -23,7 +24,7 @@ public class DashboardActivity extends AppCompatActivity {
     private Bundle data = new Bundle();
     private FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
     private FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-
+    private RelativeLayout tarallo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class DashboardActivity extends AppCompatActivity {
         notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
         ft.replace(R.id.container,myFragment).hide(myFragment).commit();
         fragmentTransaction.replace(R.id.menu,myFragmentMenu).hide(myFragmentMenu).commit();
+        tarallo = findViewById(R.id.closeLayout);
 
     }
 
@@ -114,6 +116,6 @@ public class DashboardActivity extends AppCompatActivity {
 
     public void menu(View view){
         getSupportFragmentManager().beginTransaction().show(myFragmentMenu).commit();
-    }
 
+    }
 }
