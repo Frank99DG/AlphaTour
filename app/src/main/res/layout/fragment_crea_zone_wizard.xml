@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/sfondo"
+    tools:context=".wizardcreazione.CreatePlaceWizard">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <!--<Button
+            android:id="@+id/buttonAggiungiElemento"
+            android:layout_width="146dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="78dp"
+            android:drawableEnd="@drawable/ic_add"
+            android:onClick="addViewElemento"
+            android:text="Elemento"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/zona"
+            app:layout_constraintTop_toTopOf="parent" />-->
+
+
+        <!-- <EditText
+             android:id="@+id/inputNomeZona"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="100dp"
+             android:layout_marginTop="4dp"
+             android:ems="10"
+             android:hint="Nome"
+             android:inputType="textPersonName"
+             android:minHeight="48dp"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@+id/zona" />-->
+
+        <!-- <TextView
+            android:id="@+id/descriptionCreateFirstZone"
+            android:layout_width="329dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="48dp"
+            android:text="Se hai terminato passa alla nuova zona"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listaElementiLayout" />-->
+
+        <TextView
+            android:id="@+id/zona"
+            android:layout_width="189dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="111dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="111dp"
+            android:fontFamily="@font/alata"
+            android:text="Nuova Zona"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/zonaNew"
+            android:layout_width="192dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="111dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="108dp"
+            android:fontFamily="@font/alata"
+            android:text="ZONE CREATE"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonAddZone" />
+
+        <LinearLayout
+            android:id="@+id/listaElementiLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/zonaNew" />
+
+        <Button
+            android:id="@+id/buttonAddZone"
+            android:layout_width="190dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="111dp"
+            android:drawableEnd="@drawable/ic_add"
+            android:onClick="inputControl"
+            android:text="Aggiungi Zona"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/zona" />
+
+        <!--<Button
+            android:id="@+id/buttonSavePlace"
+            android:layout_width="170dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:onClick="inputControl"
+            android:text="Salva Luogo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/addLuogo"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="516dp"
+      android:backgroundTint="@android:color/darker_gray"
+      android:clickable="true"
+      android:focusable="true"
+      android:onClick="aggiungiLuogo"
+      android:tint="@android:color/white"
+      android:visibility="gone"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.898"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:srcCompat="@drawable/ic_arrow_right" />
+
+  <EditText
+      android:id="@+id/textNomeLuogo"
+      android:layout_width="214dp"
+      android:layout_height="59dp"
+      android:layout_marginTop="20dp"
+      android:layout_marginEnd="8dp"
+      android:ems="10"
+      android:focusable="true"
+      android:hint="nome luogo"
+      android:inputType="text"
+      android:visibility="gone"
+      app:layout_constraintEnd_toEndOf="@+id/addLuogo"
+      app:layout_constraintTop_toBottomOf="@+id/addLuogo" />
+-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
