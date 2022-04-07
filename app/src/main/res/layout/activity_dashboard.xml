@@ -288,6 +288,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="480dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

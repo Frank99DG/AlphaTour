@@ -17,6 +17,7 @@
         android:layout_marginLeft="65dp"
         android:layout_marginTop="45dp"
         android:background="@drawable/bordi_tondi_button"
+        android:backgroundTint="@color/MintCream"
         android:orientation="vertical"
         android:theme="@style/Theme.AlphaTour">
 
@@ -30,6 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/CadetBlue"
+                android:contextClickable="false"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme">
 
@@ -40,9 +42,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Notifiche"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="#000000"
-                    android:textSize="30dp" />
+                    android:textSize="30sp" />
 
                 <ImageView
                     android:id="@+id/closeNotification"
