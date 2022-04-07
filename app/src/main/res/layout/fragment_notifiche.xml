@@ -1,49 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_list"
-    android:layout_width="300dp"
-    android:layout_height="500dp"
-    android:background="@drawable/bordi_tondi_button"
-    android:orientation="vertical"
-    android:theme="@style/Theme.AlphaTour">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/closeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal">
+        android:id="@+id/layout_list"
+        android:layout_width="300dp"
+        android:layout_height="500dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/bordi_tondi_button"
+        android:orientation="vertical"
+        android:theme="@style/Theme.AlphaTour">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar2"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/CadetBlue"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme">
+            android:layout_height="40dp"
+            android:orientation="horizontal">
 
-
-            <TextView
-                android:id="@+id/titolo"
-                android:layout_width="wrap_content"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Notifiche"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="#000000"
-                android:textSize="30dp" />
-
-            <ImageView
-                android:id="@+id/closeNotification"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="137dp"
-                app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"></ImageView>
+                android:background="@color/CadetBlue"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme">
 
 
-        </androidx.appcompat.widget.Toolbar>
+                <TextView
+                    android:id="@+id/titolo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Notifiche"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="#000000"
+                    android:textSize="30dp" />
+
+                <ImageView
+                    android:id="@+id/closeNotification"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="137dp"
+                    app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"></ImageView>
 
 
+            </androidx.appcompat.widget.Toolbar>
+
+
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

@@ -23,7 +23,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/Purple"
+            android:background="@drawable/side_nav_bar"
             android:minHeight="?attr/actionBarSize"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
@@ -51,9 +51,10 @@
                     layout="@layout/notification_icon_prova"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:layout_editor_absoluteY="16dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.appcompat.widget.Toolbar>
@@ -343,12 +344,10 @@
     <FrameLayout
         android:id="@+id/container"
         android:name="com.example.alphatour.NotifyFragment"
-        android:layout_width="300dp"
-        android:layout_height="500dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
 

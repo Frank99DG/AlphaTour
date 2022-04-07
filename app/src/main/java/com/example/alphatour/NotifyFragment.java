@@ -3,6 +3,7 @@ package com.example.alphatour;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
@@ -22,6 +23,7 @@ public class NotifyFragment extends Fragment {
     private String String_myNotify;
     private LinearLayout layoutList;
     private static final String KEY_NOTIFY="KEY_NOTIFY";
+    private ConstraintLayout closeLayout;
 
     public NotifyFragment() {
     }
@@ -62,11 +64,19 @@ public class NotifyFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_notifiche,container,false);
         closeNotification = view.findViewById(R.id.closeNotification);
         layoutList = view.findViewById(R.id.layout_list);
+        closeLayout = view.findViewById(R.id.closeLayout2);
 
         closeNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getFragmentManager().beginTransaction().hide(NotifyFragment.this).commit();
+            }
+        });
+
+        closeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //getFragmentManager().beginTransaction().hide(NotifyFragment.this).commit();
             }
         });
         return view;
