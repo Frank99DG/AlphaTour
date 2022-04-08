@@ -3,6 +3,7 @@ package com.example.alphatour;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ public class MenuFragmentProva extends Fragment {
     private LinearLayout closeLayout;
     private ImageView hamburger_home;
     private ImageView close_hamburger;
+    private ConstraintLayout ignoreTabBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,6 +28,7 @@ public class MenuFragmentProva extends Fragment {
         closeLayout = view.findViewById(R.id.closeLayout);
         hamburger_home = view.findViewById(R.id.hamburger_home);
         close_hamburger= view.findViewById(R.id.close_hamburger);
+        ignoreTabBar= view.findViewById(R.id.ignoreTabBar);
 
         buttonClick();
 
@@ -40,6 +43,11 @@ public class MenuFragmentProva extends Fragment {
  */
 
     private void buttonClick(){
+        ignoreTabBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
 
         closeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
