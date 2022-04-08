@@ -1,6 +1,8 @@
 package com.example.alphatour.wizardcreazione;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,22 +11,28 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.alphatour.AddPlaceActivity;
+import com.example.alphatour.AddZoneActivity;
+import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
+import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class CreatePlaceWizard extends Fragment implements Step {
+public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
 
     private EditText namePlace,city;
     private AutoCompleteTextView typology;
@@ -32,6 +40,7 @@ public class CreatePlaceWizard extends Fragment implements Step {
     private ArrayAdapter<String> adapterItems;
     private String idUser;
     private ProgressBar loadingBar;
+    private boolean errorFlag=true;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
 
@@ -56,6 +65,7 @@ public class CreatePlaceWizard extends Fragment implements Step {
         typology.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                typology.setError(null);
                 String item = parent.getItemAtPosition(position).toString();
             }
         });
@@ -68,7 +78,16 @@ public class CreatePlaceWizard extends Fragment implements Step {
     @Nullable
     @Override
     public VerificationError verifyStep() {
-        return null;
+
+        VerificationError error=null;
+        String NamePlace = namePlace.getText().toString();
+        String City = city.getText().toString();
+        String Typology = typology.getText().toString();
+        errorFlag = inputControl(NamePlace, City, Typology);
+        if(errorFlag){
+             error =new VerificationError("Compila tutti i campi");
+        }
+        return error;
     }
 
     @Override
@@ -79,5 +98,63 @@ public class CreatePlaceWizard extends Fragment implements Step {
     @Override
     public void onError(@NonNull VerificationError error) {
 
+        Toast.makeText(getContext(),error.getErrorMessage().toString(), Toast.LENGTH_LONG).show();
+    }
+
+    public boolean inputControl(String NamePlace, String City, String Typology){
+
+        Boolean errorFlag = false;
+
+        if (NamePlace.isEmpty()) {
+            namePlace.setError(getString(R.string.campo_obbligatorio));
+            namePlace.requestFocus();
+            errorFlag = true;
+        }
+
+        if (City.isEmpty()) {
+            city.setError(getString(R.string.campo_obbligatorio));
+            city.requestFocus();
+            errorFlag = true;
+        }
+
+
+        if (Typology.isEmpty()) {
+            typology.setError(getString(R.string.campo_obbligatorio));
+            typology.requestFocus();
+            errorFlag = true;
+        }
+
+        return errorFlag;
+
+    }
+
+
+
+
+    @Override
+    public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
+
+            StepperLayout step;
+            loadingBar.setVisibility(View.VISIBLE);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    callback.goToNextStep();
+                    loadingBar.setVisibility(View.GONE);
+                }
+            }, 2000L);
+
+    }
+
+    @Override
+    public void onCompleteClicked(StepperLayout.OnCompleteClickedCallback callback) {
+
+    }
+
+    @Override
+    public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
+
+        Intent intent= new Intent(getContext(), DashboardActivity.class);
+        startActivity(intent);
     }
 }

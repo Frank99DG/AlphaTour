@@ -47,9 +47,9 @@ public class StepperAdapterCreazioneWizard extends AbstractFragmentStepAdapter {
             case 0:
                 builder
                         .setEndButtonLabel(R.string.place_button_next)
+                        .setBackButtonLabel(R.string.dashboard_button_back)
                         .setTitle(R.string.title_creation_1)
-                        //.setNextButtonEndDrawableResId(R.drawable.ms_forward_arrow)
-                        .setBackButtonStartDrawableResId(StepViewModel.NULL_DRAWABLE);
+                        .setBackButtonStartDrawableResId(R.drawable.ic_arrow_back_wizard);
                 break;
             case 1:
                 builder

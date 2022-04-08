@@ -68,7 +68,7 @@ public class AddZoneActivity extends AppCompatActivity {
     public void addViewElemento(View v) {
 
         final View elementView = getLayoutInflater().inflate(R.layout.row_add_element,null,false);
-        ImageView removeElement = (ImageView) elementView.findViewById(R.id.buttonDeleteElement);
+        ImageView removeElement = (ImageView) elementView.findViewById(R.id.deleteZone1);
         Button addPhoto=(Button) elementView.findViewById(R.id.inputPhoto);
 
         removeElement.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +121,7 @@ public class AddZoneActivity extends AppCompatActivity {
 
             View elementView = layout_list.getChildAt(i);
 
-             title = elementView.findViewById(R.id.inputTitle);
+             title = elementView.findViewById(R.id.inputZone1);
              description = elementView.findViewById(R.id.inputDescription);
              photo= elementView.findViewById(R.id.inputPhoto);
              generateQrCode = elementView.findViewById(R.id.inputQrCode);

@@ -60,6 +60,7 @@ public class AddPlaceActivity extends AppCompatActivity {
             typology.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+
                     String item = parent.getItemAtPosition(position).toString();
                 }
             });

@@ -77,7 +77,7 @@
             android:exported="false" />
         <activity
             android:name=".AddPlaceActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".AddZoneActivity"
             android:exported="false" />

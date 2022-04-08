@@ -19,6 +19,8 @@
         android:id="@+id/stepperLayoutCreazione"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:ms_showBackButtonOnFirstStep="true"
+        app:ms_showErrorStateEnabled="true"
         app:ms_stepperType="tabs" />
 
 </RelativeLayout>

@@ -7,7 +7,7 @@
 
 
     <ImageView
-        android:id="@+id/buttonDeleteElement"
+        android:id="@+id/deleteZone1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="82dp"
@@ -41,7 +41,7 @@
 
 
     <EditText
-        android:id="@+id/inputTitle"
+        android:id="@+id/inputZone1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="120dp"
@@ -70,7 +70,7 @@
         android:hint="Descrizione"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/inputZone1" />
 
     <ProgressBar
         android:id="@+id/qrCodeLoadingBar"
