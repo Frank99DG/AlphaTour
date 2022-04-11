@@ -58,6 +58,17 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.appcompat.widget.Toolbar>
+        <SearchView
+            android:id="@+id/SearchView"
+            android:layout_width="350sp"
+            android:layout_height="50sp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/backgroun_dialog"
+            android:iconifiedByDefault="false"
+            android:queryHint="@string/search"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></SearchView>
 
         <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"

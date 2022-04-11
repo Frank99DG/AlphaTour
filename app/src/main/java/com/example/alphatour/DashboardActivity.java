@@ -6,7 +6,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -24,7 +26,7 @@ public class DashboardActivity extends AppCompatActivity {
     private Bundle data = new Bundle();
     private FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
     private FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-    private RelativeLayout tarallo;
+    private LinearLayout closeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,8 @@ public class DashboardActivity extends AppCompatActivity {
         notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
         ft.replace(R.id.container,myFragment).hide(myFragment).commit();
         fragmentTransaction.replace(R.id.menu,myFragmentMenu).hide(myFragmentMenu).commit();
-        tarallo = findViewById(R.id.closeLayout);
+        SearchView SearchView = (SearchView) findViewById(R.id.SearchView);
+        closeLayout = findViewById(R.id.closeLayout);
 
     }
 

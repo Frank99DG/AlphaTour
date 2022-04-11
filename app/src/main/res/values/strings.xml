@@ -218,4 +218,7 @@
     <string name="backTo_path">Torna a crea percorso </string>
     <string name="backTo_zone">Torna a scelta zona </string>
 
+    <string name="string_step2">Da quale stanza vuoi cominciare il percorso?</string>
+
+
 </resources>
