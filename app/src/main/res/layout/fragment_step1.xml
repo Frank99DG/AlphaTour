@@ -1,15 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".wizard.Step1"
-    android:gravity="center">
+    android:background="@drawable/sfondo"
+    tools:context=".wizard.Step1">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Step1" />
+    <com.google.android.material.textfield.TextInputLayout
 
-</LinearLayout>
+        android:id="@+id/textInputLayout"
+        android:layout_width="321dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginBottom="513dp"
+        android:background="@drawable/bordi_tondi"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <EditText
+            android:id="@+id/namePath"
+            android:layout_width="321dp"
+            android:layout_height="60dp"
+            android:autofillHints="no"
+            android:background="@drawable/bordi_tondi"
+            android:drawableStart="@drawable/ic_percorso"
+            android:drawablePadding="12dp"
+            android:ems="10"
+            android:hint="@string/name_path"
+            android:inputType="textPersonName"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColorHint="#757575"
+            tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="321dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="428dp"
+        android:background="@drawable/bordi_tondi"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+
+        <EditText
+            android:id="@+id/descriptionPath"
+            android:layout_width="321dp"
+            android:layout_height="60dp"
+            android:autofillHints="no"
+            android:background="@drawable/bordi_tondi"
+            android:drawableStart="?attr/actionModePasteDrawable"
+            android:drawablePadding="12dp"
+            android:ems="10"
+            android:hint="@string/description_path"
+            android:inputType="textShortMessage"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColorHint="#757575"
+            tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

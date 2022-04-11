@@ -207,5 +207,15 @@
     </string>
     <string name="select_zone">Zona appartenenza</string>
 
+    <string name="name_path">Inserisci il nome del percorso</string>
+    <string name="description_path">Inserisci descrizione del percorso</string>
+    <string name="create_path">Crea Percorso</string>
+    <string name="choose_zone">Scegli Zone</string>
+    <string name="choose_object">Scegli Oggetti</string>
+    <string name="review_path">Riepilogo Percorso</string>
+    <string name="next">Avanti</string>
+    <string name="end">Fine</string>
+    <string name="backTo_path">Torna a crea percorso </string>
+    <string name="backTo_zone">Torna a scelta zona </string>
 
 </resources>
