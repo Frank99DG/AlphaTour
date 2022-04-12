@@ -51,10 +51,10 @@
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/zona" />
+            app:layout_constraintTop_toBottomOf="@+id/elementText" />
 
         <TextView
-            android:id="@+id/zona"
+            android:id="@+id/elementText"
             android:layout_width="189dp"
             android:layout_height="34dp"
             android:layout_marginStart="111dp"
@@ -71,7 +71,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/zonaNew"
+            android:id="@+id/elementNew"
             android:layout_width="192dp"
             android:layout_height="38dp"
             android:layout_marginStart="111dp"
@@ -86,10 +86,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonAddZone" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonAddElement" />
 
         <LinearLayout
-            android:id="@+id/listaElementiLayout"
+            android:id="@+id/listZoneLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -97,10 +97,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/zonaNew" />
+            app:layout_constraintTop_toBottomOf="@+id/elementNew" />
 
         <Button
-            android:id="@+id/buttonAddZone"
+            android:id="@+id/buttonAddElement"
             android:layout_width="190dp"
             android:layout_height="51dp"
             android:layout_marginStart="110dp"

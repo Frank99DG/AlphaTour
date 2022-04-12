@@ -111,7 +111,7 @@
 
 
     <Button
-        android:id="@+id/buttonAddZone"
+        android:id="@+id/buttonAddElement"
         android:layout_width="290dp"
         android:layout_height="56dp"
         android:layout_marginTop="32dp"

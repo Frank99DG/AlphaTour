@@ -50,8 +50,8 @@ public class AddZoneActivity extends AppCompatActivity {
 
         addElement = findViewById(R.id.buttonAggiungiElemento);
         nameZone = findViewById(R.id.inputNomeZona);
-        layout_list = findViewById(R.id.listaElementiLayout);
-        generateQrCode = findViewById(R.id.inputQrCode);
+        layout_list = findViewById(R.id.listZoneLayout);
+        generateQrCode = findViewById(R.id.inputQrCode1);
 
     }
 
@@ -67,9 +67,9 @@ public class AddZoneActivity extends AppCompatActivity {
 
     public void addViewElemento(View v) {
 
-        final View elementView = getLayoutInflater().inflate(R.layout.row_add_element,null,false);
+        final View elementView = getLayoutInflater().inflate(R.layout.row_add_element_hold,null,false);
         ImageView removeElement = (ImageView) elementView.findViewById(R.id.deleteZone1);
-        Button addPhoto=(Button) elementView.findViewById(R.id.inputPhoto);
+        Button addPhoto=(Button) elementView.findViewById(R.id.inputPhoto1);
 
         removeElement.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,11 +122,11 @@ public class AddZoneActivity extends AppCompatActivity {
             View elementView = layout_list.getChildAt(i);
 
              title = elementView.findViewById(R.id.inputZone1);
-             description = elementView.findViewById(R.id.inputDescription);
-             photo= elementView.findViewById(R.id.inputPhoto);
-             generateQrCode = elementView.findViewById(R.id.inputQrCode);
+             description = elementView.findViewById(R.id.inputDescription1);
+             photo= elementView.findViewById(R.id.inputPhoto1);
+             generateQrCode = elementView.findViewById(R.id.inputQrCode1);
              //activity = elementView.findViewById(R.id.inputActivity);
-             sensorCode = elementView.findViewById(R.id.inputSensorCode);
+             sensorCode = elementView.findViewById(R.id.inputSensorCode1);
 
              Element element = new Element();
 

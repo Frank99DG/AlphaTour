@@ -5,13 +5,14 @@ import android.net.Uri;
 import android.widget.ImageView;
 
 import java.io.File;
+import java.io.Serializable;
 
-public class Element {
+public class Element implements Serializable {
 
 
     private String title,description,activity,sensorCode;
-    private Uri photo;
-    private Bitmap qrCode;
+    private transient Uri photo;
+    private transient Bitmap qrCode;
 
     public Element(){
 

@@ -83,6 +83,9 @@ public class GenerateQrCodeActivity extends AppCompatActivity {
                 qrCodeImage.setImageBitmap(bitmap);
                 setQrFlag(true);
                 setBitmap(bitmap);
+                Intent intent= new Intent();
+                setResult(Activity.RESULT_CANCELED,intent);
+                finish();
 
             }catch(WriterException e){
 

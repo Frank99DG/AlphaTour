@@ -17,11 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.alphatour.R;
-import com.example.alphatour.oggetti.Element;
+import com.example.alphatour.oggetti.Zone;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class CreateZoneWizard extends Fragment implements Step {
     private int zoneNumber = 1;
@@ -29,8 +30,14 @@ public class CreateZoneWizard extends Fragment implements Step {
     private Button addZone;
     private boolean zoneCreated=false;
     private LinearLayout layout_list;
-    private ArrayList<Element> element_list = new ArrayList<>();
     private Dialog dialog;
+    private TextView titleDialog,textDialog;
+    private static  ArrayList<String> zone_list = new ArrayList<>();
+
+    public static ArrayList<String> getZone_list() {
+        return zone_list;
+    }
+
 
     @Nullable
     @Override
@@ -40,9 +47,10 @@ public class CreateZoneWizard extends Fragment implements Step {
 
         View view=inflater.inflate(R.layout.fragment_crea_zone_wizard, container, false);
 
-        addZone = view.findViewById(R.id.buttonAddZone);
+        addZone = view.findViewById(R.id.buttonAddElement);
         nameZone = view.findViewById(R.id.inputNomeZona);
-        layout_list = view.findViewById(R.id.listaElementiLayout);
+        layout_list = view.findViewById(R.id.listZoneLayout);
+
 
         dialog=new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_delete);
@@ -53,6 +61,8 @@ public class CreateZoneWizard extends Fragment implements Step {
 
         Button yes= dialog.findViewById(R.id.btn_okay);
         Button cancel= dialog.findViewById(R.id.btn_cancel);
+        titleDialog=dialog.findViewById(R.id.titleDialog);
+        textDialog=dialog.findViewById(R.id.textDialog);
 
 
         addZone.setOnClickListener(new View.OnClickListener() {
@@ -66,12 +76,14 @@ public class CreateZoneWizard extends Fragment implements Step {
                     TextView zone = (TextView) zoneView.findViewById(R.id.inputZone);
                     zone.setText(name);
                     layout_list.addView(zoneView);
-
+                    zone_list.add(name);
 
                 removeZone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         dialog.show();
+                        titleDialog.setText("Elimina Zona");
+                        textDialog.setText("Sei sicuro di voler eliminare la Zona creata ?");
 
                         yes.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -79,6 +91,7 @@ public class CreateZoneWizard extends Fragment implements Step {
                                 Toast.makeText(getContext(), "Hai eliminato la zona", Toast.LENGTH_LONG).show();
                                 layout_list.removeView(zoneView);
                                 dialog.dismiss();
+                                zone_list.remove(name);
                             }
                         });
                     }

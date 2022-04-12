@@ -16,7 +16,7 @@
 
 
         <TextView
-            android:id="@+id/zona"
+            android:id="@+id/elementText"
             android:layout_width="84dp"
             android:layout_height="53dp"
             android:layout_marginStart="32dp"
@@ -39,7 +39,7 @@
             android:text="Elemento"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/zona"
+            app:layout_constraintStart_toEndOf="@+id/elementText"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
@@ -53,10 +53,10 @@
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/zona" />
+            app:layout_constraintTop_toBottomOf="@+id/elementText" />
 
         <LinearLayout
-            android:id="@+id/listaElementiLayout"
+            android:id="@+id/listZoneLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -78,10 +78,10 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/listaElementiLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/listZoneLayout" />
 
         <Button
-            android:id="@+id/buttonAddZone"
+            android:id="@+id/buttonAddElement"
             android:layout_width="275dp"
             android:layout_height="58dp"
             android:onClick="inputControl"

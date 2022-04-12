@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AlphaTour">
         <activity
+            android:name=".ActivityElementDetails"
+            android:exported="false"/>
+        <activity
+            android:name=".AddElementActivity"
+            android:exported="false" />
+        <activity
             android:name=".SearchViewProva"
             android:exported="false" />
         <activity
@@ -20,17 +26,17 @@
         <activity
             android:name=".wizardcreazione.CreationWizard"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
         <activity
             android:name=".HamburgerActivity"
             android:exported="false"
             android:label="@string/title_activity_hamburger"
-            android:theme="@style/Theme.AlphaTour.NoActionBar"/>
+            android:theme="@style/Theme.AlphaTour.NoActionBar" />
         <activity
             android:name=".invioProva"
             android:exported="false" />
@@ -77,14 +83,13 @@
             android:exported="false" />
         <activity
             android:name=".AddPlaceActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".AddZoneActivity"
             android:exported="false" />
         <activity
             android:name=".DashboardActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
