@@ -28,6 +28,8 @@ public class StepperAdapterCreazioneWizard extends AbstractFragmentStepAdapter {
                 return new CreateZoneWizard();
             case 2:
                 return new CreateObjectWizard();
+            case 3:
+                return new CreateConstraintsWizard();
 
             default: return new Step1();
 
@@ -36,7 +38,7 @@ public class StepperAdapterCreazioneWizard extends AbstractFragmentStepAdapter {
 
     @Override
     public int getCount() {
-        return 3; //perchè gli step sono 5
+        return 4; //perchè gli step sono 5
     }
 
     @NonNull
@@ -44,26 +46,38 @@ public class StepperAdapterCreazioneWizard extends AbstractFragmentStepAdapter {
     public StepViewModel getViewModel(@IntRange(from = 0) int position) {
         StepViewModel.Builder builder = new StepViewModel.Builder(context);
         switch (position) {
+
             case 0:
                 builder
-                        .setEndButtonLabel(R.string.place_button_next)
-                        .setBackButtonLabel(R.string.dashboard_button_back)
                         .setTitle(R.string.title_creation_1)
+                        .setBackButtonLabel(R.string.dashboard_button_back)
+                        .setEndButtonLabel(R.string.zones_button_next)
                         .setBackButtonStartDrawableResId(R.drawable.ic_arrow_back_wizard);
                 break;
+
             case 1:
                 builder
                         .setTitle(R.string.title_creation_2)
-                        .setEndButtonLabel(R.string.object_button_next)
-                        .setBackButtonLabel(R.string.museum_button_back);
+                        .setBackButtonLabel(R.string.place_button_back)
+                        .setEndButtonLabel(R.string.objects_button_next);
                         //.setBackButtonStartDrawableResId(R.drawable.ms_back_arrow);
                 break;
+
             case 2:
                 builder
                         .setTitle(R.string.title_creation_3)
-                        .setBackButtonLabel(R.string.place_button_back)
+                        .setBackButtonLabel(R.string.zones_button_back)
+                        .setEndButtonLabel(R.string.constraints_button_next);
+                break;
+
+            case 3:
+                builder
+                        .setTitle(R.string.title_creation_4)
+                        .setBackButtonVisible(false)
+                        //.setBackButtonLabel(R.string.objects_button_back)
                         .setEndButtonLabel(R.string.button_complete);
                 break;
+
             default:
                 throw new IllegalArgumentException("Unsupported position: " + position);
         }
