@@ -108,14 +108,21 @@
     <string name="new_event">Nuovo Evento</string>
 
     <string name="dashboard_button_back">Torna alla dashboard</string>
-    <string name="place_button_next">Crea Zone</string>
-    <string name="museum_button_back">Torna a dati Luogo</string>
-    <string name="object_button_next">Crea Oggetti</string>
-    <string name="place_button_back">Torna a crea Zone</string>
+    <string name="zones_button_next">Crea Zone</string>
+    <string name="place_button_back">Torna a dati Luogo</string>
+    <string name="objects_button_next">Crea Oggetti</string>
+    <string name="zones_button_back">Torna a crea zone</string>
+    <string name="constraints_button_next">Crea Vincoli</string>
+    <string name="objects_button_back">Torna a crea oggetti</string>
     <string name="button_complete">Completa inserimenti</string>
-    <string name="title_creation_1">Crea Museo</string>
+    <string name="title_creation_1">Crea Luogo</string>
     <string name="title_creation_2">Crea Zone</string>
     <string name="title_creation_3">Crea Oggetti</string>
+    <string name="title_creation_4">Crea Vincoli</string>
+
+
+
+
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
