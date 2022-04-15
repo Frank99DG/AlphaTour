@@ -25,8 +25,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:background="@drawable/bordi_tondi_button"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        app:ctv_AnimType="translate"
         app:ctv_IconChecked="false"
+        app:ctv_IconTint="#5CCD2F"
         app:ctv_TextColor="@color/Black"
         app:ctv_TextSize="20dp" />
 
@@ -35,8 +37,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
-        android:background="@drawable/bordi_tondi_button"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        app:ctv_AnimType="translate"
         app:ctv_IconChecked="false"
+        app:ctv_IconTint="#5CCD2F"
         app:ctv_TextColor="@color/Black"
         app:ctv_TextSize="20dp" />
 
@@ -45,8 +49,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="152dp"
-        android:background="@drawable/bordi_tondi_button"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        app:ctv_AnimType="translate"
         app:ctv_IconChecked="false"
+        app:ctv_IconTint="#5CCD2F"
         app:ctv_TextColor="@color/Black"
         app:ctv_TextSize="20dp" />
 

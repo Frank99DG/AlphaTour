@@ -81,9 +81,6 @@ public class Step2 extends Fragment implements Step {
         list_zone.addView(zone);
     }
 
-
-
-
     @Nullable
     @Override
     public VerificationError verifyStep() {
