@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/sfondo"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".wizardcreazione.CreateObjectWizard">
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/elementText"
@@ -44,33 +39,40 @@
             app:layout_constraintTop_toBottomOf="@+id/elementText" />
 
 
-        <TextView
-            android:id="@+id/elementNew"
-            android:layout_width="192dp"
-            android:layout_height="38dp"
-            android:layout_marginStart="112dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="107dp"
-            android:fontFamily="@font/alata"
-            android:text="OGGETTI CREATI"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonAddElement" />
+    <TextView
+        android:id="@+id/elementNew"
+        android:layout_width="192dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="107dp"
+        android:fontFamily="@font/alata"
+        android:text="OGGETTI CREATI"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAddElement" />
+
+    <androidx.core.widget.NestedScrollView
+
+        android:layout_width="416dp"
+        android:layout_height="523dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/elementNew">
 
         <LinearLayout
             android:id="@+id/listElementLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/elementNew" />
+            android:orientation="vertical"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
-</androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

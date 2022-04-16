@@ -5,31 +5,56 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/textZone"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="120dp"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/side_nav_bar"
-        android:gravity="center_horizontal"
-        android:shadowColor="@color/Black"
-        android:shadowDx="10"
-        android:shadowDy="10"
-        android:shadowRadius="15"
-        android:text="Zona 1"
-        android:textColor="@color/Black"
-        android:textSize="25dp" />
 
-    <ImageView
-        android:id="@+id/checked"
-        android:layout_width="wrap_content"
+    <!-- <TextView
+          android:layout_width="150dp"
+          android:layout_height="40dp"
+          android:layout_marginLeft="120dp"
+          android:background="@drawable/side_nav_bar"
+          android:gravity="center_horizontal"
+          android:shadowColor="@color/Black"
+          android:shadowDx="10"
+          android:shadowDy="10"
+          android:shadowRadius="15"
+          android:text="Zona 1"
+          android:textColor="@color/Black"
+          android:textSize="25dp" /> -->
+
+    <com.devzone.checkabletextview.CheckableTextView
+        android:id="@+id/textZone1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="250dp"
-        android:layout_marginTop="49dp"
-        android:visibility="gone"
-        app:srcCompat="@drawable/ms_ic_check" />
+        android:layout_marginTop="28dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        app:ctv_AnimType="scale"
+        app:ctv_IconChecked="false"
+        app:ctv_IconTint="#5CCD2F"
+        app:ctv_TextColor="@color/Black"
+        app:ctv_TextSize="20dp" />
+
+    <com.devzone.checkabletextview.CheckableTextView
+        android:id="@+id/textZone2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        app:ctv_AnimType="scale"
+        app:ctv_IconChecked="false"
+        app:ctv_IconTint="#5CCD2F"
+        app:ctv_TextColor="@color/Black"
+        app:ctv_TextSize="20dp" />
+
+    <com.devzone.checkabletextview.CheckableTextView
+        android:id="@+id/textZone3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="152dp"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        app:ctv_AnimType="scale"
+        app:ctv_IconChecked="false"
+        app:ctv_IconTint="#5CCD2F"
+        app:ctv_TextColor="@color/Black"
+        app:ctv_TextSize="20dp" />
+
+
 </RelativeLayout>

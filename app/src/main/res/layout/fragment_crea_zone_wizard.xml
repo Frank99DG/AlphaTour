@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/sfondo"
     tools:context=".wizardcreazione.CreateZoneWizard">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
 
         <!--<Button
@@ -88,18 +83,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonAddElement" />
 
+
+    <androidx.core.widget.NestedScrollView
+
+        android:layout_width="416dp"
+        android:layout_height="436dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/elementNew">
+
         <LinearLayout
             android:id="@+id/listZoneLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/elementNew" />
+            android:orientation="vertical" />
 
-        <Button
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
             android:id="@+id/buttonAddElement"
             android:layout_width="190dp"
             android:layout_height="51dp"
@@ -156,6 +159,4 @@
       app:layout_constraintTop_toBottomOf="@+id/addLuogo" />
 -->
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

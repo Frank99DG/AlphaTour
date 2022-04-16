@@ -1,4 +1,4 @@
-package com.example.alphatour.wizard;
+package com.example.alphatour.wizardpercorso;
 
 import android.os.Bundle;
 
@@ -11,17 +11,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.alphatour.R;
+import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
+import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
 
-public class Step5 extends Fragment implements Step {
+public class Step3 extends Fragment implements Step, BlockingStep {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_step5, container, false);
+        return inflater.inflate(R.layout.fragment_step3, container, false);
     }
 
     @Nullable
@@ -38,5 +40,20 @@ public class Step5 extends Fragment implements Step {
     @Override
     public void onError(@NonNull VerificationError error) {
 
+    }
+
+    @Override
+    public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
+        callback.goToNextStep();
+    }
+
+    @Override
+    public void onCompleteClicked(StepperLayout.OnCompleteClickedCallback callback) {
+
+    }
+
+    @Override
+    public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
+        callback.goToPrevStep();
     }
 }

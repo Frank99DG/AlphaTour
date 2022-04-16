@@ -161,6 +161,7 @@
     <color name="DarkBlue">#00008B</color>
     <color name="Navy">#000080</color>
     <color name="Black">#000000</color>
+    <color name="colorAccent">#D81B60</color>
 
 
     <!-- aggiunto da noi -->

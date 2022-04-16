@@ -1,4 +1,4 @@
-package com.example.alphatour.wizard;
+package com.example.alphatour.wizardpercorso;
 
 import android.content.Intent;
 import android.os.Bundle;

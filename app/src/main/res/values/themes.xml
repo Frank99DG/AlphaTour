@@ -34,4 +34,5 @@
     <style name="Theme.AlphaTour.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.AlphaTour.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

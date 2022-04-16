@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UpdateProfileActivity"
+    android:background="@color/LightGrey">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="#5CC09F">
+
+        <TextView
+            android:id="@+id/textUpdateProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:text="Ora puoi aggiornare i dettagli del tuo profilo "
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="#8B131111"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="650dp"
+        android:layout_marginTop="-58dp"
+        android:layout_marginBottom="70dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/bordi_tondi_button"
+        android:padding="15dp">
+
+        <!-- Update nome-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="435dp"
+            android:background="@drawable/bordi_tondi_button"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/icProfileUpdate"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ic_profile" />
+
+            <TextView
+                android:id="@+id/profileUpdateNameUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/icProfileUpdate"
+                android:layout_marginStart="50dp"
+                android:hint="Nome"
+                android:textSize="18sp" />
+
+            <View
+                android:id="@+id/dividerNameUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="30dp"
+                android:background="@android:color/darker_gray" />
+
+            <EditText
+                android:id="@+id/updateName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dividerNameUpdate"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="-20dp"
+                android:hint="Inserisci il nome"
+                android:inputType="textPersonName"
+                android:padding="6dp"
+                android:textColor="#555555"
+                android:textSize="18sp" />
+
+
+        </RelativeLayout>
+
+
+        <!-- Update cognome-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="135dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="318dp"
+            android:background="@drawable/bordi_tondi_button"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/icProfileSurnameUpdate"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ic_profile" />
+
+            <TextView
+                android:id="@+id/profileUpdateSurnameUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/icProfileSurnameUpdate"
+                android:layout_marginStart="50dp"
+                android:hint="Cognome"
+                android:textSize="18sp" />
+
+            <View
+                android:id="@+id/dividerSurnameUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="30dp"
+                android:background="@android:color/darker_gray" />
+
+            <EditText
+                android:id="@+id/updateSurname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dividerSurnameUpdate"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="-20dp"
+                android:hint="Inserisci il cognome"
+                android:inputType="textPersonName"
+                android:padding="6dp"
+                android:textColor="#555555"
+                android:textSize="18sp" />
+
+
+        </RelativeLayout>
+
+
+        <!-- Update email-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="252dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="201dp"
+            android:background="@drawable/bordi_tondi_button"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/icEmailUpdate"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ic_email_profile" />
+
+            <TextView
+                android:id="@+id/profileUpdateEmailUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/icEmailUpdate"
+                android:layout_marginStart="50dp"
+                android:hint="Email"
+                android:textSize="18sp" />
+
+            <View
+                android:id="@+id/dividerEmailUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="30dp"
+                android:background="@android:color/darker_gray" />
+
+            <EditText
+                android:id="@+id/updateEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dividerEmailUpdate"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="-20dp"
+                android:hint="Inserisci email"
+                android:inputType="textPersonName"
+                android:padding="6dp"
+                android:textColor="#555555"
+                android:textSize="18sp" />
+
+
+        </RelativeLayout>
+
+
+
+        <!-- Update data nascita-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="369dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="84dp"
+            android:background="@drawable/bordi_tondi_button"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/icDataNascitaUpdate"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ic_date_birth_profile" />
+
+            <TextView
+                android:id="@+id/profileUpdateDateBirthUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/icDataNascitaUpdate"
+                android:layout_marginStart="50dp"
+                android:hint="Data di nascita"
+                android:textSize="18sp" />
+
+            <View
+                android:id="@+id/dividerDateBirthUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="30dp"
+                android:background="@android:color/darker_gray" />
+
+            <EditText
+                android:id="@+id/updateDateBirth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dividerDateBirthUpdate"
+                android:layout_marginStart="50dp"
+                android:layout_marginBottom="-20dp"
+                android:hint="Inserisci data nascita"
+                android:inputType="textPersonName"
+                android:layout_marginTop="7dp"
+                android:padding="6dp"
+                android:textColor="#555555"
+                android:textSize="18sp" />
+
+
+        </RelativeLayout>
+
+
+        <!-- Update username-->
+        <RelativeLayout
+            android:id="@+id/relativeEmail"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="486dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="-33dp"
+            android:background="@drawable/bordi_tondi_button"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/icUsernameUpdate"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ic_username" />
+
+            <TextView
+                android:id="@+id/profileUpdateUsernameUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/icUsernameUpdate"
+                android:layout_marginStart="50dp"
+                android:hint="Username"
+                android:textSize="18sp" />
+
+            <View
+                android:id="@+id/dividerUsernameUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="30dp"
+                android:background="@android:color/darker_gray" />
+
+            <EditText
+                android:id="@+id/updateUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dividerUsernameUpdate"
+                android:layout_marginStart="50dp"
+                android:layout_marginBottom="-20dp"
+                android:hint="Inserisci username"
+                android:layout_marginTop="7dp"
+                android:inputType="textPersonName"
+                android:padding="6dp"
+                android:textColor="#555555"
+                android:textSize="18sp" />
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+        <ProgressBar
+            android:id="@+id/profileUpdateLoadingBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:elevation="10dp"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+        <Button
+            android:id="@+id/buttonUpdateProfile2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="78dp"
+            android:layout_marginTop="-55dp"
+            android:layout_marginRight="78dp"
+            android:onClick="buttonUpdateProfile"
+            android:text="Aggiorna Profilo" />
+
+        <TextView
+            android:id="@+id/textPasswordForgotten"
+            android:layout_width="224dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="128dp"
+            android:onClick="openChangePasswordActivity"
+            android:text="Modifica password"
+            android:textAlignment="viewStart"
+            android:textColor="#8B131111"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+</LinearLayout>
+</ScrollView>
