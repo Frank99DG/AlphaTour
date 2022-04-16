@@ -6,6 +6,7 @@ import org.jgrapht.graph.SimpleDirectedGraph;
 public class Place {
 
     public String name,city,typology,idCurator;
+    //il grafo è orientato (da A a B è diverso da B ad A)
     public static Graph<Zone,DefaultEdge> zonesPlace = new SimpleDirectedGraph<>(DefaultEdge.class);
 
     public Place(){

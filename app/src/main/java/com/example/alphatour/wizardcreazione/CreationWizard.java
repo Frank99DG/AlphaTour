@@ -1,18 +1,13 @@
 package com.example.alphatour.wizardcreazione;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModel;
 
 import com.example.alphatour.R;
-import com.example.alphatour.wizard.StepperAdapterWizard;
 import com.stepstone.stepper.StepperLayout;
-import com.stepstone.stepper.VerificationError;
 import com.stepstone.stepper.adapter.StepAdapter;
-import com.stepstone.stepper.viewmodel.StepViewModel;
 
 public class CreationWizard extends AppCompatActivity {
 

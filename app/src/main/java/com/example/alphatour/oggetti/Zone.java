@@ -6,6 +6,7 @@ import org.jgrapht.graph.SimpleGraph;
 public class Zone {
 
     public String name;
+    //il grafo è non orientato (da A a B è uguale da B ad A)
     public static Graph<Element,DefaultEdge> elementsZone = new SimpleGraph<>(DefaultEdge.class);
 
     public Zone(){
