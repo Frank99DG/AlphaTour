@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sfondo"
-    tools:context=".wizard.Step1">
+    tools:context=".wizardpercorso.Step1">
 
     <com.google.android.material.textfield.TextInputLayout
 

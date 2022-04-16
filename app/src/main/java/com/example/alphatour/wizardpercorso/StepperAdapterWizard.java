@@ -1,4 +1,4 @@
-package com.example.alphatour.wizard;
+package com.example.alphatour.wizardpercorso;
 
 import android.content.Context;
 
@@ -22,6 +22,8 @@ public class StepperAdapterWizard extends AbstractFragmentStepAdapter {
 
         switch (position){
 
+            case 0:
+                return new Step1();
             case 1:
                 return new Step2();
             case 2:
