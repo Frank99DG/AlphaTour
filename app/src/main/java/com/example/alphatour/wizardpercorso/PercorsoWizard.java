@@ -2,12 +2,11 @@ package com.example.alphatour.wizardpercorso;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import com.example.alphatour.R;
+import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.adapter.StepAdapter;
 
@@ -24,8 +23,12 @@ public class PercorsoWizard extends AppCompatActivity {
         stepperLayout=findViewById(R.id.stepperLayout);
        // button=findViewById(R.id.buttonShare);
 
+        //getSupportFragmentManager().beginTransaction().replace(R.id.fragments,new Step2()).commit();
         StepAdapter stepAdapter=new StepperAdapterWizard(getSupportFragmentManager(),getApplicationContext());
         stepperLayout.setAdapter(stepAdapter);
+
+
+
     }
 
    /* public void ShareFile(View view) {
