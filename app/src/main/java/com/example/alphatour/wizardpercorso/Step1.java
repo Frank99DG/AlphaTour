@@ -32,6 +32,7 @@ public class Step1 extends Fragment implements Step, BlockingStep {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_step1, container, false);
 
+
         namePath = view.findViewById(R.id.namePath);
         descriptionPath = view.findViewById(R.id.descriptionPath);
         // Inflate the layout for this fragment
@@ -83,13 +84,8 @@ public class Step1 extends Fragment implements Step, BlockingStep {
 
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
-        StepperLayout step;
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                callback.goToNextStep();
-            }
-        },1L);
+
+        callback.goToNextStep();
     }
 
     @Override
@@ -102,4 +98,5 @@ public class Step1 extends Fragment implements Step, BlockingStep {
         Intent intent= new Intent(getContext(), DashboardActivity.class);
         startActivity(intent);
     }
+
 }
