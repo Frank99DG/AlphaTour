@@ -36,7 +36,10 @@ public class ActivityElementDetails extends AppCompatActivity {
     private String zone,item;
     private static Bitmap qr;
     private static Uri ph,uri;
+    LinearLayout layout;
+    private Element element;
     private ArrayAdapter<String> adapterItems;
+    List<Element> elementList=new ArrayList<Element>();
     private List<String> typology_list = new ArrayList<String>();
     private List<View> list = new ArrayList<View>();
     private boolean errorFlag=false,selected=false,save=false;
@@ -57,7 +60,6 @@ public class ActivityElementDetails extends AppCompatActivity {
         typology = findViewById(R.id.inputTypeZone);
 
         Intent intent=getIntent();
-        Element element= (Element) intent.getSerializableExtra("element");
         zone=intent.getStringExtra("zone");
         typology_list=intent.getStringArrayListExtra("ZoneList");
 
@@ -74,13 +76,23 @@ public class ActivityElementDetails extends AppCompatActivity {
             }
         });
 
-        title.setText(element.getTitle());
-        description.setText(element.getDescription());
-        sensor.setText(element.getSensorCode());
-        ph= CreateObjectWizard.getPh();
-        qr=CreateObjectWizard.getQr();
-        imagePhoto.setImageURI(ph);
-        imageQrCode.setImageBitmap(qr);
+        elementList= CreateObjectWizard.getElementList();
+        list= CreateObjectWizard.getTypology_list();
+        layout=CreateObjectWizard.getLayout_list();
+
+
+        for(int i=0;i<layout.getChildCount()&&i<list.size() ;i++){
+
+            if(layout.getChildAt(i).equals(list.get(i))){
+                element=elementList.get(i);
+                title.setText(element.getTitle());
+                description.setText(element.getDescription());
+                imagePhoto.setImageURI(element.getPhoto());
+                imageQrCode.setImageBitmap(element.getQrCode());
+                sensor.setText(element.getSensorCode());
+            }
+        }
+
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,13 +129,13 @@ public class ActivityElementDetails extends AppCompatActivity {
         String Description= description.getText().toString();
         // String Activity = activity.getText().toString();
         String SensorCode = sensor.getText().toString();
-        Element element= new Element();
+        Element elementModified= new Element();
         if(Title.isEmpty()){
             title.setError(getString(R.string.campo_obbligatorio));
             title.requestFocus();
             errorFlag = true;
         }else{
-            element.setTitle(Title);
+            elementModified.setTitle(Title);
         }
 
         if(Description.isEmpty()){
@@ -131,7 +143,7 @@ public class ActivityElementDetails extends AppCompatActivity {
             description.requestFocus();
             errorFlag = true;
         }else{
-            element.setDescription(Description);
+            elementModified.setDescription(Description);
         }
 
 
@@ -148,23 +160,34 @@ public class ActivityElementDetails extends AppCompatActivity {
             sensor.requestFocus();
             errorFlag = true;
         }else{
-            element.setSensorCode(SensorCode);
+            elementModified.setSensorCode(SensorCode);
         }
 
         if(errorFlag){
             return;
         }else{
             Intent intent=new Intent();
-            intent.putExtra("element",element);
+            intent.putExtra("title",elementModified.getTitle());
+            intent.putExtra("description",elementModified.getDescription());
+            intent.putExtra("sensor",elementModified.getSensorCode());
             if(selected) {
                 intent.putExtra("zone", item);
             }else{
                 intent.putExtra("zone", zone);
             }
             setResult(Activity.RESULT_OK,intent);
-            list= CreateObjectWizard.getTypology_list();
             View v=list.get(0);
             LinearLayout layout=CreateObjectWizard.getLayout_list();
+
+
+            for(int i=0;i<elementList.size();i++) {
+
+                if (elementList.get(i).equals(element)) {
+                    elementList.remove(i);
+                    CreateObjectWizard.setElementList(elementList);
+                }
+            }
+            
             layout.removeView(v);
             list.remove(0);
             finish();

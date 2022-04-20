@@ -150,6 +150,7 @@ public class AddElementActivity extends AppCompatActivity{
             errorFlag = true;
         }else{
             element.setTitle(Title);
+            errorFlag = false;
         }
 
         if(Description.isEmpty()){
@@ -158,6 +159,7 @@ public class AddElementActivity extends AppCompatActivity{
             errorFlag = true;
         }else{
             element.setDescription(Description);
+            errorFlag = false;
         }
 
         if(flagPhoto==false){
@@ -168,6 +170,7 @@ public class AddElementActivity extends AppCompatActivity{
         }else{
             element.setPhoto(uri);
             setPhoto(uri);
+            errorFlag = false;
         }
 
         if(GenerateQrCodeActivity.getQrFlag()==false){
@@ -177,6 +180,7 @@ public class AddElementActivity extends AppCompatActivity{
         }else{
             element.setQrCode(GenerateQrCodeActivity.getBitmap());
             setQr(GenerateQrCodeActivity.getBitmap());
+            errorFlag = false;
         }
 
             /*if(Activity.isEmpty()){
@@ -193,18 +197,16 @@ public class AddElementActivity extends AppCompatActivity{
             errorFlag = true;
         }else{
             element.setSensorCode(SensorCode);
+            errorFlag = false;
         }
 
         if(errorFlag){
             return;
         }else{
             Intent intent=new Intent();
-            /*intent.putExtra("title",element.getTitle());
+            intent.putExtra("title",element.getTitle());
             intent.putExtra("description",element.getDescription());
-            intent.putExtra("image",element.getPhoto());
-            intent.putExtra("qrCode",element.getQrCode());
-            intent.putExtra("sensor",element.getSensorCode());*/
-            intent.putExtra("element",element);
+            intent.putExtra("sensor",element.getSensorCode());
             Bundle bundle;
             intent.putExtra("zone",item);
             setResult(Activity.RESULT_OK,intent);
