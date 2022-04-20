@@ -17,12 +17,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.alphatour.R;
-import com.example.alphatour.oggetti.Zone;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class CreateZoneWizard extends Fragment implements Step {
     private int zoneNumber = 1;
@@ -73,7 +71,7 @@ public class CreateZoneWizard extends Fragment implements Step {
                     zoneCreated=true;
                     final View zoneView = getLayoutInflater().inflate(R.layout.row_add_zone, null, false);
                     ImageView removeZone = (ImageView) zoneView.findViewById(R.id.deleteZone);
-                    TextView zone = (TextView) zoneView.findViewById(R.id.inputZone);
+                    TextView zone = (TextView) zoneView.findViewById(R.id.displayZone);
                     zone.setText(name);
                     layout_list.addView(zoneView);
                     zone_list.add(name);

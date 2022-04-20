@@ -21,25 +21,84 @@
         android:id="@+id/fromText"
         android:layout_width="40dp"
         android:layout_height="28dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:text="da"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/inputZone"
+        app:layout_constraintEnd_toStartOf="@+id/displayZone"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dividerZone" />
 
     <TextView
-        android:id="@+id/inputZone"
+        android:id="@+id/displayZone"
         android:layout_width="212dp"
         android:layout_height="34dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="108dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="96dp"
         android:ems="10"
         android:hint="Zona"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dividerZone" />
+
+    <LinearLayout
+        android:id="@+id/listConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/displayZone" />
+
+    <TextView
+        android:id="@+id/inText"
+        android:layout_width="30dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="48dp"
+        android:text="in"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/longArrowImage"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listConstraintLayout" />
+
+    <ImageView
+        android:id="@+id/longArrowImage"
+        android:layout_width="38dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="28dp"
+        android:src="@drawable/ic_long_arrow"
+        app:layout_constraintEnd_toStartOf="@+id/linkZoneLayout"
+        app:layout_constraintTop_toBottomOf="@+id/listConstraintLayout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/linkZoneLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="237dp"
+        android:layout_height="56dp"
+        android:layout_margin="35dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="36dp"
+        android:hint="Zona collegata"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listConstraintLayout">
+
+        <AutoCompleteTextView
+            android:id="@+id/inputLinkZone"
+            android:layout_width="231dp"
+            android:layout_height="50dp"
+            android:inputType="none"
+            tools:layout_editor_absoluteX="110dp"
+            tools:layout_editor_absoluteY="325dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,7 +21,7 @@
             android:name=".SearchViewProva"
             android:exported="false" />
         <activity
-            android:name=".wizard.PercorsoWizard"
+            android:name=".wizardpercorso.PercorsoWizard"
             android:exported="false" />
         <activity
             android:name=".wizardcreazione.CreationWizard"
