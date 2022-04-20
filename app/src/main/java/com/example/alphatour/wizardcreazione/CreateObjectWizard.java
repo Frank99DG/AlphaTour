@@ -274,6 +274,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
 
+        callback.goToNextStep();
         /*boolean save;
 
 
