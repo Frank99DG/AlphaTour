@@ -2,28 +2,25 @@ package com.example.alphatour.oggetti;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.widget.ImageView;
 
-import java.io.File;
-import java.io.Serializable;
-
-public class Element implements Serializable {
+public class Element{
 
 
-    private String title,description,activity,sensorCode;
-    private transient Uri photo;
-    private transient Bitmap qrCode;
+    private String title,description,activity,sensorCode,zone;
+    private  Uri photo;
+    private  Bitmap qrCode;
+    private String idZone;
 
     public Element(){
 
     }
 
 
-    public Element(String title, String description, Bitmap qrCode, String activity, String sensorCode){
+    public Element(String idZone,String title, String description, String activity, String sensorCode){
 
+        this.idZone=idZone;
         this.title=title;
         this.description=description;
-        this.qrCode=qrCode;
         this.activity=activity;
         this.sensorCode=sensorCode;
     }
@@ -87,6 +84,21 @@ public class Element implements Serializable {
         return sensorCode;
     }
 
+    public String getIdZone() {
+        return idZone;
+    }
+
+    public void setIdZone(String idZone) {
+        this.idZone = idZone;
+    }
+
+    public String getZoneRif() {
+        return zone;
+    }
+
+    public void setZoneRif(String zone) {
+        this.zone = zone;
+    }
 
     @Override
     public String toString() {
