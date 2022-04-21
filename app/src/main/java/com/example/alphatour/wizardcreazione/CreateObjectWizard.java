@@ -5,12 +5,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.ArrayMap;
-import android.util.Log;
+
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,14 +23,10 @@ import androidx.annotation.Nullable;
 
 import com.example.alphatour.ActivityElementDetails;
 import com.example.alphatour.AddElementActivity;
-import com.example.alphatour.AddPlaceActivity;
-import com.example.alphatour.AddZoneActivity;
 import com.example.alphatour.DashboardActivity;
-import com.example.alphatour.ProfileActivity;
 import com.example.alphatour.R;
 import com.example.alphatour.oggetti.Element;
 import com.example.alphatour.oggetti.ElementString;
-import com.example.alphatour.oggetti.User;
 import com.example.alphatour.oggetti.Zone;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,7 +38,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
@@ -63,14 +57,14 @@ import java.util.Map;
 
 public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
 
-    private Button addElement,yes,cancel;
+    private Button addElement,yes,cancel,yesFinal,cancelFinal;
     private static LinearLayout layout_list;
     private Dialog dialog;
-    private String zone,idZone;
+    private String zone;
     private List<String> uriUploadPhoto=new ArrayList<String>();
     private List<String> uriUploadQrCode=new ArrayList<String>();
     private static Bitmap qr;
-    private boolean success=false;
+    private boolean success=false, created=false;
     private static Uri ph;
     private static List<View> typology_list = new ArrayList<View>();
     private static List<Element> elementList = new ArrayList<Element>();
@@ -124,6 +118,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
         View view= inflater.inflate(R.layout.fragment_crea_oggetti_wizard, container, false);
         addElement=view.findViewById(R.id.buttonAddElement);
         layout_list=view.findViewById(R.id.listElementLayout);
+        loadingBar=view.findViewById(R.id.objectLoadingBar);
 
         zone_list=CreateZoneWizard.getZone_list();
 
@@ -142,6 +137,9 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
 
         yes= dialog.findViewById(R.id.btn_okay);
         cancel= dialog.findViewById(R.id.btn_cancel);
+        yesFinal= dialog.findViewById(R.id.btn_okay);
+        cancelFinal= dialog.findViewById(R.id.btn_cancel);
+        yesFinal.setText("Crea Vincoli");
         titleDialog=dialog.findViewById(R.id.titleDialog);
         textDialog=dialog.findViewById(R.id.textDialog);
 
@@ -161,15 +159,9 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-
-        /*element.setTitle(data.getStringExtra("title"));
-        element.setDescription(data.getStringExtra("description"));
-        element.setPhoto((Uri) data.getSerializableExtra("image"));
-        element.setQrCode(data.getParcelableExtra("qrCode"));
-        element.setSensorCode(data.getStringExtra("sensor"));*/
-
         if (requestCode == 10){
             if (data != null) {
+                created=true;
                 Element element = new Element();
 
                 element.setTitle(data.getStringExtra("title"));
@@ -183,7 +175,9 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
             }
         }else{
             if (data != null) {
+                created=true;
                 Element element = new Element();
+
                 element.setTitle(data.getStringExtra("title"));
                 element.setDescription(data.getStringExtra("description"));
                 element.setSensorCode(data.getStringExtra("sensor"));
@@ -258,7 +252,12 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
     @Nullable
     @Override
     public VerificationError verifyStep() {
-        return null;
+        VerificationError error=null;
+
+        if(!created){
+            error =new VerificationError("Devi creare almeno un oggetto !");
+        }
+        return error;
     }
 
     @Override
@@ -268,28 +267,43 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
 
     @Override
     public void onError(@NonNull VerificationError error) {
-
+        Toast.makeText(getContext(),error.getErrorMessage().toString(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
 
         callback.goToNextStep();
-        /*boolean save;
+        /*dialog.show();
+        titleDialog.setText("Creazione Vincoli");
+        textDialog.setText("Proseguendo con la creazione dei vincoli non sarà più possibile modificare zone e oggetti creati" +
+                            " in questa fase. Vuoi proseguire ? ");
 
+        yesFinal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadingBar.setVisibility(View.VISIBLE);
+                saveObject(elementList);
+                dialog.dismiss();
 
-        save=saveObject(elementList);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.goToNextStep();
+                        loadingBar.setVisibility(View.GONE);
+                    }
+                }, 2000L);
 
+            }
+        });
 
+        cancelFinal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               dialog.dismiss();
+            }
+        });*/
 
-        if(save){
-            Toast.makeText(getContext(), "Zone e Oggetti salvati con successo", Toast.LENGTH_LONG).show();
-            startActivity(new Intent(getContext(), DashboardActivity.class));
-            //loadingBar.setVisibility(View.GONE);
-        }else{
-
-            //loadingBar.setVisibility(View.GONE);
-        }*/
 
     }
 
@@ -297,45 +311,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
     public void onCompleteClicked(StepperLayout.OnCompleteClickedCallback callback) {
     }
 
-    private boolean saveObject(List<Element> elementlist) {
-
-        String idUser = user.getUid();
-        /*for (int i=0;i<elementlist.size();i++) {
-            Element newElement = elementlist.get(i);
-            Intent intent = new Intent(getContext(), Save.class);
-            intent.putExtra("title",newElement.getTitle());
-            intent.putExtra("zone",newElement.getZoneRif());
-            intent.putExtra("description",newElement.getDescription());
-            setPh(newElement.getPhoto());
-            setQr(newElement.getQrCode());
-            intent.putExtra("sensor",newElement.getSensorCode());
-            startActivity(intent);
-        }*/
-       // SaveData dat= new SaveData();
-       // dat.Save(elementlist.get(0),db);
-
-        /*for (int i=0;i<elementlist.size();i++) {
-            Element newElementSupport = elementlist.get(i);
-            uriUploadPhoto=newElementSupport.getZoneRif();
-            db.collection("Zones")
-                    .whereEqualTo("name",newElementSupport.getZoneRif())
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    newElementSupport.setIdZone(document.getId());
-                                    uriUploadPhoto="pezos";
-                                    elementlist.set(0,newElementSupport);
-                                }
-                            } else {
-                            }
-                        }
-                    });
-        }*/
-
-
+    private void saveObject(List<Element> elementlist) {
 
         db.collection("Zones")
                 .get().
@@ -370,9 +346,6 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
                                         });
                                 savePhoto(newElement.getPhoto(),newElement,i);
                                 saveQrCode(newElement.getQrCode(),newElement,i);
-                                Log.i("map: ",elm.toString());
-                                /*Element newElement=new Element(newElementSupport.getIdZone(),newElementSupport.getTitle(),
-                                        newElementSupport.getDescription(),"activity",newElementSupport.getSensorCode());*/
                             }
                         }
                     }
@@ -381,41 +354,16 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
             }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(), "Salvataggio Zone e Oggetti non riuscito", Toast.LENGTH_LONG).show();
+                success=false;
+                Toast.makeText(getContext(), "Non è stato possibile salvare le zone e gli oggetti creati!!!", Toast.LENGTH_LONG).show();
             }
         });
-
-        return success;
     }
 
-    private String getIdZone(List<Element> elementlist,int i) {
-       final int c=i;
-        db.collection("Zones").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-
-                if (!queryDocumentSnapshots.isEmpty()) {
-                    List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista zone
-
-                        for (DocumentSnapshot d : listDocument) {
-
-                            Element newElementSupport = elementlist.get(c);
-                            Zone zon = d.toObject(Zone.class);
-                            if (zon.getName().matches(newElementSupport.getZoneRif())) {
-                                idZone= d.getId();
-                            }
-                        }
-
-                }
-            }
-        });
-        return idZone;
-    }
 
     private void saveQrCode(Bitmap qrCode,Element element,int i) {
 
-        final StorageReference fileRef = storegeProfilePick.child("QrCode_Objects"+"_"+element.getTitle());
+        final StorageReference fileRef = storegeProfilePick.child("QrCodeObjects").child("QrCode_Objects"+"_"+element.getTitle());
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         qrCode.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
@@ -467,14 +415,16 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
                                                         addOnSuccessListener(new OnSuccessListener<Void>() {
                                                             @Override
                                                             public void onSuccess(Void unused) {
+                                                                success=true;
                                                                 Toast.makeText(getContext(), "Hai aggiornato l'immagine di profilo", Toast.LENGTH_LONG).show();
-                                                                //loadingBar.setVisibility(View.GONE);
+                                                                loadingBar.setVisibility(View.GONE);
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                     @Override
                                                     public void onFailure(@NonNull Exception e) {
-                                                        Toast.makeText(getContext(), "Non è stato possibile aggiornare l'immagine di profilo!", Toast.LENGTH_LONG).show();
-                                                        // loadingBar.setVisibility(View.GONE);
+                                                        success=false;
+                                                        Toast.makeText(getContext(), "Non è stato possibile salvare le zone e gli oggetti creati!!!", Toast.LENGTH_LONG).show();
+                                                        loadingBar.setVisibility(View.GONE);
                                                     }
                                                 });
                                             }
@@ -490,6 +440,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
             }
         });
     }
+
 
     private void savePhoto(Uri photo,Element element,int i) {
 
@@ -537,14 +488,14 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
                                                     addOnSuccessListener(new OnSuccessListener<Void>() {
                                                         @Override
                                                         public void onSuccess(Void unused) {
-                                                            Toast.makeText(getContext(), "Hai aggiornato l'immagine di profilo", Toast.LENGTH_LONG).show();
-                                                            //loadingBar.setVisibility(View.GONE);
+                                                            success=true;
                                                         }
                                                     }).addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
-                                                    Toast.makeText(getContext(), "Non è stato possibile aggiornare l'immagine di profilo!", Toast.LENGTH_LONG).show();
-                                                   // loadingBar.setVisibility(View.GONE);
+                                                    success=false;
+                                                    Toast.makeText(getContext(), "Non è stato possibile salvare le zone e gli oggetti creati!!!", Toast.LENGTH_LONG).show();
+                                                   loadingBar.setVisibility(View.GONE);
                                                 }
                                             });
                                         }
@@ -563,26 +514,10 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
 
     }
 
-    private boolean saveZone(ArrayList<String> zone_list) {
-
-        for (int i = 0; i < zone_list.size(); i++){
-
-            Zone newZone= new Zone();
-            newZone.setName(zone_list.get(i));
-            db.collection("Zones")
-                    .add(newZone)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            success=true;
-                        }
-                    });
-        }
-        return success;
-    }
 
     @Override
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
+            callback.goToPrevStep();
 
     }
 }
