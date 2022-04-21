@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textZoneObject"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text=""
+        android:textAlignment="viewStart"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="20dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.devzone.checkabletextview.CheckableTextView
+            android:id="@+id/textObjectt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:background="@android:drawable/editbox_dropdown_light_frame"
+            app:ctv_AnimType="scale"
+            app:ctv_IconChecked="false"
+            app:ctv_IconTint="#5CCD2F"
+            app:ctv_TextColor="@color/Black"
+            app:ctv_TextSize="20dp" />
+    </LinearLayout>
+</LinearLayout>
