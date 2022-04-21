@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.devzone.checkabletextview.CheckableTextView;
-import com.devzone.checkabletextview.CheckedListener;
 import com.example.alphatour.R;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
@@ -47,7 +45,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
        View view =inflater.inflate(R.layout.fragment_step3, container, false);
-       TextView stringaa = (TextView) view.findViewById(R.id.torta);
+       stringaa = (TextView) view.findViewById(R.id.zone_selected);
        Button show = view.findViewById(R.id.show);
        list_object = view.findViewById(R.id.list_object);
 
@@ -206,7 +204,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
                     // oggetti_scelti.removeAll(oggetti_scelti);
                     //    oggetti_scelti.remove(i);
                     //    arrayMonumenti.removeAll(arrayMonumenti);
-                }
+                } stringaa.setText("");
                 dialog.dismiss();
             }
         });
@@ -224,9 +222,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
         //getFragmentManager().beginTransaction().detach(this).attach(new Fragment()).commit();
 
-
-
-
+        Step2.setTitle_Step2("Seleziona la zona che vuoi visitare");
         callback.goToPrevStep();
     }
 }

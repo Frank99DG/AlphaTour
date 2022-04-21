@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.devzone.checkabletextview.CheckableTextView;
@@ -33,6 +34,8 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     private static int  zona_scelta;
     private static String[] array_database = {"Zona centrale", "Zona principale del museo", "Zona quadri"};
     private static String stringa_scelta;
+    private static TextView title_Step2;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +43,7 @@ public class Step2 extends Fragment implements Step, BlockingStep {
 
         View view = inflater.inflate(R.layout.fragment_step2, container, false);
         list_zone = view.findViewById(R.id.list_zone);
+        title_Step2 = view.findViewById(R.id.title_step2);
 
         for(int i =0; i< array_database.length; i++){
             View zone = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso,null ,false);
@@ -137,6 +141,10 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     @Override
     public void onCompleteClicked(StepperLayout.OnCompleteClickedCallback callback) {
 
+    }
+
+    public static void setTitle_Step2(String title_Step2) {
+        Step2.title_Step2.setText(title_Step2);
     }
 
     public static String getStringa_scelta() {
