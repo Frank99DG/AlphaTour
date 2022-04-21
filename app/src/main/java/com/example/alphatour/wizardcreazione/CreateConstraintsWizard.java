@@ -21,12 +21,19 @@ import android.widget.Toast;
 
 import com.example.alphatour.R;
 import com.example.alphatour.oggetti.Element;
+import com.example.alphatour.oggetti.Place;
+import com.example.alphatour.oggetti.User;
+import com.example.alphatour.oggetti.Zone;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
+
+import org.jgrapht.Graph;
+import org.jgrapht.graph.DefaultEdge;
+import org.jgrapht.graph.SimpleDirectedGraph;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,10 +42,12 @@ import java.util.List;
 
 public class CreateConstraintsWizard<zone_list> extends Fragment implements Step, BlockingStep {
 
-    private boolean contraintFlag = false;
+    //private boolean constraintFlag = false;
+    //private boolean listFlag = false;
     private ArrayList<String> zone_list=new ArrayList<>();
     private LinearLayout layout_list;
     private ArrayAdapter<String> adapterItems;
+    private ArrayList<List> all_link_lists = new ArrayList<>();
     private String item;
     private CharSequence name;
     private FirebaseAuth auth;
@@ -78,20 +87,14 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
             menu_zones.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                    contraintFlag = false;
+
                     item = parent.getItemAtPosition(position).toString();
 
-                    for(String zone : link_list){
-                        if(zone.equals(item)){
-                            contraintFlag = true;
-                        }
-                    }
-
-                    if(item.equals(nameZone)){
-                        Toast.makeText(getContext(), "Una zona non è collegabile con se stessa", Toast.LENGTH_LONG).show();
-                        menu_zones.setText(null);
-                    }else if(contraintFlag){
+                    if(link_list.contains(item)){
                         Toast.makeText(getContext(), "La zona è gia stata collegata", Toast.LENGTH_LONG).show();
+                        menu_zones.setText(null);
+                    }else if(item.equals(nameZone)){
+                        Toast.makeText(getContext(), "Una zona non è collegabile con se stessa", Toast.LENGTH_LONG).show();
                         menu_zones.setText(null);
                     }else{
 
@@ -103,6 +106,11 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                         link_list.add(item);
                         sub_layout_list.addView(destinationView);
                         menu_zones.setText(null);
+
+                        if( !(all_link_lists.contains(link_list)) ){
+                            all_link_lists.add(link_list);
+                        }
+
 
                         removeZone.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -128,6 +136,30 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     }
 
 
+    public void saveZonesAndConstraintInGraph() {
+
+        Graph<Zone,DefaultEdge> zones = new SimpleDirectedGraph<>(DefaultEdge.class);
+
+        for (String nameZone : zone_list){
+            Zone zone = new Zone(nameZone);
+            zones.addVertex(zone);
+        }
+
+        /*for (List list : all_link_lists){
+            for (String  : list){
+                zones.addEdge( , );
+
+            }
+        }*/
+
+        Place place = new Place("NewTopMuseum","Bari","Museo","1",zones);
+        Log.i("Luogo creato:", place.toString());
+
+
+
+
+
+    }
 
 
 
@@ -155,9 +187,9 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
         //String Prova = prova.getText().toString();
         //stepFlag = inputControl(Prova);
 
-        if(contraintFlag){
-            error = new VerificationError("Non puoi tornare indietro");
-        }
+        //if(constraintFlag){
+          //  error = new VerificationError("Non puoi tornare indietro");
+        //}
         return error;
 
 

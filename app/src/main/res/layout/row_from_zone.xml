@@ -84,7 +84,7 @@
         android:layout_margin="35dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="36dp"
-        android:hint="Zona collegata"
+        android:hint="Zone disponibili"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listConstraintLayout">
 

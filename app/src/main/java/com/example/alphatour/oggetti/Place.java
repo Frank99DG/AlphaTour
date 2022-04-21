@@ -58,7 +58,8 @@ public class Place {
                 "nome='" + name + '\'' +
                 ", citta='" + city + '\'' +
                 ", tipo='" + typology + '\'' +
-                ", zoneLuogo='" + zonesPlace.toString() +
+                ", id curatore='" + idCurator + '\'' +
+                ", zone Luogo='" + zonesPlace.toString() +
                 '*';
     }
 }
