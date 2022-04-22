@@ -46,10 +46,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
                              Bundle savedInstanceState) {
        View view =inflater.inflate(R.layout.fragment_step3, container, false);
        stringaa = (TextView) view.findViewById(R.id.zone_selected);
-       Button show = view.findViewById(R.id.show);
        list_object = view.findViewById(R.id.list_object);
-
-
 
        dialog=new Dialog(getContext());
        dialog.setContentView(R.layout.dialog_step3);
@@ -61,54 +58,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
        dialog_aggiungizona = dialog.findViewById(R.id.btn_aggiungiZona);
 
 
-       show.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               stringaa.setText(Step2.getStringa_scelta());
-               String scelta = Step2.getStringa_scelta();
-               String a = "Zona centrale";
-               String b = "Zona principale del museo";
-               String c = "Zona quadri";
 
-
-               if (scelta == a) {
-                   for (int i = 0; i < oggetti_zona1.length; i++) {
-                       View object = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso, null, false);
-                       CheckableTextView textZone1 = (CheckableTextView) object.findViewById(R.id.textZone1);
-
-                       textZone1.setText(oggetti_zona1[i]);
-                       arrayMonumenti.add(textZone1);
-                       togliview.add(object);
-                       list_object.addView(object);
-                   }
-
-               }
-
-               if (scelta == b) {
-                   for (int i = 0; i < oggetti_zona2.length; i++) {
-                       View object = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso, null, false);
-                       CheckableTextView textZone1 = (CheckableTextView) object.findViewById(R.id.textZone1);
-
-                       textZone1.setText(oggetti_zona2[i]);
-                       arrayMonumenti.add(textZone1);
-                       togliview.add(object);
-                       list_object.addView(object);
-                   }
-               }
-
-               if (scelta == c) {
-                   for (int i = 0; i < oggetti_zona3.length; i++) {
-                       View object = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso, null, false);
-                       CheckableTextView textZone1 = (CheckableTextView) object.findViewById(R.id.textZone1);
-
-                       textZone1.setText(oggetti_zona3[i]);
-                       arrayMonumenti.add(textZone1);
-                       togliview.add(object);
-                       list_object.addView(object);
-                   }
-               }
-           }
-       });
 
         return view;
 
@@ -128,18 +78,62 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     }
 
     @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            stringaa.setText(Step2.getStringa_scelta());
+            String scelta = Step2.getStringa_scelta();
+            String a = "Zona centrale";
+            String b = "Zona principale del museo";
+            String c = "Zona quadri";
+
+            if (scelta == a) {
+                for (int i = 0; i < oggetti_zona1.length; i++) {
+                    View object = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso, null, false);
+                    CheckableTextView textZone1 = (CheckableTextView) object.findViewById(R.id.textZone1);
+
+                    textZone1.setText(oggetti_zona1[i]);
+                    arrayMonumenti.add(textZone1);
+                    togliview.add(object);
+                    list_object.addView(object);
+                }
+
+            }
+
+            if (scelta == b) {
+                for (int i = 0; i < oggetti_zona2.length; i++) {
+                    View object = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso, null, false);
+                    CheckableTextView textZone1 = (CheckableTextView) object.findViewById(R.id.textZone1);
+
+                    textZone1.setText(oggetti_zona2[i]);
+                    arrayMonumenti.add(textZone1);
+                    togliview.add(object);
+                    list_object.addView(object);
+                }
+            }
+
+            if (scelta == c) {
+                for (int i = 0; i < oggetti_zona3.length; i++) {
+                    View object = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso, null, false);
+                    CheckableTextView textZone1 = (CheckableTextView) object.findViewById(R.id.textZone1);
+
+                    textZone1.setText(oggetti_zona3[i]);
+                    arrayMonumenti.add(textZone1);
+                    togliview.add(object);
+                    list_object.addView(object);
+                }
+            }
+
+        }
+        else {
+        }
+    }
+
+
+
+    @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 
     @Nullable
@@ -162,6 +156,8 @@ public class Step3 extends Fragment implements Step, BlockingStep {
 
     @Override
     public void onSelected() {
+        //getFragmentManager().beginTransaction().detach(this);
+        //getFragmentManager().beginTransaction().attach(this);
  /*
         String b = Step2.getA();
         stringa=b;
@@ -178,40 +174,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
 
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
-
-        dialog.show();
-           dialog_avanti.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-                callback.goToNextStep();
-            }
-        });
-
-        dialog_aggiungizona.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                for(int i =0; i< arrayMonumenti.size();i++){
-                    list_object.removeView(togliview.get(i));
-
-                    //  oggetti_scelti.remove(i);
-                    // oggetti_scelti.removeAll(oggetti_scelti);
-                    //    oggetti_scelti.remove(i);
-                    //    arrayMonumenti.removeAll(arrayMonumenti);
-                }for(int i =0; i<oggetti_scelti.size();i++){
-                    oggetti_scelti.remove(i);
-                    //  oggetti_scelti.remove(i);
-                    // oggetti_scelti.removeAll(oggetti_scelti);
-                    //    oggetti_scelti.remove(i);
-                    //    arrayMonumenti.removeAll(arrayMonumenti);
-                } stringaa.setText("");
-                dialog.dismiss();
-            }
-        });
-
-
-
-
+        callback.goToNextStep();
     }
 
     @Override
@@ -221,8 +184,35 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     @Override
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
         //getFragmentManager().beginTransaction().detach(this).attach(new Fragment()).commit();
+        dialog.show();
+        dialog_avanti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                for(int i =0; i< arrayMonumenti.size();i++){
+                    list_object.removeView(togliview.get(i));
 
+                }for(int i =0; i<oggetti_scelti.size();i++){
+                    oggetti_scelti.remove(i);
+                }
+                callback.goToPrevStep();
+            }
+        });
+
+        dialog_aggiungizona.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for(int i =0; i< arrayMonumenti.size();i++){
+                    list_object.removeView(togliview.get(i));
+
+                }for(int i =0; i<oggetti_scelti.size();i++){
+                    oggetti_scelti.remove(i);
+                }
+                stringaa.setText("");
+                callback.goToPrevStep();
+                dialog.dismiss();
+            }
+        });
         Step2.setTitle_Step2("Seleziona la zona che vuoi visitare");
-        callback.goToPrevStep();
     }
 }

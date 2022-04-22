@@ -23,7 +23,7 @@ public class PercorsoWizard extends AppCompatActivity {
         stepperLayout=findViewById(R.id.stepperLayout);
        // button=findViewById(R.id.buttonShare);
 
-        //getSupportFragmentManager().beginTransaction().replace(R.id.fragments,new Step2()).commit();
+
         StepAdapter stepAdapter=new StepperAdapterWizard(getSupportFragmentManager(),getApplicationContext());
         stepperLayout.setAdapter(stepAdapter);
 

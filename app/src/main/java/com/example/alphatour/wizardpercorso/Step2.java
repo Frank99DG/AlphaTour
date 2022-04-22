@@ -36,7 +36,6 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     private static String stringa_scelta;
     private static TextView title_Step2;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -32,7 +32,6 @@ public class Step1 extends Fragment implements Step, BlockingStep {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_step1, container, false);
 
-
         namePath = view.findViewById(R.id.namePath);
         descriptionPath = view.findViewById(R.id.descriptionPath);
         // Inflate the layout for this fragment
