@@ -1,5 +1,6 @@
 package com.example.alphatour.wizardcreazione;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -22,9 +23,12 @@ public class CreationWizard extends AppCompatActivity {
 
         stepperLayout=findViewById(R.id.stepperLayoutCreazione);
        // button=findViewById(R.id.buttonShare);
+       /* Intent intent=getIntent();
+        int i=intent.getIntExtra("val",-1);*/
 
-        StepAdapter stepAdapter=new StepperAdapterCreazioneWizard(getSupportFragmentManager(),getApplicationContext());
-        stepperLayout.setAdapter(stepAdapter);
+            StepAdapter stepAdapter = new StepperAdapterCreazioneWizard(getSupportFragmentManager(), getApplicationContext()/*, i*/);
+            stepperLayout.setAdapter(stepAdapter);
+
        /* StepViewModel.Builder stepViewModel= new StepViewModel.Builder(this);
         stepViewModel.setBackButtonVisible(false);*/
 

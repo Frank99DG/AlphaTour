@@ -1,12 +1,11 @@
 package com.example.alphatour.wizardcreazione;
 
 import android.content.Context;
+import android.content.Intent;
 
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
-
-import com.example.alphatour.wizardpercorso.Step1;
 import com.example.alphatour.R;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.adapter.AbstractFragmentStepAdapter;
@@ -14,14 +13,20 @@ import com.stepstone.stepper.viewmodel.StepViewModel;
 
 public class StepperAdapterCreazioneWizard extends AbstractFragmentStepAdapter {
 
-    public StepperAdapterCreazioneWizard(@NonNull FragmentManager fm, @NonNull Context context) {
+    private int dec;
+    public StepperAdapterCreazioneWizard(@NonNull FragmentManager fm, @NonNull Context context/*,int i*/) {
         super(fm, context);
+        //this.dec=i;
     }
 
     @Override
     public Step createStep(int position) {
 
-        switch (position){
+       /* switch (dec){
+            case -1:*/
+
+
+        switch (position) {
             case 0:
                 return new CreatePlaceWizard();
             case 1:
@@ -31,9 +36,28 @@ public class StepperAdapterCreazioneWizard extends AbstractFragmentStepAdapter {
             case 3:
                 return new CreateConstraintsWizard();
 
-            default: return new Step1();
+            default:
+                return new CreatePlaceWizard();
 
         }
+            /*case 1:
+                switch (position) {
+                    case 0:
+                        return new CreateObjectWizard();
+                    case 1:
+                        return new CreateZoneWizard();
+                    case 2:
+                        return new CreatePlaceWizard();
+                    case 3:
+                        return new CreateConstraintsWizard();
+
+                    default:
+                        return new CreatePlaceWizard();
+
+                }
+            default:
+                return new CreatePlaceWizard();
+    }*/
     }
 
     @Override

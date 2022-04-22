@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".wizardcreazione.CreatePlaceWizard"
     android:background="@drawable/sfondo"
+    android:id="@+id/frm"
     android:gravity="center">
 
     <TextView
@@ -78,7 +79,6 @@
         android:layout_width="208dp"
         android:layout_height="56dp"
         android:layout_margin="35dp"
-        android:hint="Tipologia"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cityPlaceLayout">
 

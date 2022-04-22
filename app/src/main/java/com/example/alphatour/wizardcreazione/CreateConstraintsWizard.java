@@ -1,11 +1,18 @@
 package com.example.alphatour.wizardcreazione;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,19 +20,36 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.R;
 import com.example.alphatour.oggetti.Element;
+import com.example.alphatour.oggetti.ElementString;
 import com.example.alphatour.oggetti.Place;
 import com.example.alphatour.oggetti.User;
 import com.example.alphatour.oggetti.Zone;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
@@ -35,9 +59,12 @@ import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleDirectedGraph;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class CreateConstraintsWizard<zone_list> extends Fragment implements Step, BlockingStep {
@@ -50,8 +77,17 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     private ArrayList<List> all_link_lists = new ArrayList<>();
     private String item;
     private CharSequence name;
-    private FirebaseAuth auth;
     private FirebaseFirestore db;
+    private StorageReference storegeProfilePick;
+    private StorageTask uploadTask;
+    private Dialog dialog;
+    private Button yesFinal,cancelFinal;
+    private TextView titleDialog,textDialog;
+    private ProgressBar loadingBar;
+    private Map<String, Object> elm = new HashMap<>();
+    private boolean success=false;
+    private List<String> uriUploadPhoto=new ArrayList<String>();
+    private List<String> uriUploadQrCode=new ArrayList<String>();
 
 
     public CreateConstraintsWizard() {
@@ -64,13 +100,31 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                              Bundle savedInstanceState) {
 
         View view=inflater.inflate(R.layout.fragment_create_constraints_wizard, container, false);
-        auth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
-
 
         layout_list = view.findViewById(R.id.listConstraintLayout);
 
         zone_list = CreateZoneWizard.getZone_list();
+
+
+        db = FirebaseFirestore.getInstance();
+        storegeProfilePick= FirebaseStorage.getInstance().getReference();
+
+
+        dialog=new Dialog(getContext());
+        dialog.setContentView(R.layout.dialog_delete);
+        dialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroun_dialog));
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        dialog.getWindow().getAttributes().windowAnimations=R.style.DialogAnimation;
+
+
+        yesFinal= dialog.findViewById(R.id.btn_okay);
+        cancelFinal= dialog.findViewById(R.id.btn_cancel);
+        titleDialog=dialog.findViewById(R.id.titleDialog);
+        textDialog=dialog.findViewById(R.id.textDialog);
+        loadingBar=view.findViewById(R.id.objectLoadingBar);
+
+
 
         for (String nameZone : zone_list){
 
@@ -172,6 +226,40 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     @Override
     public void onCompleteClicked(StepperLayout.OnCompleteClickedCallback callback) {
 
+        dialog.show();
+        titleDialog.setText("Creazione Vincoli");
+        textDialog.setText("Proseguendo con la creazione dei vincoli non sarà più possibile modificare zone e oggetti creati" +
+                " in questa fase. Vuoi proseguire ? ");
+
+        yesFinal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadingBar.setVisibility(View.VISIBLE);
+                saveObject(CreateObjectWizard.getElementList());
+                dialog.dismiss();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent= new Intent(getContext(), DashboardActivity.class);
+                        startActivity(intent);
+                        loadingBar.setVisibility(View.GONE);
+                        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.clear();
+                        editor.commit();
+                    }
+                }, 2000L);
+
+            }
+        });
+
+        cancelFinal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
     }
 
     @Override
@@ -221,5 +309,211 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
         return errorFlag;
 
     }*/
+
+
+    private void saveObject(List<Element> elementlist) {
+
+        db.collection("Zones")
+                .get().
+                addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        if (task.isSuccessful()) {
+
+                            for (int i=0;i<elementlist.size();i++) {
+
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    Element newElement = elementlist.get(i);
+                                    Zone zon = document.toObject(Zone.class);
+                                    if (zon.getName().matches(newElement.getZoneRif())) {
+                                        newElement.setIdZone(document.getId());
+                                        elm.put("idZone", newElement.getIdZone());
+                                        elm.put("title", newElement.getTitle());
+                                        elm.put("description", newElement.getDescription());
+                                        elm.put("photo", null);
+                                        elm.put("qrCode", null);
+                                        elm.put("activity", null);
+                                        elm.put("sensorCode", newElement.getSensorCode());
+                                        db.collection("Elements")
+                                                .add(elm)
+                                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                    @Override
+                                                    public void onSuccess(DocumentReference documentReference) {
+                                                        success=true;
+                                                    }
+                                                });
+                                        savePhoto(newElement.getPhoto(),newElement,i);
+                                        saveQrCode(newElement.getQrCode(),newElement,i);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                success=false;
+                Toast.makeText(getContext(), "Non è stato possibile salvare le zone e gli oggetti creati!!!", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+
+
+    private void savePhoto(Uri photo, Element element, int i) {
+
+
+        final StorageReference fileRef = storegeProfilePick.child("PhotoObjects").child("Photo_Objects"+"_"+element.getTitle());
+
+        uploadTask = fileRef.putFile(photo);
+
+        Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+            @Override
+            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                if (!task.isSuccessful()) {
+                    throw task.getException();
+                }
+
+                // Continue with the task to get the download URL
+                return fileRef.getDownloadUrl();
+            }
+        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                if (task.isSuccessful()) {
+                    Uri downloadUrl = task.getResult();
+                    uriUploadPhoto.add(downloadUrl.toString());
+
+
+                    //elm.put("Photo", uriUploadPhoto);
+
+                    db.collection("Elements").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                            if (!queryDocumentSnapshots.isEmpty()) {
+                                List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista zone
+
+                                for (DocumentSnapshot d : listDocument) {
+                                    ElementString elme = d.toObject(ElementString.class);
+                                    if (elme.getTitle().matches(element.getTitle())) {
+                                        HashMap<String,Object> userMap=new HashMap<>();
+                                        userMap.put("photo",uriUploadPhoto.get(i));
+
+                                        db.collection("Elements").document(d.getId()).
+                                                update("photo", uriUploadPhoto.get(i)).
+                                                addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void unused) {
+                                                        success=true;
+                                                    }
+                                                }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                success=false;
+                                                Toast.makeText(getContext(), "Non è stato possibile salvare le zone e gli oggetti creati!!!", Toast.LENGTH_LONG).show();
+                                                loadingBar.setVisibility(View.GONE);
+                                            }
+                                        });
+                                    }
+                                }
+
+                            }
+                        }
+                    });
+                } else {
+                    // Handle failures
+                    // ...
+                }
+            }
+        });
+
+
+    }
+
+
+
+    private void saveQrCode(Bitmap qrCode, Element element, int i) {
+
+        final StorageReference fileRef = storegeProfilePick.child("QrCodeObjects").child("QrCode_Objects"+"_"+element.getTitle());
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        qrCode.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+        UploadTask uploadTask = fileRef.putBytes(data);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                uploadTask.continueWithTask(new Continuation() {
+                    @Override
+                    public Object then(@NonNull Task task) throws Exception {
+
+                        if (!task.isSuccessful()) {
+                            throw task.getException();
+                        }
+                        return fileRef.getDownloadUrl();
+                    }
+                }).addOnCompleteListener(new OnCompleteListener() {
+                    @Override
+                    public void onComplete(@NonNull Task task) {
+                        if (task.isSuccessful()) {
+
+                            //scarico il link di Storage dell'immagine
+                            Uri downloadUrl = (Uri) task.getResult();
+                            uriUploadQrCode.add(downloadUrl.toString());
+
+                            db.collection("Elements").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                                    if (!queryDocumentSnapshots.isEmpty()) {
+                                        List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista zone
+
+                                        for (DocumentSnapshot d : listDocument) {
+                                            ElementString elme = d.toObject(ElementString.class);
+                                            if (elme.getTitle().matches(element.getTitle())) {
+                                                HashMap<String,Object> userMap=new HashMap<>();
+                                                userMap.put("qrCode",uriUploadQrCode.get(i));
+
+                                                db.collection("Elements").document(d.getId()).
+                                                        update("qrCode", uriUploadQrCode.get(i)).
+                                                        addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                            @Override
+                                                            public void onSuccess(Void unused) {
+                                                                success=true;
+                                                                Toast.makeText(getContext(), "Hai aggiornato l'immagine di profilo", Toast.LENGTH_LONG).show();
+                                                                loadingBar.setVisibility(View.GONE);
+                                                            }
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        success=false;
+                                                        Toast.makeText(getContext(), "Non è stato possibile salvare le zone e gli oggetti creati!!!", Toast.LENGTH_LONG).show();
+                                                        loadingBar.setVisibility(View.GONE);
+                                                    }
+                                                });
+                                            }
+                                        }
+
+                                    }
+                                }
+                            });
+                        }
+
+                    }
+                });
+            }
+        });
+    }
 
 }

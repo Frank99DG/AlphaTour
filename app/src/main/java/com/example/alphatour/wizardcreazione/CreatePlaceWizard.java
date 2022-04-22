@@ -1,6 +1,8 @@
 package com.example.alphatour.wizardcreazione;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -43,6 +45,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
     private boolean errorFlag=true;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
+    private String item;
 
 
     @Override
@@ -66,11 +69,12 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 typology.setError(null);
-                String item = parent.getItemAtPosition(position).toString();
+                item = parent.getItemAtPosition(position).toString();
             }
         });
 
         loadingBar = view.findViewById(R.id.placeLoadingBar);
+        LoadPreferences();
         // Inflate the layout for this fragment
         return view;
     }
@@ -157,4 +161,55 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
         Intent intent= new Intent(getContext(), DashboardActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString("NamePlace",namePlace.getText().toString());
+        outState.putString("City",city.getText().toString());
+        outState.putString("Typology",typology.getText().toString());
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        if(savedInstanceState!=null) {
+
+            namePlace.setText(savedInstanceState.getCharSequence("NamePlace"));
+            city.setText(savedInstanceState.getCharSequence("City"));
+           // typology.setHint(savedInstanceState.getCharSequence("Typology"));
+        }
+
+    }
+
+    private void SavePreferences(){
+        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("NamePlace", namePlace.getText().toString());
+        editor.putString("City",city.getText().toString());
+        editor.putString("Typology",typology.getText().toString());
+        editor.commit();   // I missed to save the data to preference here,.
+    }
+
+    private void LoadPreferences(){
+        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        namePlace.setText(sharedPreferences.getString("NamePlace",""));
+        city.setText(sharedPreferences.getString("City",""));
+        item=sharedPreferences.getString("Typology","");
+        if(item==""){
+            typology.setHint("Tipologia");
+        }else{
+            typology.setHint(sharedPreferences.getString("Typology",""));
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        SavePreferences();
+    }
+
+
 }

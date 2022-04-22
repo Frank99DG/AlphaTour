@@ -1,6 +1,7 @@
 package com.example.alphatour.wizardcreazione;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -118,7 +119,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
         View view= inflater.inflate(R.layout.fragment_crea_oggetti_wizard, container, false);
         addElement=view.findViewById(R.id.buttonAddElement);
         layout_list=view.findViewById(R.id.listElementLayout);
-        loadingBar=view.findViewById(R.id.objectLoadingBar);
+       // loadingBar=view.findViewById(R.id.objectLoadingBar);
 
         zone_list=CreateZoneWizard.getZone_list();
 
@@ -263,6 +264,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
     @Override
     public void onSelected() {
 
+
     }
 
     @Override
@@ -273,8 +275,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
 
-        callback.goToNextStep();
-        /*dialog.show();
+        dialog.show();
         titleDialog.setText("Creazione Vincoli");
         textDialog.setText("Proseguendo con la creazione dei vincoli non sarà più possibile modificare zone e oggetti creati" +
                             " in questa fase. Vuoi proseguire ? ");
@@ -282,17 +283,18 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
         yesFinal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadingBar.setVisibility(View.VISIBLE);
-                saveObject(elementList);
+                //loadingBar.setVisibility(View.VISIBLE);
+                //saveObject(elementList);
                 dialog.dismiss();
+                callback.goToNextStep();
 
-                new Handler().postDelayed(new Runnable() {
+                /*new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        callback.goToNextStep();
+
                         loadingBar.setVisibility(View.GONE);
                     }
-                }, 2000L);
+                }, 2000L);*/
 
             }
         });
@@ -302,8 +304,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
             public void onClick(View view) {
                dialog.dismiss();
             }
-        });*/
-
+        });
 
     }
 
@@ -417,14 +418,14 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
                                                             public void onSuccess(Void unused) {
                                                                 success=true;
                                                                 Toast.makeText(getContext(), "Hai aggiornato l'immagine di profilo", Toast.LENGTH_LONG).show();
-                                                                loadingBar.setVisibility(View.GONE);
+                                                                //loadingBar.setVisibility(View.GONE);
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                     @Override
                                                     public void onFailure(@NonNull Exception e) {
                                                         success=false;
                                                         Toast.makeText(getContext(), "Non è stato possibile salvare le zone e gli oggetti creati!!!", Toast.LENGTH_LONG).show();
-                                                        loadingBar.setVisibility(View.GONE);
+                                                       // loadingBar.setVisibility(View.GONE);
                                                     }
                                                 });
                                             }
@@ -495,7 +496,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
                                                 public void onFailure(@NonNull Exception e) {
                                                     success=false;
                                                     Toast.makeText(getContext(), "Non è stato possibile salvare le zone e gli oggetti creati!!!", Toast.LENGTH_LONG).show();
-                                                   loadingBar.setVisibility(View.GONE);
+                                                   //loadingBar.setVisibility(View.GONE);
                                                 }
                                             });
                                         }
@@ -518,6 +519,60 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
     @Override
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
             callback.goToPrevStep();
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 }

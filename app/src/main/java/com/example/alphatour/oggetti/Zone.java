@@ -5,9 +5,9 @@ import org.jgrapht.graph.SimpleGraph;
 
 public class Zone {
 
-    public String name;
+    private String name;
     //il grafo è non orientato (da A a B è uguale da B ad A)
-    public static Graph<Element,DefaultEdge> elementsZone = new SimpleGraph<>(DefaultEdge.class);
+    //public static Graph<Element,DefaultEdge> elementsZone = new SimpleGraph<>(DefaultEdge.class);
 
     public Zone(){
 
@@ -20,7 +20,7 @@ public class Zone {
 
     public Zone(String name, Graph elementsZone){
         this.name = name;
-        this.elementsZone = elementsZone;
+        //this.elementsZone = elementsZone;
     }
 
 
@@ -34,21 +34,21 @@ public class Zone {
         this.name = name;
     }
 
-    public static  Graph<Element, DefaultEdge> getElementsZone() {
+    /*public static  Graph<Element, DefaultEdge> getElementsZone() {
 
         return elementsZone;
-    }
+    }*/
 
-    public void setElementsZone(Graph<Element, DefaultEdge> elementsZone) {
+    /*public void setElementsZone(Graph<Element, DefaultEdge> elementsZone) {
         this.elementsZone = elementsZone;
 
-    }
+    }*/
 
-    @Override
-    public String toString() {
+
+   /* public String toString() {
         return "* Zona:" +
                 "nome='" + name + '\'' +
                 ", elementiZona='" + elementsZone.toString() +
                 '*';
-    }
+    }*/
 }

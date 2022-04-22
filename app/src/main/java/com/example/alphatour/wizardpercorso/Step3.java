@@ -17,6 +17,13 @@ import android.widget.Toast;
 
 import com.devzone.checkabletextview.CheckableTextView;
 import com.example.alphatour.R;
+import com.example.alphatour.oggetti.ElementString;
+import com.example.alphatour.oggetti.Zone;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
@@ -40,6 +47,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     private Dialog dialog;
     private Button dialog_avanti,dialog_aggiungizona;
     private List<View> togliview = new ArrayList<View>();
+    private FirebaseFirestore db;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +55,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
        View view =inflater.inflate(R.layout.fragment_step3, container, false);
        stringaa = (TextView) view.findViewById(R.id.zone_selected);
        list_object = view.findViewById(R.id.list_object);
+        db = FirebaseFirestore.getInstance();
 
        dialog=new Dialog(getContext());
        dialog.setContentView(R.layout.dialog_step3);
@@ -83,46 +92,47 @@ public class Step3 extends Fragment implements Step, BlockingStep {
         if (isVisibleToUser) {
             stringaa.setText(Step2.getStringa_scelta());
             String scelta = Step2.getStringa_scelta();
-            String a = "Zona centrale";
-            String b = "Zona principale del museo";
-            String c = "Zona quadri";
 
-            if (scelta == a) {
-                for (int i = 0; i < oggetti_zona1.length; i++) {
-                    View object = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso, null, false);
-                    CheckableTextView textZone1 = (CheckableTextView) object.findViewById(R.id.textZone1);
+            db.collection("Zones")
+                    .whereEqualTo("name", scelta)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                     String idZone=document.getId();
 
-                    textZone1.setText(oggetti_zona1[i]);
-                    arrayMonumenti.add(textZone1);
-                    togliview.add(object);
-                    list_object.addView(object);
-                }
+                                    db.collection("Elements")
+                                            .whereEqualTo("idZone", idZone)
+                                            .get()
+                                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                    if (task.isSuccessful()) {
+                                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                                            ElementString element = document.toObject(ElementString.class);
 
-            }
+                                                                View object = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso, null, false);
+                                                                CheckableTextView textZone1 = (CheckableTextView) object.findViewById(R.id.textZone1);
 
-            if (scelta == b) {
-                for (int i = 0; i < oggetti_zona2.length; i++) {
-                    View object = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso, null, false);
-                    CheckableTextView textZone1 = (CheckableTextView) object.findViewById(R.id.textZone1);
+                                                                textZone1.setText(element.getTitle());
+                                                                arrayMonumenti.add(textZone1);
+                                                                togliview.add(object);
+                                                                list_object.addView(object);
 
-                    textZone1.setText(oggetti_zona2[i]);
-                    arrayMonumenti.add(textZone1);
-                    togliview.add(object);
-                    list_object.addView(object);
-                }
-            }
-
-            if (scelta == c) {
-                for (int i = 0; i < oggetti_zona3.length; i++) {
-                    View object = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso, null, false);
-                    CheckableTextView textZone1 = (CheckableTextView) object.findViewById(R.id.textZone1);
-
-                    textZone1.setText(oggetti_zona3[i]);
-                    arrayMonumenti.add(textZone1);
-                    togliview.add(object);
-                    list_object.addView(object);
-                }
-            }
+                                                        }
+                                                    } else {
+                                                        Toast.makeText(getContext(), "Non è stato possibile caricare le zone !!!", Toast.LENGTH_LONG).show();
+                                                    }
+                                                }
+                                            });
+                                }
+                            } else {
+                                Toast.makeText(getContext(), "Non è stato possibile caricare le zone !!!", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
 
         }
         else {
