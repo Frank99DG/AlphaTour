@@ -210,11 +210,8 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
 
     @Override
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
-        /*Intent intent=new Intent(getContext(),CreationWizard.class);
-        intent.putExtra("val",1);
-        startActivity(intent);
-        Step step;;*/
-        //callback.goToPrevStep();
+
+        callback.goToPrevStep();
 
 
 
