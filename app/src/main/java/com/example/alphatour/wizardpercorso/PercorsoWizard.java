@@ -2,6 +2,7 @@ package com.example.alphatour.wizardpercorso;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -14,6 +15,7 @@ public class PercorsoWizard extends AppCompatActivity {
 
     StepperLayout stepperLayout;
     Button button;
+    private StepAdapter stepAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +25,18 @@ public class PercorsoWizard extends AppCompatActivity {
         stepperLayout=findViewById(R.id.stepperLayout);
        // button=findViewById(R.id.buttonShare);
 
+        Intent intent=getIntent();
 
-        StepAdapter stepAdapter=new StepperAdapterWizard(getSupportFragmentManager(),getApplicationContext());
-        stepperLayout.setAdapter(stepAdapter);
+        if(intent.getIntExtra("val",-1)==-1) {
+
+            stepAdapter = new StepperAdapterWizard(getSupportFragmentManager(), getApplicationContext());
+            stepperLayout.setAdapter(stepAdapter);
+        }else{
+            stepAdapter = new StepperAdapterWizard(getSupportFragmentManager(), getApplicationContext());
+            stepperLayout.setAdapter(stepAdapter);
+            stepperLayout.setCurrentStepPosition(3);
+        }
+
 
 
 

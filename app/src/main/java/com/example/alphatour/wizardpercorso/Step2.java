@@ -1,5 +1,6 @@
 package com.example.alphatour.wizardpercorso;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -19,6 +21,7 @@ import com.devzone.checkabletextview.CheckedListener;
 import com.example.alphatour.R;
 import com.example.alphatour.oggetti.ElementString;
 import com.example.alphatour.oggetti.Zone;
+import com.example.alphatour.wizardcreazione.StepperAdapterCreazioneWizard;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -28,6 +31,7 @@ import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
+import com.stepstone.stepper.adapter.StepAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,6 +51,7 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     private FirebaseFirestore db;
     private ProgressBar loadingbar;
     private List<View> deleteView = new ArrayList<View>();
+    private Button btn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,9 +61,20 @@ public class Step2 extends Fragment implements Step, BlockingStep {
         list_zone = view.findViewById(R.id.list_zone);
         title_Step2 = view.findViewById(R.id.title_step2);
         loadingbar=view.findViewById(R.id.zoneLoadingBar);
+        btn=view.findViewById(R.id.button3);
 
 
         db = FirebaseFirestore.getInstance();
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(getContext(),PercorsoWizard.class);
+                intent.putExtra("val",1);
+                startActivity(intent);
+
+            }
+        });
 
         return view;
     }

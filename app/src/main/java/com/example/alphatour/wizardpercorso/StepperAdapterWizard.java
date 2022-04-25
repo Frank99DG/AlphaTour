@@ -17,6 +17,9 @@ public class StepperAdapterWizard extends AbstractFragmentStepAdapter {
         super(fm, context);
     }
 
+    public void StepperAdapterWizard() {
+    }
+
     @Override
     public Step createStep(int position) {
 
@@ -63,7 +66,7 @@ public class StepperAdapterWizard extends AbstractFragmentStepAdapter {
                      // .setEndButtonLabel(R.string.next)
                         .setEndButtonLabel("Riepilogo")
                      // .setBackButtonLabel(R.string.backTo_zone);
-                        .setBackButtonLabel("Nuova zona / indietro");
+                        .setBackButtonLabel("Nuova");
                 break;
             case 3:
                 builder
