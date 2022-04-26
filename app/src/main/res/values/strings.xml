@@ -37,10 +37,10 @@
     <string name="txt_view_String">ALPHATOUR</string>
     <string name="tv_route">CREA PERCORSO</string>
     <string name="tv_place">CREA LUOGO</string>
-    <string name="tv_show">CREA EVENTO</string>
     <string name="tv_calendar">CALENDARIO</string>
-    <string name="tb_user">PROFILO</string>
-    <string name="tb_event">EVENTI</string>
+    <string name="tv_update">MODIFICA LUOGO</string>
+    <string name="tb_profile">PROFILO</string>
+    <string name="tb_home">HOME</string>
     <string name="tb_routes">I MIEI PERCORSI</string>
     <string name="im_view"> </string>
     <string name="search">Cerca</string>

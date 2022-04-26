@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-public class MenuFragmentProva extends Fragment {
+public class HamburgerMenuFragment extends Fragment {
 
 
     private LinearLayout closeLayout;
@@ -24,7 +24,7 @@ public class MenuFragmentProva extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_menu_prova, container, false);
+        View view = inflater.inflate(R.layout.fragment_hamburger_menu, container, false);
         closeLayout = view.findViewById(R.id.closeLayout);
         hamburger_home = view.findViewById(R.id.hamburger_home);
         close_hamburger= view.findViewById(R.id.close_hamburger);
@@ -35,42 +35,50 @@ public class MenuFragmentProva extends Fragment {
 
         return view;
     }
-/*
-    @Override
-    public void onResume(){
-        super.onResume();
-    }
- */
 
     private void buttonClick(){
-        ignoreTabBar.setOnClickListener(new View.OnClickListener() {
+
+        hamburger_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent i = new Intent(getActivity(), DashboardActivity.class);
+                startActivity(i);
             }
         });
 
         closeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().hide(MenuFragmentProva.this).commit();
-            }
-        });
-
-        hamburger_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), invioProva.class);
-                startActivity(i);
+                getFragmentManager().beginTransaction().hide(HamburgerMenuFragment.this).commit();
             }
         });
 
         close_hamburger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().hide(MenuFragmentProva.this).commit();
+                getFragmentManager().beginTransaction().hide(HamburgerMenuFragment.this).commit();
+            }
+        });
+
+        ignoreTabBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
             }
         });
 
     }
 
+    /*public void ignoreTabBar(View v){
+
+    }
+
+    public void openDashboard(View v){
+        startActivity(new Intent(getActivity(),DashboardActivity.class));
+    }
+
+    public void closeHamburgerMenu(View v){
+        getFragmentManager().beginTransaction().hide(HamburgerMenuFragment.this).commit();
+    }
+
+    */
 }

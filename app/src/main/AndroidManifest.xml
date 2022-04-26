@@ -18,13 +18,10 @@
             android:name=".AddElementActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchViewProva"
-            android:exported="false" />
-        <activity
-            android:name=".wizardcreazione.CreationWizard"
-            android:exported="false" />
-        <activity
             android:name=".wizardpercorso.PercorsoWizard"
+            android:exported="false" />
+        <activity
+            android:name=".DashboardActivity"
             android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -32,11 +29,6 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity
-            android:name=".HamburgerActivity"
-            android:exported="false"
-            android:label="@string/title_activity_hamburger"
-            android:theme="@style/Theme.AlphaTour.NoActionBar" />
         <activity
             android:name=".invioProva"
             android:exported="false" />
@@ -62,22 +54,11 @@
             android:name=".ChangePasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".prova.DashboardActivityProva"
-            android:exported="false" />
-        <activity
             android:name=".calendar.CalendarActivity"
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
-        <!--
- <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        -->
         <activity
             android:name=".UpdateProfileActivity"
             android:exported="false" />
@@ -88,7 +69,7 @@
             android:name=".AddZoneActivity"
             android:exported="false" />
         <activity
-            android:name=".DashboardActivity"
+            android:name=".WelcomeActivity"
             android:exported="false" />
         <activity
             android:name=".ForgotPasswordActivity"
@@ -106,7 +87,7 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".wizardcreazione.CreationWizard"
             android:exported="false" />
     </application>
 

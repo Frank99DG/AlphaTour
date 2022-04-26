@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
+
+import com.example.alphatour.wizardcreazione.CreationWizard;
+import com.example.alphatour.wizardpercorso.PercorsoWizard;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -22,7 +24,7 @@ public class DashboardActivity extends AppCompatActivity {
     private int a=0;
     private NotificationCounter notificationCounter;
     private NotifyFragment myFragment = new NotifyFragment();
-    private MenuFragmentProva myFragmentMenu = new MenuFragmentProva();
+    private HamburgerMenuFragment myFragmentMenu = new HamburgerMenuFragment();
     private Bundle data = new Bundle();
     private FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
     private FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -121,5 +123,13 @@ public class DashboardActivity extends AppCompatActivity {
     public void menu(View view){
         getSupportFragmentManager().beginTransaction().show(myFragmentMenu).commit();
 
+    }
+
+    public void openRouteWizard(View v){
+        startActivity(new Intent(DashboardActivity.this, PercorsoWizard.class));
+    }
+
+    public void openCreationWizard(View v){
+        startActivity(new Intent(DashboardActivity.this, CreationWizard.class));
     }
 }

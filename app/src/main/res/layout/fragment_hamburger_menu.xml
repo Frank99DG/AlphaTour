@@ -10,7 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="210dp"
-        android:orientation="vertical"></LinearLayout>
+        android:orientation="vertical">
+
+
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ignoreTabBar"
@@ -130,7 +133,7 @@
             android:layout_height="30dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="124dp"
-            android:onClick="Home"
+            android:onClick="openDashboard"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ms_default_button_background" />
@@ -141,7 +144,7 @@
             android:layout_height="40dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="10dp"
-            android:onClick="close_hamburger"
+            android:onClick="closeHamburgerMenu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ms_ic_chevron_left" />
