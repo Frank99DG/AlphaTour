@@ -13,10 +13,10 @@ import android.widget.TextView;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    // public static final String AGE = "AGE";
-    //  public static final String N_NOTIFY = "N_NOTIFY";
-
+    public static final String AGE = "AGE";
+    public static final String N_NOTIFY = "N_NOTIFY";
     private static final String KEY_COUNTER="KEY_COUNTER";
+
     private TextView ageText;
     private int n_notify;
     private int a=0;
@@ -32,18 +32,19 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-/*
+
+
         if (savedInstanceState != null) {
             //Restore the fragment's instance
            // myFragment = (NotifyFragment) getSupportFragmentManager().getFragment(savedInstanceState, "myFragmentName");
         }
-         Intent i = getIntent();
+
+        Intent i = getIntent();
         n_notify = i.getIntExtra(N_NOTIFY,0);
-        ageText.setText("Counter is: "+n_notify);
+       // ageText.setText("Counter is: "+n_notify);
 
- */
 
-        ageText = findViewById(R.id.mAge2);
+       // ageText = findViewById(R.id.mAge2);
         notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
         ft.replace(R.id.container,myFragment).hide(myFragment).commit();
         fragmentTransaction.replace(R.id.menu,myFragmentMenu).hide(myFragmentMenu).commit();
