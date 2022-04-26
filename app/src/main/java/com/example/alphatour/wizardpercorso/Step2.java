@@ -51,7 +51,6 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     private FirebaseFirestore db;
     private ProgressBar loadingbar;
     private List<View> deleteView = new ArrayList<View>();
-    private Button btn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,20 +60,8 @@ public class Step2 extends Fragment implements Step, BlockingStep {
         list_zone = view.findViewById(R.id.list_zone);
         title_Step2 = view.findViewById(R.id.title_step2);
         loadingbar=view.findViewById(R.id.zoneLoadingBar);
-        btn=view.findViewById(R.id.button3);
-
 
         db = FirebaseFirestore.getInstance();
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent= new Intent(getContext(),PercorsoWizard.class);
-                intent.putExtra("val",1);
-                startActivity(intent);
-
-            }
-        });
 
         return view;
     }
@@ -144,11 +131,16 @@ public class Step2 extends Fragment implements Step, BlockingStep {
                 }
             });
 
+
         }else{
 
         }
 
+
+
         }
+
+
 
 
     @Override
@@ -172,6 +164,15 @@ public class Step2 extends Fragment implements Step, BlockingStep {
 
     @Override
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
+
+        for(int i= 0;i<arrayZone.size();i++){
+            arrayZone.get(i).setChecked(false,false);
+        }
+
+        for(int i =0; i< arrayZone.size();i++){
+            list_zone.removeView(deleteView.get(i));
+
+        }
         callback.goToPrevStep();
     }
 
@@ -179,6 +180,7 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     @Override
     public VerificationError verifyStep() {
         VerificationError error=null;
+
         for(int i=0; i<arrayZone.size(); i++){
             if (!arrayZone.get(i).isChecked()) {
                 control=false;
@@ -190,7 +192,9 @@ public class Step2 extends Fragment implements Step, BlockingStep {
             }
         }
         if(control==false) error =new VerificationError("Seleziona una zona di partenza");
+
         return error;
+
     }
 
     @Override

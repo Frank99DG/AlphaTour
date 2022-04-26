@@ -16,6 +16,7 @@ public class PercorsoWizard extends AppCompatActivity {
     StepperLayout stepperLayout;
     Button button;
     private StepAdapter stepAdapter;
+    private int i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class PercorsoWizard extends AppCompatActivity {
        // button=findViewById(R.id.buttonShare);
 
         Intent intent=getIntent();
+        i= intent.getIntExtra("val",-1);
 
         if(intent.getIntExtra("val",-1)==-1) {
 
@@ -34,7 +36,7 @@ public class PercorsoWizard extends AppCompatActivity {
         }else{
             stepAdapter = new StepperAdapterWizard(getSupportFragmentManager(), getApplicationContext());
             stepperLayout.setAdapter(stepAdapter);
-            stepperLayout.setCurrentStepPosition(3);
+            stepperLayout.setCurrentStepPosition(i);
         }
 
 

@@ -1,6 +1,7 @@
 package com.example.alphatour.wizardpercorso;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -48,6 +49,8 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     private Button dialog_avanti,dialog_aggiungizona;
     private List<View> togliview = new ArrayList<View>();
     private FirebaseFirestore db;
+    private Button addZone;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,7 +58,9 @@ public class Step3 extends Fragment implements Step, BlockingStep {
        View view =inflater.inflate(R.layout.fragment_step3, container, false);
        stringaa = (TextView) view.findViewById(R.id.zone_selected);
        list_object = view.findViewById(R.id.list_object);
-        db = FirebaseFirestore.getInstance();
+       addZone=view.findViewById(R.id.addZone);
+
+       db = FirebaseFirestore.getInstance();
 
        dialog=new Dialog(getContext());
        dialog.setContentView(R.layout.dialog_step3);
@@ -67,7 +72,14 @@ public class Step3 extends Fragment implements Step, BlockingStep {
        dialog_aggiungizona = dialog.findViewById(R.id.btn_aggiungiZona);
 
 
-
+        addZone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(getContext(),PercorsoWizard.class);
+                intent.putExtra("val",3);
+                startActivity(intent);
+            }
+        });
 
         return view;
 
@@ -151,7 +163,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     public VerificationError verifyStep() {
         VerificationError error=null;
         control=false;
-
+/*
         for(int a=0; a<arrayMonumenti.size();a++){              //ciclo per contare quanti sono checkati
             if(arrayMonumenti.get(a).isChecked()){
                 oggetti_scelti.add(arrayMonumenti.get(a));
@@ -162,6 +174,8 @@ public class Step3 extends Fragment implements Step, BlockingStep {
             error =new VerificationError("Seleziona almeno un oggetto");
             return error;
         } else return null;
+
+ */return null;
     }
 
     @Override

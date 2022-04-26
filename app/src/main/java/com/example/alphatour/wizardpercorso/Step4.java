@@ -9,12 +9,23 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.devzone.checkabletextview.CheckableTextView;
+import com.devzone.checkabletextview.CheckedListener;
 import com.example.alphatour.R;
+import com.example.alphatour.oggetti.Zone;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
+
+import java.util.List;
 
 public class Step4 extends Fragment implements Step, BlockingStep {
 
@@ -22,8 +33,15 @@ public class Step4 extends Fragment implements Step, BlockingStep {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_step4, container, false);
+        View view = inflater.inflate(R.layout.fragment_step4, container, false);
+
+
+        return view;
     }
+
+
+
+
 
     @Nullable
     @Override
