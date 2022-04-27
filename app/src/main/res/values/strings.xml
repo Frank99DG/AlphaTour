@@ -226,5 +226,6 @@
     <string name="string_step2">Da quale stanza vuoi cominciare il percorso?</string>
     <string name="string_step3">Seleziona gli oggetti che vuoi visitare</string>
     <string name="addzone_step3">Aggiungi un altra zona</string>
+    <string name="title_step3">Creazione del percorso</string>
 
 </resources>

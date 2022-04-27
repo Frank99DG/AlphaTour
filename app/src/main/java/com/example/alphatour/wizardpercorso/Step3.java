@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.devzone.checkabletextview.CheckableTextView;
 import com.example.alphatour.R;
 import com.example.alphatour.oggetti.ElementString;
-import com.example.alphatour.oggetti.Zone;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -39,14 +38,14 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     private boolean control= false;
     private LinearLayout list_object;
     private String stringa;
-    private TextView stringaa;
-    private String[] oggetti_zona1={"monumento 1","monumento 2", "monumento 3"};
+    private TextView zone_selected;
+    private String[] oggetti_zona1;
     private String[] oggetti_zona2={"monumento 4","monumento 5", "monumento 6"};
     private String[] oggetti_zona3={"monumento 7","monumento 8", "monumento 9"};
     private List<CheckableTextView> oggetti_scelti = new ArrayList<CheckableTextView>();;
     private List<CheckableTextView> arrayMonumenti = new ArrayList<CheckableTextView>();
     private Dialog dialog;
-    private Button dialog_avanti,dialog_aggiungizona;
+    private Button dialog_indietro,dialog_aggiungizona;
     private List<View> togliview = new ArrayList<View>();
     private FirebaseFirestore db;
     private Button addZone;
@@ -56,7 +55,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
        View view =inflater.inflate(R.layout.fragment_step3, container, false);
-       stringaa = (TextView) view.findViewById(R.id.zone_selected);
+       zone_selected = (TextView) view.findViewById(R.id.zone_selected);
        list_object = view.findViewById(R.id.list_object);
        addZone=view.findViewById(R.id.addZone);
 
@@ -66,9 +65,9 @@ public class Step3 extends Fragment implements Step, BlockingStep {
        dialog.setContentView(R.layout.dialog_step3);
        dialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroun_dialog));
        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-       dialog.setCancelable(false);
+       dialog.setCancelable(true);
        dialog.getWindow().getAttributes().windowAnimations=R.style.DialogAnimation;
-       dialog_avanti = dialog.findViewById(R.id.btn_avanti);
+       dialog_indietro = dialog.findViewById(R.id.btn_indietro);
        dialog_aggiungizona = dialog.findViewById(R.id.btn_aggiungiZona);
 
 
@@ -102,7 +101,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-            stringaa.setText(Step2.getStringa_scelta());
+            zone_selected.setText(Step2.getStringa_scelta());
             String scelta = Step2.getStringa_scelta();
 
             db.collection("Zones")
@@ -209,15 +208,12 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
         //getFragmentManager().beginTransaction().detach(this).attach(new Fragment()).commit();
         dialog.show();
-        dialog_avanti.setOnClickListener(new View.OnClickListener() {
+        dialog_indietro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
-                for(int i =0; i< arrayMonumenti.size();i++){
+                for(int i =0; i< arrayMonumenti.size();i++) {
                     list_object.removeView(togliview.get(i));
-
-                }for(int i =0; i<oggetti_scelti.size();i++){
-                    oggetti_scelti.remove(i);
                 }
                 callback.goToPrevStep();
             }
@@ -232,7 +228,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
                 }for(int i =0; i<oggetti_scelti.size();i++){
                     oggetti_scelti.remove(i);
                 }
-                stringaa.setText("");
+                zone_selected.setText("");
                 callback.goToPrevStep();
                 dialog.dismiss();
             }

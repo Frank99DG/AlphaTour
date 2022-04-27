@@ -8,13 +8,30 @@
     android:background="@drawable/sfondo"
     android:gravity="center">
 
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="343dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="52dp"
+        android:background="?attr/actionModeBackground"
+        android:gravity="center"
+        android:text="@string/title_step3"
+        android:textAlignment="center"
+        android:textColor="@color/Black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.textfield.TextInputLayout
 
         android:id="@+id/textInputLayout"
         android:layout_width="321dp"
         android:layout_height="59dp"
         android:layout_marginStart="45dp"
-        android:layout_marginBottom="513dp"
+        android:layout_marginBottom="420dp"
         android:background="@drawable/bordi_tondi"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -41,8 +58,8 @@
         android:layout_width="321dp"
         android:layout_height="59dp"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginBottom="428dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="300dp"
         android:background="@drawable/bordi_tondi"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

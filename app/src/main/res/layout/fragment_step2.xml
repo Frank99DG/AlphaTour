@@ -12,10 +12,12 @@
     <TextView
         android:id="@+id/title_step2"
         android:layout_width="343dp"
-        android:layout_height="76dp"
+        android:layout_height="65dp"
         android:layout_marginTop="30dp"
         android:text="@string/string_step2"
         android:textAlignment="center"
+        android:background="?android:attr/fastScrollPreviewBackgroundLeft"
+        android:backgroundTint="@color/CornflowerBlue"
         android:textColor="@color/Black"
         android:textSize="24sp"
         android:textStyle="bold"

@@ -22,9 +22,10 @@
 
     <com.devzone.checkabletextview.CheckableTextView
         android:id="@+id/textZone1"
-        android:layout_width="match_parent"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
+        android:layout_marginLeft="40dp"
         android:background="@android:drawable/editbox_dropdown_light_frame"
         app:ctv_AnimType="scale"
         app:ctv_IconChecked="false"

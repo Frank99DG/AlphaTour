@@ -14,11 +14,13 @@
     <TextView
         android:id="@+id/textView8"
         android:layout_width="343dp"
-        android:layout_height="76dp"
+        android:layout_height="65dp"
         android:layout_marginTop="30dp"
         android:text="@string/string_step3"
         android:textAlignment="center"
         android:textColor="@color/Black"
+        android:background="?android:attr/fastScrollPreviewBackgroundLeft"
+        android:backgroundTint="@color/CornflowerBlue"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,6 +38,7 @@
         android:backgroundTint="@color/Black"
         android:text="@string/addzone_step3"
         android:textColor="@color/black"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
