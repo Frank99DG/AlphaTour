@@ -34,7 +34,7 @@ public class Step5 extends Fragment  {
         closeLayout = view.findViewById(R.id.closeLayout);
 
         buttonClick();
-        return inflater.inflate(R.layout.fragment_step5, container, false);
+        return view;
 
     }
 
