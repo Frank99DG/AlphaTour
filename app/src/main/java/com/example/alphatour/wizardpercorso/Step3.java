@@ -75,7 +75,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(getContext(),PercorsoWizard.class);
-                intent.putExtra("val",3);
+                intent.putExtra("val",1);
                 startActivity(intent);
             }
         });
@@ -162,7 +162,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     public VerificationError verifyStep() {
         VerificationError error=null;
         control=false;
-/*
+
         for(int a=0; a<arrayMonumenti.size();a++){              //ciclo per contare quanti sono checkati
             if(arrayMonumenti.get(a).isChecked()){
                 oggetti_scelti.add(arrayMonumenti.get(a));
@@ -172,9 +172,8 @@ public class Step3 extends Fragment implements Step, BlockingStep {
         if (control==false) {
             error =new VerificationError("Seleziona almeno un oggetto");
             return error;
-        } else return null;
+        } return null;
 
- */return null;
     }
 
     @Override
@@ -207,6 +206,12 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     @Override
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
         //getFragmentManager().beginTransaction().detach(this).attach(new Fragment()).commit();
+        for(int i =0; i< arrayMonumenti.size();i++) {
+            list_object.removeView(togliview.get(i));
+        }
+        callback.goToPrevStep();
+    }
+    /*
         dialog.show();
         dialog_indietro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -235,4 +240,8 @@ public class Step3 extends Fragment implements Step, BlockingStep {
         });
         Step2.setTitle_Step2("Seleziona la zona che vuoi visitare");
     }
+
+
+     */
+
 }

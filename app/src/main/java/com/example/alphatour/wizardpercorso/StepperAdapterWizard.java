@@ -63,7 +63,7 @@ public class StepperAdapterWizard extends AbstractFragmentStepAdapter {
                 builder
                         .setTitle(R.string.choose_object)
                         .setEndButtonLabel(R.string.next)
-                        .setBackButtonLabel("Indietro\nAggiungi zona");
+                        .setBackButtonLabel("Indietro");
 
                 break;
             case 3:

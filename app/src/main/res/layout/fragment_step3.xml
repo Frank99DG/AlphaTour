@@ -38,7 +38,6 @@
         android:backgroundTint="@color/Black"
         android:text="@string/addzone_step3"
         android:textColor="@color/black"
-        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

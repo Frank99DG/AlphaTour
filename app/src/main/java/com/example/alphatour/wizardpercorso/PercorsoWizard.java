@@ -25,14 +25,11 @@ public class PercorsoWizard extends AppCompatActivity {
 
         stepperLayout=findViewById(R.id.stepperLayout);
        // button=findViewById(R.id.buttonShare);
-/*
+
         Intent intent=getIntent();
         i= intent.getIntExtra("val",-1);
 
         if(intent.getIntExtra("val",-1)==-1) {
-
-
-
             stepAdapter = new StepperAdapterWizard(getSupportFragmentManager(), getApplicationContext());
             stepperLayout.setAdapter(stepAdapter);
         }else{
@@ -40,11 +37,9 @@ public class PercorsoWizard extends AppCompatActivity {
             stepperLayout.setAdapter(stepAdapter);
             stepperLayout.setCurrentStepPosition(i);
         }
-*/
+
         stepAdapter = new StepperAdapterWizard(getSupportFragmentManager(), getApplicationContext());
         stepperLayout.setAdapter(stepAdapter);
-
-
 
     }
 
