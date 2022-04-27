@@ -18,10 +18,10 @@
             android:name=".AddElementActivity"
             android:exported="false" />
         <activity
-            android:name=".wizardpercorso.PercorsoWizard"
+            android:name=".DashboardActivity"
             android:exported="false" />
         <activity
-            android:name=".DashboardActivity"
+            android:name=".wizardpercorso.PercorsoWizard"
             android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />

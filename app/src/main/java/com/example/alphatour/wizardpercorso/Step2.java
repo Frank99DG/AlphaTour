@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +52,8 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     private FirebaseFirestore db;
     private ProgressBar loadingbar;
     private List<View> deleteView = new ArrayList<View>();
+    Button callFragment;
+    private Step5 step5_fragment = new Step5();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,7 +64,21 @@ public class Step2 extends Fragment implements Step, BlockingStep {
         title_Step2 = view.findViewById(R.id.title_step2);
         loadingbar=view.findViewById(R.id.zoneLoadingBar);
 
+
         db = FirebaseFirestore.getInstance();
+
+        getFragmentManager().beginTransaction().replace(R.id.riepilogo,step5_fragment).hide(step5_fragment).commit();
+
+        callFragment =view.findViewById(R.id.call_fragment);
+        callFragment.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().beginTransaction().show(step5_fragment).commit();
+
+            }
+        });
+
 
         return view;
     }
@@ -220,4 +237,16 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     public static String getStringa_scelta() {
         return stringa_scelta;
     }
+
+/*
+    @Override
+    public void onClick(View view) {
+        if (view.getId()==R.id.call_fragment){
+            getFragmentManager().beginTransaction().replace(R.id.container,new Step5()).commit();
+
+        }
+
+    }
+ */
+
 }

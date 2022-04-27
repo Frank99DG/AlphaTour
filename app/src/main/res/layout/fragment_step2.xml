@@ -9,6 +9,22 @@
     android:gravity="center">
 
 
+    <Button
+        android:id="@+id/call_fragment"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="18dp"
+        android:background="@drawable/ic_nodes"
+        android:onClick="this"
+        app:layout_constraintBottom_toTopOf="@+id/title_step2"
+        app:layout_constraintEnd_toStartOf="@+id/title_step2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="OnClick,SpeakableTextPresentCheck" />
+
     <TextView
         android:id="@+id/title_step2"
         android:layout_width="343dp"
@@ -54,5 +70,16 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <FrameLayout
+        android:id="@+id/riepilogo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
