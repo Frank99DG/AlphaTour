@@ -15,7 +15,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="52dp"
-        android:background="?attr/actionModeBackground"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
         android:gravity="center"
         android:text="@string/title_step3"
         android:textAlignment="center"

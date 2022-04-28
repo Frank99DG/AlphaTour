@@ -44,19 +44,6 @@
         android:onClick="this"
         tools:ignore="OnClick,SpeakableTextPresentCheck" />
 
-    <Button
-        android:id="@+id/addZone"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="192dp"
-        android:layout_marginBottom="36dp"
-        android:background="@android:drawable/gallery_thumb"
-        android:backgroundTint="@color/Black"
-        android:text="@string/addzone_step3"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"

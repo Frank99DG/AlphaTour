@@ -149,16 +149,11 @@ public class Step2 extends Fragment implements Step, BlockingStep {
             });
 
 
-        }else{
+            }else{
 
         }
 
-
-
-        }
-
-
-
+    }
 
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
@@ -170,13 +165,11 @@ public class Step2 extends Fragment implements Step, BlockingStep {
         for(int i =0; i< arrayZone.size();i++){
             list_zone.removeView(deleteView.get(i));
 
-        }
+        }  callback.goToNextStep();
 
         /*for(int i =0; i<oggetti_scelti.size();i++){
             oggetti_scelti.remove(i);
         }*/
-
-        callback.goToNextStep();
     }
 
     @Override
@@ -220,6 +213,14 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     }
 
 
+    public static void setTitle_Step2(String title_Step2) {
+        Step2.title_Step2.setText(title_Step2);
+    }
+
+    public static String getStringa_scelta() {
+        return stringa_scelta;
+    }
+
     @Override
     public void onSelected() {
 
@@ -228,14 +229,6 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     @Override
     public void onCompleteClicked(StepperLayout.OnCompleteClickedCallback callback) {
 
-    }
-
-    public static void setTitle_Step2(String title_Step2) {
-        Step2.title_Step2.setText(title_Step2);
-    }
-
-    public static String getStringa_scelta() {
-        return stringa_scelta;
     }
 
 /*
