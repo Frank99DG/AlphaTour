@@ -29,6 +29,22 @@
 
 
     <Button
+        android:id="@+id/call_fragment2"
+        android:layout_width="64dp"
+        android:layout_height="69dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="3dp"
+        android:background="@drawable/ic_major"
+        app:layout_constraintBottom_toTopOf="@+id/textView8"
+        app:layout_constraintEnd_toStartOf="@+id/textView8"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:onClick="this"
+        tools:ignore="OnClick,SpeakableTextPresentCheck" />
+
+    <Button
         android:id="@+id/addZone"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -74,5 +90,12 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <FrameLayout
+        android:id="@+id/riepilogo2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,6 +49,9 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     private List<View> togliview = new ArrayList<View>();
     private FirebaseFirestore db;
     private Button addZone;
+    Button callFragment;
+    private Step5 step5_fragment = new Step5();
+
 
 
     @Override
@@ -69,6 +72,17 @@ public class Step3 extends Fragment implements Step, BlockingStep {
        dialog.getWindow().getAttributes().windowAnimations=R.style.DialogAnimation;
        dialog_indietro = dialog.findViewById(R.id.btn_indietro);
        dialog_aggiungizona = dialog.findViewById(R.id.btn_aggiungiZona);
+
+       getFragmentManager().beginTransaction().replace(R.id.riepilogo2,step5_fragment).hide(step5_fragment).commit();
+        callFragment =view.findViewById(R.id.call_fragment2);
+        callFragment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().beginTransaction().show(step5_fragment).commit();
+            }
+        });
+
+
 
 
         addZone.setOnClickListener(new View.OnClickListener() {
