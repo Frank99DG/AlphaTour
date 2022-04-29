@@ -16,8 +16,8 @@
         android:layout_width="343dp"
         android:layout_height="65dp"
         android:layout_marginTop="30dp"
-        android:background="?android:attr/fastScrollPreviewBackgroundLeft"
-        android:backgroundTint="@color/CornflowerBlue"
+        android:background="?android:attr/autofilledHighlight"
+        android:backgroundTint="@color/CadetBlue"
         android:text="@string/string_step3"
         android:textAlignment="center"
         android:textColor="@color/Black"
@@ -81,7 +81,8 @@
     <FrameLayout
         android:id="@+id/riepilogo2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="1dp">
 
     </FrameLayout>
 

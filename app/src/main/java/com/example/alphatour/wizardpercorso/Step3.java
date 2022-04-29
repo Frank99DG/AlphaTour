@@ -39,20 +39,15 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     private LinearLayout list_object;
     private String stringa;
     private TextView zone_selected;
-    private String[] oggetti_zona1;
-    private String[] oggetti_zona2 = {"monumento 4", "monumento 5", "monumento 6"};
-    private String[] oggetti_zona3 = {"monumento 7", "monumento 8", "monumento 9"};
     private List<CheckableTextView> oggetti_scelti = new ArrayList<CheckableTextView>();
-    ;
+    private List<String> zone_scelte = new ArrayList<String>();
     private List<CheckableTextView> arrayMonumenti = new ArrayList<CheckableTextView>();
+    private List<View> delete_view = new ArrayList<View>();
     private Dialog dialog;
     private Button dialog_avanti, dialog_aggiungizona;
-    private List<View> togliview = new ArrayList<View>();
     private FirebaseFirestore db;
-    private Button addZone;
     private Button callFragment;
     private Step5 step5_fragment = new Step5();
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -116,8 +111,9 @@ public class Step3 extends Fragment implements Step, BlockingStep {
                                                             CheckableTextView textZone1 = (CheckableTextView) object.findViewById(R.id.textZone1);
 
                                                             textZone1.setText(element.getTitle());
+
                                                             arrayMonumenti.add(textZone1);
-                                                            togliview.add(object);
+                                                            delete_view.add(object);
                                                             list_object.addView(object);
 
                                                         }
@@ -140,13 +136,14 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
 
+        zone_scelte.add(Step2.getStringa_scelta());                                       //salvataggio della zona scelta
         dialog.show();
         dialog_avanti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
                 for (int i = 0; i < arrayMonumenti.size(); i++) {
-                    list_object.removeView(togliview.get(i));
+                    list_object.removeView(delete_view.get(i));
                 }
                 callback.goToNextStep();
             }
@@ -156,13 +153,8 @@ public class Step3 extends Fragment implements Step, BlockingStep {
             @Override
             public void onClick(View view) {
                 for (int i = 0; i < arrayMonumenti.size(); i++) {
-                    list_object.removeView(togliview.get(i));
-
+                    list_object.removeView(delete_view.get(i));
                 }
-                for (int i = 0; i < oggetti_scelti.size(); i++) {
-                    oggetti_scelti.remove(i);
-                }
-                zone_selected.setText("");
                 Intent intent = new Intent(getContext(), PercorsoWizard.class);
                 intent.putExtra("val", 1);
                 startActivity(intent);
@@ -176,7 +168,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
         //getFragmentManager().beginTransaction().detach(this).attach(new Fragment()).commit();
         for(int i =0; i< arrayMonumenti.size();i++) {
-            list_object.removeView(togliview.get(i));
+            list_object.removeView(delete_view.get(i));
         }
         callback.goToPrevStep();
     }
@@ -190,7 +182,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
 
         for (int a = 0; a < arrayMonumenti.size(); a++) {              //ciclo per contare quanti sono checkati
             if (arrayMonumenti.get(a).isChecked()) {
-                oggetti_scelti.add(arrayMonumenti.get(a));
+                oggetti_scelti.add(arrayMonumenti.get(a));                          //salvataggio degli oggetti scelti
                 control = true;
             }
         }

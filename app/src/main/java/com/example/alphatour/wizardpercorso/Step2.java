@@ -52,7 +52,7 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     private FirebaseFirestore db;
     private ProgressBar loadingbar;
     private List<View> deleteView = new ArrayList<View>();
-    Button callFragment;
+    private Button callFragment;
     private Step5 step5_fragment = new Step5();
 
     @Override
