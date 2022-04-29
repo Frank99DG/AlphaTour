@@ -1,30 +1,101 @@
 <resources>
     <string name="app_name">AlphaTour</string>
-    <string name="frase_apertura">Your tour at your fingertips</string>
+    <string name="opening_phrase">Your tour at your fingertips</string>
     <string name="email_address">Email</string>
     <string name="password">Password</string>
-    <string name="accedi">Sign in</string>
-    <string name="registrati">Sign up</string>
-    <string name="password_dimenticata">FORGOT PASSWORD?</string>
-    <string name="alternativa">OR SIGN IN WITH</string>
-    <string name="nuovo_utente">Don´t have an account?</string>
-    <string name="login_fallito">Login failed! Wrong email or / and password</string>
-    <string name="registrazione_utente">User registration</string>
-    <string name="dati_personali">Personal data</string>
-    <string name="dati_account">Account data</string>
-    <string name="nome">Name</string>
-    <string name="cognome">Surname</string>
-    <string name="data_nascita">Bitrh date</string>
+    <string name="login">Login</string>
+    <string name="sign_in">Sign in</string>
+    <string name="forgot_password">FORGOT PASSWORD?</string>
+    <string name="password_recovery_comment">Enter your account email below to reset your password.</string>
+    <string name="send_email">Send email</string>
+    <string name="check_email">Check your email to reset your password </string>
+    <string name="generic_error">Try again! Something went wrong</string>
+    <string name="alternative">SIGN IT WITH</string>
+    <string name="new_user">Don t have an account?</string>
+    <string name="login_failed">Login failed! Wrong email or / and password</string>
+    <string name="user_registration">User registration</string>
+    <string name="personal_data">Personal Data</string>
+    <string name="account_data">Account Data</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="birth_date">Birth date</string>
     <string name="username">Username</string>
-    <string name="campo_obbligatorio">The field cannot be empty</string>
-    <string name="username_esistente">Username not available</string>
-    <string name="username_vincoli">Use 4 or more characters</string>
-    <string name="email_esistente">E-mail already registered</string>
-    <string name="email_non_valida">Invalid email</string>
-    <string name="password_vincoli">Use 8 or more characters with combinations of letters, numbers and symbols</string>
-    <string name="crea_account">Create account</string>
-    <string name="registrazione_completata">Registration completed</string>
-    <string name="registrazione_fallita">Registration failed </string>
+    <string name="required_field">The field cannot be empty</string>
+    <string name="existing_username">Username not available</string>
+    <string name="username_constraints">Use 4 or more characters</string>
+    <string name="existing_email">E-mail already registered</string>
+    <string name="invalid_email">Invalid email</string>
+    <string name="password_constraints">Invalid email</string>
+    <string name="create_account">Create an account</string>
+    <string name="registration_completed">Complete registration</string>
+    <string name="registration_failed">Failed registrazion</string>
+    <string name="museum">Musum</string>
+    <string name="fair">Fair</string>
+    <string name="archaeological_site">Archaeological Site</string>
+    <string name="museum_exhibition">Museum Exhibition</string>
+    <!--activity_dashboard_curatore(des)start-->
+    <string name="txt_view_String">ALPHATOUR</string>
+    <string name="tv_route">CREATE PATH</string>
+    <string name="tv_place">CREATE A PLACE</string>
+    <string name="tv_calendar">CALENDAR</string>
+    <string name="tv_update">MODIFY LUOGO</string>
+    <string name="tb_profile">PROFIL</string>
+    <string name="tb_home">HOME</string>
+    <string name="tb_routes">MY ROUTE</string>
+    <string name="im_view"> </string>
+    <string name="search">Search</string>
+    <!--activity_dashboard_curatore(des)end-->
+
+    <string-array name="event_type">
+        <item>Museum</item>
+        <item>Museum Exhibition</item>
+        <item>Archaeological Site</item>
+        <item>Fair</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="back" translatable="false"><![CDATA[<-]]></string>
+    <string name="forward" translatable="false"><![CDATA[->]]></string>
+    <string name="open">Apri</string>
+    <string name="close">Chiudi</string>
+
+    <string name="current_password">Current Password*</string>
+    <string name="new_password">New Password*</string>
+    <string name="current_password_hint">Current Password</string>
+    <string name="new_password_hint">New Password</string>
+    <string name="change_password">Change Password</string>
+    <string name="profile_data_view_error">Something went wrong! User data is not available </string>
+    <string name="password_required">Required Password</string>
+    <string name="password_required_set_error">Please enter your current password to authenticate</string>
+    <string name="new_password_required_set_error">Please enter the new password</string>
+    <string name="authentication_completed">You are successfully authenticated, you can now change your password!</string>
+
+    <string name="new_same_password">The entered password is the same as the current one!</string>
+    <string name="password_changed">The password has been changed!</string>
+    <string name="photo_button">Add photos</string>
+    <string name="upload_photo">Photo successfully added!</string>
+
+    <string name="title_activity_dashboard">dashboardActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+
+    <string name="qr_generator">Your code will appear here</string>
+    <string name="qr_embedded">Add the object name to be included in the QR Code</string>
+    <string name="qr_generate">Genera QR Code</string>
+    <string name="qr_data_missing">Please enter the code to generate the QR Code</string>
+    <string name="scann_data">The scanned data will appear here</string>
+    <string name="modify_object">Modify Odject</string>
+    <string name="title_activity_hamburger">HamburgerActivity</string>
+    <string name="profile">Profil</string>
     <string name="date">Date</string>
     <string name="weekly">Weekly</string>
     <string name="monday">MON</string>
@@ -35,4 +106,126 @@
     <string name="saturday">SAT</string>
     <string name="sunday">SUN</string>
     <string name="new_event">New Event</string>
+
+    <string name="dashboard_button_back">Back to the dashboard</string>
+    <string name="zones_button_next">Create Zone</string>
+    <string name="place_button_back">Back place data</string>
+    <string name="objects_button_next">Create Objects</string>
+    <string name="zones_button_back">Back to Create Objects</string>
+    <string name="constraints_button_next">Create Constraints</string>
+    <string name="objects_button_back">Back to Create Objects</string>
+    <string name="button_complete">Complete</string>
+    <string name="title_creation_1">Create Place</string>
+    <string name="title_creation_2">Create Zone</string>
+    <string name="title_creation_3">Create Oblects</string>
+    <string name="title_creation_4">Create Constraints</string>
+
+
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+    <string name="select_zone">Belonging Zone</string>
+
+    <string name="name_path">Insert route name</string>
+    <string name="description_path">IInsert route description</string>
+    <string name="create_path">Create Route </string>
+    <string name="choose_zone">Choose Zone</string>
+    <string name="choose_object">Choose Objects</string>
+    <string name="review_path">Review Route</string>
+    <string name="next">Next</string>
+    <string name="end">End</string>
+    <string name="backTo_path">Back to create route </string>
+    <string name="backTo_zone">Back to choose zone </string>
+
+    <string name="string_step2">Select the area you want to visit </string>
+    <string name="string_step3">Select the objects you want to visit</string>
+    <string name="addzone_step3">Add new zone</string>
+    <string name="title_step3">Create your route</string>
+
 </resources>

@@ -65,7 +65,7 @@
       android:layout_height="33dp"
       android:layout_marginTop="20dp"
       android:layout_marginEnd="36dp"
-      android:entries="@array/tipo_evento"
+      android:entries="@array/event_type"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/eventoInputCittà"
       tools:ignore="TouchTargetSizeCheck" />

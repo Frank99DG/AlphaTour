@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.alphatour.qrcode.GenerateQrCodeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -80,20 +79,20 @@ public class LoginActivity extends AppCompatActivity {
         Boolean errorFlag = false;
 
         if (Email.isEmpty()) {
-            email.setError(getString(R.string.campo_obbligatorio));
+            email.setError(getString(R.string.required_field));
             email.requestFocus();
             errorFlag = true;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
-            email.setError(getString(R.string.email_non_valida));
+            email.setError(getString(R.string.invalid_email));
             email.requestFocus();
             errorFlag = true;
         }
 
 
         if (Password.isEmpty()) {
-            password.setError(getString(R.string.campo_obbligatorio));
+            password.setError(getString(R.string.required_field));
             password.requestFocus();
             errorFlag = true;
         }
@@ -128,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
                                     loadingBar.setVisibility(View.GONE);
 
                             } else {
-                                Toast.makeText(LoginActivity.this, getString(R.string.login_fallito), Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivity.this, getString(R.string.login_failed), Toast.LENGTH_LONG).show();
                                 loadingBar.setVisibility(View.GONE);
                             }
 

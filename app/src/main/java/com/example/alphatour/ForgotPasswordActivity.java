@@ -39,13 +39,13 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         Boolean errorFlag = false;
 
         if (Email.isEmpty()) {
-            email.setError(getString(R.string.campo_obbligatorio));
+            email.setError(getString(R.string.required_field));
             email.requestFocus();
             errorFlag = true;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
-            email.setError(getString(R.string.email_non_valida));
+            email.setError(getString(R.string.invalid_email));
             email.requestFocus();
             errorFlag = true;
         }
@@ -71,10 +71,10 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        Toast.makeText(ForgotPasswordActivity.this, getString(R.string.controlla_email), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ForgotPasswordActivity.this, getString(R.string.check_email), Toast.LENGTH_SHORT).show();
                         loadingBar.setVisibility(View.GONE);
                     } else {
-                        Toast.makeText(ForgotPasswordActivity.this, getString(R.string.errore_generico), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ForgotPasswordActivity.this, getString(R.string.generic_error), Toast.LENGTH_SHORT).show();
                         loadingBar.setVisibility(View.GONE);
                     }
                 }

@@ -1,38 +1,38 @@
 <resources>
     <string name="app_name">AlphaTour</string>
-    <string name="frase_apertura">Il tuo tour a portata di mano</string>
+    <string name="opening_phrase">Il tuo tour a portata di mano</string>
     <string name="email_address">Email</string>
     <string name="password">Password</string>
-    <string name="accedi">Accedi</string>
-    <string name="registrati">Registrati</string>
-    <string name="password_dimenticata">PASSWORD DIMENTICATA?</string>
-    <string name="commento_recupero_password">Inserisci l’email del tuo account di seguito per ripristinare la tua password.</string>
-    <string name="invia_email">Invia email</string>
-    <string name="controlla_email">Controlla la tua email per ripristinare la tua password </string>
-    <string name="errore_generico">Prova di nuovo! Qualcosa è andato storto</string>
-    <string name="alternativa">O ACCEDI CON</string>
-    <string name="nuovo_utente">Non possiedi un account?</string>
-    <string name="login_fallito">Acesso fallito! Email o/e password errate</string>
-    <string name="registrazione_utente">Registrazione utente</string>
-    <string name="dati_personali">Dati personali</string>
-    <string name="dati_account">Dati account</string>
-    <string name="nome">Nome</string>
-    <string name="cognome">Cognome</string>
-    <string name="data_nascita">Data di nascita</string>
+    <string name="login">Accedi</string>
+    <string name="sign_in">Registrati</string>
+    <string name="forgot_password">PASSWORD DIMENTICATA?</string>
+    <string name="password_recovery_comment">Inserisci l’email del tuo account di seguito per ripristinare la tua password.</string>
+    <string name="send_email">Invia email</string>
+    <string name="check_email">Controlla la tua email per ripristinare la tua password </string>
+    <string name="generic_error">Prova di nuovo! Qualcosa è andato storto</string>
+    <string name="alternative">O ACCEDI CON</string>
+    <string name="new_user">Non possiedi un account?</string>
+    <string name="login_failed">Acesso fallito! Email o/e password errate</string>
+    <string name="user_registration">Registrazione utente</string>
+    <string name="personal_data">Dati personali</string>
+    <string name="account_data">Dati account</string>
+    <string name="name">Nome</string>
+    <string name="surname">Cognome</string>
+    <string name="birth_date">Data di nascita</string>
     <string name="username">Username</string>
-    <string name="campo_obbligatorio">Il campo non può essere vuoto</string>
-    <string name="username_esistente">Username non disponibile</string>
-    <string name="username_vincoli">Utilizzare 4 o più caratteri</string>
-    <string name="email_esistente">E-mail già registrata</string>
-    <string name="email_non_valida">E-mail non valida</string>
-    <string name="password_vincoli">Utilizzare 8 o più caratteri con combinazioni di lettere, numeri e simboli</string>
-    <string name="crea_account">Crea account</string>
-    <string name="registrazione_completata">Registrazione completata</string>
-    <string name="registrazione_fallita">Registrazione fallita</string>
-    <string name="museo">Museo</string>
-    <string name="fiera">Fiera</string>
-    <string name="sito_archeologico">Sito Archeologico</string>
-    <string name="mostra">Mostra</string>
+    <string name="required_field">Il campo non può essere vuoto</string>
+    <string name="existing_username">Username non disponibile</string>
+    <string name="username_constraints">Utilizzare 4 o più caratteri</string>
+    <string name="existing_email">E-mail già registrata</string>
+    <string name="invalid_email">E-mail non valida</string>
+    <string name="password_constraints">Utilizzare 8 o più caratteri con combinazioni di lettere, numeri e simboli</string>
+    <string name="create_account">Crea account</string>
+    <string name="registration_completed">Registrazione completata</string>
+    <string name="registration_failed">Registrazione fallita</string>
+    <string name="museum">Museo</string>
+    <string name="fair">Fiera</string>
+    <string name="archaeological_site">Sito Archeologico</string>
+    <string name="museum_exhibition">Mostra</string>
     <!--activity_dashboard_curatore(des)start-->
     <string name="txt_view_String">ALPHATOUR</string>
     <string name="tv_route">CREA PERCORSO</string>
@@ -46,7 +46,7 @@
     <string name="search">Cerca</string>
     <!--activity_dashboard_curatore(des)end-->
 
-    <string-array name="tipo_evento">
+    <string-array name="event_type">
         <item>Museo</item>
         <item>Mostra</item>
         <item>Sito Archeologico</item>
@@ -59,18 +59,18 @@
     <string name="open">Apri</string>
     <string name="close">Chiudi</string>
 
-    <string name="password_corrente">Password Corrente*</string>
-    <string name="password_nuova">Nuova Password*</string>
-    <string name="password_corrente_hint">Password Corrente</string>
-    <string name="password_nuova_hint">Nuova Password</string>
-    <string name="modifica_passord">Modifica Password</string>
-    <string name="errore_visualizzazione_dati_profilo">Qualcosa è andato storto! I dati dell’utente non sono disponibili </string>
-    <string name="password_necessaria">Password necessaria</string>
-    <string name="password_necessaria_set_error">Per favore inserisci la password attuale per autenticarti</string>
-    <string name="nuova_password_necessaria_set_error">Per favore inserisci la nuova password</string>
-    <string name="riautenticazione_con_successo">Sei autenticato con successo, ora puoi modificare la tua password!</string>
+    <string name="current_password">Password Corrente*</string>
+    <string name="new_password">Nuova Password*</string>
+    <string name="current_password_hint">Password Corrente</string>
+    <string name="new_password_hint">Nuova Password</string>
+    <string name="change_password">Modifica Password</string>
+    <string name="profile_data_view_error">Qualcosa è andato storto! I dati dell’utente non sono disponibili </string>
+    <string name="password_required">Password necessaria</string>
+    <string name="password_required_set_error">Per favore inserisci la password attuale per autenticarti</string>
+    <string name="new_password_required_set_error">Per favore inserisci la nuova password</string>
+    <string name="authentication_completed">Sei autenticato con successo, ora puoi modificare la tua password!</string>
 
-    <string name="nuova_password_uguale">La password inserita è uguale a quella attuale!</string>
+    <string name="new_same_password">La password inserita è uguale a quella attuale!</string>
     <string name="password_changed">La password è stata modificata!</string>
     <string name="photo_button">Aggiungi Foto</string>
     <string name="upload_photo">Foto aggiunta con successo!</string>
@@ -223,7 +223,7 @@
     <string name="backTo_path">Torna a crea percorso </string>
     <string name="backTo_zone">Torna a scelta zona </string>
 
-    <string name="string_step2">Da quale stanza vuoi cominciare il percorso?</string>
+    <string name="string_step2">Seleziona la zona che vuoi visitare</string>
     <string name="string_step3">Seleziona gli oggetti che vuoi visitare</string>
     <string name="addzone_step3">Aggiungi un altra zona</string>
     <string name="title_step3">Creazione del percorso</string>

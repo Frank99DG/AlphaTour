@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -131,7 +130,7 @@ public class ActivityElementDetails extends AppCompatActivity {
         String SensorCode = sensor.getText().toString();
         Element elementModified= new Element();
         if(Title.isEmpty()){
-            title.setError(getString(R.string.campo_obbligatorio));
+            title.setError(getString(R.string.required_field));
             title.requestFocus();
             errorFlag = true;
         }else{
@@ -139,7 +138,7 @@ public class ActivityElementDetails extends AppCompatActivity {
         }
 
         if(Description.isEmpty()){
-            description.setError(getString(R.string.campo_obbligatorio));
+            description.setError(getString(R.string.required_field));
             description.requestFocus();
             errorFlag = true;
         }else{
@@ -156,7 +155,7 @@ public class ActivityElementDetails extends AppCompatActivity {
             }*/
 
         if(SensorCode.isEmpty()){
-            sensor.setError(getString(R.string.campo_obbligatorio));
+            sensor.setError(getString(R.string.required_field));
             sensor.requestFocus();
             errorFlag = true;
         }else{

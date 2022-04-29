@@ -89,7 +89,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
         android:onClick="openForgotPasswordActivity"
-        android:text="@string/password_dimenticata"
+        android:text="@string/forgot_password"
         android:textAlignment="viewStart"
         android:textColor="#8B131111"
         android:textSize="14sp"
@@ -108,7 +108,7 @@
         android:background="@drawable/bordi_tondi_button"
         android:backgroundTint="#655959"
         android:onClick="userLogin"
-        android:text="@string/accedi"
+        android:text="@string/login"
         android:textColor="#CB090808"
         android:textColorHint="#121111"
         android:textStyle="bold"
@@ -123,7 +123,7 @@
         android:layout_width="132dp"
         android:layout_height="20dp"
         android:layout_marginTop="20dp"
-        android:text="@string/alternativa"
+        android:text="@string/alternative"
         android:textAlignment="center"
         android:textColor="#8B131111"
         android:textStyle="bold"
@@ -148,7 +148,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:srcCompat="@drawable/google"
-            android:contentDescription="@string/alternativa" />
+            android:contentDescription="@string/alternative" />
 
         <ImageView
             android:id="@+id/imageFacebook"
@@ -156,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:srcCompat="@drawable/facebook"
-            android:contentDescription="@string/alternativa" />
+            android:contentDescription="@string/alternative" />
     </LinearLayout>
 
     <TextView
@@ -164,7 +164,7 @@
         android:layout_width="227dp"
         android:layout_height="24dp"
         android:layout_marginTop="40dp"
-        android:text="@string/nuovo_utente"
+        android:text="@string/new_user"
         android:textAlignment="center"
         android:textColor="#8B131111"
         android:textSize="16sp"
@@ -179,7 +179,7 @@
          android:layout_height="54dp"
          android:layout_marginTop="4dp"
          android:background="@drawable/bordi_tondi_button"
-         android:text="@string/registrati"
+         android:text="@string/sign_in"
          android:textColor="#CB090808"
          android:textStyle="bold"
          android:onClick="openRegisterActivity"

@@ -157,37 +157,37 @@ public class UpdateProfileActivity extends AppCompatActivity {
         Boolean errorFlag = false;
 
         if(Name.isEmpty()){
-            editName.setError(getString(R.string.campo_obbligatorio));
+            editName.setError(getString(R.string.required_field));
             editName.requestFocus();
             errorFlag = true;
         }
 
         if(Surname.isEmpty()){
-            editSurname.setError(getString(R.string.campo_obbligatorio));
+            editSurname.setError(getString(R.string.required_field));
             editSurname.requestFocus();
             errorFlag = true;
         }
 
         if(DateOfBirth.isEmpty()){
-            editDateOfBirth.setError(getString(R.string.campo_obbligatorio));
+            editDateOfBirth.setError(getString(R.string.required_field));
             editDateOfBirth.requestFocus();
             errorFlag = true;
         }
 
         if(Username.isEmpty()){
-            editUsername.setError(getString(R.string.campo_obbligatorio));
+            editUsername.setError(getString(R.string.required_field));
             editUsername.requestFocus();
             errorFlag = true;
         }
 
         if(Username.length() < 4 ){
-            editUsername.setError(getString(R.string.username_vincoli));
+            editUsername.setError(getString(R.string.username_constraints));
             editUsername.requestFocus();
             errorFlag = true;
         }
 
         if(!Patterns.EMAIL_ADDRESS.matcher(Email).matches()){
-            editEmail.setError(getString(R.string.email_non_valida));
+            editEmail.setError(getString(R.string.invalid_email));
             editEmail.requestFocus();
             errorFlag = true;
         }

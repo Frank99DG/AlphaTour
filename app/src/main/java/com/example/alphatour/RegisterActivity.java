@@ -4,13 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
-import android.app.appsearch.StorageInfo;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -30,8 +28,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.StorageTask;
 
 import java.util.Calendar;
 import java.util.Objects;
@@ -140,43 +136,43 @@ public class RegisterActivity extends AppCompatActivity {
         Boolean errorFlag = false;
 
         if(Name.isEmpty()){
-            name.setError(getString(R.string.campo_obbligatorio));
+            name.setError(getString(R.string.required_field));
             name.requestFocus();
             errorFlag = true;
         }
 
         if(Surname.isEmpty()){
-            surname.setError(getString(R.string.campo_obbligatorio));
+            surname.setError(getString(R.string.required_field));
             surname.requestFocus();
             errorFlag = true;
         }
 
         if(DateBirth.isEmpty()){
-            dateBirth.setError(getString(R.string.campo_obbligatorio));
+            dateBirth.setError(getString(R.string.required_field));
             dateBirth.requestFocus();
             errorFlag = true;
         }
 
         if(Username.isEmpty()){
-            username.setError(getString(R.string.campo_obbligatorio));
+            username.setError(getString(R.string.required_field));
             username.requestFocus();
             errorFlag = true;
         }
 
         if(Username.length() < 4 ){
-            username.setError(getString(R.string.username_vincoli));
+            username.setError(getString(R.string.username_constraints));
             username.requestFocus();
             errorFlag = true;
         }
 
         if(!Patterns.EMAIL_ADDRESS.matcher(Email).matches()){
-            email.setError(getString(R.string.email_non_valida));
+            email.setError(getString(R.string.invalid_email));
             email.requestFocus();
             errorFlag = true;
         }
 
         if( password.length() < 8 || !(Password.matches("(.*[0-9].*)")) || !(Password.matches("(.*[|!$%&/()=?^@#§<>,;.:_*+].*)")) ){
-            password.setError(getString(R.string.password_vincoli));
+            password.setError(getString(R.string.password_constraints));
             password.requestFocus();
             errorFlag = true;
         }
@@ -224,7 +220,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                            Toast.makeText(RegisterActivity.this, getString(R.string.registrazione_completata), Toast.LENGTH_LONG).show();
+                                            Toast.makeText(RegisterActivity.this, getString(R.string.registration_completed), Toast.LENGTH_LONG).show();
                                             startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                             loadingBar.setVisibility(View.GONE);
                                             finish();
@@ -232,7 +228,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(RegisterActivity.this, getString(R.string.registrazione_fallita) , Toast.LENGTH_LONG).show();
+                                    Toast.makeText(RegisterActivity.this, getString(R.string.registration_failed) , Toast.LENGTH_LONG).show();
                                     loadingBar.setVisibility(View.GONE);
                                 }
                             });

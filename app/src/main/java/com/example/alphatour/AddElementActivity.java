@@ -8,8 +8,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,10 +17,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.alphatour.oggetti.Element;
-import com.example.alphatour.oggetti.Zone;
 import com.example.alphatour.qrcode.GenerateQrCodeActivity;
 import com.example.alphatour.qrcode.ScanQrCodeActivity;
-import com.example.alphatour.wizardcreazione.CreateObjectWizard;
 import com.example.alphatour.wizardcreazione.CreateZoneWizard;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
@@ -145,7 +141,7 @@ public class AddElementActivity extends AppCompatActivity{
         String SensorCode = sensorCode.getText().toString();
 
         if(Title.isEmpty()){
-            nameElement.setError(getString(R.string.campo_obbligatorio));
+            nameElement.setError(getString(R.string.required_field));
             nameElement.requestFocus();
             errorFlag = true;
         }else{
@@ -154,7 +150,7 @@ public class AddElementActivity extends AppCompatActivity{
         }
 
         if(Description.isEmpty()){
-            description.setError(getString(R.string.campo_obbligatorio));
+            description.setError(getString(R.string.required_field));
             description.requestFocus();
             errorFlag = true;
         }else{
@@ -164,7 +160,7 @@ public class AddElementActivity extends AppCompatActivity{
 
         if(flagPhoto==false){
 
-            photo.setError(getString(R.string.campo_obbligatorio));
+            photo.setError(getString(R.string.required_field));
             photo.requestFocus();
             errorFlag=true;
         }else{
@@ -174,7 +170,7 @@ public class AddElementActivity extends AppCompatActivity{
         }
 
         if(GenerateQrCodeActivity.getQrFlag()==false){
-            generateQrCode.setError(getString(R.string.campo_obbligatorio));
+            generateQrCode.setError(getString(R.string.required_field));
             generateQrCode.requestFocus();
             errorFlag = true;
         }else{
@@ -192,7 +188,7 @@ public class AddElementActivity extends AppCompatActivity{
             }*/
 
         if(SensorCode.isEmpty()){
-            sensorCode.setError(getString(R.string.campo_obbligatorio));
+            sensorCode.setError(getString(R.string.required_field));
             sensorCode.requestFocus();
             errorFlag = true;
         }else{
