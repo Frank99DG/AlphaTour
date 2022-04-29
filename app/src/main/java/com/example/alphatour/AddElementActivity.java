@@ -109,7 +109,7 @@ public class AddElementActivity extends AppCompatActivity{
             if (uri != null) {
                 flagPhoto = true;
                 photo.setError(null);
-                Toast.makeText(AddElementActivity.this, R.string.upload_photo, Toast.LENGTH_LONG).show();
+                Toast.makeText(AddElementActivity.this, R.string.subir_foto, Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(AddElementActivity.this, "Non hai aggiunto la foto!", Toast.LENGTH_LONG).show();
             }
@@ -141,7 +141,7 @@ public class AddElementActivity extends AppCompatActivity{
         String SensorCode = sensorCode.getText().toString();
 
         if(Title.isEmpty()){
-            nameElement.setError(getString(R.string.required_field));
+            nameElement.setError(getString(R.string.campo_requerido));
             nameElement.requestFocus();
             errorFlag = true;
         }else{
@@ -150,7 +150,7 @@ public class AddElementActivity extends AppCompatActivity{
         }
 
         if(Description.isEmpty()){
-            description.setError(getString(R.string.required_field));
+            description.setError(getString(R.string.campo_requerido));
             description.requestFocus();
             errorFlag = true;
         }else{
@@ -160,7 +160,7 @@ public class AddElementActivity extends AppCompatActivity{
 
         if(flagPhoto==false){
 
-            photo.setError(getString(R.string.required_field));
+            photo.setError(getString(R.string.campo_requerido));
             photo.requestFocus();
             errorFlag=true;
         }else{
@@ -170,7 +170,7 @@ public class AddElementActivity extends AppCompatActivity{
         }
 
         if(GenerateQrCodeActivity.getQrFlag()==false){
-            generateQrCode.setError(getString(R.string.required_field));
+            generateQrCode.setError(getString(R.string.campo_requerido));
             generateQrCode.requestFocus();
             errorFlag = true;
         }else{
@@ -188,7 +188,7 @@ public class AddElementActivity extends AppCompatActivity{
             }*/
 
         if(SensorCode.isEmpty()){
-            sensorCode.setError(getString(R.string.required_field));
+            sensorCode.setError(getString(R.string.campo_requerido));
             sensorCode.requestFocus();
             errorFlag = true;
         }else{

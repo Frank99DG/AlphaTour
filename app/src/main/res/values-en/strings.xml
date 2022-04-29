@@ -1,52 +1,52 @@
 <resources>
-    <string name="app_name">AlphaTour</string>
-    <string name="opening_phrase">Your tour at your fingertips</string>
-    <string name="email_address">Email</string>
-    <string name="password">Password</string>
-    <string name="login">Login</string>
-    <string name="sign_in">Sign in</string>
-    <string name="forgot_password">FORGOT PASSWORD?</string>
-    <string name="password_recovery_comment">Enter your account email below to reset your password.</string>
-    <string name="send_email">Send email</string>
+    <string name="nombre_app">AlphaTour</string>
+    <string name="frase_de_apertura">Your tour at your fingertips</string>
+    <string name="correo_electrónico">Email</string>
+    <string name="clave">Password</string>
+    <string name="acceso">Login</string>
+    <string name="registrarse">Sign in</string>
+    <string name="contraseña_olvidada">FORGOT PASSWORD?</string>
+    <string name="comentario_de_recuperación_de_contraseña">Enter your account email below to reset your password.</string>
+    <string name="enviar_email">Send email</string>
     <string name="check_email">Check your email to reset your password </string>
-    <string name="generic_error">Try again! Something went wrong</string>
-    <string name="alternative">SIGN IT WITH</string>
-    <string name="new_user">Don t have an account?</string>
+    <string name="error_genérico">Try again! Something went wrong</string>
+    <string name="alternativa">SIGN IT WITH</string>
+    <string name="nuevo_usuario">Don t have an account?</string>
     <string name="login_failed">Login failed! Wrong email or / and password</string>
-    <string name="user_registration">User registration</string>
-    <string name="personal_data">Personal Data</string>
-    <string name="account_data">Account Data</string>
-    <string name="name">Name</string>
-    <string name="surname">Surname</string>
-    <string name="birth_date">Birth date</string>
-    <string name="username">Username</string>
-    <string name="required_field">The field cannot be empty</string>
-    <string name="existing_username">Username not available</string>
-    <string name="username_constraints">Use 4 or more characters</string>
-    <string name="existing_email">E-mail already registered</string>
+    <string name="registro_de_usuario">User registration</string>
+    <string name="datos_personales">Personal Data</string>
+    <string name="datos_de_cuenta">Account Data</string>
+    <string name="nombre">Name</string>
+    <string name="apellido">Surname</string>
+    <string name="fecha_de_nacimiento">Birth date</string>
+    <string name="nombre_usuario">Username</string>
+    <string name="campo_requerido">The field cannot be empty</string>
+    <string name="nombre_de_usuario_existente">Username not available</string>
+    <string name="nombre_de_usuario_restricciones">Use 4 or more characters</string>
+    <string name="correo_existente">E-mail already registered</string>
     <string name="invalid_email">Invalid email</string>
-    <string name="password_constraints">Invalid email</string>
-    <string name="create_account">Create an account</string>
-    <string name="registration_completed">Complete registration</string>
-    <string name="registration_failed">Failed registrazion</string>
-    <string name="museum">Musum</string>
-    <string name="fair">Fair</string>
-    <string name="archaeological_site">Archaeological Site</string>
-    <string name="museum_exhibition">Museum Exhibition</string>
+    <string name="restricciones_de_contraseña">Invalid email</string>
+    <string name="crear_cuenta">Create an account</string>
+    <string name="registro_completado">Complete registration</string>
+    <string name="registro_fallido">Failed registrazion</string>
+    <string name="museo">Musum</string>
+    <string name="feria">Fair</string>
+    <string name="sitio_arqueológico">Archaeological Site</string>
+    <string name="exposición_museo">Museum Exhibition</string>
     <!--activity_dashboard_curatore(des)start-->
     <string name="txt_view_String">ALPHATOUR</string>
-    <string name="tv_route">CREATE PATH</string>
-    <string name="tv_place">CREATE A PLACE</string>
-    <string name="tv_calendar">CALENDAR</string>
-    <string name="tv_update">MODIFY LUOGO</string>
-    <string name="tb_profile">PROFIL</string>
-    <string name="tb_home">HOME</string>
-    <string name="tb_routes">MY ROUTE</string>
-    <string name="im_view"> </string>
-    <string name="search">Search</string>
+    <string name="ruta_tv">CREATE PATH</string>
+    <string name="tv_lugar">CREATE A PLACE</string>
+    <string name="tv_calendario">CALENDAR</string>
+    <string name="tv_actualización">MODIFY LUOGO</string>
+    <string name="tb_perfil">PROFIL</string>
+    <string name="tb_inicio">HOME</string>
+    <string name="tb_rutas">MY ROUTE</string>
+    <string name="im_ver"> </string>
+    <string name="busque_en">Search</string>
     <!--activity_dashboard_curatore(des)end-->
 
-    <string-array name="event_type">
+    <string-array name="tipo_de_evento">
         <item>Museum</item>
         <item>Museum Exhibition</item>
         <item>Archaeological Site</item>
@@ -54,74 +54,74 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="back" translatable="false"><![CDATA[<-]]></string>
-    <string name="forward" translatable="false"><![CDATA[->]]></string>
-    <string name="open">Apri</string>
-    <string name="close">Chiudi</string>
+    <string name="falso" translatable="false"><![CDATA[<-]]></string>
+    <string name="adelante" translatable="false"><![CDATA[->]]></string>
+    <string name="abra">Apri</string>
+    <string name="cerrar">Chiudi</string>
 
-    <string name="current_password">Current Password*</string>
-    <string name="new_password">New Password*</string>
-    <string name="current_password_hint">Current Password</string>
-    <string name="new_password_hint">New Password</string>
-    <string name="change_password">Change Password</string>
+    <string name="contraseña_actual">Current Password*</string>
+    <string name="nueva_contraseña">New Password*</string>
+    <string name="contraseña_actual_hint">Current Password</string>
+    <string name="nueva_contraseña_hint">New Password</string>
+    <string name="cambiar_contraseña">Change Password</string>
     <string name="profile_data_view_error">Something went wrong! User data is not available </string>
-    <string name="password_required">Required Password</string>
+    <string name="contraseña_requerida">Required Password</string>
     <string name="password_required_set_error">Please enter your current password to authenticate</string>
     <string name="new_password_required_set_error">Please enter the new password</string>
-    <string name="authentication_completed">You are successfully authenticated, you can now change your password!</string>
+    <string name="autenticación_completada">You are successfully authenticated, you can now change your password!</string>
 
-    <string name="new_same_password">The entered password is the same as the current one!</string>
-    <string name="password_changed">The password has been changed!</string>
-    <string name="photo_button">Add photos</string>
-    <string name="upload_photo">Photo successfully added!</string>
+    <string name="nueva_contraseña_del_nombre">The entered password is the same as the current one!</string>
+    <string name="contraseña_cambiada">The password has been changed!</string>
+    <string name="botón_de_foto">Add photos</string>
+    <string name="subir_foto">Photo successfully added!</string>
 
     <string name="title_activity_dashboard">dashboardActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="navigation_drawer_abra">Open navigation drawer</string>
+    <string name="navigation_drawer_cerrar">Close navigation drawer</string>
+    <string name="nav_header_título">Android Studio</string>
+    <string name="nav_header_subtítulo">android.studio@android.com</string>
+    <string name="nav_header_descripción">Navigation header</string>
+    <string name="ajustes_de_acción">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="menu_galeria">Gallery</string>
+    <string name="menu_diapositivas">Slideshow</string>
+    <string name="titulo_activity_navigation">NavigationActivity</string>
 
-    <string name="qr_generator">Your code will appear here</string>
-    <string name="qr_embedded">Add the object name to be included in the QR Code</string>
-    <string name="qr_generate">Genera QR Code</string>
-    <string name="qr_data_missing">Please enter the code to generate the QR Code</string>
-    <string name="scann_data">The scanned data will appear here</string>
-    <string name="modify_object">Modify Odject</string>
-    <string name="title_activity_hamburger">HamburgerActivity</string>
-    <string name="profile">Profil</string>
-    <string name="date">Date</string>
-    <string name="weekly">Weekly</string>
-    <string name="monday">MON</string>
-    <string name="tuesday">TUE</string>
-    <string name="wednesday">WED</string>
-    <string name="thursday">THU</string>
-    <string name="friday">FRI</string>
-    <string name="saturday">SAT</string>
-    <string name="sunday">SUN</string>
-    <string name="new_event">New Event</string>
+    <string name="qr_generador">Your code will appear here</string>
+    <string name="qr_incrustado">Add the object name to be included in the QR Code</string>
+    <string name="qr_genera">Genera QR Code</string>
+    <string name="qr_fecha_olvidada">Please enter the code to generate the QR Code</string>
+    <string name="escaneo_data">The scanned data will appear here</string>
+    <string name="modificar_objeto">Modify Odject</string>
+    <string name="titulo_activity_hamburger">HamburgerActivity</string>
+    <string name="perfil">Profil</string>
+    <string name="datos">Date</string>
+    <string name="semanal">Weekly</string>
+    <string name="lunes">MON</string>
+    <string name="martes">TUE</string>
+    <string name="miércoles">WED</string>
+    <string name="jueves">THU</string>
+    <string name="viernes">FRI</string>
+    <string name="sábado">SAT</string>
+    <string name="domingo">SUN</string>
+    <string name="nuevo_evento">New Event</string>
 
-    <string name="dashboard_button_back">Back to the dashboard</string>
-    <string name="zones_button_next">Create Zone</string>
-    <string name="place_button_back">Back place data</string>
-    <string name="objects_button_next">Create Objects</string>
-    <string name="zones_button_back">Back to Create Objects</string>
-    <string name="constraints_button_next">Create Constraints</string>
-    <string name="objects_button_back">Back to Create Objects</string>
-    <string name="button_complete">Complete</string>
-    <string name="title_creation_1">Create Place</string>
-    <string name="title_creation_2">Create Zone</string>
-    <string name="title_creation_3">Create Oblects</string>
-    <string name="title_creation_4">Create Constraints</string>
+    <string name="dashboard_botón_zonas_back">Back to the dashboard</string>
+    <string name="zones_botón_next">Create Zone</string>
+    <string name="botón_de_colocación_back">Back place data</string>
+    <string name="botón_objetos_next">Create Objects</string>
+    <string name="botón_zonas_back">Back to Create Objects</string>
+    <string name="botón_restricciones_next">Create Constraints</string>
+    <string name="botón_objetos_back">Back to Create Objects</string>
+    <string name="botón_completo">Complete</string>
+    <string name="título_creación_1">Create Place</string>
+    <string name="título_creación_2">Create Zone</string>
+    <string name="título_creación_3">Create Oblects</string>
+    <string name="título_creación_4">Create Constraints</string>
 
 
-    <string name="large_text">
+    <string name="texto_grande">
         "Material is the metaphor.\n\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
@@ -210,22 +210,22 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-    <string name="select_zone">Belonging Zone</string>
+    <string name="seleccionar_zona">Belonging Zone</string>
 
-    <string name="name_path">Insert route name</string>
-    <string name="description_path">IInsert route description</string>
-    <string name="create_path">Create Route </string>
-    <string name="choose_zone">Choose Zone</string>
-    <string name="choose_object">Choose Objects</string>
-    <string name="review_path">Review Route</string>
+    <string name="camino_del_nombre">Insert route name</string>
+    <string name="ruta_de_descripción">IInsert route description</string>
+    <string name="crear_ruta">Create Route </string>
+    <string name="elegir_zona">Choose Zone</string>
+    <string name="elegir_objeto">Choose Objects</string>
+    <string name="ruta_de_revisión">Review Route</string>
     <string name="next">Next</string>
     <string name="end">End</string>
-    <string name="backTo_path">Back to create route </string>
-    <string name="backTo_zone">Back to choose zone </string>
+    <string name="backTo_revision">Back to create route </string>
+    <string name="backTo_zona">Back to choose zone </string>
 
-    <string name="string_step2">Select the area you want to visit </string>
-    <string name="string_step3">Select the objects you want to visit</string>
-    <string name="addzone_step3">Add new zone</string>
-    <string name="title_step3">Create your route</string>
+    <string name="paso_de_cadena2">Select the area you want to visit </string>
+    <string name="paso_de_cadena3">Select the objects you want to visit</string>
+    <string name="añadir_zona3">Add new zone</string>
+    <string name="título_paso3">Create your route</string>
 
 </resources>

@@ -75,7 +75,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/backgroun_dialog"
                 android:iconifiedByDefault="false"
-                android:queryHint="@string/search"
+                android:queryHint="@string/busque_en"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -138,7 +138,7 @@
                         android:layout_height="50dp"
                         android:layout_weight="6"
                         android:background="@drawable/ic_route"
-                        android:contentDescription="@string/im_view">
+                        android:contentDescription="@string/im_ver">
 
                     </ImageView>
 
@@ -147,7 +147,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="32dp"
                         android:layout_weight="1"
-                        android:text="@string/tv_route"
+                        android:text="@string/ruta_tv"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -187,7 +187,7 @@
                         android:layout_height="95dp"
                         android:layout_weight="7"
                         android:background="@drawable/ic_museum"
-                        android:contentDescription="@string/im_view"
+                        android:contentDescription="@string/im_ver"
                         app:layout_column="3"
                         app:layout_row="0">
 
@@ -199,7 +199,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="39dp"
                         android:layout_weight="1"
-                        android:text="@string/tv_place"
+                        android:text="@string/tv_lugar"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -239,7 +239,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="7"
                         android:background="@drawable/ic_calendar"
-                        android:contentDescription="@string/im_view">
+                        android:contentDescription="@string/im_ver">
 
                     </ImageView>
 
@@ -248,7 +248,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/tv_calendar"
+                        android:text="@string/tv_calendario"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -288,7 +288,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="6"
                         android:background="@drawable/ic_update_place"
-                        android:contentDescription="@string/im_view">
+                        android:contentDescription="@string/im_ver">
 
                     </ImageView>
 
@@ -297,7 +297,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/tv_update"
+                        android:text="@string/tv_actualización"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="13sp"
@@ -325,20 +325,20 @@
             android:id="@+id/tb_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tb_profile" />
+            android:text="@string/tb_perfil" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tb_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tb_home" />
+            android:text="@string/tb_inicio" />
 
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tb_routes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tb_routes" />
+            android:text="@string/tb_rutas" />
 
     </com.google.android.material.tabs.TabLayout>
 

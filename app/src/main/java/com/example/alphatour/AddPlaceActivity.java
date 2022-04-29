@@ -51,10 +51,10 @@ public class AddPlaceActivity extends AppCompatActivity {
             namePlace = findViewById(R.id.inputNamePlace);
             city = findViewById(R.id.inputCityPlace);
             typology = findViewById(R.id.inputTypologyPlace);
-            typology_list.add(getString(R.string.museum));
-            typology_list.add(getString(R.string.fair));
-            typology_list.add(getString(R.string.archaeological_site));
-            typology_list.add(getString(R.string.museum_exhibition));
+            typology_list.add(getString(R.string.museo));
+            typology_list.add(getString(R.string.feria));
+            typology_list.add(getString(R.string.sitio_arqueológico));
+            typology_list.add(getString(R.string.exposición_museo));
             adapterItems = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, typology_list );
             typology.setAdapter(adapterItems);
             typology.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -75,20 +75,20 @@ public class AddPlaceActivity extends AppCompatActivity {
         Boolean errorFlag = false;
 
         if (NamePlace.isEmpty()) {
-            namePlace.setError(getString(R.string.required_field));
+            namePlace.setError(getString(R.string.campo_requerido));
             namePlace.requestFocus();
             errorFlag = true;
         }
 
         if (City.isEmpty()) {
-            city.setError(getString(R.string.required_field));
+            city.setError(getString(R.string.campo_requerido));
             city.requestFocus();
             errorFlag = true;
         }
 
 
         if (Typology.isEmpty()) {
-            typology.setError(getString(R.string.required_field));
+            typology.setError(getString(R.string.campo_requerido));
             typology.requestFocus();
             errorFlag = true;
         }

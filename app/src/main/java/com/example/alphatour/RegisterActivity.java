@@ -136,31 +136,31 @@ public class RegisterActivity extends AppCompatActivity {
         Boolean errorFlag = false;
 
         if(Name.isEmpty()){
-            name.setError(getString(R.string.required_field));
+            name.setError(getString(R.string.campo_requerido));
             name.requestFocus();
             errorFlag = true;
         }
 
         if(Surname.isEmpty()){
-            surname.setError(getString(R.string.required_field));
+            surname.setError(getString(R.string.campo_requerido));
             surname.requestFocus();
             errorFlag = true;
         }
 
         if(DateBirth.isEmpty()){
-            dateBirth.setError(getString(R.string.required_field));
+            dateBirth.setError(getString(R.string.campo_requerido));
             dateBirth.requestFocus();
             errorFlag = true;
         }
 
         if(Username.isEmpty()){
-            username.setError(getString(R.string.required_field));
+            username.setError(getString(R.string.campo_requerido));
             username.requestFocus();
             errorFlag = true;
         }
 
         if(Username.length() < 4 ){
-            username.setError(getString(R.string.username_constraints));
+            username.setError(getString(R.string.nombre_de_usuario_restricciones));
             username.requestFocus();
             errorFlag = true;
         }
@@ -172,7 +172,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         if( password.length() < 8 || !(Password.matches("(.*[0-9].*)")) || !(Password.matches("(.*[|!$%&/()=?^@#§<>,;.:_*+].*)")) ){
-            password.setError(getString(R.string.password_constraints));
+            password.setError(getString(R.string.restricciones_de_contraseña));
             password.requestFocus();
             errorFlag = true;
         }
@@ -220,7 +220,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                            Toast.makeText(RegisterActivity.this, getString(R.string.registration_completed), Toast.LENGTH_LONG).show();
+                                            Toast.makeText(RegisterActivity.this, getString(R.string.registro_completado), Toast.LENGTH_LONG).show();
                                             startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                             loadingBar.setVisibility(View.GONE);
                                             finish();
@@ -228,7 +228,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(RegisterActivity.this, getString(R.string.registration_failed) , Toast.LENGTH_LONG).show();
+                                    Toast.makeText(RegisterActivity.this, getString(R.string.registro_fallido) , Toast.LENGTH_LONG).show();
                                     loadingBar.setVisibility(View.GONE);
                                 }
                             });

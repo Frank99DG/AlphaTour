@@ -1,38 +1,231 @@
 <resources>
-    <string name="app_name">AlphaTour</string>
-    <string name="opening_phrase">Tu recorrido a tu alcance</string>
-    <string name="email_address">Email</string>
-    <string name="password">Password</string>
-    <string name="login">Inicia sesión</string>
-    <string name="sign_in">Registrados</string>
-    <string name="forgot_password">PASSWORD OLVIDADO?</string>
-    <string name="alternative">O INICIA SESIÓN CON</string>
-    <string name="new_user">No tienes una cuenta?</string>
-    <string name="login_failed">¡Error de inicio de sesion! Correo electrónico o/y contraseña incorrectos</string>
-    <string name="user_registration">Registro de usuario</string>
-    <string name="personal_data">Información Personal</string>
-    <string name="account_data">Datos de la cuenta</string>
-    <string name="name">Primer nombre</string>
-    <string name="surname">Apellido</string>
-    <string name="birth_date">Fecha de nacimiento</string>
-    <string name="username">Username</string>
-    <string name="required_field">El campo no puede estar vacío</string>
-    <string name="existing_username">Username no disponible</string>
-    <string name="username_constraints">Usar 4 o más caracteres</string>
-    <string name="existing_email">E-mail ya registrado</string>
+    <string name="nombre_app">AlphaTour</string>
+    <string name="frase_de_apertura">Su recorrido al alcance de la mano</string>
+    <string name="correo_electrónico">correo electrónico</string>
+    <string name="clave">contraseña</string>
+    <string name="acceso">entrar en el sistema</string>
+    <string name="registrarse">registrar</string>
+    <string name="contraseña_olvidada">¿OLVIDASTE LA CONTRASEÑA?</string>
+    <string name="comentario_de_recuperación_de_contraseña">Por favor, introduzca el correo electrónico de su cuenta a continuación para restablecer su contraseña.</string>
+    <string name="enviar_email">enviar correo electrónico</string>
+    <string name="check_email">Compruebe su correo electrónico para restablecer su contraseña </string>
+    <string name="error_genérico">¡Inténtalo de nuevo! Algo salió mal</string>
+    <string name="alternativa">CONECTARSE CON</string>
+    <string name="nuevo_usuario">¿No tiene una cuenta?</string>
+    <string name="login_failed">Error en el inicio de sesión. Correo electrónico y/o contraseña incorrectos</string>
+    <string name="registro_de_usuario">Registro de usuarios</string>
+    <string name="datos_personales">Datos personales</string>
+    <string name="datos_de_cuenta">Datos de la cuenta</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="fecha_de_nacimiento">fecha de nacimiento</string>
+    <string name="nombre_usuario">Username</string>
+    <string name="campo_requerido">El campo no puede estar vacío</string>
+    <string name="nombre_de_usuario_existente">Username no disponible</string>
+    <string name="nombre_de_usuario_restricciones">Utilizar 4 o más caracteres</string>
+    <string name="correo_existente">E-mail ya registrado</string>
     <string name="invalid_email">E-mail inválido</string>
-    <string name="password_constraints">Usa 8 o más caracteres con combinaciones de letras, números y símbolos</string>
-    <string name="create_account">Crear una cuenta</string>
-    <string name="registration_completed">Registro completado</string>
-    <string name="registration_failed">Registro fallido </string>
-    <string name="date">Fecha</string>
-    <string name="weekly">Semanal</string>
-    <string name="monday">LUN</string>
-    <string name="tuesday">MAR</string>
-    <string name="wednesday">MIÉ</string>
-    <string name="thursday">JUE</string>
-    <string name="friday">VIE</string>
-    <string name="saturday">SÁB</string>
-    <string name="sunday">DOM</string>
-    <string name="new_event">Nuevo Evento</string>
+    <string name="restricciones_de_contraseña">Utilice 8 o más caracteres con combinaciones de letras, números y símbolos</string>
+    <string name="crear_cuenta">Crear una cuenta</string>
+    <string name="registro_completado">Registro completado</string>
+    <string name="registro_fallido">Registrazione falló</string>
+    <string name="museo">Museo</string>
+    <string name="feria">Feria</string>
+    <string name="sitio_arqueológico">Sitio arqueológico</string>
+    <string name="exposición_museo">exposición museo</string>
+    <!--activity_dashboard_curatore(des)start-->
+    <string name="txt_view_String">ALPHATOUR</string>
+    <string name="ruta_tv">CREAR RUTA</string>
+    <string name="tv_lugar">CREAR LUGAR</string>
+    <string name="tv_calendario">CALENDARIO</string>
+    <string name="tv_actualización">CAMBIAR DE LUGAR</string>
+    <string name="tb_perfil">PERFIL</string>
+    <string name="tb_inicio">HOME</string>
+    <string name="tb_rutas">MIS RUTAS</string>
+    <string name="im_ver"> </string>
+    <string name="busque_en">Busque en</string>
+    <!--activity_dashboard_curatore(des)end-->
+
+    <string-array name="tipo_de_evento">
+        <item>Museo</item>
+        <item>Exposición</item>
+        <item>Yacimiento arqueológico</item>
+        <item>Feria</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hola fragmento en blanco</string>
+    <string name="falso" translatable="false"><![CDATA[<-]]></string>
+    <string name="adelante" translatable="false"><![CDATA[->]]></string>
+    <string name="abra">Abrir</string>
+    <string name="cerrar">Cerrar</string>
+
+    <string name="contraseña_actual">Contraseña actual*</string>
+    <string name="nueva_contraseña">Nueva contraseña*</string>
+    <string name="contraseña_actual_hint">Contraseña actual</string>
+    <string name="nueva_contraseña_hint">Nueva contraseña</string>
+    <string name="cambiar_contraseña">Cambiar la contraseña</string>
+    <string name="profile_data_view_error">Algo ha salido mal. Los datos del usuario no están disponibles </string>
+    <string name="contraseña_requerida">se requiere contraseña</string>
+    <string name="password_required_set_error">Por favor, introduzca su contraseña actual para iniciar la sesión.</string>
+    <string name="new_password_required_set_error">Por favor, introduzca una nueva contraseña</string>
+    <string name="autenticación_completada">Se ha autentificado con éxito, ahora puede cambiar su contraseña.</string>
+
+    <string name="nueva_contraseña_del_nombre">La contraseña introducida es la misma que la actual.</string>
+    <string name="contraseña_cambiada">Tu contraseña ha sido cambiada.</string>
+    <string name="botón_de_foto">Añadir foto</string>
+    <string name="subir_foto">¡Foto añadida con éxito!</string>
+
+    <string name="title_activity_dashboard">dashboardActivity</string>
+    <string name="navigation_drawer_abra">Abrir navigation drawer</string>
+    <string name="navigation_drawer_cerrar">Cerrar navigation drawer</string>
+    <string name="nav_header_título">Android Studio</string>
+    <string name="nav_header_subtítulo">android.studio@android.com</string>
+    <string name="nav_header_descripción">Navigation header</string>
+    <string name="ajustes_de_acción">ajustes</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_galeria">Galería</string>
+    <string name="menu_diapositivas">Slideshow</string>
+    <string name="titulo_activity_navigation">NavigationActivity</string>
+
+    <string name="qr_generador">Su código aparecerá aquí</string>
+    <string name="qr_incrustado">Añadir el nombre del objeto que se va a insertar en el código QR</string>
+    <string name="qr_genera">Generar código QR</string>
+    <string name="qr_fecha_olvidada">Por favor, introduzca el código para generar el código QR</string>
+    <string name="escaneo_data">Los datos escaneados aparecerán aquí</string>
+    <string name="modificar_objeto">Editar objeto</string>
+    <string name="titulo_activity_hamburger">HamburgerActivity</string>
+    <string name="perfil">Perfil</string>
+    <string name="datos">Fecha</string>
+    <string name="semanal">Semanal</string>
+    <string name="lunes">LUN</string>
+    <string name="martes">MAR</string>
+    <string name="miércoles">MIE</string>
+    <string name="jueves">JUE</string>
+    <string name="viernes">VIE</string>
+    <string name="sábado">SAB</string>
+    <string name="domingo">DOM</string>
+    <string name="nuevo_evento">Nuevo evento</string>
+
+    <string name="dashboard_botón_zonas_back">Volver a dashboard</string>
+    <string name="zones_botón_next">Crear zonas</string>
+    <string name="botón_de_colocación_back">Volver a los datos Ubicación</string>
+    <string name="botón_objetos_next">Crear objetos</string>
+    <string name="botón_zonas_back">Volver a crear zonas</string>
+    <string name="botón_restricciones_next">Crear restricciones</string>
+    <string name="botón_objetos_back">Volver a la creación de objetos</string>
+    <string name="botón_completo">Entradas completas</string>
+    <string name="título_creación_1">Crear lugar</string>
+    <string name="título_creación_2">Crear zonas</string>
+    <string name="título_creación_3">Crear objetos</string>
+    <string name="título_creación_4">Crear restricciones</string>
+
+
+    <string name="texto_grande">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+    <string name="seleccionar_zona">Afiliación a la zona</string>
+
+    <string name="camino_del_nombre">Introduzca el nombre de la ruta</string>
+    <string name="ruta_de_descripción">Introduzca la descripción de la ruta</string>
+    <string name="crear_ruta">Crear ruta</string>
+    <string name="elegir_zona">Elija las zonas</string>
+    <string name="elegir_objeto">Elija los objetos</string>
+    <string name="ruta_de_revisión">Resumen de la ruta</string>
+    <string name="next">Next</string>
+    <string name="end">End</string>
+    <string name="backTo_revision">Volver a crear ruta</string>
+    <string name="backTo_zona">Volver a la selección de zonas </string>
+
+    <string name="paso_de_cadena2">Seleccione la zona que desea visitar</string>
+    <string name="paso_de_cadena3">Seleccione los objetos que desea visitar</string>
+    <string name="añadir_zona3">Añadir otra zona</string>
+    <string name="título_paso3">Creación de rutas</string>
+
 </resources>

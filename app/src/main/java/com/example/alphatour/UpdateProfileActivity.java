@@ -157,31 +157,31 @@ public class UpdateProfileActivity extends AppCompatActivity {
         Boolean errorFlag = false;
 
         if(Name.isEmpty()){
-            editName.setError(getString(R.string.required_field));
+            editName.setError(getString(R.string.campo_requerido));
             editName.requestFocus();
             errorFlag = true;
         }
 
         if(Surname.isEmpty()){
-            editSurname.setError(getString(R.string.required_field));
+            editSurname.setError(getString(R.string.campo_requerido));
             editSurname.requestFocus();
             errorFlag = true;
         }
 
         if(DateOfBirth.isEmpty()){
-            editDateOfBirth.setError(getString(R.string.required_field));
+            editDateOfBirth.setError(getString(R.string.campo_requerido));
             editDateOfBirth.requestFocus();
             errorFlag = true;
         }
 
         if(Username.isEmpty()){
-            editUsername.setError(getString(R.string.required_field));
+            editUsername.setError(getString(R.string.campo_requerido));
             editUsername.requestFocus();
             errorFlag = true;
         }
 
         if(Username.length() < 4 ){
-            editUsername.setError(getString(R.string.username_constraints));
+            editUsername.setError(getString(R.string.nombre_de_usuario_restricciones));
             editUsername.requestFocus();
             errorFlag = true;
         }

@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         Boolean errorFlag = false;
 
         if (Email.isEmpty()) {
-            email.setError(getString(R.string.required_field));
+            email.setError(getString(R.string.campo_requerido));
             email.requestFocus();
             errorFlag = true;
         }
@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         if (Password.isEmpty()) {
-            password.setError(getString(R.string.required_field));
+            password.setError(getString(R.string.campo_requerido));
             password.requestFocus();
             errorFlag = true;
         }
