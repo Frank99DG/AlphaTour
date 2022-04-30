@@ -10,14 +10,39 @@
     >
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
-        android:id="@+id/abcdef"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="196dp"
-        android:layout_marginTop="312dp"
-        android:text="Step4"
+        android:id="@+id/title_step2"
+        android:layout_width="343dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="30dp"
+        android:background="?android:attr/autofilledHighlight"
+        android:backgroundTint="@color/CadetBlue"
+        android:text="Riepilogo Percorso"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/Black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="120dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/list_zoneRiepilogo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

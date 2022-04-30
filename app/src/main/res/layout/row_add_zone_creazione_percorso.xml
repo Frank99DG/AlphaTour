@@ -6,37 +6,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <!-- <TextView
-          android:layout_width="150dp"
-          android:layout_height="40dp"
-          android:layout_marginLeft="120dp"
-          android:background="@drawable/side_nav_bar"
-          android:gravity="center_horizontal"
-          android:shadowColor="@color/Black"
-          android:shadowDx="10"
-          android:shadowDy="10"
-          android:shadowRadius="15"
-          android:text="Zona 1"
-          android:textColor="@color/Black"
-          android:textSize="25dp" /> -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <com.devzone.checkabletextview.CheckableTextView
-        android:id="@+id/textZone1"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="28dp"
-        android:background="@android:drawable/gallery_thumb"
-        android:backgroundTint="@color/CadetBlue"
-        android:gravity="center"
-        app:ctv_AnimType="scale"
-        app:ctv_IconChecked="false"
-        app:ctv_IconTint="#5CCD2F"
-        app:ctv_RippleAlpha="40"
-        app:ctv_RippleFillEnabled="true"
-        app:ctv_RippleTint="@color/green"
-        app:ctv_TextColor="@color/Black"
-        app:ctv_TextSize="20dp" />
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/side_nav_bar"
+            android:gravity="center"
+            android:shadowColor="@color/Black"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:shadowRadius="15"
+            android:text="Zona 1"
+            android:textColor="@color/Black"
+            android:textSize="25dp"
+            tools:layout_editor_absoluteX="119dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <com.devzone.checkabletextview.CheckableTextView
+            android:id="@+id/textZone1"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/gallery_thumb"
+            android:backgroundTint="@color/CadetBlue"
+            android:gravity="center"
+            app:ctv_AnimType="scale"
+            app:ctv_IconChecked="false"
+            app:ctv_IconTint="#5CCD2F"
+            app:ctv_RippleAlpha="40"
+            app:ctv_RippleFillEnabled="true"
+            app:ctv_RippleTint="@color/green"
+            app:ctv_TextColor="@color/Black"
+            app:ctv_TextSize="20dp"
+            tools:layout_editor_absoluteX="45dp"
+            tools:layout_editor_absoluteY="76dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     <!--
         <com.devzone.checkabletextview.CheckableTextView
             android:id="@+id/textZone2"
