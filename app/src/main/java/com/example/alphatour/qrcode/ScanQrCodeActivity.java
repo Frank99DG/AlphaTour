@@ -65,6 +65,7 @@ public class ScanQrCodeActivity extends AppCompatActivity {
                      @Override
                      public void onClick(View view) {
                          Intent intent= new Intent(ScanQrCodeActivity.this, ModifyObjectActivity.class);
+                         intent.putExtra("data",scanText.getText().toString());
                          startActivity(intent);
                      }
                  });

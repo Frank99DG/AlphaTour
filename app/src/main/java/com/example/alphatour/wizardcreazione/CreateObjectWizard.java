@@ -78,6 +78,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
     private StorageReference storegeProfilePick;
     private StorageTask uploadTask;
     private  Map<String, Object> elm = new HashMap<>();
+    private ImageView imgDialog;
 
     public static LinearLayout getLayout_list() {
         return layout_list;
@@ -143,6 +144,8 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
         yesFinal.setText("Crea Vincoli");
         titleDialog=dialog.findViewById(R.id.titleDialog);
         textDialog=dialog.findViewById(R.id.textDialog);
+        imgDialog=dialog.findViewById(R.id.imageDialog);
+
 
         addElement.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -206,6 +209,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
             public void onClick(View view) {
 
                 dialog.show();
+                imgDialog.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
                 titleDialog.setText("Elimina Oggetto");
                 textDialog.setText("Sei sicuro di voler eliminare l'oggetto creato ?");
 
@@ -275,7 +279,28 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
 
-        callback.goToNextStep();
+        dialog.show();
+        imgDialog.setImageDrawable(getResources().getDrawable(R.drawable.ic_cant_back));
+        titleDialog.setText("Creazione Vincoli");
+        textDialog.setText("Proseguendo con la creazione dei vincoli non sarà più possibile modificare zone e oggetti creati" +
+                            " nella fase precedente. Vuoi proseguire ? ");
+
+        yesFinal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                callback.goToNextStep();
+
+            }
+        });
+
+        cancelFinal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               dialog.dismiss();
+            }
+        });
+
     }
 
     @Override

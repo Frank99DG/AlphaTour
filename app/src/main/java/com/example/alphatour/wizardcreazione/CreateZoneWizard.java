@@ -39,6 +39,7 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
     private TextView titleDialog,textDialog;
     private static  ArrayList<String> zone_list = new ArrayList<>();
     private ViewPager vpPager;
+    private ImageView imgDialog;
 
     public static ArrayList<String> getZone_list() {
         return zone_list;
@@ -69,6 +70,7 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
          cancel= dialog.findViewById(R.id.btn_cancel);
         titleDialog=dialog.findViewById(R.id.titleDialog);
         textDialog=dialog.findViewById(R.id.textDialog);
+        imgDialog=dialog.findViewById(R.id.imageDialog);
 
         LoadPreferences();
 
@@ -92,6 +94,7 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
                         dialog.show();
                         titleDialog.setText("Elimina Zona");
                         textDialog.setText("Sei sicuro di voler eliminare la Zona creata ?");
+                        imgDialog.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
 
                         yes.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -176,6 +179,7 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
                     dialog.show();
                     titleDialog.setText("Elimina Zona");
                     textDialog.setText("Sei sicuro di voler eliminare la Zona creata ?");
+                    imgDialog.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
 
                     yes.setOnClickListener(new View.OnClickListener() {
                         @Override

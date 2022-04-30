@@ -199,6 +199,11 @@ public class ActivityElementDetails extends AppCompatActivity {
         startActivityForResult(intent,70);
         imageQrCode.setImageBitmap(GenerateQrCodeActivity.getBitmap());
         setQr(GenerateQrCodeActivity.getBitmap());
+        boolean d=false;
+        boolean b=false;
+        boolean c=!true;
+        boolean e;
+        e=d?b:c;
     }
 
     public void changePhotoObject(View view) {

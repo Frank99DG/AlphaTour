@@ -14,23 +14,35 @@
             android:id="@+id/saveObject"
             android:layout_width="139dp"
             android:layout_height="48dp"
-            android:layout_marginStart="256dp"
+            android:layout_marginStart="136dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="136dp"
             android:background="@drawable/bordi_tondi_button"
             android:ems="10"
             android:onClick="saveObject"
             android:text="Salva"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="409dp"
+            android:layout_height="3dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputSensorCode" />
 
         <TextView
             android:id="@+id/textElement"
             android:layout_width="182dp"
             android:layout_height="37dp"
             android:layout_marginStart="120dp"
-            android:layout_marginTop="92dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="213dp"
             android:fontFamily="@font/alata"
             android:text="Nuovo Oggetto"

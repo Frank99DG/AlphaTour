@@ -13,18 +13,12 @@ import com.stepstone.stepper.viewmodel.StepViewModel;
 
 public class StepperAdapterCreazioneWizard extends AbstractFragmentStepAdapter {
 
-    private int dec;
-    public StepperAdapterCreazioneWizard(@NonNull FragmentManager fm, @NonNull Context context/*,int i*/) {
+    public StepperAdapterCreazioneWizard(@NonNull FragmentManager fm, @NonNull Context context) {
         super(fm, context);
-        //this.dec=i;
     }
 
     @Override
     public Step createStep(int position) {
-
-       /* switch (dec){
-            case -1:*/
-
 
         switch (position) {
             case 0:
@@ -40,24 +34,6 @@ public class StepperAdapterCreazioneWizard extends AbstractFragmentStepAdapter {
                 return new CreatePlaceWizard();
 
         }
-            /*case 1:
-                switch (position) {
-                    case 0:
-                        return new CreateObjectWizard();
-                    case 1:
-                        return new CreateZoneWizard();
-                    case 2:
-                        return new CreatePlaceWizard();
-                    case 3:
-                        return new CreateConstraintsWizard();
-
-                    default:
-                        return new CreatePlaceWizard();
-
-                }
-            default:
-                return new CreatePlaceWizard();
-    }*/
     }
 
     @Override

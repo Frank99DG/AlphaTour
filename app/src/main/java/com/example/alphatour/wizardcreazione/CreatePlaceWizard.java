@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -22,7 +23,9 @@ import androidx.fragment.app.Fragment;
 import com.example.alphatour.AddPlaceActivity;
 import com.example.alphatour.AddZoneActivity;
 import com.example.alphatour.DashboardActivity;
+import com.example.alphatour.ModifyObjectActivity;
 import com.example.alphatour.R;
+import com.example.alphatour.qrcode.ScanQrCodeActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.stepstone.stepper.BlockingStep;
@@ -46,6 +49,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
     private FirebaseAuth auth;
     private FirebaseFirestore db;
     private String item;
+    private Button qrScan;
 
 
     @Override
@@ -59,10 +63,11 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
         namePlace = view.findViewById(R.id.inputNamePlace);
         city = view.findViewById(R.id.inputCityPlace);
         typology = view.findViewById(R.id.inputTypologyPlace);
-        typology_list.add(getString(R.string.museo));
-        typology_list.add(getString(R.string.fiera));
-        typology_list.add(getString(R.string.sito_archeologico));
-        typology_list.add(getString(R.string.mostra));
+        qrScan=view.findViewById(R.id.inputQr);
+        typology_list.add(getString(R.string.museum));
+        typology_list.add(getString(R.string.fair));
+        typology_list.add(getString(R.string.archaeological_site));
+        typology_list.add(getString(R.string.museum_exhibition));
         adapterItems = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_dropdown_item,typology_list);
         typology.setAdapter(adapterItems);
         typology.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -75,6 +80,15 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
 
         loadingBar = view.findViewById(R.id.placeLoadingBar);
         LoadPreferences();
+
+        qrScan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getContext(), ModifyObjectActivity.class);
+                intent.putExtra("data","Oggetto 300");
+                startActivity(intent);
+            }
+        });
         // Inflate the layout for this fragment
         return view;
     }
@@ -110,20 +124,20 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
         Boolean errorFlag = false;
 
         if (NamePlace.isEmpty()) {
-            namePlace.setError(getString(R.string.campo_obbligatorio));
+            namePlace.setError(getString(R.string.required_field));
             namePlace.requestFocus();
             errorFlag = true;
         }
 
         if (City.isEmpty()) {
-            city.setError(getString(R.string.campo_obbligatorio));
+            city.setError(getString(R.string.required_field));
             city.requestFocus();
             errorFlag = true;
         }
 
 
         if (Typology.isEmpty()) {
-            typology.setError(getString(R.string.campo_obbligatorio));
+            typology.setError(getString(R.string.required_field));
             typology.requestFocus();
             errorFlag = true;
         }

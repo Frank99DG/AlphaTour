@@ -88,6 +88,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     private boolean success=false;
     private List<String> uriUploadPhoto=new ArrayList<String>();
     private List<String> uriUploadQrCode=new ArrayList<String>();
+    private String idElement;
 
 
     public CreateConstraintsWizard() {
@@ -344,8 +345,15 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                                                         success=true;
                                                     }
                                                 });
-                                        savePhoto(newElement.getPhoto(),newElement,i);
-                                        saveQrCode(newElement.getQrCode(),newElement,i);
+
+                                        new Handler().postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                savePhoto(newElement.getPhoto(),newElement,i);
+                                                saveQrCode(newElement.getQrCode(),newElement,i);
+                                            }
+                                        }, 1000L);
+                                        idElement=getElementid();
                                     }
                                 }
                             }
@@ -360,6 +368,11 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
         });
     }
 
+    private String getElementid() {
+
+        String id=db.collection("Elemets").document().getId();
+        return id;
+    }
 
 
     private void savePhoto(Uri photo, Element element, int i) {
