@@ -22,7 +22,7 @@
     <string name="username">Username</string>
     <string name="required_field">Il campo non può essere vuoto</string>
     <string name="existing_username">Username non disponibile</string>
-    <string name="username_constraints">UUtilizzare 4 o più caratteri</string>
+    <string name="username_constraints">Utilizzare 4 o più caratteri</string>
     <string name="existing_email">E-mail già registrata</string>
     <string name="invalid_email">E-mail non valida</string>
     <string name="password_constraints">Utilizzare 8 o più caratteri con combinazioni di lettere, numeri e simboli</string>
@@ -111,7 +111,7 @@
     <string name="zones_button_next">Crea Zona</string>
     <string name="place_button_back">Torna a dati Luogo</string>
     <string name="objects_button_next">Crea Oggetti</string>
-    <string name="zones_button_back">BTorna a crea zone</string>
+    <string name="zones_button_back">Torna a crea zone</string>
     <string name="constraints_button_next">Crea Vincoli</string>
     <string name="objects_button_back">Torna a crea oggetti</string>
     <string name="button_complete">Completa inserimenti</string>
@@ -218,7 +218,7 @@
     <string name="choose_zone">Scegli Zone</string>
     <string name="choose_object">Scegli Oggetti</string>
     <string name="review_path">Riepilogo Percorso</string>
-    <string name="next">Next</string>
+    <string name="next">Avanti</string>
     <string name="end">Fine</string>
     <string name="backTo_path">Torna a crea percorso </string>
     <string name="backTo_zone">Torna a scelta zona </string>

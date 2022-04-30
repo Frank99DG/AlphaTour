@@ -1,39 +1,231 @@
 <resources>
-    <string name="nombre_app">AlphaTour</string>
-    <string name="frase_de_apertura">Votre visite à portée de main</string>
-    <string name="correo_electrónico">Email</string>
-    <string name="clave">Password</string>
-    <string name="acceso">Connectez-vous</string>
-    <string name="registrarse">Enregistrés</string>
-    <string name="contraseña_olvidada">PASSWORD OUBLIÉ?</string>
-    <string name="alternativa">OU CONNECTEZ-VOUS AVEC</string>
-    <string name="nuevo_usuario">Vous n´avez pas de compte?</string>
-    <string name="login_failed">Échec de la connexion! Mauvais email ou/et mot de passe</string>
-    <string name="registro_de_usuario">Enregistrement de l´utilisateur</string>
-    <string name="datos_personales">Données personnelles</string>
-    <string name="datos_de_cuenta">Données de compte</string>
-    <string name="nombre">Prénom</string>
-    <string name="apellido">Nom</string>
-    <string name="fecha_de_nacimiento">Date de naissance</string>
-    <string name="nombre_usuario">Username</string>
-    <string name="campo_requerido">Le champ ne peut pas être vide</string>
-    <string name="nombre_de_usuario_existente">Username indisponible</string>
-    <string name="nombre_de_usuario_restricciones">Utilisez 4 caractères ou plus</string>
-    <string name="correo_existente">E-mail déjà enregistré</string>
-    <string name="invalid_email">E-mail invalide</string>
-    <string name="restricciones_de_contraseña">Utilisez 8 caractères ou plus avec des combinaisons de lettres, de chiffres et de symboles</string>
-    <string name="crear_cuenta">Créer un compte</string>
-    <string name="registro_completado">Inscription terminée</string>
-    <string name="registro_fallido">Échec de l´enregistrement</string>
-    <string name="datos">Date</string>
-    <string name="semanal">Hebdomadaire</string>
-    <string name="lunes">LUN</string>
-    <string name="martes">MAR</string>
-    <string name="miércoles">MER</string>
-    <string name="jueves">JEU</string>
-    <string name="viernes">VEN</string>
-    <string name="sábado">SAM</string>
-    <string name="domingo">DIM</string>
-    <string name="nuevo_evento">Nouvel Évènement</string>
+    <string name="app_name">AlphaTour</string>
+    <string name="opening_phrase">votre visite au bout des doigts</string>
+    <string name="email_address">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="sign_in">Accès</string>
+    <string name="forgot_password">MOT DE PASSE OUBLIÉ?</string>
+    <string name="password_recovery_comment">Veuillez saisir l’adresse électronique de votre compte ci-dessous pour réinitialiser votre mot de passe.</string>
+    <string name="send_email">Envoyer email</string>
+    <string name="check_email">Vérifiez votre e-mail pour réinitialiser votre mot de passe </string>
+    <string name="generic_error">Essayez encore ! Quelque chose a mal tourné</string>
+    <string name="alternative">LOGIN AVEC</string>
+    <string name="new_user">Vous n’avez pas de compte?</string>
+    <string name="login_failed">La connexion a échoué ! Courriel et/ou mot de passe incorrect(s)</string>
+    <string name="user_registration">Enregistrement de l’utilisateur</string>
+    <string name="personal_data">Données personnelles</string>
+    <string name="account_data">Données du compte</string>
+    <string name="name">Nom</string>
+    <string name="surname">Nom de famille</string>
+    <string name="birth_date">Date de naissance</string>
+    <string name="username">Username</string>
+    <string name="required_field">Le champ ne peut pas être vide</string>
+    <string name="existing_username">Nom d’utilisateur non disponible</string>
+    <string name="username_constraints">Utilisez 4 caractères ou plus</string>
+    <string name="existing_email">E-mail déjà enregistré</string>
+    <string name="invalid_email">E-mail non valide</string>
+    <string name="password_constraints">Utilisez 8 caractères ou plus avec des combinaisons de lettres, de chiffres et de symboles.</string>
+    <string name="create_account">Créer un compte</string>
+    <string name="registration_completed">Inscription complète</string>
+    <string name="registration_failed">L’enregistrement a échoué</string>
+    <string name="museum">Musée</string>
+    <string name="fair">Foire</string>
+    <string name="archaeological_site">Site archéologique</string>
+    <string name="museum_exhibition">Afficher</string>
+    <!--activity_dashboard_curatore(des)start-->
+    <string name="txt_view_String">ALPHATOUR</string>
+    <string name="tv_route">CREER UNE ROUTE</string>
+    <string name="tv_place">CRÉER UNE PLACE </string>
+    <string name="tv_calendar">CALENDRIER</string>
+    <string name="tv_update">CHANGER DE LIEU</string>
+    <string name="tb_profile">PROFIL</string>
+    <string name="tb_home">HOME</string>
+    <string name="tb_routes">MES ROUTES</string>
+    <string name="im_view"> </string>
+    <string name="search">Recherche</string>
+    <!--activity_dashboard_curatore(des)end-->
+
+    <string-array name="event_type">
+        <item>Musée</item>
+        <item>Afficher</item>
+        <item>Site archéologique</item>
+        <item>Foire</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Salut, fragment vide</string>
+    <string name="back" translatable="false"><![CDATA[<-]]></string>
+    <string name="forward" translatable="false"><![CDATA[->]]></string>
+    <string name="open">Ouvrir</string>
+    <string name="close">Fermer</string>
+
+    <string name="current_password">Mot de passe actuel*</string>
+    <string name="new_password">Nouveau mot de passe*</string>
+    <string name="current_password_hint">Mot de passe actuel</string>
+    <string name="new_password_hint">Nouveau mot de passe</string>
+    <string name="change_password">Changer le mot de passe</string>
+    <string name="profile_data_view_error">Quelque chose a mal tourné ! Les données de l’utilisateur ne sont pas disponibles  </string>
+    <string name="password_required">Mot de passe requis</string>
+    <string name="password_required_set_error">Veuillez saisir votre mot de passe actuel pour vous connecter.</string>
+    <string name="new_password_required_set_error">Veuillez entrer un nouveau mot de passe</string>
+    <string name="authentication_completed">Vous êtes authentifié avec succès, vous pouvez maintenant changer votre mot de passe !</string>
+
+    <string name="new_same_password">Le mot de passe saisi est le même que le mot de passe actuel !</string>
+    <string name="password_changed">Votre mot de passe a été modifié !</string>
+    <string name="photo_button">Ajouter une photo</string>
+    <string name="upload_photo">La photo a été ajoutée avec succès !</string>
+
+    <string name="title_activity_dashboard">dashboardActivity</string>
+    <string name="navigation_drawer_open">Ouvrir navigation drawer</string>
+    <string name="navigation_drawer_close">Fermer navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Paramètres</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Galerie</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+
+    <string name="qr_generator">Votre code apparaîtra ici</string>
+    <string name="qr_embedded">Ajouter le nom de l’objet à insérer dans le code QR</string>
+    <string name="qr_generate">Générer un code QR</string>
+    <string name="qr_data_missing">Veuillez saisir le code pour générer le code QR</string>
+    <string name="scann_data">Les données numérisées apparaîtront ici</string>
+    <string name="modify_object">Modifier l’objet</string>
+    <string name="title_activity_hamburger">HamburgerActivity</string>
+    <string name="profile">Profil</string>
+    <string name="date">Date</string>
+    <string name="weekly">Hebdomadaire</string>
+    <string name="monday">LUN</string>
+    <string name="tuesday">MAR</string>
+    <string name="wednesday">MER</string>
+    <string name="thursday">JEU</string>
+    <string name="friday">VEN</string>
+    <string name="saturday">SAM</string>
+    <string name="sunday">DIM</string>
+    <string name="new_event">Nouvel événement</string>
+
+    <string name="dashboard_button_back">Retour au dashboard</string>
+    <string name="zones_button_next">Créer une zone</string>
+    <string name="place_button_back">Retour aux données Localisation</string>
+    <string name="objects_button_next">Créer des objets</string>
+    <string name="zones_button_back">Retour à la création de zones</string>
+    <string name="constraints_button_next">Créer des contraintes</string>
+    <string name="objects_button_back">Retour à la création d’objets</string>
+    <string name="button_complete">Entrées complètes</string>
+    <string name="title_creation_1">Créer un lieu</string>
+    <string name="title_creation_2">Créer des zones</string>
+    <string name="title_creation_3">Créer des objets</string>
+    <string name="title_creation_4">Créer des contraintes</string>
+
+
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+    <string name="select_zone">Adhésion à la zone</string>
+
+    <string name="name_path">Saisissez le nom de l’itinéraire</string>
+    <string name="description_path">Entrez la description de l’itinéraire</string>
+    <string name="create_path">Créer un itinéraire</string>
+    <string name="choose_zone">Choisissez des zones</string>
+    <string name="choose_object">Choisir des objets</string>
+    <string name="review_path">Résumé de l’itinéraire</string>
+    <string name="next">Next</string>
+    <string name="end">End</string>
+    <string name="backTo_path">Retour à la création de l’itinéraire</string>
+    <string name="backTo_zone">Retour à la sélection des zones </string>
+
+    <string name="string_step2">Sélectionnez la région que vous souhaitez visiter </string>
+    <string name="string_step3">Sélectionnez les objets que vous voulez visiter</string>
+    <string name="addzone_step3">Ajouter une autre zone</string>
+    <string name="title_step3">Création d’un itinéraire</string>
 
 </resources>
