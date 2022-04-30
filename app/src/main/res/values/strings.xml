@@ -36,7 +36,7 @@
     <!--activity_dashboard_curatore(des)start-->
     <string name="txt_view_String">ALPHATOUR</string>
     <string name="tv_route">CREA PERCORSO</string>
-    <string name="tv_place">CREA LUOGO </string>
+    <string name="tv_place">CREA LUOGO</string>
     <string name="tv_calendar">CALENDARIO</string>
     <string name="tv_update">MODIFICA LUOGO</string>
     <string name="tb_profile">PROFILO</string>

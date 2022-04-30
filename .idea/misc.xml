@@ -8,29 +8,83 @@
         <entry key="..\:/AlphaTour/app/src/main/res/layout/activity_dash_board.xml" value="0.1" />
         <entry key="..\:/AlphaTour/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/AlphaTour/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/backgroun_dialog.xml" value="0.201" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/bordi_tondi.xml" value="0.1685" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/bordi_tondi2.xml" value="0.1685" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/bordi_tondi_button.xml" value="0.253" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/custom_imput.xml" value="0.2515" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/hamburger.xml" value="0.1935" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/ic_dashboard.xml" value="0.1985" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/ic_launcher_background.xml" value="0.201" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/ic_lock.xml" value="0.201" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/ic_long_arrow.xml" value="0.201" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/ic_percorso.xml" value="0.2555" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/ic_qr_code.xml" value="0.1" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/ic_qr_code_scanner.xml" value="0.1" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/ic_search1.xml" value="0.201" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/ic_search_prova.xml" value="0.201" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/ic_settings.xml" value="0.201" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/ic_share.xml" value="0.2555" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/launcher_background.xml" value="0.201" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/ripple_effect.xml" value="0.201" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/side_nav_bar.xml" value="0.201" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_add_zone_curator.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_change_password.xml" value="0.23550724637681159" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_creazione_wizard.xml" value="0.14402173913043478" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_daily_calendar.xml" value="0.23550724637681159" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_dashboard.xml" value="0.264" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_element_details.xml" value="0.14402173913043478" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_event_edit.xml" value="0.23550724637681159" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_evento_prova.xml" value="0.12158054711246201" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_generate_qr_code.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_hamburger.xml" value="0.1" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_invio_prova.xml" value="0.23550724637681159" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_modfy_object.xml" value="0.23550724637681159" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_profile.xml" value="0.176" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_provaaaaaaaa.xml" value="0.25" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_scan_qr_code.xml" value="0.12158054711246201" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_search_view_prova.xml" value="0.1265625" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_update_profile.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_week_view.xml" value="0.25" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/activity_welcome.xml" value="0.25" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/add_element.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/calendar_cell.xml" value="0.23550724637681159" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/content_hamburger.xml" value="0.25" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/dialog_delete.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/dialog_step3.xml" value="0.23550724637681159" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/event_cell.xml" value="0.23550724637681159" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/fragment_crea_luogo.xml" value="0.25" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/fragment_crea_oggetti_wizard.xml" value="0.264" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/fragment_crea_zone_wizard.xml" value="0.264" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/fragment_create_constraints_wizard.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/fragment_gallery.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/fragment_hamburger_menu.xml" value="0.264" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/fragment_menu_prova.xml" value="0.20878623188405798" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/fragment_notifiche.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/fragment_slideshow.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/fragment_step1.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/fragment_step2.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/fragment_step3.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/fragment_step5.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/hour_cell.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/nav_header_hamburger.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/notification_icon_prova.xml" value="0.25" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/row_add_element.xml" value="0.2" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/row_add_element_hold.xml" value="0.25" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/row_add_notify.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/row_add_object_creazione_percorso.xml" value="0.25" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/row_add_zone.xml" value="0.25" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/row_add_zone_creazione_percorso.xml" value="0.25" />
-        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/row_from_zone.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/row_from_zone.xml" value="0.264" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/layout/row_in_zone.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/menu/activity_main_drawer.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/menu/hamburger.xml" value="0.25" />
+        <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/menu/menu.xml" value="0.25" />
         <entry key="..\:/Documenti/AlphaTour/app/src/main/res/drawable/ic_images__1_.xml" value="0.1" />
         <entry key="..\:/Documenti/AlphaTour/app/src/main/res/drawable/ic_notification_icon_prova.xml" value="0.1135" />
         <entry key="..\:/Documenti/AlphaTour/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />

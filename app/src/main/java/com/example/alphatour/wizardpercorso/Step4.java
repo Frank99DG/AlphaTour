@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -25,15 +26,22 @@ import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Step4 extends Fragment implements Step, BlockingStep {
+
+    public static List<String> zone_select = new ArrayList<>();
+    public static List<CheckableTextView> oggetti_select = new ArrayList<CheckableTextView>();
+
+    private LinearLayout list_zoneRiepilogo;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_step4, container, false);
+        list_zoneRiepilogo = view.findViewById(R.id.list_zoneRiepilogo);
 
 
         return view;
@@ -41,7 +49,13 @@ public class Step4 extends Fragment implements Step, BlockingStep {
 
 
 
+    public static List<String> getZone_select() {
+        return zone_select;
+    }
 
+    public static List<CheckableTextView> getOggetti_select() {
+        return oggetti_select;
+    }
 
     @Nullable
     @Override

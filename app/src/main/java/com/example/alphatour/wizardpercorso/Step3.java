@@ -136,25 +136,31 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
 
-        zone_scelte.add(Step2.getStringa_scelta());                                       //salvataggio della zona scelta
+        Step4.getZone_select().add(Step2.getStringa_scelta());                     //passo la zona scelta al riepilogo(step4)
         dialog.show();
         dialog_avanti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
+                /*
                 for (int i = 0; i < arrayMonumenti.size(); i++) {
                     list_object.removeView(delete_view.get(i));
                 }
+
+                 */
                 callback.goToNextStep();
             }
         });
 
         dialog_aggiungizona.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+                /*
                 for (int i = 0; i < arrayMonumenti.size(); i++) {
                     list_object.removeView(delete_view.get(i));
                 }
+                 */
                 Intent intent = new Intent(getContext(), PercorsoWizard.class);
                 intent.putExtra("val", 1);
                 startActivity(intent);
@@ -166,7 +172,6 @@ public class Step3 extends Fragment implements Step, BlockingStep {
 
     @Override
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
-        //getFragmentManager().beginTransaction().detach(this).attach(new Fragment()).commit();
         for(int i =0; i< arrayMonumenti.size();i++) {
             list_object.removeView(delete_view.get(i));
         }
@@ -182,7 +187,8 @@ public class Step3 extends Fragment implements Step, BlockingStep {
 
         for (int a = 0; a < arrayMonumenti.size(); a++) {              //ciclo per contare quanti sono checkati
             if (arrayMonumenti.get(a).isChecked()) {
-                oggetti_scelti.add(arrayMonumenti.get(a));                          //salvataggio degli oggetti scelti
+                oggetti_scelti.add(arrayMonumenti.get(a));
+                Step4.getOggetti_select().add(arrayMonumenti.get(a));   //salvataggio degli oggetti scelti
                 control = true;
             }
         }
