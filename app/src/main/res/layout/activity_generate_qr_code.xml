@@ -21,7 +21,7 @@
             android:layout_gravity="center"
             android:elevation="1dp"
             android:padding="4dp"
-            android:text="@string/qr_generador"
+            android:text="@string/qr_generator"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/black"
@@ -44,7 +44,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="15dp"
-        android:hint="@string/qr_incrustado"
+        android:hint="@string/qr_embedded"
         android:padding="5dp"
         android:textColorHint="@color/white"
         app:hintTextColor="@color/white">
@@ -73,7 +73,7 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/bordi_tondi_button"
         android:onClick="generateQrCode"
-        android:text="@string/qr_genera"
+        android:text="@string/qr_generate"
         android:textAllCaps="false" />
 
 

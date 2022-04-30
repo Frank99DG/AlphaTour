@@ -12,7 +12,7 @@
     <string name="generic_error">Prova di nuovo! Qualcosa è andato storto</string>
     <string name="alternative">ACCEDI CON</string>
     <string name="new_user">Non possiedi un account?</string>
-    <string name="login_failed">Acesso fallito! Email o/e password errate</string>
+    <string name="login_failed">Accesso fallito! Email o/e password errate</string>
     <string name="user_registration">Registrazione utente</string>
     <string name="personal_data">Dati personali</string>
     <string name="account_data">Dati account</string>

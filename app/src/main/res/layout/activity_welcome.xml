@@ -23,7 +23,7 @@
         android:id="@+id/textSlogan"
         android:layout_width="316dp"
         android:layout_height="40dp"
-        android:text="@string/frase_de_apertura"
+        android:text="@string/opening_phrase"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="24sp"

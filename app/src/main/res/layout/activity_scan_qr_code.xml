@@ -21,7 +21,7 @@
         android:background="@color/DarkBlue"
         android:gravity="center"
         android:padding="10dp"
-        android:text="@string/escaneo_data"
+        android:text="@string/scann_data"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/BurlyWood"
@@ -38,7 +38,7 @@
         android:padding="12dp"
         android:background="@drawable/bordi_tondi_button"
         android:visibility="gone"
-        android:text="@string/modificar_objeto"
+        android:text="@string/modify_object"
         android:textAllCaps="false" />
 
 
