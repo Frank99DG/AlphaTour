@@ -9,6 +9,6 @@ public class ModifyObjectActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_modfy_object);
+        setContentView(R.layout.activity_modify_object);
     }
 }
