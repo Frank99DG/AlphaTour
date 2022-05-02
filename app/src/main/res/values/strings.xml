@@ -227,5 +227,9 @@
     <string name="string_step3">Seleziona gli oggetti che vuoi visitare</string>
     <string name="addzone_step3">Aggiungi un altra zona</string>
     <string name="title_step3">Creazione del percorso</string>
+    <string name="title_activity_bbb">BBB</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 
 </resources>

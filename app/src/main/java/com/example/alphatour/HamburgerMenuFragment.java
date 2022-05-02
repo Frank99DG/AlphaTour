@@ -52,6 +52,26 @@ public class HamburgerMenuFragment extends Fragment {
 
         name = view.findViewById(R.id.nameProfile);
         surname = view.findViewById(R.id.surnameProfile);
+        takeNameSurnameUser();
+
+        hamburger_home = view.findViewById(R.id.shortcutHome);
+        hamburger_logout = view.findViewById(R.id.shortcutLogout);
+        closeLayout = view.findViewById(R.id.closeLayout);
+        close_hamburger= view.findViewById(R.id.close_hamburger);
+        ignoreTabBar= view.findViewById(R.id.ignoreTabBar);
+
+
+
+
+        buttonClick();
+
+
+        return view;
+    }
+
+
+    private void takeNameSurnameUser(){
+
         db.collection("Users").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -71,20 +91,9 @@ public class HamburgerMenuFragment extends Fragment {
             }
         });
 
-        hamburger_home = view.findViewById(R.id.shortcutHome);
-        hamburger_logout = view.findViewById(R.id.shortcutLogout);
-        closeLayout = view.findViewById(R.id.closeLayout);
-        close_hamburger= view.findViewById(R.id.close_hamburger);
-        ignoreTabBar= view.findViewById(R.id.ignoreTabBar);
-
-
-
-
-        buttonClick();
-
-
-        return view;
     }
+
+
 
     private void buttonClick(){
 
@@ -98,9 +107,11 @@ public class HamburgerMenuFragment extends Fragment {
         hamburger_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //loadingBar.setVisibility(View.VISIBLE);
                 auth.signOut();
                 startActivity( new Intent(getActivity(), LoginActivity.class) );
                 Toast.makeText(getActivity(), "Ti sei disconnesso", Toast.LENGTH_LONG).show();
+                //loadingBar.setVisibility(View.GONE);
             }
         });
 

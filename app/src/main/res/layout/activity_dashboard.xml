@@ -14,7 +14,7 @@
         android:background="@drawable/bg_mint_green"
         android:orientation="vertical"
         android:weightSum="10"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -40,11 +40,11 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
+                    android:background="@drawable/ic_hamburger"
                     android:onClick="menu"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:background="@drawable/ic_hamburger" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <include
                     android:id="@+id/notification_icon_prova"
@@ -59,8 +59,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.appcompat.widget.Toolbar>
-
-
 
 
         <LinearLayout
@@ -94,9 +92,9 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="55dp"
                 android:layout_height="50dp"
-                app:cardCornerRadius="12dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="50dp"
+                app:cardCornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <ImageView
@@ -108,9 +106,7 @@
             </androidx.cardview.widget.CardView>
 
 
-
         </LinearLayout>
-
 
 
         <androidx.gridlayout.widget.GridLayout
@@ -228,7 +224,7 @@
             <!-- Row 2-->
             <!-- Column 1-->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cv_show"
+                android:id="@+id/cv_calendar"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginLeft="30dp"
@@ -258,7 +254,7 @@
                     </ImageView>
 
                     <TextView
-                        android:id="@+id/tv_show"
+                        android:id="@+id/tv_calendar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -328,7 +324,8 @@
 
     </LinearLayout>
 
-    <com.google.android.material.tabs.TabLayout
+
+    <!--<com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
@@ -339,13 +336,15 @@
             android:id="@+id/tb_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tb_profile" />
+            android:text="@string/tb_profile"
+            android:onClick="openProfile"/>
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tb_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tb_home" />
+            android:text="@string/tb_home"
+            android:onClick="openDashboard"/>
 
 
         <com.google.android.material.tabs.TabItem
@@ -354,7 +353,8 @@
             android:layout_height="wrap_content"
             android:text="@string/tb_routes" />
 
-    </com.google.android.material.tabs.TabLayout>
+    </com.google.android.material.tabs.TabLayout> -->
+
 
     <!--
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -404,6 +404,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
      -->
+
     <FrameLayout
         android:id="@+id/container"
         android:name="com.example.alphatour.NotifyFragment"
@@ -423,6 +424,17 @@
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/botton_nav_menu" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

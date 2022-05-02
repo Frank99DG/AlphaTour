@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/tb_profile"
+        android:title="@string/tb_profile"
+        android:icon="@drawable/ic_profile2"
+        />
+
+    <item
+        android:id="@+id/tb_home"
+        android:title="@string/tb_home"
+        android:icon="@drawable/ic_home"
+        />
+
+    <item
+        android:id="@+id/tb_routes"
+        android:title="@string/tb_routes"
+        android:icon="@drawable/ic_percorso"
+        />
+</menu>

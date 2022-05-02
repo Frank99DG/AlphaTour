@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <LinearLayout
         android:id="@+id/closeLayout"
         android:layout_width="match_parent"
@@ -35,7 +36,7 @@
             android:layout_marginTop="25dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_profilo" />
+            app:srcCompat="@drawable/ic_profile2" />
 
         <TextView
             android:id="@+id/nameProfile"
@@ -97,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="45dp"
                 android:layout_marginTop="20dp"
-                android:drawableStart="@drawable/ic_dashboard"
+                android:drawableStart="@drawable/ic_home"
                 android:padding="8dp"
                 android:text="@string/menu_home"
                 android:textSize="16sp"

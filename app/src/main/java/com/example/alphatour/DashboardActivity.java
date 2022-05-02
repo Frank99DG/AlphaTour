@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -22,6 +23,7 @@ import com.example.alphatour.oggetti.Zone;
 import com.example.alphatour.wizardcreazione.CreationWizard;
 import com.example.alphatour.wizardpercorso.PercorsoWizard;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -50,6 +52,7 @@ public class DashboardActivity extends AppCompatActivity {
     private AutoCompleteTextView inputSearch;
     private static List<String> placesZonesElementsList =new ArrayList<String>();
     private ArrayAdapter<String> adapterItems;
+    private BottomNavigationView bottomNavigationView;
     private FirebaseAuth auth;
     private FirebaseUser user;
     private FirebaseFirestore db;
@@ -60,12 +63,21 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        inputSearch = findViewById(R.id.inputSearch);
-
+        db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
-        db = FirebaseFirestore.getInstance();
         idUser = user.getUid();
+
+        inputSearch = findViewById(R.id.inputSearch);
+        //inputSearch.setFocusable(false);
+        placesZonesElementsList = getPlacesZonesElementsList();
+        adapterItems = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, placesZonesElementsList);
+        inputSearch.setAdapter(adapterItems);
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.tb_home); //per partire con la selezione su home
+        bottonNavClick();
+
 
         if (savedInstanceState != null) {
             //Restore the fragment's instance
@@ -78,11 +90,6 @@ public class DashboardActivity extends AppCompatActivity {
         notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
         ft.replace(R.id.container,myFragment).hide(myFragment).commit();
         fragmentTransaction.replace(R.id.menu,myFragmentMenu).hide(myFragmentMenu).commit();
-
-
-        placesZonesElementsList = getPlacesZonesElementsList(/*user*/);
-        adapterItems = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, placesZonesElementsList);
-        inputSearch.setAdapter(adapterItems);
 
 
     }
@@ -147,10 +154,9 @@ public class DashboardActivity extends AppCompatActivity {
 
     }
 
-    public List<String> getPlacesZonesElementsList(/*FirebaseUser user*/) {
+    public List<String> getPlacesZonesElementsList() {
 
-        String idUser = user.getUid();
-        List<String> list =new ArrayList<String>();
+        List<String> list = new ArrayList<String>();
 
 
         db.collection("Elements").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -234,5 +240,41 @@ public class DashboardActivity extends AppCompatActivity {
     public void openCreationWizard(View v){
         startActivity(new Intent(DashboardActivity.this, CreationWizard.class));
     }
+
+    /*public void openCalendar(View v){
+        startActivity(new Intent(DashboardActivity.this, .class));
+    }
+
+    public void openUpdatePlace(View v){
+        startActivity(new Intent(DashboardActivity.this, .class));
+    }*/
+
+    public void bottonNavClick(){
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId()){
+                    case R.id.tb_profile:
+                        startActivity(new Intent(DashboardActivity.this, ProfileActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.tb_home:
+                        startActivity(new Intent(DashboardActivity.this, DashboardActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    /*case R.id.tb_routes:
+                        startActivity(new Intent(DashboardActivity.this, .class));
+                        overridePendingTransition(0,0);
+                        return true;*/
+                }
+
+                return false;
+            }
+        });
+
+    }
+
 
 }
