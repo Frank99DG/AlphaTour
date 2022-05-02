@@ -430,20 +430,20 @@ public class ModifyObjectActivity extends AppCompatActivity {
         Boolean errorFlag = false;
 
         if (Title.isEmpty()) {
-            title.setError(getString(R.string.campo_obbligatorio));
+            title.setError(getString(R.string.required_field));
             title.requestFocus();
             errorFlag = true;
         }
 
         if (Description.isEmpty()) {
-            description.setError(getString(R.string.campo_obbligatorio));
+            description.setError(getString(R.string.required_field));
             description.requestFocus();
             errorFlag = true;
         }
 
 
         if (Sensor.isEmpty()) {
-            sensor.setError(getString(R.string.campo_obbligatorio));
+            sensor.setError(getString(R.string.required_field));
             sensor.requestFocus();
             errorFlag = true;
         }

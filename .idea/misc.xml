@@ -5,9 +5,15 @@
       <map>
         <entry key="..\:/AlphaTour/app/src/main/res/drawable-anydpi/ic_dashBoard.xml" value="0.1" />
         <entry key="..\:/AlphaTour/app/src/main/res/drawable-anydpi/ic_dashboard.xml" value="0.185" />
+        <entry key="..\:/AlphaTour/app/src/main/res/layout-land/activity_daily_calendar.xml" value="0.2045045045045045" />
+        <entry key="..\:/AlphaTour/app/src/main/res/layout-land/activity_forgot_password.xml" value="0.2045045045045045" />
+        <entry key="..\:/AlphaTour/app/src/main/res/layout-land/activity_login.xml" value="0.2045045045045045" />
+        <entry key="..\:/AlphaTour/app/src/main/res/layout-land/activity_week_view.xml" value="0.2045045045045045" />
+        <entry key="..\:/AlphaTour/app/src/main/res/layout/activity_daily_calendar.xml" value="0.176" />
         <entry key="..\:/AlphaTour/app/src/main/res/layout/activity_dash_board.xml" value="0.1" />
         <entry key="..\:/AlphaTour/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/AlphaTour/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/AlphaTour/app/src/main/res/layout/content_hamburger.xml" value="0.2" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/backgroun_dialog.xml" value="0.201" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/bordi_tondi.xml" value="0.1685" />
         <entry key="..\:/Android-workspace/AlphaTour/app/src/main/res/drawable/bordi_tondi2.xml" value="0.1685" />

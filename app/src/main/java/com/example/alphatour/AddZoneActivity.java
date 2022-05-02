@@ -99,7 +99,7 @@ public class AddZoneActivity extends AppCompatActivity {
         if(uri!=null) {
             flagPhoto = true;
             photo.setTextColor(getResources().getColor(R.color.white));
-            Toast.makeText(AddZoneActivity.this, R.string.subir_foto, Toast.LENGTH_LONG).show();
+            Toast.makeText(AddZoneActivity.this, R.string.upload_photo, Toast.LENGTH_LONG).show();
         }else{
             Toast.makeText(AddZoneActivity.this, "Non hai aggiunto la foto!", Toast.LENGTH_LONG).show();
         }
@@ -113,7 +113,7 @@ public class AddZoneActivity extends AppCompatActivity {
 
         String NameZone = nameZone.getText().toString();
         if(NameZone.isEmpty()){
-            nameZone.setError(getString(R.string.campo_requerido));
+            nameZone.setError(getString(R.string.required_field));
             nameZone.requestFocus();
         }
 
@@ -161,7 +161,7 @@ public class AddZoneActivity extends AppCompatActivity {
             Boolean errorFlag = false;
 
             if(Title.isEmpty()){
-                title.setError(getString(R.string.campo_requerido));
+                title.setError(getString(R.string.required_field));
                 title.requestFocus();
                 errorFlag = true;
             }else{
@@ -169,7 +169,7 @@ public class AddZoneActivity extends AppCompatActivity {
             }
 
             if(Description.isEmpty()){
-                description.setError(getString(R.string.campo_requerido));
+                description.setError(getString(R.string.required_field));
                 description.requestFocus();
                 errorFlag = true;
             }else{
@@ -200,7 +200,7 @@ public class AddZoneActivity extends AppCompatActivity {
             }*/
 
             if(SensorCode.isEmpty()){
-                sensorCode.setError(getString(R.string.campo_requerido));
+                sensorCode.setError(getString(R.string.required_field));
                 sensorCode.requestFocus();
                 errorFlag = true;
             }else{

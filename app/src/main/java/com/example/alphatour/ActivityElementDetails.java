@@ -130,7 +130,7 @@ public class ActivityElementDetails extends AppCompatActivity {
         String SensorCode = sensor.getText().toString();
         Element elementModified= new Element();
         if(Title.isEmpty()){
-            title.setError(getString(R.string.campo_requerido));
+            title.setError(getString(R.string.required_field));
             title.requestFocus();
             errorFlag = true;
         }else{
@@ -138,7 +138,7 @@ public class ActivityElementDetails extends AppCompatActivity {
         }
 
         if(Description.isEmpty()){
-            description.setError(getString(R.string.campo_requerido));
+            description.setError(getString(R.string.required_field));
             description.requestFocus();
             errorFlag = true;
         }else{
@@ -155,7 +155,7 @@ public class ActivityElementDetails extends AppCompatActivity {
             }*/
 
         if(SensorCode.isEmpty()){
-            sensor.setError(getString(R.string.campo_requerido));
+            sensor.setError(getString(R.string.required_field));
             sensor.requestFocus();
             errorFlag = true;
         }else{
@@ -220,7 +220,7 @@ public class ActivityElementDetails extends AppCompatActivity {
         if (requestCode == 20) {
             uri = data.getData();
             if (uri != null) {
-                Toast.makeText(ActivityElementDetails.this, R.string.subir_foto, Toast.LENGTH_LONG).show();
+                Toast.makeText(ActivityElementDetails.this, R.string.upload_photo, Toast.LENGTH_LONG).show();
                 imagePhoto.setImageURI(uri);
                 setPh(uri);
             } else {

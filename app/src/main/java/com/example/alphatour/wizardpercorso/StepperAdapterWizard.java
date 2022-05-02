@@ -49,26 +49,26 @@ public class StepperAdapterWizard extends AbstractFragmentStepAdapter {
         switch (position) {
             case 0:
                 builder
-                        .setTitle(R.string.crear_ruta)
+                        .setTitle(R.string.create_path)
                         .setEndButtonLabel(R.string.next)
                         .setBackButtonLabel("Indietro");
                 break;
             case 1:
                 builder
-                        .setTitle(R.string.elegir_zona)
+                        .setTitle(R.string.choose_zone)
                         .setEndButtonLabel(R.string.next)
                         .setBackButtonLabel("Indietro");
                 break;
             case 2:
                 builder
-                        .setTitle(R.string.elegir_objeto)
+                        .setTitle(R.string.choose_object)
                         .setEndButtonLabel(R.string.next)
                         .setBackButtonLabel("Indietro");
 
                 break;
             case 3:
                 builder
-                        .setTitle(R.string.ruta_de_revisión)
+                        .setTitle(R.string.review_path)
                         .setBackButtonVisible(false)
                         .setEndButtonLabel(R.string.end);
                 break;

@@ -57,13 +57,13 @@ public class Step1 extends Fragment implements Step, BlockingStep {
         Boolean errorFlag = false;
 
         if (NamePath.isEmpty()) {
-            namePath.setError(getString(R.string.campo_obbligatorio));
+            namePath.setError(getString(R.string.required_field));
             namePath.requestFocus();
             errorFlag = true;
         }
 
         if (DescriptionPath.isEmpty()) {
-            descriptionPath.setError(getString(R.string.campo_obbligatorio));
+            descriptionPath.setError(getString(R.string.required_field));
             descriptionPath.requestFocus();
             errorFlag = true;
         }

@@ -346,13 +346,13 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                                                     }
                                                 });
 
-                                        new Handler().postDelayed(new Runnable() {
+                                        /*new Handler().postDelayed(new Runnable() {
                                             @Override
                                             public void run() {
                                                 savePhoto(newElement.getPhoto(),newElement,i);
                                                 saveQrCode(newElement.getQrCode(),newElement,i);
                                             }
-                                        }, 1000L);
+                                        }, 1000L);*/
                                         idElement=getElementid();
                                     }
                                 }

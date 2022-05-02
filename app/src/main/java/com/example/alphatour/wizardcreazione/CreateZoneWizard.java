@@ -110,7 +110,7 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
                 nameZone.setText(null);
 
                 }else{
-                    nameZone.setError(getString(R.string.campo_obbligatorio));
+                    nameZone.setError(getString(R.string.required_field));
                     nameZone.requestFocus();
                 }
             }

@@ -63,7 +63,7 @@ public class GenerateQrCodeActivity extends AppCompatActivity {
 
         String data= qrData.getText().toString();
         if(data.isEmpty()){
-            Toast.makeText(GenerateQrCodeActivity.this,R.string.qr_fecha_olvidada,Toast.LENGTH_LONG).show();
+            Toast.makeText(GenerateQrCodeActivity.this,R.string.qr_data_missing,Toast.LENGTH_LONG).show();
         }else{
 
             WindowManager manager= (WindowManager) getSystemService(WINDOW_SERVICE);

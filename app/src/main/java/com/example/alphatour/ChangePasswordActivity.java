@@ -73,7 +73,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             public void onClick(View view) {
                 currentPassword=editPassword.getText().toString();
                 if(TextUtils.isEmpty(currentPassword)){
-                    Toast.makeText(ChangePasswordActivity.this,R.string.contraseña_requerida,
+                    Toast.makeText(ChangePasswordActivity.this,R.string.password_required,
                             Toast.LENGTH_SHORT).show();
                     editPassword.setError(getString(R.string.password_required_set_error));
                     editPassword.requestFocus();
@@ -97,7 +97,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                                         btnAuthNewPassword.setEnabled(true);
                                         editPasswordNew.setEnabled(true);
 
-                                        Toast.makeText(ChangePasswordActivity.this,R.string.autenticación_completada,
+                                        Toast.makeText(ChangePasswordActivity.this,R.string.authentication_completed,
                                                 Toast.LENGTH_SHORT).show();
 
                                         btnAuthNewPassword.setBackgroundTintList(ContextCompat.getColorStateList(ChangePasswordActivity.this,
@@ -129,13 +129,13 @@ public class ChangePasswordActivity extends AppCompatActivity {
         String newPassword=editPasswordNew.getText().toString();
 
         if(TextUtils.isEmpty(newPassword)){
-            Toast.makeText(ChangePasswordActivity.this,R.string.contraseña_requerida,
+            Toast.makeText(ChangePasswordActivity.this,R.string.password_required,
                     Toast.LENGTH_SHORT).show();
             editPasswordNew.setError(getString(R.string.new_password_required_set_error));
             editPasswordNew.requestFocus();
         }else{
             if(newPassword.matches(currentPassword)){
-                editPasswordNew.setError(getString(R.string.nueva_contraseña_del_nombre));
+                editPasswordNew.setError(getString(R.string.new_same_password));
                 editPasswordNew.requestFocus();
             }else{
                 progressBar.setVisibility(View.VISIBLE);
@@ -146,7 +146,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
 
-                            Toast.makeText(ChangePasswordActivity.this, R.string.contraseña_cambiada,
+                            Toast.makeText(ChangePasswordActivity.this, R.string.password_changed,
                                     Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(ChangePasswordActivity.this, ProfileActivity.class);
