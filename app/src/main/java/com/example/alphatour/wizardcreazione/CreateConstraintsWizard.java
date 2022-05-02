@@ -88,7 +88,6 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     private boolean success=false;
     private List<String> uriUploadPhoto=new ArrayList<String>();
     private List<String> uriUploadQrCode=new ArrayList<String>();
-    private String idElement;
 
 
     public CreateConstraintsWizard() {
@@ -228,9 +227,8 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     public void onCompleteClicked(StepperLayout.OnCompleteClickedCallback callback) {
 
         dialog.show();
-        titleDialog.setText("Creazione Vincoli");
-        textDialog.setText("Proseguendo con la creazione dei vincoli non sarà più possibile modificare zone e oggetti creati" +
-                " in questa fase. Vuoi proseguire ? ");
+        titleDialog.setText("Completa inserimenti");
+        textDialog.setText("Sei sicuro di voler completare la creazione dei luoghi e degli oggetti ? ");
 
         yesFinal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -346,14 +344,8 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                                                     }
                                                 });
 
-                                        /*new Handler().postDelayed(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                savePhoto(newElement.getPhoto(),newElement,i);
-                                                saveQrCode(newElement.getQrCode(),newElement,i);
-                                            }
-                                        }, 1000L);*/
-                                        idElement=getElementid();
+                                        savePhoto(newElement.getPhoto(),newElement,i);
+                                        saveQrCode(newElement.getQrCode(),newElement,i);
                                     }
                                 }
                             }
@@ -368,17 +360,11 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
         });
     }
 
-    private String getElementid() {
-
-        String id=db.collection("Elemets").document().getId();
-        return id;
-    }
-
 
     private void savePhoto(Uri photo, Element element, int i) {
 
 
-        final StorageReference fileRef = storegeProfilePick.child("PhotoObjects").child("Photo_Objects"+"_"+element.getTitle());
+        final StorageReference fileRef = storegeProfilePick.child("PhotoObjects").child("Photo_Objects"+"_"+db.collection("Elemets").document().getId());
 
         uploadTask = fileRef.putFile(photo);
 
@@ -451,7 +437,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
 
     private void saveQrCode(Bitmap qrCode, Element element, int i) {
 
-        final StorageReference fileRef = storegeProfilePick.child("QrCodeObjects").child("QrCode_Objects"+"_"+element.getTitle());
+        final StorageReference fileRef = storegeProfilePick.child("QrCodeObjects").child("QrCode_Objects"+"_"+db.collection("Elemets").document().getId());
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         qrCode.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
@@ -504,7 +490,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                                                             @Override
                                                             public void onSuccess(Void unused) {
                                                                 success=true;
-                                                                Toast.makeText(getContext(), "Hai aggiornato l'immagine di profilo", Toast.LENGTH_LONG).show();
+                                                                Toast.makeText(getContext(), "Zone e Oggetti creati con successo", Toast.LENGTH_LONG).show();
                                                                 loadingBar.setVisibility(View.GONE);
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
