@@ -222,11 +222,11 @@
     <string name="end">Fine</string>
     <string name="backTo_path">Torna a crea percorso </string>
     <string name="backTo_zone">Torna a scelta zona </string>
+    <string name="backTo_review">Torna al riepilogo</string>
 
     <string name="string_step2">Seleziona la zona che vuoi visitare </string>
     <string name="string_step3">Seleziona gli oggetti che vuoi visitare</string>
     <string name="addzone_step3">Aggiungi un altra zona</string>
-    <string name="title_step3">Creazione del percorso</string>
     <string name="title_activity_bbb">BBB</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>

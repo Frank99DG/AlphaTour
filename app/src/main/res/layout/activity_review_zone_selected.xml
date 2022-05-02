@@ -1,46 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".wizardpercorso.Step4"
     android:background="@drawable/sfondo"
-    android:gravity="center">
-    >
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context=".wizardpercorso.ReviewZoneSelected">
 
     <TextView
-        android:id="@+id/title_step4"
+        android:id="@+id/zoneReview"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@android:drawable/picture_frame"
         android:gravity="center"
-        android:text="@string/review_path"
+        android:text="TextView"
         android:textAlignment="center"
         android:textColor="@color/Black"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck">
 
         <LinearLayout
-            android:id="@+id/list_zoneRiepilogo"
+            android:id="@+id/list_object_zone_review"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/backToReview"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="680dp"
+        android:background="@android:drawable/picture_frame"
+        android:gravity="center"
+        android:text="@string/backTo_review"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="@color/Black"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

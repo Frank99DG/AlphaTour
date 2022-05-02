@@ -222,10 +222,10 @@
     <string name="end">End</string>
     <string name="backTo_path">Volver a crear ruta </string>
     <string name="backTo_zone">Volver a la selección de zonas </string>
+    <string name="backTo_review">Volver al resumen</string>
 
     <string name="string_step2">Seleccione la zona que desea visitar</string>
     <string name="string_step3">Seleccione los objetos que desea visitar</string>
     <string name="addzone_step3">Añadir otra zona</string>
-    <string name="title_step3">Creación de rutas</string>
 
 </resources>

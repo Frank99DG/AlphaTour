@@ -214,18 +214,18 @@
 
     <string name="name_path">Insert route name</string>
     <string name="description_path">Insert route description</string>
-    <string name="create_path">Create Route </string>
+    <string name="create_path">Create Path</string>
     <string name="choose_zone">Choose Zone</string>
     <string name="choose_object">Choose Objects</string>
-    <string name="review_path">Review Route</string>
+    <string name="review_path">Path review</string>
     <string name="next">Next</string>
     <string name="end">End</string>
     <string name="backTo_path">Back to create route </string>
     <string name="backTo_zone">Back to choose zone </string>
+    <string name="backTo_review">Back to review</string>
 
     <string name="string_step2">Select the area you want to visit </string>
     <string name="string_step3">Select the objects you want to visit</string>
     <string name="addzone_step3">Add new zone</string>
-    <string name="title_step3">Create your route</string>
 
 </resources>

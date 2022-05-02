@@ -1,12 +1,10 @@
 package com.example.alphatour.wizardpercorso;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,10 +18,7 @@ import android.widget.Toast;
 import com.devzone.checkabletextview.CheckableTextView;
 import com.devzone.checkabletextview.CheckedListener;
 import com.example.alphatour.R;
-import com.example.alphatour.oggetti.ElementString;
 import com.example.alphatour.oggetti.Zone;
-import com.example.alphatour.wizardcreazione.StepperAdapterCreazioneWizard;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,10 +27,8 @@ import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
-import com.stepstone.stepper.adapter.StepAdapter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Step2 extends Fragment implements Step, BlockingStep {
@@ -102,7 +95,7 @@ public class Step2 extends Fragment implements Step, BlockingStep {
                             Zone zon = d.toObject(Zone.class);
 
                             View zone = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso,null ,false);
-                            CheckableTextView textZone1 = (CheckableTextView) zone.findViewById(R.id.textZone1);
+                            CheckableTextView textZone1 = (CheckableTextView) zone.findViewById(R.id.textObjectss);
 
                             textZone1.setText(zon.getName());
                             array_database.add(zon.getName());

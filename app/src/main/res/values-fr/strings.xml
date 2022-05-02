@@ -222,10 +222,10 @@
     <string name="end">End</string>
     <string name="backTo_path">Retour à la création de l’itinéraire</string>
     <string name="backTo_zone">Retour à la sélection des zones </string>
+    <string name="backTo_review">Retour au sommaire</string>
 
     <string name="string_step2">Sélectionnez la région que vous souhaitez visiter </string>
     <string name="string_step3">Sélectionnez les objets que vous voulez visiter</string>
     <string name="addzone_step3">Ajouter une autre zone</string>
-    <string name="title_step3">Création d’un itinéraire</string>
 
 </resources>

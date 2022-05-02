@@ -30,7 +30,9 @@ import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Step3 extends Fragment implements Step, BlockingStep {
@@ -42,12 +44,14 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     private List<CheckableTextView> oggetti_scelti = new ArrayList<CheckableTextView>();
     private List<String> zone_scelte = new ArrayList<String>();
     private List<CheckableTextView> arrayMonumenti = new ArrayList<CheckableTextView>();
+    private List<String> arrayObject = new ArrayList<String>();
     private List<View> delete_view = new ArrayList<View>();
     private Dialog dialog;
     private Button dialog_avanti, dialog_aggiungizona;
     private FirebaseFirestore db;
     private Button callFragment;
     private Step5 step5_fragment = new Step5();
+    public static Map<String, String> map_review = new HashMap<String, String>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,9 +112,14 @@ public class Step3 extends Fragment implements Step, BlockingStep {
                                                             ElementString element = document.toObject(ElementString.class);
 
                                                             View object = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso, null, false);
-                                                            CheckableTextView textZone1 = (CheckableTextView) object.findViewById(R.id.textZone1);
+                                                            CheckableTextView textZone1 = (CheckableTextView) object.findViewById(R.id.textObjectss);
+
 
                                                             textZone1.setText(element.getTitle());
+
+                                                            arrayObject.add(element.getTitle());
+
+
 
                                                             arrayMonumenti.add(textZone1);
                                                             delete_view.add(object);
@@ -187,8 +196,9 @@ public class Step3 extends Fragment implements Step, BlockingStep {
 
         for (int a = 0; a < arrayMonumenti.size(); a++) {              //ciclo per contare quanti sono checkati
             if (arrayMonumenti.get(a).isChecked()) {
+                map_review.put(arrayObject.get(a), Step2.getStringa_scelta());
                 oggetti_scelti.add(arrayMonumenti.get(a));
-                Step4.getOggetti_select().add(arrayMonumenti.get(a));   //salvataggio degli oggetti scelti
+                Step4.getOggetti_select().add(arrayObject.get(a));   //salvataggio degli oggetti scelti
                 control = true;
             }
         }
@@ -213,4 +223,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     public void onCompleteClicked(StepperLayout.OnCompleteClickedCallback callback) {
     }
 
+    public static Map<String, String> getMap_review() {
+        return map_review;
+    }
 }

@@ -1,39 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Relative"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textZoneObject"
+        android:id="@+id/textZoneReview"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:text=""
-        android:textAlignment="viewStart"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="28dp"
+        android:background="@android:drawable/gallery_thumb"
+        android:gravity="center"
+        android:text="Zone"
+        android:backgroundTint="@color/CadetBlue"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="20dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <com.devzone.checkabletextview.CheckableTextView
-            android:id="@+id/textObjectt"
+    <ImageView
+        android:id="@+id/deleteZone_review"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="320dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toEndOf="@+id/textZoneReview"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_delete" />
+    <!--
+        <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:background="@android:drawable/editbox_dropdown_light_frame"
-            app:ctv_AnimType="scale"
-            app:ctv_IconChecked="false"
-            app:ctv_IconTint="#5CCD2F"
-            app:ctv_TextColor="@color/Black"
-            app:ctv_TextSize="20dp" />
-    </LinearLayout>
-</LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.devzone.checkabletextview.CheckableTextView
+                android:id="@+id/textObjectt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:background="@android:drawable/editbox_dropdown_light_frame"
+                app:ctv_AnimType="scale"
+                app:ctv_IconChecked="false"
+                app:ctv_IconTint="#5CCD2F"
+                app:ctv_TextColor="@color/Black"
+                app:ctv_TextSize="20dp" />
+        </LinearLayout>
+
+       -->
+</RelativeLayout>

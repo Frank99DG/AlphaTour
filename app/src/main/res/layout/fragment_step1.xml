@@ -11,13 +11,11 @@
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="343dp"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="52dp"
-        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:background="@android:drawable/picture_frame"
         android:gravity="center"
-        android:text="@string/title_step3"
+        android:text="@string/create_path"
         android:textAlignment="center"
         android:textColor="@color/Black"
         android:textSize="24sp"
