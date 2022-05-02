@@ -18,7 +18,7 @@
         android:layout_marginTop="30dp"
         android:background="?android:attr/autofilledHighlight"
         android:backgroundTint="@color/CadetBlue"
-        android:text="@string/paso_de_cadena3"
+        android:text="@string/title_step3"
         android:textAlignment="center"
         android:textColor="@color/Black"
         android:textSize="24sp"
