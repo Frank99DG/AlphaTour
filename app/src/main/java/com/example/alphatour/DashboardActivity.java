@@ -1,23 +1,22 @@
 package com.example.alphatour;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Rect;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.LinearLayout;
-import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.devzone.checkabletextview.CheckableTextView;
-import com.devzone.checkabletextview.CheckedListener;
-import com.example.alphatour.oggetti.Element;
 import com.example.alphatour.oggetti.ElementString;
 import com.example.alphatour.oggetti.Place;
 import com.example.alphatour.oggetti.Zone;
@@ -66,13 +65,13 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         idUser = user.getUid();
 
         inputSearch = findViewById(R.id.inputSearch);
-        //inputSearch.setFocusable(false);
         placesZonesElementsList = getPlacesZonesElementsList();
         adapterItems = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, placesZonesElementsList);
         inputSearch.setAdapter(adapterItems);
@@ -96,6 +95,7 @@ public class DashboardActivity extends AppCompatActivity {
 
 
     }
+
 
     @Override
     protected void onResume() {
@@ -135,6 +135,25 @@ public class DashboardActivity extends AppCompatActivity {
 
      // this.notificationCounter.setTextNotify(savedInstanceState,KEY_COUNTER);
     }
+
+    //To remove focus and keyboard when click outside AutoCompleteTextView
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if ( v instanceof AutoCompleteTextView) {
+                Rect outRect = new Rect();
+                v.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int)event.getRawX(), (int)event.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
+        return super.dispatchTouchEvent( event );
+    }
+
 
     public void openFragment(View v) {
 
@@ -184,10 +203,10 @@ public class DashboardActivity extends AppCompatActivity {
                     for (DocumentSnapshot d : listDocument) {
                         ElementString element = d.toObject(ElementString.class);
 
-                        //if(idUser == element.idCurator){
+                        if( idUser.equals(element.getIdUser()) ){
                             titleElement = element.getTitle();
                             list.add(titleElement);
-                        //}
+                        }
                     }
                 }
             }
@@ -205,10 +224,10 @@ public class DashboardActivity extends AppCompatActivity {
                     for (DocumentSnapshot d : listDocument) {
                         Zone zone = d.toObject(Zone.class);
 
-                        //if(idUser == zone.idCurator){
+                        if( idUser.equals(zone.getIdUser()) ){
                         nameZone = zone.getName();
                         list.add(nameZone);
-                        //}
+                        }
 
 
                     }
@@ -228,10 +247,10 @@ public class DashboardActivity extends AppCompatActivity {
                     for (DocumentSnapshot d : listDocument) {
                         Place place = d.toObject(Place.class);
 
-                        //if(idUser == place.idCurator){
-                        namePlace = place.name;
+                        if( idUser.equals(place.getIdUser()) ){
+                        namePlace = place.getName();
                         list.add(namePlace);
-                        //}
+                        }
 
                     }
                 }

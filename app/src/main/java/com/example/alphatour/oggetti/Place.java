@@ -5,7 +5,7 @@ import org.jgrapht.graph.SimpleDirectedGraph;
 
 public class Place {
 
-    public String name,city,typology,idUser;
+    private String name,city,typology,idUser;
     //il grafo è orientato (da A a B è diverso da B ad A)
     public static Graph<Zone,DefaultEdge> zonesPlace = new SimpleDirectedGraph<>(DefaultEdge.class);
 
@@ -35,17 +35,42 @@ public class Place {
         this.zonesPlace = zonesPlace;
     }
 
-    /*public static setZoneLuogo(Graph<Zona, DefaultEdge> zoneLuogo) {
 
-        Zona zona1=new Zona("Stanza1",Zona.getElementiZona());
-        Zona zona2=new Zona("Stanza2",Zona.getElementiZona());
-
-        zoneLuogo.addVertex(zona2);
-        zoneLuogo.addEdge(zona1,zona2);
-    }*/
 
     public static void setZonesPlace(Graph<Zone, DefaultEdge> zonesPlace) {
         Place.zonesPlace = zonesPlace;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getTypology() {
+        return typology;
+    }
+
+    public void setTypology(String typology) {
+        this.typology = typology;
+    }
+
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
     }
 
     public static Graph<Zone, DefaultEdge> getZonesPlace() {

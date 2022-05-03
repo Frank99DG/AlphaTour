@@ -29,9 +29,9 @@ public class HamburgerMenuFragment extends Fragment {
 
 
     private LinearLayout closeLayout;
-    private TextView name,surname,hamburger_home, hamburger_logout;
+    private TextView name,surname,shortcutHome, shortcutLogout;
     private ImageView close_hamburger;
-    private ConstraintLayout ignoreTabBar;
+    private ConstraintLayout headerLayout,shortcutLayout;
     private FirebaseAuth auth;
     private FirebaseUser user;
     private FirebaseFirestore db;
@@ -54,11 +54,12 @@ public class HamburgerMenuFragment extends Fragment {
         surname = view.findViewById(R.id.surnameProfile);
         takeNameSurnameUser();
 
-        hamburger_home = view.findViewById(R.id.shortcutHome);
-        hamburger_logout = view.findViewById(R.id.shortcutLogout);
+        shortcutHome = view.findViewById(R.id.shortcutHome);
+        shortcutLogout = view.findViewById(R.id.shortcutLogout);
         closeLayout = view.findViewById(R.id.closeLayout);
+        headerLayout= view.findViewById(R.id.headerLayout);
+        shortcutLayout= view.findViewById(R.id.shortcutLayout);
         close_hamburger= view.findViewById(R.id.close_hamburger);
-        ignoreTabBar= view.findViewById(R.id.ignoreTabBar);
 
 
 
@@ -97,14 +98,14 @@ public class HamburgerMenuFragment extends Fragment {
 
     private void buttonClick(){
 
-        hamburger_home.setOnClickListener(new View.OnClickListener() {
+        shortcutHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity( new Intent(getActivity(), DashboardActivity.class) );
             }
         });
 
-        hamburger_logout.setOnClickListener(new View.OnClickListener() {
+        shortcutLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //loadingBar.setVisibility(View.VISIBLE);
@@ -123,6 +124,18 @@ public class HamburgerMenuFragment extends Fragment {
             }
         });
 
+        headerLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+
+        shortcutLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+
         close_hamburger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,11 +143,6 @@ public class HamburgerMenuFragment extends Fragment {
             }
         });
 
-        ignoreTabBar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
 
     }
 

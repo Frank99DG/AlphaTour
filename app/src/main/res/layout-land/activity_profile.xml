@@ -93,7 +93,7 @@
             android:textSize="18sp" />
 
         <View
-            android:id="@+id/dividerName"
+            android:id="@+id/divider1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/profileNameUser"
@@ -106,7 +106,7 @@
             android:id="@+id/icEmail"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/dividerName"
+            android:layout_below="@+id/divider1"
             android:layout_marginTop="20dp"
             android:background="@drawable/ic_email_profile" />
 
@@ -114,7 +114,7 @@
             android:id="@+id/profileEmailUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/dividerName"
+            android:layout_below="@id/divider1"
             android:layout_alignStart="@id/icEmail"
             android:layout_marginStart="50dp"
             android:layout_marginTop="20dp"
@@ -122,7 +122,7 @@
             android:textSize="18sp" />
 
         <View
-            android:id="@+id/dividerEmail"
+            android:id="@+id/divider2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/profileEmailUser"
@@ -136,7 +136,7 @@
             android:id="@+id/icDateBirth"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/dividerEmail"
+            android:layout_below="@+id/divider2"
             android:layout_marginTop="20dp"
             android:background="@drawable/ic_date_birth_profile" />
 
@@ -144,7 +144,7 @@
             android:id="@+id/profileDateBirthUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/dividerEmail"
+            android:layout_below="@id/divider2"
             android:layout_alignStart="@id/icDateBirth"
             android:layout_marginStart="50dp"
             android:layout_marginTop="20dp"
@@ -152,7 +152,7 @@
             android:textSize="18sp" />
 
         <View
-            android:id="@+id/dividerDataNascita"
+            android:id="@+id/divider3"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/profileDateBirthUser"
@@ -166,7 +166,7 @@
             android:id="@+id/icUsername"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_below="@+id/dividerDataNascita"
+            android:layout_below="@+id/divider3"
             android:layout_marginTop="20dp"
             android:background="@drawable/ic_username" />
 
@@ -174,7 +174,7 @@
             android:id="@+id/profileUsernameUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/dividerDataNascita"
+            android:layout_below="@id/divider3"
             android:layout_alignStart="@id/icUsername"
             android:layout_marginStart="50dp"
             android:layout_marginTop="20dp"

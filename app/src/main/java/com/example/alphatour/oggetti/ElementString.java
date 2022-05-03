@@ -5,16 +5,9 @@ import android.net.Uri;
 
 public class ElementString {
 
-    private String title;
-    private String description;
-    private String activity;
-    private String sensorCode;
-    private String zone;
-    private String photo;
-    private String qrCode;
-    private String idZone;
+    private String title,description,activity,sensorCode,zone,photo,qrCode,idZone,idUser;
     private long IdPhotoAndQrCode;
-    private String idUser;
+
 
     public ElementString(){
 

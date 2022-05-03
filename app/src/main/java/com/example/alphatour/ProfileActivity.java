@@ -13,6 +13,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -62,6 +64,7 @@ public class ProfileActivity extends AppCompatActivity {
     private String image;
     private String idUtenteLocal;
     private ProgressBar loadingBar;
+    private BottomNavigationView bottomNavigationView;
     private FirebaseUser user;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
@@ -88,6 +91,10 @@ public class ProfileActivity extends AppCompatActivity {
         textDataNascita = findViewById(R.id.profileDateBirthUser);
         textUsername = findViewById(R.id.profileUsernameUser);
         loadingBar = findViewById(R.id.profileLoadingBar);
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.tb_profile); //per partire con la selezione su home
+        bottonNavClick();
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
@@ -277,4 +284,34 @@ public class ProfileActivity extends AppCompatActivity {
         Intent intent=new Intent(this,UpdateProfileActivity.class);
         startActivity(intent);
     }
+
+
+    public void bottonNavClick(){
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId()){
+                    case R.id.tb_profile:
+                        startActivity(new Intent(ProfileActivity.this, ProfileActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.tb_home:
+                        startActivity(new Intent(ProfileActivity.this, DashboardActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    /*case R.id.tb_routes:
+                        startActivity(new Intent(DashboardActivity.this, .class));
+                        overridePendingTransition(0,0);
+                        return true;*/
+                }
+
+                return false;
+            }
+        });
+
+    }
+
+
 }

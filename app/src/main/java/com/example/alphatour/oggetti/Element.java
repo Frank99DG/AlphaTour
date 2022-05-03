@@ -5,17 +5,10 @@ import android.net.Uri;
 
 public class Element{
 
-
-    private String title;
-    private String description;
-    private String activity;
-    private String sensorCode;
-    private String zone;
+    private String title,description,activity,sensorCode,zone,idZone,idUser;
     private long idPhotoAndQrCode;
     private  Uri photo;
     private  Bitmap qrCode;
-    private String idZone;
-    private String idUser;
 
     public Element(){
 
