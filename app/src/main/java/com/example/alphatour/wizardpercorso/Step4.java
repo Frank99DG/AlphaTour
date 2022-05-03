@@ -1,5 +1,6 @@
 package com.example.alphatour.wizardpercorso;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 import com.devzone.checkabletextview.CheckableTextView;
 import com.devzone.checkabletextview.CheckedListener;
+import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.R;
 import com.example.alphatour.oggetti.Zone;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -39,9 +41,10 @@ public class Step4 extends Fragment implements Step, BlockingStep {
     public static List<String> zone_select = new ArrayList<>();
     public static List<String> oggetti_select = new ArrayList<>();
     private int i=0;
-
-
     private LinearLayout list_zoneRiepilogo;
+    private Dialog dialog;
+    private Button dialog_termina, dialog_dismiss;
+    private static int n_path=0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,6 +53,15 @@ public class Step4 extends Fragment implements Step, BlockingStep {
         View view = inflater.inflate(R.layout.fragment_step4, container, false);
         list_zoneRiepilogo = view.findViewById(R.id.list_zoneRiepilogo);
 
+
+        dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.dialog_step4);
+        dialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroun_dialog));
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog_termina = dialog.findViewById(R.id.btn_termina);
+        dialog_dismiss = dialog.findViewById(R.id.btn_dismiss);
 
         return view;
     }
@@ -63,8 +75,6 @@ public class Step4 extends Fragment implements Step, BlockingStep {
                 View zone = getLayoutInflater().inflate(R.layout.row_add_zone_review_creazione_percorso, null, false);
                 TextView textZone = (TextView) zone.findViewById(R.id.textZoneReview);
                 ImageView deleteZone = zone.findViewById(R.id.deleteZone_review);
-
-             //   CheckableTextView textObject = (CheckableTextView) zone.findViewById(R.id.textObjectt);
 
                 deleteZone.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -92,8 +102,6 @@ public class Step4 extends Fragment implements Step, BlockingStep {
         }
     }
 
-
-
     public static List<String> getZone_select() {
         return zone_select;
     }
@@ -120,15 +128,43 @@ public class Step4 extends Fragment implements Step, BlockingStep {
 
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
-        callback.goToNextStep();
+        ReviewZoneSelected.getMap_review_object().clear();
     }
 
     @Override
     public void onCompleteClicked(StepperLayout.OnCompleteClickedCallback callback) {
+        dialog.show();
+        dialog_termina.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                n_path++;
 
+                Step3.getMap_review().clear();
+                ReviewZoneSelected.getMap_review_object().clear();
+                list_zoneRiepilogo.removeAllViews();
+                zone_select.clear();
+
+                Intent intent= new Intent(getContext(), DashboardActivity.class);
+                startActivity(intent);
+            }
+        });
+        dialog_dismiss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
     }
 
     @Override
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
+    }
+
+    public static int getN_path() {
+        return n_path;
+    }
+
+    public static void setN_path(int n_path) {
+        Step4.n_path = n_path;
     }
 }

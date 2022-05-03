@@ -13,6 +13,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.devzone.checkabletextview.CheckableTextView;
 import com.devzone.checkabletextview.CheckedListener;
@@ -22,6 +23,7 @@ import com.example.alphatour.oggetti.Place;
 import com.example.alphatour.oggetti.Zone;
 import com.example.alphatour.wizardcreazione.CreationWizard;
 import com.example.alphatour.wizardpercorso.PercorsoWizard;
+import com.example.alphatour.wizardpercorso.Step4;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,7 +42,7 @@ public class DashboardActivity extends AppCompatActivity {
     private static final String KEY_COUNTER="KEY_COUNTER";
 
     private TextView ageText;
-    private int n_notify;
+    private static int n_notify;
     private int a=0;
     private NotificationCounter notificationCounter;
     private NotifyFragment myFragment = new NotifyFragment();
@@ -57,6 +59,7 @@ public class DashboardActivity extends AppCompatActivity {
     private FirebaseUser user;
     private FirebaseFirestore db;
     private String idUser;
+    private static int n_path=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +108,17 @@ public class DashboardActivity extends AppCompatActivity {
             }invioProva.setN_notify(0);
             ageText.setText("Counter is: " + n_notify);
         }
+
+
+
+        if(Step4.getN_path()>0  ){
+            n_notify++;
+            for(a=0;  a<n_notify; a++) {
+                notificationCounter.increaseNumber();
+            }Step4.setN_path(0);
+            Toast.makeText(this, "You have a new notification", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     @Override
@@ -113,13 +127,13 @@ public class DashboardActivity extends AppCompatActivity {
 
         //Save the fragment's instance
         //getSupportFragmentManager().putFragment(outState, "myFragment", myFragment);
-       outState.putCharSequence(KEY_COUNTER, notificationCounter.getNotificationNumber().getText());
+     //  outState.putCharSequence(KEY_COUNTER, notificationCounter.getNotificationNumber().getText());
     }
 
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
-       this.notificationCounter.setTextNotify(savedInstanceState,KEY_COUNTER);
+     // this.notificationCounter.setTextNotify(savedInstanceState,KEY_COUNTER);
     }
 
     public void openFragment(View v) {
@@ -276,5 +290,19 @@ public class DashboardActivity extends AppCompatActivity {
 
     }
 
+    public static void setN_path(int n_path) {
+        DashboardActivity.n_path = n_path;
+    }
 
+    public static int getN_path() {
+        return n_path;
+    }
+
+    public static int getN_notify() {
+        return n_notify;
+    }
+
+    public static void setN_notify(int n_notify) {
+        DashboardActivity.n_notify = n_notify;
+    }
 }

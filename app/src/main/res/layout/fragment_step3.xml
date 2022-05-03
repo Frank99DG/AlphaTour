@@ -64,10 +64,11 @@
     <TextView
         android:id="@+id/zone_selected"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_gravity="center"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="145dp"
         android:layout_marginTop="30dp"
+        android:background="@android:drawable/gallery_thumb"
         android:gravity="center"
         android:text="Zone"
         android:textAlignment="center"
