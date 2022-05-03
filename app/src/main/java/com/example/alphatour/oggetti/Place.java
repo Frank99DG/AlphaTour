@@ -5,9 +5,10 @@ import org.jgrapht.graph.SimpleDirectedGraph;
 
 public class Place {
 
-    public String name,city,typology,idCurator;
+    public String name,city,typology,idUser;
     //il grafo è orientato (da A a B è diverso da B ad A)
     public static Graph<Zone,DefaultEdge> zonesPlace = new SimpleDirectedGraph<>(DefaultEdge.class);
+
 
     public Place(){
 
@@ -23,14 +24,14 @@ public class Place {
         this.name = name;
         this.city = city;
         this.typology = typology;
-        this.idCurator = idCurator;
+        this.idUser = idCurator;
     }
 
     public Place(String name, String city, String typology, String idCurator, Graph zonesPlace){
         this.name = name;
         this.city = city;
         this.typology = typology;
-        this.idCurator = idCurator;
+        this.idUser = idCurator;
         this.zonesPlace = zonesPlace;
     }
 
@@ -58,7 +59,7 @@ public class Place {
                 "nome='" + name + '\'' +
                 ", citta='" + city + '\'' +
                 ", tipo='" + typology + '\'' +
-                ", id curatore='" + idCurator + '\'' +
+                ", id curatore='" + idUser + '\'' +
                 ", zone Luogo='" + zonesPlace.toString() +
                 '*';
     }

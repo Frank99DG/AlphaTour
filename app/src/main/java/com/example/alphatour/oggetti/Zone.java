@@ -5,12 +5,26 @@ import org.jgrapht.graph.SimpleGraph;
 
 public class Zone {
 
-    private String name;
+    private String name,idUser;
     //il grafo è non orientato (da A a B è uguale da B ad A)
     //public static Graph<Element,DefaultEdge> elementsZone = new SimpleGraph<>(DefaultEdge.class);
 
     public Zone(){
 
+    }
+
+    public Zone(String idUser, String name){
+
+        this.idUser=idUser;
+        this.name=name;
+    }
+
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
     }
 
     public Zone(String name){

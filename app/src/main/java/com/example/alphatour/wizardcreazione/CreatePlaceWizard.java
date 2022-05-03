@@ -43,7 +43,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
     private AutoCompleteTextView typology;
     private List<String> typology_list = new ArrayList<String>();
     private ArrayAdapter<String> adapterItems;
-    private String idUser;
+    private static String NamePlace,City,Typology;
     private ProgressBar loadingBar;
     private boolean errorFlag=true;
     private FirebaseAuth auth;
@@ -51,6 +51,17 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
     private String item;
     private Button qrScan;
 
+    public static String getNamePlace() {
+        return NamePlace;
+    }
+
+    public static String getCity() {
+        return City;
+    }
+
+    public static String getTypology() {
+        return Typology;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,7 +96,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getContext(), ModifyObjectActivity.class);
-                intent.putExtra("data","Oggetto 300");
+                intent.putExtra("data","Oggetto 172");
                 startActivity(intent);
             }
         });
@@ -98,9 +109,9 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
     public VerificationError verifyStep() {
 
         VerificationError error=null;
-        String NamePlace = namePlace.getText().toString();
-        String City = city.getText().toString();
-        String Typology = typology.getText().toString();
+         NamePlace = namePlace.getText().toString();
+         City = city.getText().toString();
+         Typology = typology.getText().toString();
         errorFlag = inputControl(NamePlace, City, Typology);
         if(errorFlag){
              error =new VerificationError("Compila tutti i campi");

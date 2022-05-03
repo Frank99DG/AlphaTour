@@ -5,7 +5,16 @@ import android.net.Uri;
 
 public class ElementString {
 
-    private String title,description,activity,sensorCode,zone,photo,qrCode,idZone;
+    private String title;
+    private String description;
+    private String activity;
+    private String sensorCode;
+    private String zone;
+    private String photo;
+    private String qrCode;
+    private String idZone;
+    private long IdPhotoAndQrCode;
+    private String idUser;
 
     public ElementString(){
 
@@ -83,5 +92,21 @@ public class ElementString {
 
     public void setIdZone(String idZone) {
         this.idZone = idZone;
+    }
+
+    public long getIdPhotoAndQrCode() {
+        return IdPhotoAndQrCode;
+    }
+
+    public void setIdPhotoAndQrCode(long idPhotoAndQrCode) {
+        IdPhotoAndQrCode = idPhotoAndQrCode;
+    }
+
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
     }
 }

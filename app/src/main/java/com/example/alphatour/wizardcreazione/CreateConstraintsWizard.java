@@ -21,19 +21,19 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.alphatour.AddPlaceActivity;
+import com.example.alphatour.AddZoneActivity;
 import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.R;
 import com.example.alphatour.oggetti.Element;
 import com.example.alphatour.oggetti.ElementString;
 import com.example.alphatour.oggetti.Place;
-import com.example.alphatour.oggetti.User;
 import com.example.alphatour.oggetti.Zone;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -41,6 +41,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -61,10 +62,11 @@ import org.jgrapht.graph.SimpleDirectedGraph;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class CreateConstraintsWizard<zone_list> extends Fragment implements Step, BlockingStep {
@@ -88,6 +90,9 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     private boolean success=false;
     private List<String> uriUploadPhoto=new ArrayList<String>();
     private List<String> uriUploadQrCode=new ArrayList<String>();
+    private long idPhotoAndQrCode,id;
+    private FirebaseUser user;
+    private FirebaseAuth auth;
 
 
     public CreateConstraintsWizard() {
@@ -108,6 +113,8 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
 
         db = FirebaseFirestore.getInstance();
         storegeProfilePick= FirebaseStorage.getInstance().getReference();
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
 
 
         dialog=new Dialog(getContext());
@@ -124,6 +131,29 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
         textDialog=dialog.findViewById(R.id.textDialog);
         loadingBar=view.findViewById(R.id.objectLoadingBar);
 
+        DocumentReference docRef = db.collection("LastIdPhotoAndQrCode").document("1");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Map<String, Object> data = new HashMap<>();
+                         data=document.getData();
+                         Iterator it=data.entrySet().iterator();
+                        while (it.hasNext()) {
+                            Map.Entry val = (Map.Entry) it.next();
+                            Object g=val.getValue();
+                            idPhotoAndQrCode = (long) g;
+                        }
+                    } else {
+                        idPhotoAndQrCode=0;
+                    }
+                } else {
+                   // Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
 
 
         for (String nameZone : zone_list){
@@ -234,19 +264,27 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
             @Override
             public void onClick(View view) {
                 loadingBar.setVisibility(View.VISIBLE);
-                saveObject(CreateObjectWizard.getElementList());
+                savePlace();
+                saveZones(CreateZoneWizard.getZone_list());
+                saveObjects(CreateObjectWizard.getElementList());
                 dialog.dismiss();
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent= new Intent(getContext(), DashboardActivity.class);
-                        startActivity(intent);
-                        loadingBar.setVisibility(View.GONE);
-                        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.clear();
-                        editor.commit();
+
+                        if(success) {
+                            Intent intent = new Intent(getContext(), DashboardActivity.class);
+                            startActivity(intent);
+                            loadingBar.setVisibility(View.GONE);
+                            SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.clear();
+                            editor.commit();
+                        }else{
+                            Toast.makeText(getContext(), "Salvataggio Luogo non riuscito" , Toast.LENGTH_LONG).show();
+                            loadingBar.setVisibility(View.GONE);
+                        }
                     }
                 }, 2000L);
 
@@ -260,6 +298,52 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
             }
         });
     }
+
+    private void savePlace() {
+
+
+        Place place = new Place(CreatePlaceWizard.getNamePlace(), CreatePlaceWizard.getCity(),
+                CreatePlaceWizard.getTypology(), user.getUid());
+
+        db.collection("Places")
+                .add(place)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        success=true;
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getContext(), "Salvataggio Luogo non riuscito" , Toast.LENGTH_LONG).show();
+                loadingBar.setVisibility(View.GONE);
+            }
+        });
+
+    }
+
+
+    private void saveZones(ArrayList<String> zone_list) {
+
+        for(int i=0;i<zone_list.size();i++){
+            Zone zone=new Zone(user.getUid(),zone_list.get(i));
+
+            db.collection("Zones")
+                    .add(zone)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            success=true;
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getContext(), "Salvataggio Zone non riuscito" , Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+    }
+
 
     @Override
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
@@ -310,7 +394,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     }*/
 
 
-    private void saveObject(List<Element> elementlist) {
+    private void saveObjects(List<Element> elementlist) {
 
         db.collection("Zones")
                 .get().
@@ -328,6 +412,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                                     Zone zon = document.toObject(Zone.class);
                                     if (zon.getName().matches(newElement.getZoneRif())) {
                                         newElement.setIdZone(document.getId());
+                                        id=generateidPhotoAndQrCode();
                                         elm.put("idZone", newElement.getIdZone());
                                         elm.put("title", newElement.getTitle());
                                         elm.put("description", newElement.getDescription());
@@ -335,17 +420,19 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                                         elm.put("qrCode", null);
                                         elm.put("activity", null);
                                         elm.put("sensorCode", newElement.getSensorCode());
+                                        elm.put("idPhotoAndQrCode",id);
+                                        elm.put("idUser",user.getUid());
                                         db.collection("Elements")
                                                 .add(elm)
                                                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                     @Override
                                                     public void onSuccess(DocumentReference documentReference) {
                                                         success=true;
+                                                       // String id=documentReference.getId();
                                                     }
                                                 });
-
-                                        savePhoto(newElement.getPhoto(),newElement,i);
-                                        saveQrCode(newElement.getQrCode(),newElement,i);
+                                        savePhoto(newElement.getPhoto(),newElement,i,id);
+                                        saveQrCode(newElement.getQrCode(),newElement,i,id);
                                     }
                                 }
                             }
@@ -360,11 +447,26 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
         });
     }
 
+    private long generateidPhotoAndQrCode() {
+        idPhotoAndQrCode++;
+        Map<String, Object> data = new HashMap<>();
+        data.put("lastId", idPhotoAndQrCode);
 
-    private void savePhoto(Uri photo, Element element, int i) {
+        db.collection("LastIdPhotoAndQrCode").document("1")
+                .set(data)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        //Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                });
+        return idPhotoAndQrCode;
+    }
 
 
-        final StorageReference fileRef = storegeProfilePick.child("PhotoObjects").child("Photo_Objects"+"_"+db.collection("Elemets").document().getId());
+    private void savePhoto(Uri photo, Element element, int i,long id) {
+
+        final StorageReference fileRef = storegeProfilePick.child("PhotoObjects").child("Photo_Objects"+"_"+id);
 
         uploadTask = fileRef.putFile(photo);
 
@@ -435,9 +537,9 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
 
 
 
-    private void saveQrCode(Bitmap qrCode, Element element, int i) {
+    private void saveQrCode(Bitmap qrCode, Element element, int i, long id) {
 
-        final StorageReference fileRef = storegeProfilePick.child("QrCodeObjects").child("QrCode_Objects"+"_"+db.collection("Elemets").document().getId());
+        final StorageReference fileRef = storegeProfilePick.child("QrCodeObjects").child("QrCode_Objects"+"_"+id);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         qrCode.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();

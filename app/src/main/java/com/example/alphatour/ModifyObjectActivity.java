@@ -68,6 +68,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
     private ArrayAdapter<String> adapterItems;
     private int i=0,j=0;
     private String newTitle,newDescription,newSensor,idElement,item,Zone;
+    private String id,idPhotoAndQrCode="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,7 +172,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
 
 
     private void showQrCode() {
-        final StorageReference fileRef = storegeProfilePick.child("QrCodeObjects").child("QrCode_Objects_"+title.getText().toString());
+        final StorageReference fileRef = storegeProfilePick.child("QrCodeObjects").child("QrCode_Objects_"+idElement);
 
         try{
             File localFile= File.createTempFile("tempfile",".png");
@@ -196,8 +197,8 @@ public class ModifyObjectActivity extends AppCompatActivity {
     }
 
     private void showPhoto() {
-        String tit=title.getText().toString();
-        final StorageReference fileRef = storegeProfilePick.child("PhotoObjects").child("Photo_Objects_"+tit);
+
+        final StorageReference fileRef = storegeProfilePick.child("PhotoObjects").child("Photo_Objects_"+idElement);
 
         try{
             File localFile= File.createTempFile("tempfile",".png");
@@ -317,7 +318,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
     private void savePhoto(Uri photo) {
 
 
-        final StorageReference fileRef = storegeProfilePick.child("PhotoObjects").child("Photo_Objects"+"_"+newTitle);
+        final StorageReference fileRef = storegeProfilePick.child("PhotoObjects").child("Photo_Objects"+"_"+idElement);
 
         uploadTask = fileRef.putFile(photo);
 
@@ -367,7 +368,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
 
     private void saveQrCode(Bitmap qrCode) {
 
-        final StorageReference fileRef = storegeProfilePick.child("QrCodeObjects").child("QrCode_Objects"+"_"+newTitle);
+        final StorageReference fileRef = storegeProfilePick.child("QrCodeObjects").child("QrCode_Objects"+"_"+idElement);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         qrCode.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();

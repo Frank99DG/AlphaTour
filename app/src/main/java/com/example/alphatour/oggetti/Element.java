@@ -6,10 +6,16 @@ import android.net.Uri;
 public class Element{
 
 
-    private String title,description,activity,sensorCode,zone;
+    private String title;
+    private String description;
+    private String activity;
+    private String sensorCode;
+    private String zone;
+    private long idPhotoAndQrCode;
     private  Uri photo;
     private  Bitmap qrCode;
     private String idZone;
+    private String idUser;
 
     public Element(){
 
@@ -98,6 +104,22 @@ public class Element{
 
     public void setZoneRif(String zone) {
         this.zone = zone;
+    }
+
+    public long getIdPhotoAndQrCode() {
+        return idPhotoAndQrCode;
+    }
+
+    public void setIdPhotoAndQrCode(long idPhotoAndQrCode) {
+        this.idPhotoAndQrCode = idPhotoAndQrCode;
+    }
+
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
     }
 
     @Override
