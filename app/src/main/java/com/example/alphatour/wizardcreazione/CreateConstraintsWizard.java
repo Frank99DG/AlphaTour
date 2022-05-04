@@ -31,6 +31,7 @@ import com.example.alphatour.AddPlaceActivity;
 import com.example.alphatour.AddZoneActivity;
 import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.R;
+import com.example.alphatour.oggetti.Constraint;
 import com.example.alphatour.oggetti.Element;
 import com.example.alphatour.oggetti.ElementString;
 import com.example.alphatour.oggetti.Place;
@@ -93,6 +94,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     private long idPhotoAndQrCode,id;
     private FirebaseUser user;
     private FirebaseAuth auth;
+    private List<Constraint> listConstranints=new ArrayList<Constraint>();
 
 
     public CreateConstraintsWizard() {
@@ -156,6 +158,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
         });
 
 
+
         for (String nameZone : zone_list){
 
             final View zoneView = getLayoutInflater().inflate(R.layout.row_from_zone, null, false);
@@ -187,6 +190,8 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                         ImageView removeZone = (ImageView) destinationView.findViewById(R.id.deleteZone);
 
                         in_zone.setText(item);
+                        Constraint constraint=new Constraint(nameZone,item);
+                        listConstranints.add(constraint);
                         link_list.add(item);
                         sub_layout_list.addView(destinationView);
                         menu_zones.setText(null);
@@ -266,6 +271,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                 loadingBar.setVisibility(View.VISIBLE);
                 savePlace();
                 saveZones(CreateZoneWizard.getZone_list());
+                saveConstraints();
                 saveObjects(CreateObjectWizard.getElementList());
                 dialog.dismiss();
 
@@ -297,6 +303,20 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                 dialog.dismiss();
             }
         });
+    }
+
+    private void saveConstraints() {
+
+        for (int i=0;i<listConstranints.size();i++){
+            db.collection("Constraints")
+                    .add(listConstranints.get(i))
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            success=true;
+                        }
+                    });
+        }
     }
 
     private void savePlace() {

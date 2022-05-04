@@ -68,7 +68,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
     private ArrayAdapter<String> adapterItems;
     private int i=0,j=0;
     private String newTitle,newDescription,newSensor,idElement,item,Zone;
-    private String id,idPhotoAndQrCode="";
+    private long idPhotoAndQrCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +104,9 @@ public class ModifyObjectActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
 
-                            for (QueryDocumentSnapshot document : task.getResult()) {
+                            if(task.getResult()!=null){
+
+                              for (QueryDocumentSnapshot document : task.getResult()) {
 
                                 ElementString element = document.toObject(ElementString.class);
                                 idElement = document.getId();
@@ -120,25 +122,26 @@ public class ModifyObjectActivity extends AppCompatActivity {
                                                     for (QueryDocumentSnapshot document : task.getResult()) {
 
                                                         zone = document.toObject(Zone.class);
-                                                        if(i==1) {
+                                                        if (i == 1) {
                                                             zoneList.add(zone.getName());
-                                                            zoneMap.put(document.getId(),zone.getName());
+                                                            zoneMap.put(document.getId(), zone.getName());
 
                                                         }
-                                                        if(document.getId().matches(element.getIdZone())) {
+                                                        if (document.getId().matches(element.getIdZone())) {
                                                             zone = document.toObject(Zone.class);
 
                                                             title.setText(element.getTitle());
                                                             description.setText(element.getDescription());
                                                             sensor.setText(element.getSensorCode());
+                                                            idPhotoAndQrCode = element.getIdPhotoAndQrCode();
                                                             showPhoto();
                                                             showQrCode();
                                                             typology.setAdapter(adapterItems);
-                                                            Zone=zone.getName();
+                                                            Zone = zone.getName();
                                                             typology.setHint(Zone);
-                                                            typology.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                                                            typology.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                                                 @Override
-                                                                public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                                                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                                                     typology.setError(null);
                                                                     //selected=true;
                                                                     item = parent.getItemAtPosition(position).toString();
@@ -146,19 +149,34 @@ public class ModifyObjectActivity extends AppCompatActivity {
                                                             });
                                                         }
                                                     }
-                                                }else {
+                                                } else {
                                                     Toast.makeText(ModifyObjectActivity.this, "Non è stato possibile caricare i dati dell'oggetto !!!", Toast.LENGTH_LONG).show();
                                                     loadingBar.setVisibility(View.GONE);
                                                 }
                                             }
                                         });
                             }
+                        }else{
+                                Toast.makeText(ModifyObjectActivity.this, "Oggetto non trovato !!!", Toast.LENGTH_LONG).show();
+                                loadingBar.setVisibility(View.GONE);
+                                Intent intent=new Intent(ModifyObjectActivity.this,DashboardActivity.class);
+                                startActivity(intent);
+                            }
+
                         } else {
                             Toast.makeText(ModifyObjectActivity.this, "Non è stato possibile caricare i dati dell'oggetto", Toast.LENGTH_LONG).show();
                             loadingBar.setVisibility(View.GONE);
+                            Intent intent=new Intent(ModifyObjectActivity.this,DashboardActivity.class);
+                            startActivity(intent);
                         }
                     }
-                });
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(ModifyObjectActivity.this, "Oggetto non trovato !!!", Toast.LENGTH_LONG).show();
+                loadingBar.setVisibility(View.GONE);
+            }
+        });
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,7 +190,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
 
 
     private void showQrCode() {
-        final StorageReference fileRef = storegeProfilePick.child("QrCodeObjects").child("QrCode_Objects_"+idElement);
+        final StorageReference fileRef = storegeProfilePick.child("QrCodeObjects").child("QrCode_Objects_"+idPhotoAndQrCode);
 
         try{
             File localFile= File.createTempFile("tempfile",".png");
@@ -198,7 +216,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
 
     private void showPhoto() {
 
-        final StorageReference fileRef = storegeProfilePick.child("PhotoObjects").child("Photo_Objects_"+idElement);
+        final StorageReference fileRef = storegeProfilePick.child("PhotoObjects").child("Photo_Objects_"+idPhotoAndQrCode);
 
         try{
             File localFile= File.createTempFile("tempfile",".png");
@@ -318,7 +336,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
     private void savePhoto(Uri photo) {
 
 
-        final StorageReference fileRef = storegeProfilePick.child("PhotoObjects").child("Photo_Objects"+"_"+idElement);
+        final StorageReference fileRef = storegeProfilePick.child("PhotoObjects").child("Photo_Objects"+"_"+idPhotoAndQrCode);
 
         uploadTask = fileRef.putFile(photo);
 
@@ -368,7 +386,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
 
     private void saveQrCode(Bitmap qrCode) {
 
-        final StorageReference fileRef = storegeProfilePick.child("QrCodeObjects").child("QrCode_Objects"+"_"+idElement);
+        final StorageReference fileRef = storegeProfilePick.child("QrCodeObjects").child("QrCode_Objects"+"_"+idPhotoAndQrCode);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         qrCode.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();

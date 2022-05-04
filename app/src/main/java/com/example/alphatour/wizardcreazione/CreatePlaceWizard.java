@@ -25,9 +25,16 @@ import com.example.alphatour.AddZoneActivity;
 import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.ModifyObjectActivity;
 import com.example.alphatour.R;
+import com.example.alphatour.oggetti.Place;
 import com.example.alphatour.qrcode.ScanQrCodeActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
@@ -50,6 +57,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
     private FirebaseFirestore db;
     private String item;
     private Button qrScan;
+    private FirebaseUser user;
 
     public static String getNamePlace() {
         return NamePlace;
@@ -70,6 +78,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
         View view=inflater.inflate(R.layout.fragment_crea_luogo, container, false);
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        user = auth.getCurrentUser();
 
         namePlace = view.findViewById(R.id.inputNamePlace);
         city = view.findViewById(R.id.inputCityPlace);
@@ -96,11 +105,33 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getContext(), ModifyObjectActivity.class);
-                intent.putExtra("data","Oggetto 172");
+                intent.putExtra("data","Qhhhhjo");
                 startActivity(intent);
             }
         });
-        // Inflate the layout for this fragment
+
+
+        db.collection("Places")
+                .whereEqualTo("idUser",user.getUid())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                if (!queryDocumentSnapshots.isEmpty()) {
+                    List<DocumentSnapshot> listaDocumenti = queryDocumentSnapshots.getDocuments();
+
+                    for (DocumentSnapshot d : listaDocumenti) {
+                        Place place= d.toObject(Place.class);
+                        namePlace.setText(place.getName());
+                        city.setText(place.getCity());
+                        typology.setText(place.getTypology());
+                    }
+                }
+            }
+                });
+
+
         return view;
     }
 
