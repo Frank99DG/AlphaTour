@@ -95,6 +95,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     private FirebaseUser user;
     private FirebaseAuth auth;
     private List<Constraint> listConstranints=new ArrayList<Constraint>();
+    private String data;
 
 
     public CreateConstraintsWizard() {
@@ -264,6 +265,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
         dialog.show();
         titleDialog.setText("Completa inserimenti");
         textDialog.setText("Sei sicuro di voler completare la creazione dei luoghi e degli oggetti ? ");
+        yesFinal.setText("Si");
 
         yesFinal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -438,10 +440,9 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                                         elm.put("description", newElement.getDescription());
                                         elm.put("photo", null);
                                         elm.put("qrCode", null);
-                                        elm.put("activity", null);
-                                        elm.put("sensorCode", newElement.getSensorCode());
                                         elm.put("idPhotoAndQrCode",id);
                                         elm.put("idUser",user.getUid());
+                                        elm.put("qrData",newElement.getQrData());
                                         db.collection("Elements")
                                                 .add(elm)
                                                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

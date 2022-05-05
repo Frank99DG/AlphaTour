@@ -5,7 +5,7 @@ import android.net.Uri;
 
 public class Element{
 
-    private String title,description,activity,sensorCode,zone,idZone,idUser;
+    private String title,description,zone,idZone,idUser,qrData;
     private long idPhotoAndQrCode;
     private  Uri photo;
     private  Bitmap qrCode;
@@ -15,24 +15,20 @@ public class Element{
     }
 
 
-    public Element(String idZone,String title, String description, String activity, String sensorCode){
+    public Element(String idZone,String title, String description){
 
         this.idZone=idZone;
         this.title=title;
         this.description=description;
-        this.activity=activity;
-        this.sensorCode=sensorCode;
     }
 
 
-    public Element(String title, String description, Uri photo, Bitmap qrCode, String activity, String sensorCode){
+    public Element(String title, String description, Uri photo, Bitmap qrCode){
 
         this.title=title;
         this.description=description;
         this.photo=photo;
         this.qrCode=qrCode;
-        this.activity=activity;
-        this.sensorCode=sensorCode;
     }
 
     public void setTitle(String title) {
@@ -51,14 +47,6 @@ public class Element{
         this.qrCode = qrCode;
     }
 
-    public void setActivity(String activity) {
-        this.activity = activity;
-    }
-
-    public void setSensorCode(String sensorCode) {
-        this.sensorCode = sensorCode;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -73,14 +61,6 @@ public class Element{
 
     public Bitmap getQrCode() {
         return qrCode;
-    }
-
-    public String getActivity() {
-        return activity;
-    }
-
-    public String getSensorCode() {
-        return sensorCode;
     }
 
     public String getIdZone() {
@@ -115,6 +95,14 @@ public class Element{
         this.idUser = idUser;
     }
 
+    public String getQrData() {
+        return qrData;
+    }
+
+    public void setQrData(String qrData) {
+        this.qrData = qrData;
+    }
+
     @Override
     public String toString() {
         return "* Elemento:" +
@@ -122,8 +110,6 @@ public class Element{
                 ", descrizione='" + description + '\'' +
                 ", foto='" + photo + '\'' +
                 ", codiceQr='" + qrCode + '\'' +
-                ", attivita='" + activity + '\'' +
-                ", codiceSensore='" + sensorCode +
                 '*';
     }
 }

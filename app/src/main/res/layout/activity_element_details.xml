@@ -17,9 +17,9 @@
             android:layout_height="33dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="28dp"
-            android:src="@drawable/ic_close"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_delete" />
 
 
         <TextView
@@ -201,8 +201,8 @@
 
         <TextView
             android:id="@+id/textPhoto"
-            android:layout_width="182dp"
-            android:layout_height="37dp"
+            android:layout_width="75dp"
+            android:layout_height="42dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="520dp"
             android:fontFamily="@font/alata"
@@ -254,8 +254,8 @@
 
         <TextView
             android:id="@+id/textQrCode"
-            android:layout_width="182dp"
-            android:layout_height="37dp"
+            android:layout_width="52dp"
+            android:layout_height="39dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="804dp"
             android:fontFamily="@font/alata"
@@ -281,6 +281,7 @@
             app:layout_constraintTop_toBottomOf="@+id/photo" />
 
         <View
+            android:id="@+id/view4"
             android:layout_width="409dp"
             android:layout_height="3dp"
             android:layout_marginStart="1dp"
@@ -305,71 +306,19 @@
             app:layout_constraintBottom_toBottomOf="@+id/qrCode"
             app:layout_constraintEnd_toEndOf="@+id/qrCode"/>
 
-        <Button
-            android:id="@+id/activity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="81dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Attività"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/qrCode" />
-
-        <View
-            android:layout_width="409dp"
-            android:layout_height="3dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="1136dp"
-            android:layout_marginEnd="1dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/sensor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="81dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Codice Sensore"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity" />
-
-        <View
-            android:layout_width="409dp"
-            android:layout_height="3dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="1232dp"
-            android:layout_marginEnd="1dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/modifyObject"
             android:layout_width="139dp"
             android:layout_height="48dp"
-            android:layout_marginTop="1256dp"
-            android:layout_marginEnd="124dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="136dp"
             android:background="@drawable/bordi_tondi_button"
             android:ems="10"
             android:onClick="modifyObject"
             android:text="Salva"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/view4" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

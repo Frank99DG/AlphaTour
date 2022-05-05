@@ -170,7 +170,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
 
                 element.setTitle(data.getStringExtra("title"));
                 element.setDescription(data.getStringExtra("description"));
-                element.setSensorCode(data.getStringExtra("sensor"));
+                element.setQrData(data.getStringExtra("data"));
                 zone = data.getStringExtra("zone");
                 element.setZoneRif(zone);
                 setPh(AddElementActivity.getPhoto());
@@ -184,7 +184,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
 
                 element.setTitle(data.getStringExtra("title"));
                 element.setDescription(data.getStringExtra("description"));
-                element.setSensorCode(data.getStringExtra("sensor"));
+                element.setQrData(data.getStringExtra("data"));
                 zone = data.getStringExtra("zone");
                 element.setZoneRif(zone);
                 setPh(ActivityElementDetails.getPh());

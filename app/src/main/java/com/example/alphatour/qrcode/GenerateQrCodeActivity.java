@@ -30,7 +30,8 @@ public class GenerateQrCodeActivity extends AppCompatActivity {
     private Button generateQrCode;
     private QRGEncoder qrgEncoder;
     private static Bitmap bitmap;
-    public static boolean qrFlag=false;
+    public static boolean qrFlag=false,created=false;
+    private static String data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +60,13 @@ public class GenerateQrCodeActivity extends AppCompatActivity {
         this.bitmap = bitmap;
     }
 
+    public static String getData() {
+        return data;
+    }
+
     public void generateQrCode(View view) {
 
-        String data= qrData.getText().toString();
+        data= qrData.getText().toString();
         if(data.isEmpty()){
             Toast.makeText(GenerateQrCodeActivity.this,R.string.qr_data_missing,Toast.LENGTH_LONG).show();
         }else{
@@ -82,6 +87,7 @@ public class GenerateQrCodeActivity extends AppCompatActivity {
                 qrCodeView.setVisibility(View.GONE);
                 qrCodeImage.setImageBitmap(bitmap);
                 setQrFlag(true);
+                created=true;
                 setBitmap(bitmap);
                 Intent intent= new Intent();
                 setResult(Activity.RESULT_CANCELED,intent);
@@ -98,4 +104,11 @@ public class GenerateQrCodeActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if(!created){
+            setQrFlag(false);
+        }
+    }
 }

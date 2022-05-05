@@ -52,7 +52,7 @@ import java.util.Map;
 public class ModifyObjectActivity extends AppCompatActivity {
 
     private FirebaseFirestore db;
-    private EditText title,description, sensor;
+    private EditText title,description;
     private static Bitmap newQr;
     private static Uri newUri;
     private AutoCompleteTextView typology;
@@ -67,7 +67,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
     private List<String> zoneList = new ArrayList<String>();
     private ArrayAdapter<String> adapterItems;
     private int i=0,j=0;
-    private String newTitle,newDescription,newSensor,idElement,item,Zone;
+    private String newTitle,newDescription,newSensor,idElement,item,Zone, Qrdata;
     private long idPhotoAndQrCode;
 
     @Override
@@ -84,7 +84,6 @@ public class ModifyObjectActivity extends AppCompatActivity {
         close=findViewById(R.id.closeDetailsQr);
         title=findViewById(R.id.titleQr);
         description=findViewById(R.id.descriptionQr);
-        sensor=findViewById(R.id.sensorQr);
         photo=findViewById(R.id.changePhotoObjectQr);
         qrCode=findViewById(R.id.changeQr);
         imagePhoto=findViewById(R.id.photoQr);
@@ -97,7 +96,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
         adapterItems = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,zoneList);
 
         db.collection("Elements")
-                .whereEqualTo("title", data)
+                .whereEqualTo("qrData", data)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -132,8 +131,8 @@ public class ModifyObjectActivity extends AppCompatActivity {
 
                                                             title.setText(element.getTitle());
                                                             description.setText(element.getDescription());
-                                                            sensor.setText(element.getSensorCode());
                                                             idPhotoAndQrCode = element.getIdPhotoAndQrCode();
+                                                            Qrdata=element.getQrData();
                                                             showPhoto();
                                                             showQrCode();
                                                             typology.setAdapter(adapterItems);
@@ -266,17 +265,23 @@ public class ModifyObjectActivity extends AppCompatActivity {
             }
             //salvataggio foto
         }else{
-            imageQrCode.setImageBitmap(GenerateQrCodeActivity.getBitmap());
-            newQr=GenerateQrCodeActivity.getBitmap();
-            Toast.makeText(ModifyObjectActivity.this,"QrCode generato con successo !", Toast.LENGTH_LONG).show();
+
+            if(GenerateQrCodeActivity.getQrFlag()==true) {
+                imageQrCode.setImageBitmap(GenerateQrCodeActivity.getBitmap());
+                newQr = GenerateQrCodeActivity.getBitmap();
+                Qrdata=GenerateQrCodeActivity.getData();
+                Toast.makeText(ModifyObjectActivity.this, "QrCode generato con successo !", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(ModifyObjectActivity.this, "QrCode non generato !", Toast.LENGTH_LONG).show();
+            }
         }
+
     }
 
     public void modifyObj(View view) {
 
         newTitle=title.getText().toString();
         newDescription=description.getText().toString();
-        newSensor=sensor.getText().toString();
 
         Boolean error=inputControl(newTitle,newDescription,newSensor);
 
@@ -313,7 +318,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
         }
 
         db.collection("Elements").document(idElement).
-                update("title",newTitle,"description",newDescription,"sensorCode",newSensor,"idZone",newZone).
+                update("title",newTitle,"description",newDescription,"idZone",newZone,"qrData",Qrdata).
                 addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
@@ -457,13 +462,6 @@ public class ModifyObjectActivity extends AppCompatActivity {
         if (Description.isEmpty()) {
             description.setError(getString(R.string.required_field));
             description.requestFocus();
-            errorFlag = true;
-        }
-
-
-        if (Sensor.isEmpty()) {
-            sensor.setError(getString(R.string.required_field));
-            sensor.requestFocus();
             errorFlag = true;
         }
 

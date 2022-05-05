@@ -16,9 +16,9 @@
             android:layout_height="33dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="28dp"
-            android:src="@drawable/ic_close"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_delete" />
 
 
         <TextView
@@ -143,8 +143,8 @@
 
         <TextView
             android:id="@+id/textDescriptionQrCode"
-            android:layout_width="103dp"
-            android:layout_height="38dp"
+            android:layout_width="93dp"
+            android:layout_height="41dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="248dp"
             android:fontFamily="@font/alata"
@@ -201,8 +201,8 @@
 
         <TextView
             android:id="@+id/textPhotoQr"
-            android:layout_width="86dp"
-            android:layout_height="36dp"
+            android:layout_width="58dp"
+            android:layout_height="37dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="520dp"
             android:fontFamily="@font/alata"
@@ -256,7 +256,7 @@
             android:id="@+id/textQr"
             android:layout_width="66dp"
             android:layout_height="41dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="804dp"
             android:fontFamily="@font/alata"
             android:text="QrCode Oggetto"
@@ -281,6 +281,7 @@
             app:layout_constraintTop_toBottomOf="@+id/photoQr" />
 
         <View
+            android:id="@+id/view5"
             android:layout_width="409dp"
             android:layout_height="3dp"
             android:layout_marginStart="1dp"
@@ -306,70 +307,17 @@
             app:layout_constraintEnd_toEndOf="@+id/qr"/>
 
         <Button
-            android:id="@+id/activityQr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="81dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Attività"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/qr" />
-
-        <View
-            android:layout_width="409dp"
-            android:layout_height="3dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="1136dp"
-            android:layout_marginEnd="1dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/sensorQr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="81dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Codice Sensore"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activityQr" />
-
-        <View
-            android:layout_width="409dp"
-            android:layout_height="3dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="1232dp"
-            android:layout_marginEnd="1dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
             android:id="@+id/modifyObjectQr"
             android:layout_width="139dp"
             android:layout_height="48dp"
-            android:layout_marginTop="1256dp"
+            android:layout_marginTop="25dp"
             android:layout_marginEnd="124dp"
             android:background="@drawable/bordi_tondi_button"
             android:ems="10"
             android:onClick="modifyObj"
             android:text="Salva"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/view5" />
 
         <ProgressBar
             android:id="@+id/modifyLoadingBar"
