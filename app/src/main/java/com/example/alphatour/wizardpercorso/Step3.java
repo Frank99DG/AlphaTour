@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.devzone.checkabletextview.CheckableTextView;
+import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.R;
 import com.example.alphatour.oggetti.ElementString;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -88,8 +89,8 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-            zone_selected.setText(Step2.getStringa_scelta());
-            String scelta = Step2.getStringa_scelta();
+            zone_selected.setText(DashboardActivity.getZona_scelta());
+            String scelta = DashboardActivity.getZona_scelta();
 
             db.collection("Zones")
                     .whereEqualTo("name", scelta)
@@ -138,14 +139,15 @@ public class Step3 extends Fragment implements Step, BlockingStep {
                         }
                     });
 
-        } else {
+        }
+        else {
         }
     }
 
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
 
-        Step4.getZone_select().add(Step2.getStringa_scelta());                     //passo la zona scelta al riepilogo(step4)
+        Step4.getZone_select().add(DashboardActivity.getZona_scelta());                     //passo la zona scelta al riepilogo(step4)
         dialog.show();
         dialog_avanti.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,7 +198,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
 
         for (int a = 0; a < arrayMonumenti.size(); a++) {              //ciclo per contare quanti sono checkati
             if (arrayMonumenti.get(a).isChecked()) {
-                map_review.put(arrayObject.get(a), Step2.getStringa_scelta());
+                map_review.put(arrayObject.get(a), DashboardActivity.getZona_scelta());
                 oggetti_scelti.add(arrayMonumenti.get(a));
                 Step4.getOggetti_select().add(arrayObject.get(a));   //salvataggio degli oggetti scelti
                 control = true;

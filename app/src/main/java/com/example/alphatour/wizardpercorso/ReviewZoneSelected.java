@@ -24,14 +24,6 @@ public class ReviewZoneSelected extends AppCompatActivity {
     private TextView zoneReview,backToReview;
     private static Map<String, String> map_review_object = new HashMap<String, String>();
 
-    public static Map<String, String> getMap_review_object() {
-        return map_review_object;
-    }
-
-    public static void setMap_review_object(Map<String, String> map_review_object) {
-        ReviewZoneSelected.map_review_object = map_review_object;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +70,13 @@ public class ReviewZoneSelected extends AppCompatActivity {
             }
 
         }
+    }
 
+    public static Map<String, String> getMap_review_object() {
+        return map_review_object;
+    }
 
+    public static void setMap_review_object(Map<String, String> map_review_object) {
+        ReviewZoneSelected.map_review_object = map_review_object;
     }
 }

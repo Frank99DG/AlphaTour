@@ -13,8 +13,12 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingLeft="20dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="20dp"
         android:background="@android:drawable/picture_frame"
         android:gravity="center"
         android:text="@string/string_step3"
@@ -66,9 +70,11 @@
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:layout_marginStart="145dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:layout_marginStart="140dp"
         android:layout_marginTop="30dp"
-        android:background="@android:drawable/gallery_thumb"
+        android:background="@android:drawable/edit_text"
         android:gravity="center"
         android:text="Zone"
         android:textAlignment="center"
@@ -77,6 +83,30 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <View
+        android:layout_width="409dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="175dp"
+        android:layout_marginEnd="1dp"
+        android:background="@android:drawable/gallery_thumb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="409dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="600dp"
+        android:layout_marginEnd="1dp"
+        android:background="@android:drawable/gallery_thumb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
         android:id="@+id/riepilogo2"
