@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -17,9 +18,14 @@ import android.widget.Toast;
 
 import com.devzone.checkabletextview.CheckableTextView;
 import com.devzone.checkabletextview.CheckedListener;
+import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.R;
+import com.example.alphatour.oggetti.Constraint;
+import com.example.alphatour.oggetti.ElementString;
 import com.example.alphatour.oggetti.Zone;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -47,6 +53,8 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     private List<View> deleteView = new ArrayList<View>();
     private Button callFragment;
     private Step5 step5_fragment = new Step5();
+    private FirebaseAuth auth;
+    private FirebaseUser user;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,7 +64,8 @@ public class Step2 extends Fragment implements Step, BlockingStep {
         list_zone = view.findViewById(R.id.list_zone);
         title_Step2 = view.findViewById(R.id.title_step2);
         loadingbar=view.findViewById(R.id.zoneLoadingBar);
-
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
 
         db = FirebaseFirestore.getInstance();
 
@@ -83,7 +92,7 @@ public class Step2 extends Fragment implements Step, BlockingStep {
         if (isVisibleToUser) {
 
             loadingbar.setVisibility(View.VISIBLE);
-            db.collection("Zones").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            db.collection("Zones").whereEqualTo("idUser", user.getUid() ).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
 
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -91,51 +100,109 @@ public class Step2 extends Fragment implements Step, BlockingStep {
                     if (!queryDocumentSnapshots.isEmpty()) {
                         List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista zone
 
-                        for (DocumentSnapshot d : listDocument) {
-                            Zone zon = d.toObject(Zone.class);
+                        if(!DashboardActivity.isFirstZoneChosen()) {
+                            for (DocumentSnapshot d : listDocument) {
 
-                            View zone = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso,null ,false);
-                            CheckableTextView textZone1 = (CheckableTextView) zone.findViewById(R.id.textObjectss);
+                                Zone zon = d.toObject(Zone.class);
 
-                            textZone1.setText(zon.getName());
-                            array_database.add(zon.getName());
+                                View zone = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso, null, false);
+                                CheckableTextView textZone1 = (CheckableTextView) zone.findViewById(R.id.textObjectss);
 
-                            arrayZone.add(textZone1);
-                            list_zone.addView(zone);
-                            deleteView.add(zone);
+                                textZone1.setText(zon.getName());
+                                array_database.add(zon.getName());
 
-                        }
+                                arrayZone.add(textZone1);
+                                list_zone.addView(zone);
+                                deleteView.add(zone);
 
-                        loadingbar.setVisibility(View.GONE);
+                            }
 
-                        for(i=0; i< arrayZone.size(); i++){
+                             DashboardActivity.setFirstZoneChosen(true);
+                            for(i=0; i< arrayZone.size(); i++){
+                                arrayZone.get(i).setOnCheckChangeListener(new CheckedListener() {
+                                    @Override
+                                    public void onCheckChange(@NonNull View view, boolean b) {
+                                        int c = 0;                                          //contatore per capire quando ne seleziona 2
 
+                                        for(int a=0; a<arrayZone.size();a++){              //ciclo per contare quanti sono checkati
+                                            if(arrayZone.get(a).isChecked()){ c++;}
+                                        }
 
-                            arrayZone.get(i).setOnCheckChangeListener(new CheckedListener() {
-                                @Override
-                                public void onCheckChange(@NonNull View view, boolean b) {
-                                    int c = 0;                                          //contatore per capire quando ne seleziona 2
+                                        for(int j=0; j<arrayZone.size();j++) {               //se è checkato più di uno, il precedente che è checkato viene impostato a false
+                                            if (c > 1) {
+                                                if (n == j) {
+                                                    arrayZone.get(j).setChecked(false, false);
+                                                }
+                                            }
+                                        }
 
-                                    for(int a=0; a<arrayZone.size();a++){              //ciclo per contare quanti sono checkati
-                                        if(arrayZone.get(a).isChecked()){ c++;}
-                                    }
-
-                                    for(int j=0; j<arrayZone.size();j++) {               //se è checkato più di uno, il precedente che è checkato viene impostato a false
-                                        if (c > 1) {
-                                            if (n == j) {
-                                                arrayZone.get(j).setChecked(false, false);
+                                        for(int k=0; k<arrayZone.size();k++){                //serve per tenere la posizione dell'ultimo checkato
+                                            if(arrayZone.get(k).isChecked()){
+                                                n=k;  continue;
                                             }
                                         }
                                     }
+                                });
+                            }
 
-                                    for(int k=0; k<arrayZone.size();k++){                //serve per tenere la posizione dell'ultimo checkato
-                                        if(arrayZone.get(k).isChecked()){
-                                            n=k;  continue;
+                        }else {
+                            db.collection("Constraints").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    List<DocumentSnapshot> listConstraint = queryDocumentSnapshots.getDocuments();
+                                    for (DocumentSnapshot d : listConstraint) {
+                                        Constraint constraint = d.toObject(Constraint.class);
+
+                                        String abc=DashboardActivity.getZona_scelta();
+                                        if(constraint.getFromZone().matches(abc)){
+
+                                            View zone = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso, null, false);
+                                            CheckableTextView textZone1 = (CheckableTextView) zone.findViewById(R.id.textObjectss);
+
+                                            textZone1.setText(constraint.getInZone());
+                                            array_database.add(constraint.getInZone());
+
+                                            arrayZone.add(textZone1);
+                                            list_zone.addView(zone);
+                                            deleteView.add(zone);
+
                                         }
+                                    }
+
+                                    for(i=0; i< arrayZone.size(); i++){
+                                        arrayZone.get(i).setOnCheckChangeListener(new CheckedListener() {
+                                            @Override
+                                            public void onCheckChange(@NonNull View view, boolean b) {
+                                                int c = 0;                                          //contatore per capire quando ne seleziona 2
+
+                                                for(int a=0; a<arrayZone.size();a++){              //ciclo per contare quanti sono checkati
+                                                    if(arrayZone.get(a).isChecked()){ c++;}
+                                                }
+
+                                                for(int j=0; j<arrayZone.size();j++) {               //se è checkato più di uno, il precedente che è checkato viene impostato a false
+                                                    if (c > 1) {
+                                                        if (n == j) {
+                                                            arrayZone.get(j).setChecked(false, false);
+                                                        }
+                                                    }
+                                                }
+
+                                                for(int k=0; k<arrayZone.size();k++){                //serve per tenere la posizione dell'ultimo checkato
+                                                    if(arrayZone.get(k).isChecked()){
+                                                        n=k;  continue;
+                                                    }
+                                                }
+                                            }
+                                        });
                                     }
                                 }
                             });
                         }
+
+
+
+                        loadingbar.setVisibility(View.GONE);
+
 
                     }
                 }
@@ -190,7 +257,10 @@ public class Step2 extends Fragment implements Step, BlockingStep {
             } else {
                 control=true;
                 zona_scelta = i;
-                stringa_scelta = array_database.get(i);
+                //stringa_scelta = array_database.get(i);
+                DashboardActivity.setZona_scelta(array_database.get(i));
+                array_database.clear();
+                arrayZone.clear();
                 return null;
             }
         }

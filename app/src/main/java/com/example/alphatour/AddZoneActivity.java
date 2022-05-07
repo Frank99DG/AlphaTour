@@ -198,14 +198,6 @@ public class AddZoneActivity extends AppCompatActivity {
             }else{
                 element.setActivity(Activity);
             }*/
-
-            if(SensorCode.isEmpty()){
-                sensorCode.setError(getString(R.string.required_field));
-                sensorCode.requestFocus();
-                errorFlag = true;
-            }else{
-                element.setSensorCode(SensorCode);
-            }
             return errorFlag;
 
     }

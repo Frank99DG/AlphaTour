@@ -27,7 +27,7 @@ import java.util.List;
 
 public class AddElementActivity extends AppCompatActivity{
 
-    private EditText nameElement,description,activity,sensorCode;
+    private EditText nameElement,description;
     private Button save, generateQrCode,photo;
     private List<String> typology_list = new ArrayList<String>();
     private ArrayAdapter<String> adapterItems;
@@ -73,8 +73,6 @@ public class AddElementActivity extends AppCompatActivity{
         generateQrCode = findViewById(R.id.inputQrCode);
         description = findViewById(R.id.inputDescription);
         photo= findViewById(R.id.inputPhoto);
-        //activity = elementView.findViewById(R.id.inputActivity);
-        sensorCode = findViewById(R.id.inputSensorCode);
 
         ArrayList<String> zone_list=CreateZoneWizard.getZone_list();
 
@@ -137,8 +135,6 @@ public class AddElementActivity extends AppCompatActivity{
         element = new Element();
         String Title = nameElement.getText().toString();
         String Description= description.getText().toString();
-        // String Activity = activity.getText().toString();
-        String SensorCode = sensorCode.getText().toString();
 
         if(Title.isEmpty()){
             nameElement.setError(getString(R.string.required_field));
@@ -179,30 +175,13 @@ public class AddElementActivity extends AppCompatActivity{
             errorFlag = false;
         }
 
-            /*if(Activity.isEmpty()){
-                activity.setError(getString(R.string.campo_obbligatorio));
-                activity.requestFocus();
-                errorFlag = true;
-            }else{
-                element.setActivity(Activity);
-            }*/
-
-        if(SensorCode.isEmpty()){
-            sensorCode.setError(getString(R.string.required_field));
-            sensorCode.requestFocus();
-            errorFlag = true;
-        }else{
-            element.setSensorCode(SensorCode);
-            errorFlag = false;
-        }
-
         if(errorFlag){
             return;
         }else{
             Intent intent=new Intent();
             intent.putExtra("title",element.getTitle());
             intent.putExtra("description",element.getDescription());
-            intent.putExtra("sensor",element.getSensorCode());
+            intent.putExtra("data",GenerateQrCodeActivity.getData());
             Bundle bundle;
             intent.putExtra("zone",item);
             setResult(Activity.RESULT_OK,intent);

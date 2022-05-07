@@ -20,6 +20,8 @@ import android.widget.TextView;
 import com.devzone.checkabletextview.CheckableTextView;
 import com.devzone.checkabletextview.CheckedListener;
 import com.example.alphatour.DashboardActivity;
+import com.example.alphatour.NotificationCounter;
+import com.example.alphatour.NotifyFragment;
 import com.example.alphatour.R;
 import com.example.alphatour.oggetti.Zone;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -133,10 +135,12 @@ public class Step4 extends Fragment implements Step, BlockingStep {
 
     @Override
     public void onCompleteClicked(StepperLayout.OnCompleteClickedCallback callback) {
+
         dialog.show();
         dialog_termina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 n_path++;
 
                 Step3.getMap_review().clear();
@@ -144,6 +148,7 @@ public class Step4 extends Fragment implements Step, BlockingStep {
                 list_zoneRiepilogo.removeAllViews();
                 zone_select.clear();
 
+                DashboardActivity.setFirstZoneChosen(false);
                 Intent intent= new Intent(getContext(), DashboardActivity.class);
                 startActivity(intent);
             }

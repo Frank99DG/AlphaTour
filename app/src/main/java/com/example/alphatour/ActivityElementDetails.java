@@ -29,7 +29,7 @@ import java.util.List;
 public class ActivityElementDetails extends AppCompatActivity {
 
     private ImageView close,imagePhoto,imageQrCode;
-    private EditText title,description,sensor;
+    private EditText title,description;
     private FloatingActionButton photo,qrCode;
     private AutoCompleteTextView typology;
     private String zone,item;
@@ -51,7 +51,6 @@ public class ActivityElementDetails extends AppCompatActivity {
         close=findViewById(R.id.closeDetails);
         title=findViewById(R.id.title);
         description=findViewById(R.id.description);
-        sensor=findViewById(R.id.sensor);
         photo=findViewById(R.id.changePhotoObject);
         qrCode=findViewById(R.id.changeQrCode);
         imagePhoto=findViewById(R.id.photo);
@@ -88,7 +87,6 @@ public class ActivityElementDetails extends AppCompatActivity {
                 description.setText(element.getDescription());
                 imagePhoto.setImageURI(element.getPhoto());
                 imageQrCode.setImageBitmap(element.getQrCode());
-                sensor.setText(element.getSensorCode());
             }
         }
 
@@ -127,7 +125,7 @@ public class ActivityElementDetails extends AppCompatActivity {
         String Title = title.getText().toString();
         String Description= description.getText().toString();
         // String Activity = activity.getText().toString();
-        String SensorCode = sensor.getText().toString();
+
         Element elementModified= new Element();
         if(Title.isEmpty()){
             title.setError(getString(R.string.required_field));
@@ -154,13 +152,7 @@ public class ActivityElementDetails extends AppCompatActivity {
                 element.setActivity(Activity);
             }*/
 
-        if(SensorCode.isEmpty()){
-            sensor.setError(getString(R.string.required_field));
-            sensor.requestFocus();
-            errorFlag = true;
-        }else{
-            elementModified.setSensorCode(SensorCode);
-        }
+
 
         if(errorFlag){
             return;
@@ -168,7 +160,6 @@ public class ActivityElementDetails extends AppCompatActivity {
             Intent intent=new Intent();
             intent.putExtra("title",elementModified.getTitle());
             intent.putExtra("description",elementModified.getDescription());
-            intent.putExtra("sensor",elementModified.getSensorCode());
             if(selected) {
                 intent.putExtra("zone", item);
             }else{

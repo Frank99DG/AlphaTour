@@ -52,7 +52,7 @@ import java.util.Map;
 public class ModifyObjectActivity extends AppCompatActivity {
 
     private FirebaseFirestore db;
-    private EditText title,description, sensor;
+    private EditText title,description;
     private static Bitmap newQr;
     private static Uri newUri;
     private AutoCompleteTextView typology;
@@ -67,8 +67,8 @@ public class ModifyObjectActivity extends AppCompatActivity {
     private List<String> zoneList = new ArrayList<String>();
     private ArrayAdapter<String> adapterItems;
     private int i=0,j=0;
-    private String newTitle,newDescription,newSensor,idElement,item,Zone;
-    private String id,idPhotoAndQrCode="";
+    private String newTitle,newDescription,newSensor,idElement,item,Zone, Qrdata;
+    private long idPhotoAndQrCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +84,6 @@ public class ModifyObjectActivity extends AppCompatActivity {
         close=findViewById(R.id.closeDetailsQr);
         title=findViewById(R.id.titleQr);
         description=findViewById(R.id.descriptionQr);
-        sensor=findViewById(R.id.sensorQr);
         photo=findViewById(R.id.changePhotoObjectQr);
         qrCode=findViewById(R.id.changeQr);
         imagePhoto=findViewById(R.id.photoQr);
@@ -97,14 +96,16 @@ public class ModifyObjectActivity extends AppCompatActivity {
         adapterItems = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,zoneList);
 
         db.collection("Elements")
-                .whereEqualTo("title", data)
+                .whereEqualTo("qrData", data)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
 
-                            for (QueryDocumentSnapshot document : task.getResult()) {
+                            if(task.getResult()!=null){
+
+                              for (QueryDocumentSnapshot document : task.getResult()) {
 
                                 ElementString element = document.toObject(ElementString.class);
                                 idElement = document.getId();
@@ -120,25 +121,26 @@ public class ModifyObjectActivity extends AppCompatActivity {
                                                     for (QueryDocumentSnapshot document : task.getResult()) {
 
                                                         zone = document.toObject(Zone.class);
-                                                        if(i==1) {
+                                                        if (i == 1) {
                                                             zoneList.add(zone.getName());
-                                                            zoneMap.put(document.getId(),zone.getName());
+                                                            zoneMap.put(document.getId(), zone.getName());
 
                                                         }
-                                                        if(document.getId().matches(element.getIdZone())) {
+                                                        if (document.getId().matches(element.getIdZone())) {
                                                             zone = document.toObject(Zone.class);
 
                                                             title.setText(element.getTitle());
                                                             description.setText(element.getDescription());
-                                                            sensor.setText(element.getSensorCode());
+                                                            idPhotoAndQrCode = element.getIdPhotoAndQrCode();
+                                                            Qrdata=element.getQrData();
                                                             showPhoto();
                                                             showQrCode();
                                                             typology.setAdapter(adapterItems);
-                                                            Zone=zone.getName();
+                                                            Zone = zone.getName();
                                                             typology.setHint(Zone);
-                                                            typology.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                                                            typology.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                                                 @Override
-                                                                public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                                                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                                                     typology.setError(null);
                                                                     //selected=true;
                                                                     item = parent.getItemAtPosition(position).toString();
@@ -146,19 +148,34 @@ public class ModifyObjectActivity extends AppCompatActivity {
                                                             });
                                                         }
                                                     }
-                                                }else {
+                                                } else {
                                                     Toast.makeText(ModifyObjectActivity.this, "Non è stato possibile caricare i dati dell'oggetto !!!", Toast.LENGTH_LONG).show();
                                                     loadingBar.setVisibility(View.GONE);
                                                 }
                                             }
                                         });
                             }
+                        }else{
+                                Toast.makeText(ModifyObjectActivity.this, "Oggetto non trovato !!!", Toast.LENGTH_LONG).show();
+                                loadingBar.setVisibility(View.GONE);
+                                Intent intent=new Intent(ModifyObjectActivity.this,DashboardActivity.class);
+                                startActivity(intent);
+                            }
+
                         } else {
                             Toast.makeText(ModifyObjectActivity.this, "Non è stato possibile caricare i dati dell'oggetto", Toast.LENGTH_LONG).show();
                             loadingBar.setVisibility(View.GONE);
+                            Intent intent=new Intent(ModifyObjectActivity.this,DashboardActivity.class);
+                            startActivity(intent);
                         }
                     }
-                });
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(ModifyObjectActivity.this, "Oggetto non trovato !!!", Toast.LENGTH_LONG).show();
+                loadingBar.setVisibility(View.GONE);
+            }
+        });
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,7 +189,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
 
 
     private void showQrCode() {
-        final StorageReference fileRef = storegeProfilePick.child("QrCodeObjects").child("QrCode_Objects_"+idElement);
+        final StorageReference fileRef = storegeProfilePick.child("QrCodeObjects").child("QrCode_Objects_"+idPhotoAndQrCode);
 
         try{
             File localFile= File.createTempFile("tempfile",".png");
@@ -198,7 +215,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
 
     private void showPhoto() {
 
-        final StorageReference fileRef = storegeProfilePick.child("PhotoObjects").child("Photo_Objects_"+idElement);
+        final StorageReference fileRef = storegeProfilePick.child("PhotoObjects").child("Photo_Objects_"+idPhotoAndQrCode);
 
         try{
             File localFile= File.createTempFile("tempfile",".png");
@@ -248,17 +265,23 @@ public class ModifyObjectActivity extends AppCompatActivity {
             }
             //salvataggio foto
         }else{
-            imageQrCode.setImageBitmap(GenerateQrCodeActivity.getBitmap());
-            newQr=GenerateQrCodeActivity.getBitmap();
-            Toast.makeText(ModifyObjectActivity.this,"QrCode generato con successo !", Toast.LENGTH_LONG).show();
+
+            if(GenerateQrCodeActivity.getQrFlag()==true) {
+                imageQrCode.setImageBitmap(GenerateQrCodeActivity.getBitmap());
+                newQr = GenerateQrCodeActivity.getBitmap();
+                Qrdata=GenerateQrCodeActivity.getData();
+                Toast.makeText(ModifyObjectActivity.this, "QrCode generato con successo !", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(ModifyObjectActivity.this, "QrCode non generato !", Toast.LENGTH_LONG).show();
+            }
         }
+
     }
 
     public void modifyObj(View view) {
 
         newTitle=title.getText().toString();
         newDescription=description.getText().toString();
-        newSensor=sensor.getText().toString();
 
         Boolean error=inputControl(newTitle,newDescription,newSensor);
 
@@ -295,7 +318,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
         }
 
         db.collection("Elements").document(idElement).
-                update("title",newTitle,"description",newDescription,"sensorCode",newSensor,"idZone",newZone).
+                update("title",newTitle,"description",newDescription,"idZone",newZone,"qrData",Qrdata).
                 addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
@@ -318,7 +341,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
     private void savePhoto(Uri photo) {
 
 
-        final StorageReference fileRef = storegeProfilePick.child("PhotoObjects").child("Photo_Objects"+"_"+idElement);
+        final StorageReference fileRef = storegeProfilePick.child("PhotoObjects").child("Photo_Objects"+"_"+idPhotoAndQrCode);
 
         uploadTask = fileRef.putFile(photo);
 
@@ -368,7 +391,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
 
     private void saveQrCode(Bitmap qrCode) {
 
-        final StorageReference fileRef = storegeProfilePick.child("QrCodeObjects").child("QrCode_Objects"+"_"+idElement);
+        final StorageReference fileRef = storegeProfilePick.child("QrCodeObjects").child("QrCode_Objects"+"_"+idPhotoAndQrCode);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         qrCode.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
@@ -439,13 +462,6 @@ public class ModifyObjectActivity extends AppCompatActivity {
         if (Description.isEmpty()) {
             description.setError(getString(R.string.required_field));
             description.requestFocus();
-            errorFlag = true;
-        }
-
-
-        if (Sensor.isEmpty()) {
-            sensor.setError(getString(R.string.required_field));
-            sensor.requestFocus();
             errorFlag = true;
         }
 

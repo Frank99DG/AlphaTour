@@ -5,7 +5,7 @@ import android.net.Uri;
 
 public class ElementString {
 
-    private String title,description,activity,sensorCode,zone,photo,qrCode,idZone,idUser;
+    private String title,description,zone,photo,qrCode,idZone,idUser,qrData;
     private long IdPhotoAndQrCode;
 
 
@@ -13,14 +13,12 @@ public class ElementString {
 
     }
 
-    public ElementString(String title, String description, String photo, String qrCode, String activity, String sensorCode){
+    public ElementString(String title, String description, String photo, String qrCode){
 
         this.title=title;
         this.description=description;
         this.photo=photo;
         this.qrCode=qrCode;
-        this.activity=activity;
-        this.sensorCode=sensorCode;
     }
 
     public String getTitle() {
@@ -37,22 +35,6 @@ public class ElementString {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getActivity() {
-        return activity;
-    }
-
-    public void setActivity(String activity) {
-        this.activity = activity;
-    }
-
-    public String getSensorCode() {
-        return sensorCode;
-    }
-
-    public void setSensorCode(String sensorCode) {
-        this.sensorCode = sensorCode;
     }
 
     public String getZone() {
@@ -101,5 +83,13 @@ public class ElementString {
 
     public void setIdUser(String idUser) {
         this.idUser = idUser;
+    }
+
+    public String getQrData() {
+        return qrData;
+    }
+
+    public void setQrData(String qrData) {
+        this.qrData = qrData;
     }
 }
