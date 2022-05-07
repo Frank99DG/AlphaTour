@@ -11,9 +11,12 @@ import android.widget.TextView;
 
 import com.devzone.checkabletextview.CheckableTextView;
 import com.example.alphatour.R;
+import com.example.alphatour.oggetti.MapZoneAndObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class ReviewZoneSelected extends AppCompatActivity {
@@ -23,6 +26,13 @@ public class ReviewZoneSelected extends AppCompatActivity {
     private LinearLayout list_object_zone_review;
     private TextView zoneReview,backToReview;
     private static Map<String, String> map_review_object = new HashMap<String, String>();
+    private static List<MapZoneAndObject> zoneAndObjectList = new ArrayList<MapZoneAndObject>();
+    private int index;
+    private static List<String> listObj = new ArrayList<String>();
+
+    public static List<MapZoneAndObject> getZoneAndObjectList() {
+        return zoneAndObjectList;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +46,7 @@ public class ReviewZoneSelected extends AppCompatActivity {
 
         Intent intent = getIntent();
         zone = intent.getStringExtra("zone");
+        index = intent.getIntExtra("index",0);
         zoneReview.setText(zone);
 
         backToReview.setOnClickListener(new View.OnClickListener() {
@@ -45,31 +56,40 @@ public class ReviewZoneSelected extends AppCompatActivity {
             }
         });
 
-        map_review_object = Step3.getMap_review();
+       // map_review_object = Step3.getMap_review();
 
-        Iterator it = map_review_object.entrySet().iterator();
+        zoneAndObjectList = Step3.getZoneAndObjectList();
 
-        while(it.hasNext()){
-            Map.Entry valori = (Map.Entry) it.next();
-            if(valori.getValue().equals(zone)){
-                View object = getLayoutInflater().inflate(R.layout.row_add_object_for_zone_review, null, false);
-                TextView objects = (TextView) object.findViewById(R.id.textObjectReview);
-                ImageView delete_object = object.findViewById(R.id.deleteObject_review_zone);
+        for(int i =0; i<zoneAndObjectList.size();i++){
+           // if(zoneAndObjectList.get(i).getZone().matches(zone)){
+            if(i == index) {
+                listObj = zoneAndObjectList.get(i).getListObj();
 
-                delete_object.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        map_review_object.remove(valori.getKey(),valori.getValue());
-                        list_object_zone_review.removeView(object);
-                    }
-                });
+                for (int c = 0; c < listObj.size(); c++) {
+                    View object = getLayoutInflater().inflate(R.layout.row_add_object_for_zone_review, null, false);
+                    TextView objects = (TextView) object.findViewById(R.id.textObjectReview);
+                    ImageView delete_object = object.findViewById(R.id.deleteObject_review_zone);
 
-                objects.setText(valori.getKey().toString());
-                list_object_zone_review.addView(object);
+                    object.setId(c);
+                    delete_object.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            // map_review_object.remove(valori.getKey(),valori.getValue());
+                            int index = object.getId();
+                            listObj.remove(index);
+                            list_object_zone_review.removeView(object);
+                        }
+                    });
 
+                    //  objects.setText(valori.getKey().toString());
+                    objects.setText(listObj.get(c));
+                    list_object_zone_review.addView(object);
+
+                }
             }
-
+          //  }
         }
+
     }
 
     public static Map<String, String> getMap_review_object() {

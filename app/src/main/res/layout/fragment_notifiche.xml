@@ -30,7 +30,8 @@
                 android:id="@+id/toolbar2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/CadetBlue"
+                android:background="@drawable/backgroun_dialog"
+                android:backgroundTint="@color/CadetBlue"
                 android:contextClickable="false"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme">

@@ -72,6 +72,8 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     private FirebaseFirestore db;
     private String idUser;
     private static int n_path=0;
+    private static boolean firstZoneChosen=false;
+    private static String zona_scelta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -417,5 +419,22 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     public static void setN_notify(int n_notify) {
         DashboardActivity.n_notify = n_notify;
     }
+
+    public static String getZona_scelta() {
+        return zona_scelta;
+    }
+
+    public static void setZona_scelta(String zona_scelta) {
+        DashboardActivity.zona_scelta = zona_scelta;
+    }
+
+    public static boolean isFirstZoneChosen() {
+        return firstZoneChosen;
+    }
+
+    public static void setFirstZoneChosen(boolean firstZoneChosen) {
+        DashboardActivity.firstZoneChosen = firstZoneChosen;
+    }
+
 
 }

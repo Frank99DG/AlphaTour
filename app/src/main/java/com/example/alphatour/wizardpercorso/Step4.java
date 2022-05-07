@@ -78,6 +78,8 @@ public class Step4 extends Fragment implements Step, BlockingStep {
                 TextView textZone = (TextView) zone.findViewById(R.id.textZoneReview);
                 ImageView deleteZone = zone.findViewById(R.id.deleteZone_review);
 
+                zone.setId(i);
+
                 deleteZone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -88,9 +90,13 @@ public class Step4 extends Fragment implements Step, BlockingStep {
                 textZone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
                         Intent intent = new Intent(getContext(), ReviewZoneSelected.class);
                         intent.putExtra("zone",textZone.getText().toString());
+                        int index = zone.getId();
+                        intent.putExtra("index", index);
                         startActivity(intent);
+
                     }
                 });
 
@@ -147,6 +153,7 @@ public class Step4 extends Fragment implements Step, BlockingStep {
                 ReviewZoneSelected.getMap_review_object().clear();
                 list_zoneRiepilogo.removeAllViews();
                 zone_select.clear();
+                ReviewZoneSelected.getZoneAndObjectList().clear();
 
                 DashboardActivity.setFirstZoneChosen(false);
                 Intent intent= new Intent(getContext(), DashboardActivity.class);

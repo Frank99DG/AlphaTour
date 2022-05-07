@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.example.alphatour.HamburgerMenuFragment;
 import com.example.alphatour.R;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;

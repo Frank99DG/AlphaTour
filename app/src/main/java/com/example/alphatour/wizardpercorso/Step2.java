@@ -241,7 +241,6 @@ public class Step2 extends Fragment implements Step, BlockingStep {
 
         for(int i =0; i< arrayZone.size();i++){
             list_zone.removeView(deleteView.get(i));
-
         }
         callback.goToPrevStep();
     }
