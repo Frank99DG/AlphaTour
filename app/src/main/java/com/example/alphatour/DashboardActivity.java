@@ -10,21 +10,29 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.alphatour.oggetti.ElementString;
 import com.example.alphatour.oggetti.Place;
+import com.example.alphatour.oggetti.User;
 import com.example.alphatour.oggetti.Zone;
 import com.example.alphatour.wizardcreazione.CreationWizard;
 import com.example.alphatour.wizardpercorso.PercorsoWizard;
 import com.example.alphatour.wizardpercorso.Step4;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -33,8 +41,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class DashboardActivity extends AppCompatActivity {
+public class DashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String AGE = "AGE";
     public static final String N_NOTIFY = "N_NOTIFY";
@@ -45,15 +55,18 @@ public class DashboardActivity extends AppCompatActivity {
     private int a=0;
     private NotificationCounter notificationCounter;
     private NotifyFragment myFragment = new NotifyFragment();
-    private HamburgerMenuFragment myFragmentMenu = new HamburgerMenuFragment();
     private Bundle data = new Bundle();
     private FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
     private FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-    private String namePlace,nameZone,titleElement;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private Toolbar toolbar;
+    private TextView name,surname,email;
     private AutoCompleteTextView inputSearch;
     private static List<String> placesZonesElementsList =new ArrayList<String>();
     private ArrayAdapter<String> adapterItems;
     private BottomNavigationView bottomNavigationView;
+    private ProgressBar loadingBar;
     private FirebaseAuth auth;
     private FirebaseUser user;
     private FirebaseFirestore db;
@@ -65,22 +78,50 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-
+        //istanza oggetti firebase
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         idUser = user.getUid();
 
+        //istanza layout e progress bar della dashboard
+        drawerLayout = findViewById(R.id.drawerLayout);
+        navigationView = findViewById(R.id.nav_view);
+        toolbar = findViewById(R.id.toolbar);
+        loadingBar = findViewById(R.id.dashboardLoadingBar);
+
+        //impostazione informazioni utenti nell'header del navigation header
+        View headerView = navigationView.getHeaderView(0);
+        name = (TextView) headerView.findViewById(R.id.nameProfile);
+        surname = (TextView) headerView.findViewById(R.id.surnameProfile);
+        email= (TextView) headerView.findViewById(R.id.emailProfile);
+        takeNameSurnameEmailUser();
+
+        //impostazione funzionamento navigazion view, toggle hamburger e pulsanti menu
+        setSupportActionBar(toolbar);
+        navigationView.bringToFront();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open ,R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
+
+        //personalizzazione icona del toggle hamburger
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger);
+
+        //impostazione barra di ricerca luogi,zone,elementi per la modifica
         inputSearch = findViewById(R.id.inputSearch);
         placesZonesElementsList = getPlacesZonesElementsList();
         adapterItems = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, placesZonesElementsList);
         inputSearch.setAdapter(adapterItems);
 
+        //impostazione della botton navigation menu
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.tb_home); //per partire con la selezione su home
         bottonNavClick();
 
-
+        //impostazioni notifiche
         if (savedInstanceState != null) {
             //Restore the fragment's instance
            // myFragment = (NotifyFragment) getSupportFragmentManager().getFragment(savedInstanceState, "myFragmentName");
@@ -91,7 +132,6 @@ public class DashboardActivity extends AppCompatActivity {
 
         notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
         ft.replace(R.id.container,myFragment).hide(myFragment).commit();
-        fragmentTransaction.replace(R.id.menu,myFragmentMenu).hide(myFragmentMenu).commit();
 
 
     }
@@ -155,6 +195,15 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }else{
+            super.onBackPressed();
+        }
+    }
+
     public void openFragment(View v) {
 
         getSupportFragmentManager().beginTransaction().show(myFragment).commit();
@@ -187,6 +236,33 @@ public class DashboardActivity extends AppCompatActivity {
 
     }
 
+
+    private void takeNameSurnameEmailUser(){
+
+        db.collection("Users").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                if (!queryDocumentSnapshots.isEmpty()) {
+                    List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista di utenti (id)
+
+                    for (DocumentSnapshot d : listDocument) {    //d è un id ciclato dalla lista
+                        User user = d.toObject(User.class);
+
+                        if(idUser.equals( d.getId() )){     //se l'id dell'utente loggato corrisponde all'id della lista
+                            name.setText(user.getName());
+                            surname.setText(user.getSurname());
+                            email.setText(user.getEmail());
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+
+    }
+
+
+
     public List<String> getPlacesZonesElementsList() {
 
         List<String> list = new ArrayList<String>();
@@ -204,7 +280,7 @@ public class DashboardActivity extends AppCompatActivity {
                         ElementString element = d.toObject(ElementString.class);
 
                         if( idUser.equals(element.getIdUser()) ){
-                            titleElement = element.getTitle();
+                            String titleElement = element.getTitle();
                             list.add(titleElement);
                         }
                     }
@@ -225,8 +301,8 @@ public class DashboardActivity extends AppCompatActivity {
                         Zone zone = d.toObject(Zone.class);
 
                         if( idUser.equals(zone.getIdUser()) ){
-                        nameZone = zone.getName();
-                        list.add(nameZone);
+                            String nameZone = zone.getName();
+                            list.add(nameZone);
                         }
 
 
@@ -248,8 +324,8 @@ public class DashboardActivity extends AppCompatActivity {
                         Place place = d.toObject(Place.class);
 
                         if( idUser.equals(place.getIdUser()) ){
-                        namePlace = place.getName();
-                        list.add(namePlace);
+                            String namePlace = place.getName();
+                            list.add(namePlace);
                         }
 
                     }
@@ -261,10 +337,6 @@ public class DashboardActivity extends AppCompatActivity {
 
     }
 
-    public void menu(View view){
-        getSupportFragmentManager().beginTransaction().show(myFragmentMenu).commit();
-
-    }
 
     public void openRouteWizard(View v){
         startActivity(new Intent(DashboardActivity.this, PercorsoWizard.class));
@@ -281,6 +353,27 @@ public class DashboardActivity extends AppCompatActivity {
     public void openUpdatePlace(View v){
         startActivity(new Intent(DashboardActivity.this, .class));
     }*/
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch(menuItem.getItemId()){
+            case R.id.tb_home:
+                startActivity( new Intent(DashboardActivity.this, DashboardActivity.class) );
+                break;
+            case R.id.tb_share_path:
+                break;
+            case R.id.tb_logout:
+                loadingBar.setVisibility(View.VISIBLE);
+                auth.signOut();
+                startActivity( new Intent(DashboardActivity.this, LoginActivity.class) );
+                Toast.makeText(this, "Ti sei disconnesso", Toast.LENGTH_LONG).show();
+                finishAffinity(); //Chiude tutte le attività presenti nello Stack, evita che il tasto back porti alla dashboard dopo il logout
+                loadingBar.setVisibility(View.GONE);
+        }
+
+        return false;
+    }
+
 
     public void bottonNavClick(){
 
@@ -324,4 +417,5 @@ public class DashboardActivity extends AppCompatActivity {
     public static void setN_notify(int n_notify) {
         DashboardActivity.n_notify = n_notify;
     }
+
 }

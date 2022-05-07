@@ -1,442 +1,465 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mainLayout"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusableInTouchMode="true"
-    tools:context=".DashboardActivity">
+    android:fitsSystemWindows="true"
+    android:visibility="visible"
+    tools:context=".DashboardActivity"
+    tools:openDrawer="start">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:visibility="visible"
+        app:headerLayout="@layout/header_hamburger"
+        app:menu="@menu/shortcut_ham_menu" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_mint_green"
-        android:orientation="vertical"
-        android:weightSum="10"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/side_nav_bar"
-            android:minHeight="?attr/actionBarSize"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:theme="?attr/actionBarTheme">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/ic_hamburger"
-                    android:onClick="menu"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <include
-                    android:id="@+id/notification_icon_prova"
-                    layout="@layout/notification_icon_prova"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="18dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.appcompat.widget.Toolbar>
-
+        android:focusableInTouchMode="true">
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="85dp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_mint_green"
+            android:orientation="vertical"
+            android:weightSum="10"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/searchLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-                android:layout_width="265dp"
-                android:layout_height="56dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="4dp">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/side_nav_bar"
+                android:minHeight="?attr/actionBarSize"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:theme="?attr/actionBarTheme">
 
-                <AutoCompleteTextView
-                    android:id="@+id/inputSearch"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <!--<ImageView
+                        android:id="@+id/hamburgerBotton"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/ic_hamburger"
+                        android:onClick="openHamburgerMenu"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />-->
+
+                    <include
+                        android:id="@+id/notification_icon_prova"
+                        layout="@layout/notification_icon_prova"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/searchLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="265dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="4dp">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/inputSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/backgroun_dialog"
+                        android:drawableStart="@drawable/ic_search"
+                        android:hint=" Luoghi, Zone ed Elementi"
+                        android:inputType="text"
+                        android:padding="10dp"
+                        tools:layout_editor_absoluteX="110dp"
+                        tools:layout_editor_absoluteY="325dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="55dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/backgroun_dialog"
-                    android:drawableStart="@drawable/ic_search"
-                    android:hint=" Luoghi, Zone ed Elementi"
-                    android:inputType="text"
-                    android:padding="10dp"
-                    tools:layout_editor_absoluteX="110dp"
-                    tools:layout_editor_absoluteY="325dp" />
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="50dp"
+                    app:cardCornerRadius="12dp"
+                    app:layout_constraintEnd_toEndOf="parent">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <ImageView
+                        android:id="@+id/imageView7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/ic_qr_code_scanner" />
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="55dp"
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+
+            <androidx.gridlayout.widget.GridLayout
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="50dp"
-                app:cardCornerRadius="12dp"
-                app:layout_constraintEnd_toEndOf="parent">
+                android:layout_weight="6"
+                android:padding="26dp"
+                app:alignmentMode="alignMargins"
+                app:columnCount="2"
+                app:columnOrderPreserved="false"
+                app:rowCount="2">
 
-                <ImageView
-                    android:id="@+id/imageView7"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/ic_qr_code_scanner" />
+                <!--Row 1-->
+                <!--Column 1-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_route"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:onClick="openRouteWizard"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
 
-            </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="90dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="16dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:layout_weight="6"
+                            android:background="@drawable/ic_route"
+                            android:contentDescription="@string/im_view">
+
+                        </ImageView>
+
+                        <TextView
+                            android:id="@+id/tv_route"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_weight="1"
+                            android:text="@string/tv_route"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!--Row 1-->
+                <!--Column 2-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_place"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:onClick="openCreationWizard"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
+
+                    <LinearLayout
+                        android:layout_width="90dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="16dp"
+                        android:orientation="vertical"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="95dp"
+                            android:layout_weight="7"
+                            android:background="@drawable/ic_museum"
+                            android:contentDescription="@string/im_view"
+                            app:layout_column="3"
+                            app:layout_row="0">
+
+
+                        </ImageView>
+
+                        <TextView
+                            android:id="@+id/tv_place"
+                            android:layout_width="match_parent"
+                            android:layout_height="39dp"
+                            android:layout_weight="1"
+                            android:text="@string/tv_place"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- Row 2-->
+                <!-- Column 1-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_calendar"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="20dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
+
+                    <LinearLayout
+                        android:layout_width="90dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="16dp"
+                        android:orientation="vertical"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="95dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="7"
+                            android:background="@drawable/ic_calendar"
+                            android:contentDescription="@string/im_view">
+
+                        </ImageView>
+
+                        <TextView
+                            android:id="@+id/tv_calendar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/tv_calendar"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!--Row 2-->
+                <!--Column 2-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_update"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="20dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
+
+                    <LinearLayout
+                        android:layout_width="90dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="16dp"
+                        android:orientation="vertical"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="95dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="6"
+                            android:background="@drawable/ic_update_place"
+                            android:contentDescription="@string/im_view">
+
+                        </ImageView>
+
+                        <TextView
+                            android:id="@+id/tv_update"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/tv_update"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="13sp"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.gridlayout.widget.GridLayout>
 
 
         </LinearLayout>
 
 
-        <androidx.gridlayout.widget.GridLayout
+        <!--<com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="6"
-            android:padding="26dp"
-            app:alignmentMode="alignMargins"
-            app:columnCount="2"
-            app:columnOrderPreserved="false"
-            app:rowCount="2">
-
-            <!--Row 1-->
-            <!--Column 1-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_route"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="20dp"
-                android:onClick="openRouteWizard"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
-
-
-                <LinearLayout
-                    android:layout_width="90dp"
-                    android:layout_height="110dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_weight="6"
-                        android:background="@drawable/ic_route"
-                        android:contentDescription="@string/im_view">
-
-                    </ImageView>
-
-                    <TextView
-                        android:id="@+id/tv_route"
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:layout_weight="1"
-                        android:text="@string/tv_route"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold">
-
-                    </TextView>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <!--Row 1-->
-            <!--Column 2-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_place"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="20dp"
-                android:onClick="openCreationWizard"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
-
-                <LinearLayout
-                    android:layout_width="90dp"
-                    android:layout_height="110dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical"
-                    tools:ignore="UseCompoundDrawables">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="95dp"
-                        android:layout_weight="7"
-                        android:background="@drawable/ic_museum"
-                        android:contentDescription="@string/im_view"
-                        app:layout_column="3"
-                        app:layout_row="0">
-
-
-                    </ImageView>
-
-                    <TextView
-                        android:id="@+id/tv_place"
-                        android:layout_width="match_parent"
-                        android:layout_height="39dp"
-                        android:layout_weight="1"
-                        android:text="@string/tv_place"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold">
-
-                    </TextView>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <!-- Row 2-->
-            <!-- Column 1-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_calendar"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="20dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
-
-                <LinearLayout
-                    android:layout_width="90dp"
-                    android:layout_height="110dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical"
-                    tools:ignore="UseCompoundDrawables">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="95dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="7"
-                        android:background="@drawable/ic_calendar"
-                        android:contentDescription="@string/im_view">
-
-                    </ImageView>
-
-                    <TextView
-                        android:id="@+id/tv_calendar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/tv_calendar"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold">
-
-                    </TextView>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <!--Row 2-->
-            <!--Column 2-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_update"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="20dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1">
-
-                <LinearLayout
-                    android:layout_width="90dp"
-                    android:layout_height="110dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical"
-                    tools:ignore="UseCompoundDrawables">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="95dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="6"
-                        android:background="@drawable/ic_update_place"
-                        android:contentDescription="@string/im_view">
-
-                    </ImageView>
-
-                    <TextView
-                        android:id="@+id/tv_update"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/tv_update"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="13sp"
-                        android:textStyle="bold">
-
-                    </TextView>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </androidx.gridlayout.widget.GridLayout>
-
-
-    </LinearLayout>
-
-
-    <!--<com.google.android.material.tabs.TabLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tb_profile"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tb_profile"
-            android:onClick="openProfile"/>
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tb_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tb_home"
-            android:onClick="openDashboard"/>
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tb_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tb_profile"
+                android:onClick="openProfile"/>
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tb_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tb_home"
+                android:onClick="openDashboard"/>
 
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tb_routes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tb_routes" />
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tb_routes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tb_routes" />
 
-    </com.google.android.material.tabs.TabLayout> -->
+        </com.google.android.material.tabs.TabLayout> -->
 
 
-    <!--
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/bottons"
+        <!--
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bottons"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="480dp"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <Button
+                    android:id="@+id/createPath"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="136dp"
+                    android:layout_marginBottom="2dp"
+                    android:onClick="createPath"
+                    android:text="Create Path"
+                    android:textColor="#000000"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <Button
+                    android:id="@+id/buttonNotify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="59dp"
+                    android:layout_marginBottom="12dp"
+                    android:onClick="buttonNotify"
+                    android:text="Notify"
+                    android:textColor="#000000"
+                    app:layout_constraintBottom_toTopOf="@+id/createPath"
+                    app:layout_constraintStart_toEndOf="@+id/mAge2" />
+
+                <TextView
+                    android:id="@+id/mAge2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="44dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="59dp"
+                    android:text="TextView"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonNotify"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+         -->
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:name="com.example.alphatour.NotifyFragment"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="480dp"
+            android:layout_height="match_parent"
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-
-            <Button
-                android:id="@+id/createPath"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="136dp"
-                android:layout_marginBottom="2dp"
-                android:onClick="createPath"
-                android:text="Create Path"
-                android:textColor="#000000"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <Button
-                android:id="@+id/buttonNotify"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="59dp"
-                android:layout_marginBottom="12dp"
-                android:onClick="buttonNotify"
-                android:text="Notify"
-                android:textColor="#000000"
-                app:layout_constraintBottom_toTopOf="@+id/createPath"
-                app:layout_constraintStart_toEndOf="@+id/mAge2" />
-
-            <TextView
-                android:id="@+id/mAge2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="44dp"
-                android:layout_marginTop="100dp"
-                android:layout_marginEnd="59dp"
-                android:text="TextView"
-                app:layout_constraintEnd_toStartOf="@+id/buttonNotify"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-     -->
-
-    <FrameLayout
-        android:id="@+id/container"
-        android:name="com.example.alphatour.NotifyFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/menu"
-        android:name="com.example.alphatour.HamburgerMenuFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        </FrameLayout>
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/botton_nav_menu" />
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/botton_nav_menu">
+
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+        <ProgressBar
+            android:id="@+id/dashboardLoadingBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

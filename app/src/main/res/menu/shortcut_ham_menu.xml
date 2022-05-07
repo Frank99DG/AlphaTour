@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/tb_home"
+            android:title="@string/tb_home"
+            android:icon="@drawable/ic_home"
+            />
+
+        <item
+            android:id="@+id/tb_share_path"
+            android:title="@string/tb_share_path"
+            android:icon="@drawable/ic_share"
+            />
+
+        <item
+            android:id="@+id/tb_logout"
+            android:title="@string/tb_logout"
+            android:icon="@drawable/ic_logout"
+            />
+    </group>
+
+
+</menu>

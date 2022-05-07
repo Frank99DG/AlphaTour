@@ -42,6 +42,8 @@
     <string name="tb_profile">PROFILO</string>
     <string name="tb_home">HOME</string>
     <string name="tb_routes">I MIEI PERCORSI</string>
+    <string name="tb_share_path">CONDIVIDI PERCORSO</string>
+    <string name="tb_logout">LOGOUT</string>
     <string name="im_view"> </string>
     <string name="search">Cerca</string>
     <!--activity_dashboard_curatore(des)end-->
