@@ -5,9 +5,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.alphatour.R;
-
 public class NotificationCounter {
+
+    private static int count;
+    private static boolean send_notify=false;
+
 
     private TextView notificationNumber;
 
@@ -47,4 +49,21 @@ public class NotificationCounter {
     public void setTextNotify(Bundle d, String abcd){
         this.notificationNumber.setText(d.getCharSequence(abcd));
     }
+
+    public static int getCount() {
+        return count;
+    }
+
+    public static void setCount(int count) {
+        NotificationCounter.count = count;
+    }
+
+    public static boolean getSend_notify() {
+        return send_notify;
+    }
+
+    public static void setSend_notify(boolean send_notify) {
+        NotificationCounter.send_notify = send_notify;
+    }
+
 }

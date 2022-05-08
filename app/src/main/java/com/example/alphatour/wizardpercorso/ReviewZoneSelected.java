@@ -47,6 +47,7 @@ public class ReviewZoneSelected extends AppCompatActivity {
         Intent intent = getIntent();
         zone = intent.getStringExtra("zone");
         index = intent.getIntExtra("index",0);
+
         zoneReview.setText(zone);
 
         backToReview.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +62,6 @@ public class ReviewZoneSelected extends AppCompatActivity {
         zoneAndObjectList = Step3.getZoneAndObjectList();
 
         for(int i =0; i<zoneAndObjectList.size();i++){
-           // if(zoneAndObjectList.get(i).getZone().matches(zone)){
             if(i == index) {
                 listObj = zoneAndObjectList.get(i).getListObj();
 
@@ -71,6 +71,7 @@ public class ReviewZoneSelected extends AppCompatActivity {
                     ImageView delete_object = object.findViewById(R.id.deleteObject_review_zone);
 
                     object.setId(c);
+
                     delete_object.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -81,13 +82,11 @@ public class ReviewZoneSelected extends AppCompatActivity {
                         }
                     });
 
-                    //  objects.setText(valori.getKey().toString());
                     objects.setText(listObj.get(c));
                     list_object_zone_review.addView(object);
 
                 }
             }
-          //  }
         }
 
     }
@@ -96,7 +95,4 @@ public class ReviewZoneSelected extends AppCompatActivity {
         return map_review_object;
     }
 
-    public static void setMap_review_object(Map<String, String> map_review_object) {
-        ReviewZoneSelected.map_review_object = map_review_object;
-    }
 }

@@ -46,7 +46,6 @@ public class Step4 extends Fragment implements Step, BlockingStep {
     private LinearLayout list_zoneRiepilogo;
     private Dialog dialog;
     private Button dialog_termina, dialog_dismiss;
-    private static int n_path=0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -147,7 +146,9 @@ public class Step4 extends Fragment implements Step, BlockingStep {
             @Override
             public void onClick(View view) {
 
-                n_path++;
+                int increment_notifyOnDashboard = NotificationCounter.getCount();
+                increment_notifyOnDashboard++;
+                NotificationCounter.setCount(increment_notifyOnDashboard);
 
                 Step3.getMap_review().clear();
                 ReviewZoneSelected.getMap_review_object().clear();
@@ -156,6 +157,7 @@ public class Step4 extends Fragment implements Step, BlockingStep {
                 ReviewZoneSelected.getZoneAndObjectList().clear();
 
                 DashboardActivity.setFirstZoneChosen(false);
+                NotificationCounter.setSend_notify(true);
                 Intent intent= new Intent(getContext(), DashboardActivity.class);
                 startActivity(intent);
             }
@@ -172,11 +174,4 @@ public class Step4 extends Fragment implements Step, BlockingStep {
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
     }
 
-    public static int getN_path() {
-        return n_path;
-    }
-
-    public static void setN_path(int n_path) {
-        Step4.n_path = n_path;
-    }
 }

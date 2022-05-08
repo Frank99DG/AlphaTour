@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +28,6 @@ import com.example.alphatour.oggetti.User;
 import com.example.alphatour.oggetti.Zone;
 import com.example.alphatour.wizardcreazione.CreationWizard;
 import com.example.alphatour.wizardpercorso.PercorsoWizard;
-import com.example.alphatour.wizardpercorso.Step4;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -41,8 +39,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class DashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -74,6 +70,8 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     private static int n_path=0;
     private static boolean firstZoneChosen=false;
     private static String zona_scelta;
+
+    private int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,14 +122,6 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         bottonNavClick();
 
         //impostazioni notifiche
-        if (savedInstanceState != null) {
-            //Restore the fragment's instance
-           // myFragment = (NotifyFragment) getSupportFragmentManager().getFragment(savedInstanceState, "myFragmentName");
-        }
-
-        Intent i = getIntent();
-        n_notify = i.getIntExtra(N_NOTIFY,0);
-
         notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
         ft.replace(R.id.container,myFragment).hide(myFragment).commit();
 
@@ -140,8 +130,32 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
 
     @Override
+    protected void onPause() {
+        super.onPause();
+
+        //notifiche
+        TextView view = (TextView) findViewById(R.id.notificationNumber);
+        String  counter_notify = (String) view.getText();
+        NotificationCounter.setCount(Integer.parseInt(counter_notify));
+
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
+
+        //notifiche
+        if(NotificationCounter.getSend_notify()==true) {
+            Toast.makeText(this, "You have a new notification", Toast.LENGTH_LONG).show();
+            NotificationCounter.setSend_notify(false);
+        }
+
+        if(NotificationCounter.getCount()>0){
+            n_notify=NotificationCounter.getCount();
+            for (a=0;a<n_notify;a++){
+                notificationCounter.increaseNumber();
+            }NotificationCounter.setCount(0);
+        }
 
         if(invioProva.getN_notify()>0  ){
             n_notify= invioProva.getN_notify();
@@ -151,31 +165,23 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
             ageText.setText("Counter is: " + n_notify);
         }
 
+    }
 
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
 
-        if(Step4.getN_path()>0  ){
-            n_notify++;
-            for(a=0;  a<n_notify; a++) {
-                notificationCounter.increaseNumber();
-            }Step4.setN_path(0);
-            Toast.makeText(this, "You have a new notification", Toast.LENGTH_LONG).show();
-        }
+        //salvataggio notifiche
+       savedInstanceState.putCharSequence(KEY_COUNTER, notificationCounter.getNotificationNumber().getText());
 
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        //Save the fragment's instance
-        //getSupportFragmentManager().putFragment(outState, "myFragment", myFragment);
-     //  outState.putCharSequence(KEY_COUNTER, notificationCounter.getNotificationNumber().getText());
-    }
-
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
-     // this.notificationCounter.setTextNotify(savedInstanceState,KEY_COUNTER);
+        //restore notifiche
+      this.notificationCounter.setTextNotify(savedInstanceState,KEY_COUNTER);
     }
 
     //To remove focus and keyboard when click outside AutoCompleteTextView
@@ -402,22 +408,6 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
             }
         });
 
-    }
-
-    public static void setN_path(int n_path) {
-        DashboardActivity.n_path = n_path;
-    }
-
-    public static int getN_path() {
-        return n_path;
-    }
-
-    public static int getN_notify() {
-        return n_notify;
-    }
-
-    public static void setN_notify(int n_notify) {
-        DashboardActivity.n_notify = n_notify;
     }
 
     public static String getZona_scelta() {
