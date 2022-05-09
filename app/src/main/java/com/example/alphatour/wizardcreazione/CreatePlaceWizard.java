@@ -20,16 +20,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.alphatour.AddPlaceActivity;
-import com.example.alphatour.AddZoneActivity;
 import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.ModifyObjectActivity;
 import com.example.alphatour.R;
 import com.example.alphatour.oggetti.Place;
-import com.example.alphatour.qrcode.ScanQrCodeActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -134,6 +129,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
 
         return view;
     }
+
 
     @Nullable
     @Override

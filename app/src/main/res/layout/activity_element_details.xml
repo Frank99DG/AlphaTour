@@ -4,9 +4,339 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityElementDetails">
+    tools:context=".ElementDetailsActivity">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true">
+
+        <TextView
+            android:id="@+id/textDetailsElement"
+            android:layout_width="182dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="213dp"
+            android:fontFamily="@font/alata"
+            android:text="@string/element_details"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.057"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/closeDetailsElement"
+            android:layout_width="38dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_delete" />
+
+
+        <View
+            android:id="@+id/separator1"
+            android:layout_width="409dp"
+            android:layout_height="3dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textOwnerZone"
+            android:layout_width="155dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="68dp"
+            android:fontFamily="@font/alata"
+            android:text="@string/owner_zone"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/owenerZoneLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="208dp"
+            android:layout_height="56dp"
+            android:layout_margin="35dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="81dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.67"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textDetailsElement">
+
+            <AutoCompleteTextView
+                android:id="@+id/inputOwnerZone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:id="@+id/separator2"
+            android:layout_width="409dp"
+            android:layout_height="3dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="164dp"
+            android:layout_marginEnd="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textTitleElement"
+            android:layout_width="93dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="180dp"
+            android:fontFamily="@font/alata"
+            android:text="@string/title_element"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <EditText
+            android:id="@+id/inputTitleElement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="81dp"
+            android:ems="10"
+            android:hint="@string/title_element"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/owenerZoneLayout" />
+
+        <View
+            android:id="@+id/separator3"
+            android:layout_width="409dp"
+            android:layout_height="3dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="236dp"
+            android:layout_marginEnd="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textDescriptionElement"
+            android:layout_width="93dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="248dp"
+            android:fontFamily="@font/alata"
+            android:text="@string/description_element"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/inputDescriptionElement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="81dp"
+            android:ems="10"
+            android:textSize="18sp"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:maxLines="20"
+            android:minLines="10"
+            android:hint="@string/description_element"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputTitleElement" />
+
+        <ProgressBar
+            android:id="@+id/qrCodeLoadingBarQr"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.54" />
+
+        <View
+            android:id="@+id/separator4"
+            android:layout_width="409dp"
+            android:layout_height="3dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="500dp"
+            android:layout_marginEnd="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textPhotoElement"
+            android:layout_width="76dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="520dp"
+            android:fontFamily="@font/alata"
+            android:text="@string/photo_element"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/photoElement"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="38dp"
+            android:layout_marginEnd="81dp"
+            android:ems="10"
+            android:text="@string/photo_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputDescriptionElement" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/changePhotoElement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/silver"
+            android:clickable="true"
+            android:onClick="changePhotoElement"
+            app:layout_constraintBottom_toBottomOf="@+id/photoElement"
+            app:layout_constraintEnd_toEndOf="@+id/photoElement"
+            app:srcCompat="@drawable/ic_photo_camera" />
+
+        <View
+            android:id="@+id/separator5"
+            android:layout_width="409dp"
+            android:layout_height="3dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="788dp"
+            android:layout_marginEnd="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textQrCodeElement"
+            android:layout_width="64dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="804dp"
+            android:fontFamily="@font/alata"
+            android:text="@string/qr_code_element"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/qrCodeElement"
+            android:layout_width="262dp"
+            android:layout_height="248dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="81dp"
+            android:ems="10"
+            android:text="GENERA CODICE QR"
+            android:textColorHint="#FDFCFC"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/photoElement" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/changeQrCodeElement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/silver"
+            android:clickable="true"
+            android:onClick="changeQrCodeElement"
+            app:layout_constraintBottom_toBottomOf="@+id/qrCodeElement"
+            app:layout_constraintEnd_toEndOf="@+id/qrCodeElement"
+            app:srcCompat="@drawable/ic_qr_code" />
+
+        <View
+            android:id="@+id/separator6"
+            android:layout_width="409dp"
+            android:layout_height="3dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1060dp"
+            android:layout_marginEnd="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/saveElement"
+            android:layout_width="139dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="124dp"
+            android:background="@drawable/bordi_tondi_button"
+            android:ems="10"
+            android:onClick="saveElement"
+            android:text="@string/save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/separator6" />
+
+        <ProgressBar
+            android:id="@+id/modifyLoadingBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="360dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--<androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -321,6 +651,6 @@
             app:layout_constraintTop_toBottomOf="@+id/view4" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
 </ScrollView>

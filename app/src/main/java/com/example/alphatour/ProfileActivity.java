@@ -12,7 +12,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -33,16 +32,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -65,9 +57,10 @@ public class ProfileActivity extends AppCompatActivity {
     private String idUtenteLocal;
     private ProgressBar loadingBar;
     private BottomNavigationView bottomNavigationView;
+    private FirebaseFirestore db;
     private FirebaseUser user;
     private FirebaseAuth auth;
-    private FirebaseFirestore db;
+    private String idUser;
     boolean registered = false;
     private StorageReference storegeProfilePick;
     private StorageTask uploadTask;
@@ -92,34 +85,35 @@ public class ProfileActivity extends AppCompatActivity {
         textUsername = findViewById(R.id.profileUsernameUser);
         loadingBar = findViewById(R.id.profileLoadingBar);
 
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView = findViewById(R.id.bottomNavigationBar);
         bottomNavigationView.setSelectedItemId(R.id.tb_profile); //per partire con la selezione su home
-        bottonNavClick();
+        bottomNavBarClick();
 
+        db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
-        db = FirebaseFirestore.getInstance();
+        idUser = user.getUid();
+
+
         storegeProfilePick= FirebaseStorage.getInstance().getReference();
         if(user == null){
             Toast.makeText(ProfileActivity.this,"Si è verificato un errrore: i dati dell'utente non sono disponibili !!!",Toast.LENGTH_LONG).show();
         }else{
             loadingBar.setVisibility(View.VISIBLE);
-            showUserProfile(user);
+            showUserProfile();
         }
     }
 
-    private void showUserProfile(FirebaseUser user) {
-
-        String idUser = user.getUid();
+    private void showUserProfile() {
 
         db.collection("Users").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
                 if(!queryDocumentSnapshots.isEmpty()){
-                    List<DocumentSnapshot> listaDocumenti=queryDocumentSnapshots.getDocuments(); //lista utenti registrati
+                    List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista utenti registrati
 
-                    for(DocumentSnapshot d: listaDocumenti){
+                    for(DocumentSnapshot d: listDocument){
 
                         if(d.getId().matches(idUser)) { // controllo se l'id dell'utente esiste
 
@@ -280,13 +274,13 @@ public class ProfileActivity extends AppCompatActivity {
                 .start(20);
     }
 
-    public void updateProfile1(View v){
+    public void updateProfile(View v){
         Intent intent=new Intent(this,UpdateProfileActivity.class);
         startActivity(intent);
     }
 
 
-    public void bottonNavClick(){
+    public void bottomNavBarClick(){
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

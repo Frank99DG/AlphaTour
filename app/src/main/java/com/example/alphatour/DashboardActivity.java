@@ -8,8 +8,10 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +24,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.alphatour.oggetti.Constraint;
 import com.example.alphatour.oggetti.ElementString;
 import com.example.alphatour.oggetti.Place;
 import com.example.alphatour.oggetti.User;
@@ -57,15 +60,16 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
-    private TextView name,surname,email;
+    private TextView name,surname;
     private AutoCompleteTextView inputSearch;
     private static List<String> placesZonesElementsList =new ArrayList<String>();
     private ArrayAdapter<String> adapterItems;
+    private String item;
     private BottomNavigationView bottomNavigationView;
     private ProgressBar loadingBar;
+    private FirebaseFirestore db;
     private FirebaseAuth auth;
     private FirebaseUser user;
-    private FirebaseFirestore db;
     private String idUser;
     private static int n_path=0;
     private static boolean firstZoneChosen=false;
@@ -94,8 +98,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         View headerView = navigationView.getHeaderView(0);
         name = (TextView) headerView.findViewById(R.id.nameProfile);
         surname = (TextView) headerView.findViewById(R.id.surnameProfile);
-        email= (TextView) headerView.findViewById(R.id.emailProfile);
-        takeNameSurnameEmailUser();
+        takeNameSurnameUser();
 
         //impostazione funzionamento navigazion view, toggle hamburger e pulsanti menu
         setSupportActionBar(toolbar);
@@ -115,11 +118,13 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         placesZonesElementsList = getPlacesZonesElementsList();
         adapterItems = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, placesZonesElementsList);
         inputSearch.setAdapter(adapterItems);
+        inputSearchClick();
 
-        //impostazione della botton navigation menu
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
+        //impostazione del bottom navigation menu
+        bottomNavigationView = findViewById(R.id.bottomNavigationBar);
         bottomNavigationView.setSelectedItemId(R.id.tb_home); //per partire con la selezione su home
-        bottonNavClick();
+        bottomNavBarClick();
 
         //impostazioni notifiche
         notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
@@ -184,7 +189,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
       this.notificationCounter.setTextNotify(savedInstanceState,KEY_COUNTER);
     }
 
-    //To remove focus and keyboard when click outside AutoCompleteTextView
+    //per rimuovere il focus e la tastiera quando si clicca fuori dalla AutoCompleteTextView
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -245,7 +250,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     }
 
 
-    private void takeNameSurnameEmailUser(){
+    private void takeNameSurnameUser(){
 
         db.collection("Users").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -254,12 +259,10 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                     List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista di utenti (id)
 
                     for (DocumentSnapshot d : listDocument) {    //d è un id ciclato dalla lista
-                        User user = d.toObject(User.class);
-
                         if(idUser.equals( d.getId() )){     //se l'id dell'utente loggato corrisponde all'id della lista
+                            User user = d.toObject(User.class);
                             name.setText(user.getName());
                             surname.setText(user.getSurname());
-                            email.setText(user.getEmail());
                             break;
                         }
                     }
@@ -274,7 +277,6 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     public List<String> getPlacesZonesElementsList() {
 
         List<String> list = new ArrayList<String>();
-
 
         db.collection("Elements").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
 
@@ -346,6 +348,85 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     }
 
 
+
+    private void inputSearchClick() {
+
+        inputSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                item = parent.getItemAtPosition(position).toString();
+
+                db.collection("Elements").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista elementi
+
+                            for (DocumentSnapshot d : listDocument) {
+                                ElementString element = d.toObject(ElementString.class);
+
+                                if( item.equals(element.getTitle()) ){
+                                    startActivity(new Intent(DashboardActivity.this, ModifyObjectActivity.class));
+                                    inputSearch.setText(null);
+                                }
+                            }
+                        }
+                    }
+                });
+
+
+                db.collection("Zones").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista zone
+
+                            for (DocumentSnapshot d : listDocument) {
+                                Zone zone = d.toObject(Zone.class);
+
+                                if( item.equals(zone.getName())  ){
+                                    startActivity(new Intent(DashboardActivity.this, ModifyZoneActivity.class));
+                                    inputSearch.setText(null);
+                                }
+
+
+                            }
+                        }
+                    }
+                });
+
+
+                db.collection("Places").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista luoghi
+
+                            for (DocumentSnapshot d : listDocument) {
+                                Place place = d.toObject(Place.class);
+
+                                if( item.equals(place.getName()) ){
+                                    startActivity(new Intent(DashboardActivity.this, ModifyPlaceActivity.class));
+                                    inputSearch.setText(null);
+                                }
+
+                            }
+                        }
+                    }
+                });
+
+            }
+        });
+
+    }
+
     public void openRouteWizard(View v){
         startActivity(new Intent(DashboardActivity.this, PercorsoWizard.class));
     }
@@ -361,6 +442,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     public void openUpdatePlace(View v){
         startActivity(new Intent(DashboardActivity.this, .class));
     }*/
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -383,7 +465,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     }
 
 
-    public void bottonNavClick(){
+    public void bottomNavBarClick(){
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

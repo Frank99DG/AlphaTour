@@ -200,20 +200,20 @@
             android:layout_marginLeft="110dp"
             android:layout_marginRight="100dp"
             android:layout_marginTop="-180dp"
-            android:onClick="updateProfile1"
+            android:onClick="updateProfile"
             android:text="Modifica profilo" />
 
 
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
+        android:id="@+id/bottomNavigationBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/botton_nav_menu" />
+        app:menu="@menu/bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

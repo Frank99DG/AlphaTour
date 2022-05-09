@@ -27,8 +27,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.alphatour.AddPlaceActivity;
-import com.example.alphatour.AddZoneActivity;
 import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.R;
 import com.example.alphatour.oggetti.Constraint;
@@ -67,7 +65,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 
 public class CreateConstraintsWizard<zone_list> extends Fragment implements Step, BlockingStep {

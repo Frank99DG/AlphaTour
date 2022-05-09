@@ -41,9 +41,10 @@ public class UpdateProfileActivity extends AppCompatActivity {
     private String emailLocal;
     private ProgressBar loadingBar;
     boolean registered = false;
-    private FirebaseAuth auth;
-    FirebaseUser user;
     private FirebaseFirestore db;
+    private FirebaseAuth auth;
+    private FirebaseUser user;
+    private String idUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +57,14 @@ public class UpdateProfileActivity extends AppCompatActivity {
         editUsername = findViewById(R.id.updateUsername);
         loadingBar = findViewById(R.id.profileUpdateLoadingBar);
 
+        db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
-        db = FirebaseFirestore.getInstance();
+        idUser = user.getUid();
        /* String em=editEmail.getText().toString();
         String em1=em.toString();
         emailLocal=new String[]{em1};*/
-        visualizzaProfilo(user);
+        showUserProfile();
 
 
     }
@@ -88,9 +90,8 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
 
     //visualizza i dati del profilo utente
-    private void visualizzaProfilo(FirebaseUser utente) {
+    private void showUserProfile() {
 
-        String idUtente=utente.getUid();
         loadingBar.setVisibility(View.VISIBLE);
 
         db.collection("Users").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -98,14 +99,14 @@ public class UpdateProfileActivity extends AppCompatActivity {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
                 if(!queryDocumentSnapshots.isEmpty()){
-                    List<DocumentSnapshot> listaDocumenti=queryDocumentSnapshots.getDocuments(); //lista utenti registrati
+                    List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista utenti registrati
 
-                    for(DocumentSnapshot d: listaDocumenti){
+                    for(DocumentSnapshot d: listDocument){
 
-                        if(d.getId().matches(idUtente)){ // controllo se l'id dell'utente esiste
+                        if(d.getId().matches(idUser)){ // controllo se l'id dell'utente esiste
 
                             //recupero dati
-                            registered =true;
+                            registered = true;
                             User user = d.toObject(User.class);
                             name = user.name;
                             surname = user.surname;
@@ -121,6 +122,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
                             editDateOfBirth.setText(dateOfBirth);
                             editUsername.setText(username);
 
+                            break;
                         }
 
 
@@ -145,16 +147,15 @@ public class UpdateProfileActivity extends AppCompatActivity {
     }
 
     public void buttonUpdateProfile(View view) {
-
         updateProfile(user);
     }
 
     private void updateProfile(FirebaseUser utente){
 
-        Boolean controllo=inputControl(editName.getText().toString(),editSurname.getText().toString(),editDateOfBirth.getText().toString(),
+        Boolean control = inputControl(editName.getText().toString(),editSurname.getText().toString(),editDateOfBirth.getText().toString(),
                 editUsername.getText().toString(),editEmail.getText().toString());
 
-        if(controllo){
+        if(control){
             return;
         }else{
 
@@ -167,7 +168,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
             //salvataggio modifiche su SQLITE
 
-            int update=updateUserOnDbLocal(name,surname,dateOfBirth,username,email,emailLocal);
+            int update = updateUserOnDbLocal(name,surname,dateOfBirth,username,email,emailLocal);
             startActivity(new Intent(UpdateProfileActivity.this, ProfileActivity.class));
 
             updateUserOnDbRemote(name,surname,dateOfBirth,username,email);
@@ -251,7 +252,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
         loadingBar.setVisibility(View.VISIBLE);
         User userUpdate = new User(Name,Surname,DateOfBirth,Username,Email);
-        HashMap<String,Object> userMap=new HashMap<>();
+        HashMap<String,Object> userMap = new HashMap<>();
         userMap.put("name",Name);
         userMap.put("surname",Surname);
         userMap.put("email",Email);

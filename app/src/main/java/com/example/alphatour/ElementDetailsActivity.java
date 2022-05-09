@@ -4,11 +4,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -26,7 +30,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityElementDetails extends AppCompatActivity {
+public class ElementDetailsActivity extends AppCompatActivity {
 
     private ImageView close,imagePhoto,imageQrCode;
     private EditText title,description;
@@ -48,14 +52,14 @@ public class ActivityElementDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_element_details);
-        close=findViewById(R.id.closeDetails);
-        title=findViewById(R.id.title);
-        description=findViewById(R.id.description);
-        photo=findViewById(R.id.changePhotoObject);
-        qrCode=findViewById(R.id.changeQrCode);
-        imagePhoto=findViewById(R.id.photo);
-        imageQrCode=findViewById(R.id.qrCode);
-        typology = findViewById(R.id.inputTypeZone);
+        close=findViewById(R.id.closeDetailsElement);
+        title=findViewById(R.id.inputTitleElement);
+        description=findViewById(R.id.inputDescriptionElement);
+        photo=findViewById(R.id.changePhotoElement);
+        qrCode=findViewById(R.id.changeQrCodeElement);
+        imagePhoto=findViewById(R.id.photoElement);
+        imageQrCode=findViewById(R.id.qrCodeElement);
+        typology = findViewById(R.id.inputOwnerZone);
 
         Intent intent=getIntent();
         zone=intent.getStringExtra("zone");
@@ -103,6 +107,37 @@ public class ActivityElementDetails extends AppCompatActivity {
         });
     }
 
+
+    //per rimuovere il focus e la tastiera quando si clicca fuori dalla EditText e/o AutoCompleteTextView
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if ( v instanceof AutoCompleteTextView) {
+                Rect outRect = new Rect();
+                v.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int)event.getRawX(), (int)event.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+            if ( v instanceof EditText) {
+                Rect outRect = new Rect();
+                v.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int)event.getRawX(), (int)event.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+
+        }
+        return super.dispatchTouchEvent( event );
+    }
+
+
+
     public static Bitmap getQr() {
         return qr;
     }
@@ -119,7 +154,7 @@ public class ActivityElementDetails extends AppCompatActivity {
         this.ph = ph;
     }
 
-    public void modifyObject(View view) {
+    public void saveElement(View view) {
 
         save=true;
         String Title = title.getText().toString();
@@ -184,7 +219,7 @@ public class ActivityElementDetails extends AppCompatActivity {
         }
     }
 
-    public void changeQrCode(View view) {
+    public void changeQrCodeElement(View view) {
 
         Intent intent=new Intent(this, GenerateQrCodeActivity.class);
         startActivityForResult(intent,70);
@@ -197,9 +232,9 @@ public class ActivityElementDetails extends AppCompatActivity {
         e=d?b:c;
     }
 
-    public void changePhotoObject(View view) {
+    public void changePhotoElement(View view) {
 
-        ImagePicker.with(ActivityElementDetails.this)
+        ImagePicker.with(ElementDetailsActivity.this)
                 .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)*/
                 .start(20);
     }
@@ -211,17 +246,17 @@ public class ActivityElementDetails extends AppCompatActivity {
         if (requestCode == 20) {
             uri = data.getData();
             if (uri != null) {
-                Toast.makeText(ActivityElementDetails.this, R.string.upload_photo, Toast.LENGTH_LONG).show();
+                Toast.makeText(ElementDetailsActivity.this, R.string.upload_photo, Toast.LENGTH_LONG).show();
                 imagePhoto.setImageURI(uri);
                 setPh(uri);
             } else {
-                Toast.makeText(ActivityElementDetails.this, "Non hai aggiunto la foto!", Toast.LENGTH_LONG).show();
+                Toast.makeText(ElementDetailsActivity.this, "Non hai aggiunto la foto!", Toast.LENGTH_LONG).show();
             }
             //salvataggio foto
         }else{
             imageQrCode.setImageBitmap(GenerateQrCodeActivity.getBitmap());
             setQr(GenerateQrCodeActivity.getBitmap());
-            Toast.makeText(ActivityElementDetails.this,"QrCode generato con successo !", Toast.LENGTH_LONG).show();
+            Toast.makeText(ElementDetailsActivity.this,"QrCode generato con successo !", Toast.LENGTH_LONG).show();
         }
     }
 }

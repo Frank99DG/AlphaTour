@@ -16,44 +16,19 @@
         android:layout_marginTop="30dp"
         android:src="@mipmap/ic_launcher_round"/>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="120dp"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/nameProfile"
-            android:layout_width="59dp"
-            android:layout_height="match_parent"
-            android:paddingTop="8dp"
-            android:text="@string/name"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/surnameProfile"
-            app:layout_constraintHorizontal_bias="0.106"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/surnameProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:paddingTop="8dp"
-            android:text="@string/surname"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <TextView
+        android:id="@+id/nameProfile"
+        android:layout_width="59dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:text="@string/name" />
 
     <TextView
-        android:id="@+id/emailProfile"
+        android:id="@+id/surnameProfile"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/email_address"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameProfile" />
+        android:layout_height="match_parent"
+        android:paddingTop="8dp"
+        android:text="@string/surname" />
 
 
 </LinearLayout>
