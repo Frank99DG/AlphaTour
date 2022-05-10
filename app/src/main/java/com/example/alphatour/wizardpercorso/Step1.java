@@ -28,8 +28,16 @@ import com.stepstone.stepper.VerificationError;
 
 public class Step1 extends Fragment implements Step, BlockingStep {
 
-    private EditText namePath, descriptionPath;
+    private static EditText namePath, descriptionPath;
     private boolean errorFlag = true;
+
+    public static String getDescriptionPath() {
+        return descriptionPath.getText().toString();
+    }
+
+    public static String getNamePath() {
+        return namePath.getText().toString();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
