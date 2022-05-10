@@ -21,10 +21,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.alphatour.oggetti.Element;
+import com.example.alphatour.oggetti.ElementString;
 import com.example.alphatour.qrcode.GenerateQrCodeActivity;
 import com.example.alphatour.qrcode.ScanQrCodeActivity;
 import com.example.alphatour.wizardcreazione.CreateZoneWizard;
 import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,14 +47,18 @@ public class AddElementActivity extends AppCompatActivity{
     private static Bitmap qr;
     private String item;
     private static  Element element;
+    private boolean errorFlag=false;
+    private boolean flagPhoto=false;
+    private boolean flagQrCode=false;
+    private FirebaseAuth auth;
+    private FirebaseUser user;
+    private FirebaseFirestore db;
+    private List<DocumentSnapshot> listaDocumenti;
+
 
     public static Element getElement() {
         return element;
     }
-
-    private boolean errorFlag=false;
-    private boolean flagPhoto=false;
-    private boolean flagQrCode=false;
 
     public static Uri getPhoto() {
         return ph;
@@ -70,6 +81,10 @@ public class AddElementActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_element);
+
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        user = auth.getCurrentUser();
 
         save = findViewById(R.id.saveObject);
         nameElement = findViewById(R.id.inputElement);
@@ -94,6 +109,19 @@ public class AddElementActivity extends AppCompatActivity{
 
             }
         });
+
+        db.collection("Elements")
+                .whereEqualTo("idUser",user.getUid())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            listaDocumenti = queryDocumentSnapshots.getDocuments();
+                        }
+                    }
+                });
     }
 
 
@@ -212,16 +240,34 @@ public class AddElementActivity extends AppCompatActivity{
         if(errorFlag){
             return;
         }else{
-            Intent intent=new Intent();
-            intent.putExtra("title",element.getTitle());
-            intent.putExtra("description",element.getDescription());
-            intent.putExtra("data",GenerateQrCodeActivity.getData());
-            Bundle bundle;
-            intent.putExtra("zone",item);
-            setResult(Activity.RESULT_OK,intent);
-            finish();
+
+            if(!duplicateControl(Title)) {
+                Intent intent = new Intent();
+                intent.putExtra("title", element.getTitle());
+                intent.putExtra("description", element.getDescription());
+                intent.putExtra("data", GenerateQrCodeActivity.getData());
+                Bundle bundle;
+                intent.putExtra("zone", item);
+                setResult(Activity.RESULT_OK, intent);
+                finish();
+            }else{
+                Toast.makeText(AddElementActivity.this, "L'oggetto che vuoi creare esiste già", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
+    private boolean duplicateControl(String name) {
+        boolean flag=false;
+
+        if(listaDocumenti.size()>0){
+            for(DocumentSnapshot d:listaDocumenti){
+                ElementString elm=d.toObject(ElementString.class);
+                if(elm.getTitle().matches(name)){
+                    flag=true;
+                }
+            }
+        }
+        return flag;
+    }
 
 }
