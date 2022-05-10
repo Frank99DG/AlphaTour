@@ -59,6 +59,7 @@ public class Step4 extends Fragment implements Step, BlockingStep {
     private FirebaseUser user;
     private Path path;
     private ProgressBar progressBar;
+    private  List<MapZoneAndObject> zoneAndObjectList_ = new ArrayList<MapZoneAndObject>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -92,6 +93,8 @@ public class Step4 extends Fragment implements Step, BlockingStep {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
 
+            zoneAndObjectList_ = Step3.getZoneAndObjectList();
+
             for(i=0;i<zone_select.size();i++){
                 View zone = getLayoutInflater().inflate(R.layout.row_add_zone_review_creazione_percorso, null, false);
                 TextView textZone = (TextView) zone.findViewById(R.id.textZoneReview);
@@ -102,6 +105,7 @@ public class Step4 extends Fragment implements Step, BlockingStep {
                 deleteZone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        zoneAndObjectList_.remove(zoneAndObjectList_.get(zone.getId()));
                         zone_select.remove(zone.getId());
                         list_zoneRiepilogo.removeView(zone);
                     }
@@ -187,8 +191,8 @@ public class Step4 extends Fragment implements Step, BlockingStep {
 
             MapZoneAndObject mapZoneAndOb = zoneAndObjectList.get(0);
             Path path=new Path();
-           // path.setName(mapZoneAndOb.getName());
-          //  path.setDescription(mapZoneAndOb.getDescription());
+            //path.setName(mapZoneAndOb.getName());
+           // path.setDescription(mapZoneAndOb.getDescription());
             for (int i = 0; i < zoneAndObjectList.size(); i++) {
                 MapZoneAndObject mapZoneAndObject = zoneAndObjectList.get(i);
                 ZoneChoosed zoneChoosed=new ZoneChoosed();
@@ -219,19 +223,19 @@ public class Step4 extends Fragment implements Step, BlockingStep {
             List<MapZoneAndObject> zoneAndObjectListStep3= Step3.getZoneAndObjectList();
             MapZoneAndObject mapZoneAndObj = zoneAndObjectListStep3.get(0);
             Path path=new Path();
-           // path.setName(mapZoneAndObj.getName());
+         //   path.setName(mapZoneAndObj.getName());
           //  path.setDescription(mapZoneAndObj.getDescription());
             for (int i = 0; i < zoneAndObjectListStep3.size(); i++) {
                 MapZoneAndObject mapZoneAndObject = zoneAndObjectListStep3.get(i);
                 ZoneChoosed zoneChoosed=new ZoneChoosed();
                 zoneChoosed.setName(mapZoneAndObject.getZone());
-                //path.setZonePath(mapZoneAndObject.getZone());
+           //     path.setZonePath(mapZoneAndObject.getZone());
                 List<String> obj=mapZoneAndObject.getListObj();
                 for (int j = 0; j< obj.size(); j++) {
-                   // path.setObjectPath(obj.get(j));
+            //        path.setObjectPath(obj.get(j));
                     zoneChoosed.setObjectChoosed(obj.get(j));
                 }
-                path.setZonePath(zoneChoosed);
+               path.setZonePath(zoneChoosed);
             }
 
             db.collection("Path")
