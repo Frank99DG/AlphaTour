@@ -239,7 +239,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
             }
         }*/
 
-        Place place = new Place("NewTopMuseum","Bari","Museo","1",zones);
+        Place place = new Place("NewTopMuseum","Bari","Museo","1");
         Log.i("Luogo creato:", place.toString());
 
 

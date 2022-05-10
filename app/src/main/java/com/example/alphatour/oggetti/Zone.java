@@ -5,19 +5,27 @@ import org.jgrapht.graph.SimpleGraph;
 
 public class Zone {
 
-    private String name,idUser;
+    private String name, idUser;
     //il grafo è non orientato (da A a B è uguale da B ad A)
-    //public static Graph<Element,DefaultEdge> elementsZone = new SimpleGraph<>(DefaultEdge.class);
+    //private Graph<ElementString,DefaultEdge> elementsZone = new SimpleGraph<>(DefaultEdge.class);
 
-    public Zone(){
+    public Zone() {
 
     }
 
-    public Zone(String idUser, String name){
+    public Zone(String name) {
 
-        this.idUser=idUser;
-        this.name=name;
+        this.name = name;
     }
+
+
+    public Zone(String name, String idUser) {
+
+        this.name = name;
+        this.idUser = idUser;
+
+    }
+
 
     public String getIdUser() {
         return idUser;
@@ -25,16 +33,6 @@ public class Zone {
 
     public void setIdUser(String idUser) {
         this.idUser = idUser;
-    }
-
-    public Zone(String name){
-
-        this.name = name;
-    }
-
-    public Zone(String name, Graph elementsZone){
-        this.name = name;
-        //this.elementsZone = elementsZone;
     }
 
 
@@ -47,22 +45,4 @@ public class Zone {
 
         this.name = name;
     }
-
-    /*public static  Graph<Element, DefaultEdge> getElementsZone() {
-
-        return elementsZone;
-    }*/
-
-    /*public void setElementsZone(Graph<Element, DefaultEdge> elementsZone) {
-        this.elementsZone = elementsZone;
-
-    }*/
-
-
-   /* public String toString() {
-        return "* Zona:" +
-                "nome='" + name + '\'' +
-                ", elementiZona='" + elementsZone.toString() +
-                '*';
-    }*/
 }

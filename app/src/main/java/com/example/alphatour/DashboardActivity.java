@@ -74,6 +74,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     private static int n_path=0;
     private static boolean firstZoneChosen=false;
     private static String zona_scelta;
+    private static String zona_vecchia;
 
     private int count;
 
@@ -492,14 +493,6 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
     }
 
-    public static String getZona_scelta() {
-        return zona_scelta;
-    }
-
-    public static void setZona_scelta(String zona_scelta) {
-        DashboardActivity.zona_scelta = zona_scelta;
-    }
-
     public static boolean isFirstZoneChosen() {
         return firstZoneChosen;
     }
@@ -508,5 +501,19 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         DashboardActivity.firstZoneChosen = firstZoneChosen;
     }
 
+    public static String getZona_scelta() {
+        return zona_scelta;
+    }
 
+    public static void setZona_scelta(String zona_scelta) {
+        DashboardActivity.zona_scelta = zona_scelta;
+    }
+
+    public static String getZona_vecchia() {
+        return zona_vecchia;
+    }
+
+    public static void setZona_vecchia(String zona_vecchia) {
+        DashboardActivity.zona_vecchia = zona_vecchia;
+    }
 }

@@ -187,8 +187,8 @@ public class Step4 extends Fragment implements Step, BlockingStep {
 
             MapZoneAndObject mapZoneAndOb = zoneAndObjectList.get(0);
             Path path=new Path();
-            path.setName(mapZoneAndOb.getName());
-            path.setDescription(mapZoneAndOb.getDescription());
+           // path.setName(mapZoneAndOb.getName());
+          //  path.setDescription(mapZoneAndOb.getDescription());
             for (int i = 0; i < zoneAndObjectList.size(); i++) {
                 MapZoneAndObject mapZoneAndObject = zoneAndObjectList.get(i);
                 ZoneChoosed zoneChoosed=new ZoneChoosed();
@@ -219,8 +219,8 @@ public class Step4 extends Fragment implements Step, BlockingStep {
             List<MapZoneAndObject> zoneAndObjectListStep3= Step3.getZoneAndObjectList();
             MapZoneAndObject mapZoneAndObj = zoneAndObjectListStep3.get(0);
             Path path=new Path();
-            path.setName(mapZoneAndObj.getName());
-            path.setDescription(mapZoneAndObj.getDescription());
+           // path.setName(mapZoneAndObj.getName());
+          //  path.setDescription(mapZoneAndObj.getDescription());
             for (int i = 0; i < zoneAndObjectListStep3.size(); i++) {
                 MapZoneAndObject mapZoneAndObject = zoneAndObjectListStep3.get(i);
                 ZoneChoosed zoneChoosed=new ZoneChoosed();

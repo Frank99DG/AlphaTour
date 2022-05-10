@@ -7,7 +7,7 @@ public class Place {
 
     private String name,city,typology,idUser;
     //il grafo è orientato (da A a B è diverso da B ad A)
-    public static Graph<Zone,DefaultEdge> zonesPlace = new SimpleDirectedGraph<>(DefaultEdge.class);
+    //public static Graph<Zone,DefaultEdge> zonesPlace = new SimpleDirectedGraph<>(DefaultEdge.class);
 
 
     public Place(){
@@ -27,19 +27,6 @@ public class Place {
         this.idUser = idCurator;
     }
 
-    public Place(String name, String city, String typology, String idCurator, Graph zonesPlace){
-        this.name = name;
-        this.city = city;
-        this.typology = typology;
-        this.idUser = idCurator;
-        this.zonesPlace = zonesPlace;
-    }
-
-
-
-    public static void setZonesPlace(Graph<Zone, DefaultEdge> zonesPlace) {
-        Place.zonesPlace = zonesPlace;
-    }
 
     public String getName() {
         return name;
@@ -73,9 +60,6 @@ public class Place {
         this.idUser = idUser;
     }
 
-    public static Graph<Zone, DefaultEdge> getZonesPlace() {
-        return zonesPlace;
-    }
 
 
     @Override
@@ -85,7 +69,6 @@ public class Place {
                 ", citta='" + city + '\'' +
                 ", tipo='" + typology + '\'' +
                 ", id curatore='" + idUser + '\'' +
-                ", zone Luogo='" + zonesPlace.toString() +
                 '*';
     }
 }

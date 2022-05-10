@@ -91,6 +91,7 @@ public class Step2 extends Fragment implements Step, BlockingStep {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
 
+
             loadingbar.setVisibility(View.VISIBLE);
             db.collection("Zones").whereEqualTo("idUser", user.getUid() ).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
 
@@ -117,7 +118,7 @@ public class Step2 extends Fragment implements Step, BlockingStep {
 
                             }
 
-                             DashboardActivity.setFirstZoneChosen(true);
+
                             for(i=0; i< arrayZone.size(); i++){
                                 arrayZone.get(i).setOnCheckChangeListener(new CheckedListener() {
                                     @Override
@@ -154,6 +155,7 @@ public class Step2 extends Fragment implements Step, BlockingStep {
                                         Constraint constraint = d.toObject(Constraint.class);
 
                                         String abc=DashboardActivity.getZona_scelta();
+                                        DashboardActivity.setZona_vecchia(abc);
                                         if(constraint.getFromZone().matches(abc)){
 
                                             View zone = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso, null, false);
@@ -225,7 +227,11 @@ public class Step2 extends Fragment implements Step, BlockingStep {
         for(int i =0; i< arrayZone.size();i++){
             list_zone.removeView(deleteView.get(i));
 
-        }  callback.goToNextStep();
+        }
+        array_database.clear();
+        arrayZone.clear();
+        deleteView.clear();
+        callback.goToNextStep();
 
         /*for(int i =0; i<oggetti_scelti.size();i++){
             oggetti_scelti.remove(i);
@@ -258,12 +264,10 @@ public class Step2 extends Fragment implements Step, BlockingStep {
                 zona_scelta = i;
                 //stringa_scelta = array_database.get(i);
                 DashboardActivity.setZona_scelta(array_database.get(i));
-                array_database.clear();
-                arrayZone.clear();
                 return null;
             }
         }
-        if(control==false) error =new VerificationError("Seleziona una zona di partenza");
+        if(control==false) error =new VerificationError("Seleziona almeno una zona");
 
         return error;
 
