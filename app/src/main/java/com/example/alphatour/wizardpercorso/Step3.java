@@ -46,7 +46,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     private List<String> oggetti_scelti = new ArrayList<String>();
     private List<String> zone_scelte = new ArrayList<String>();
     private List<CheckableTextView> arrayMonumenti = new ArrayList<CheckableTextView>();
-    private List<String> arrayStringElement = new ArrayList<String>();
+    private List<String> arrayObject = new ArrayList<String>();
     private List<View> delete_view = new ArrayList<View>();
     private Dialog dialog;
     private Button dialog_avanti, dialog_aggiungizona;
@@ -55,7 +55,10 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     private Step5 step5_fragment = new Step5();
     public static Map<String, String> map_review = new HashMap<String, String>();
     public static List<MapZoneAndObject> zoneAndObjectList = new ArrayList<MapZoneAndObject>();
-    private static List<ElementString> arrayObjectElement_scelti= new ArrayList<ElementString>();
+
+    public static List<MapZoneAndObject> getZoneAndObjectList() {
+        return zoneAndObjectList;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,7 +73,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
         dialog.setContentView(R.layout.dialog_step3);
         dialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroun_dialog));
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.setCancelable(false);
+        dialog.setCancelable(true);
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog_avanti = dialog.findViewById(R.id.btn_avanti);
         dialog_aggiungizona = dialog.findViewById(R.id.btn_aggiungiZona);
@@ -121,8 +124,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
 
                                                             textZone1.setText(element.getTitle());
 
-                                                            arrayStringElement.add(element.getTitle());
-                                                            //arrayObjectElement.add(element);
+                                                            arrayObject.add(element.getTitle());
 
 
 
@@ -176,7 +178,6 @@ public class Step3 extends Fragment implements Step, BlockingStep {
                     list_object.removeView(delete_view.get(i));
                 }
                  */
-                DashboardActivity.setFirstZoneChosen(true);
                 Intent intent = new Intent(getContext(), PercorsoWizard.class);
                 intent.putExtra("val", 1);
                 startActivity(intent);
@@ -191,13 +192,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
         for(int i =0; i< arrayMonumenti.size();i++) {
             list_object.removeView(delete_view.get(i));
         }
-        for (int a = 0; a < arrayMonumenti.size(); a++) {
-            arrayMonumenti.get(a).setChecked(false,false);
-        }
-
-        DashboardActivity.setZona_scelta(DashboardActivity.getZona_vecchia());
         callback.goToPrevStep();
-
     }
 
 
@@ -209,24 +204,14 @@ public class Step3 extends Fragment implements Step, BlockingStep {
 
         for (int a = 0; a < arrayMonumenti.size(); a++) {              //ciclo per contare quanti sono checkati
             if (arrayMonumenti.get(a).isChecked()) {
-              //  map_review.put(arrayObject.get(a), DashboardActivity.getZona_scelta());
-                oggetti_scelti.add(arrayStringElement.get(a));
-                /*
-                arrayObjectElement_scelti.add(arrayObjectElement.get(a));
-                elementsZone.addVertex(arrayObjectElement.get(a));
-                if(a!=0){
-                    elementsZone.addEdge(arrayObjectElement.get(a-1), arrayObjectElement.get(a));
-                }
-
-                 */
-                Step4.getOggetti_select().add(arrayStringElement.get(a));   //salvataggio degli oggetti scelti
+                map_review.put(arrayObject.get(a), DashboardActivity.getZona_scelta());
+                oggetti_scelti.add(arrayObject.get(a));
+                Step4.getOggetti_select().add(arrayObject.get(a));   //salvataggio degli oggetti scelti
                 control = true;
             }
         }if(control){
-
-            MapZoneAndObject zoneAndObject = new MapZoneAndObject(DashboardActivity.getZona_scelta(),oggetti_scelti);
+            MapZoneAndObject zoneAndObject = new MapZoneAndObject(DashboardActivity.getZona_scelta(),oggetti_scelti,Step1.getNamePath(),Step1.getDescriptionPath());
             zoneAndObjectList.add(zoneAndObject);
-
         }
         if (control == false) {
             error = new VerificationError("Seleziona almeno un oggetto");
@@ -249,20 +234,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     public void onCompleteClicked(StepperLayout.OnCompleteClickedCallback callback) {
     }
 
-
-    public static List<MapZoneAndObject> getZoneAndObjectList() {
-        return zoneAndObjectList;
-    }
-
     public static Map<String, String> getMap_review() {
         return map_review;
-    }
-
-    public static List<ElementString> getArrayObjectElement_scelti() {
-        return arrayObjectElement_scelti;
-    }
-
-    public static void setArrayObjectElement_scelti(List<ElementString> arrayObjectElement_scelti) {
-        Step3.arrayObjectElement_scelti = arrayObjectElement_scelti;
     }
 }
