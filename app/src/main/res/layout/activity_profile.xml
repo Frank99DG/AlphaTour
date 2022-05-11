@@ -17,24 +17,85 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="320dp"
+            android:layout_height="390dp"
             android:background="#5CC09F">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/side_nav_bar"
+                    android:minHeight="?attr/actionBarSize"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:theme="?attr/actionBarTheme"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/hamburgerBotton"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="@drawable/ic_arrow_back"
+                            android:onClick="backProfile"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textDetailsQr"
+                            android:layout_width="182dp"
+                            android:layout_height="37dp"
+                            android:layout_marginStart="28dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/alata"
+                            android:text="Profilo"
+                            android:textColor="#FFFFFF"
+                            android:textSize="26sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toEndOf="@+id/hamburgerBotton"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <include
+                            android:id="@+id/notification_icon_prova"
+                            layout="@layout/notification_icon_prova"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginEnd="16dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.appcompat.widget.Toolbar>
+
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_image"
                     android:layout_width="170dp"
                     android:layout_height="170dp"
                     android:layout_marginStart="132dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="108dp"
                     android:layout_marginEnd="132dp"
                     android:src="@drawable/ic_imageprofile"
                     app:civ_border_color="#FFFFFF"
                     app:civ_border_width="5dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.478"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -69,10 +130,10 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="-58dp"
-            android:layout_marginBottom="193dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="-58dp"
             android:layout_marginRight="15dp"
+            android:layout_marginBottom="135dp"
             android:background="@drawable/bordi_tondi_button"
             android:padding="15dp">
 
@@ -196,10 +257,10 @@
         <Button
             android:id="@+id/buttonUpdateProfile"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="110dp"
+            android:layout_height="58dp"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="-120dp"
             android:layout_marginRight="100dp"
-            android:layout_marginTop="-180dp"
             android:onClick="updateProfile"
             android:text="Modifica profilo" />
 
