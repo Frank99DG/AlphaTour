@@ -45,4 +45,12 @@ public class Zone {
 
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Zone{" +
+                "name='" + name + '\'' +
+                ", idUser='" + idUser + '\'' +
+                '}';
+    }
 }
