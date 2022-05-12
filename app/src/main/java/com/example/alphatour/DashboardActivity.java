@@ -11,7 +11,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +23,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.alphatour.oggetti.Constraint;
+import com.example.alphatour.databinding.ActivityDashboardBinding;
 import com.example.alphatour.oggetti.ElementString;
 import com.example.alphatour.oggetti.Place;
 import com.example.alphatour.oggetti.User;
@@ -43,7 +42,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class DashboardActivity extends DrawerBaseActivity {
 
     public static final String AGE = "AGE";
     public static final String N_NOTIFY = "N_NOTIFY";
@@ -57,10 +56,6 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     private Bundle data = new Bundle();
     private FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
     private FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-    private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
-    private Toolbar toolbar;
-    private TextView name,surname;
     private AutoCompleteTextView inputSearch;
     private static List<String> placesZonesElementsList =new ArrayList<String>();
     private ArrayAdapter<String> adapterItems;
@@ -75,44 +70,21 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     private static boolean firstZoneChosen=false;
     private static String zona_scelta;
     private static String zona_vecchia;
+    private ActivityDashboardBinding activityDashboardBinding;
 
     private int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        activityDashboardBinding = ActivityDashboardBinding.inflate(getLayoutInflater());
+        setContentView(activityDashboardBinding.getRoot());
 
         //istanza oggetti firebase
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         idUser = user.getUid();
-
-        //istanza layout e progress bar della dashboard
-        drawerLayout = findViewById(R.id.drawerLayout);
-        navigationView = findViewById(R.id.nav_view);
-        toolbar = findViewById(R.id.toolbar);
-        loadingBar = findViewById(R.id.dashboardLoadingBar);
-
-        //impostazione informazioni utenti nell'header del navigation header
-        View headerView = navigationView.getHeaderView(0);
-        name = (TextView) headerView.findViewById(R.id.nameProfile);
-        surname = (TextView) headerView.findViewById(R.id.surnameProfile);
-        takeNameSurnameUser();
-
-        //impostazione funzionamento navigazion view, toggle hamburger e pulsanti menu
-        setSupportActionBar(toolbar);
-        navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open ,R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
-
-        //personalizzazione icona del toggle hamburger
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_hamburger);
 
         //impostazione barra di ricerca luogi,zone,elementi per la modifica
         inputSearch = findViewById(R.id.inputSearch);
@@ -209,15 +181,6 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     }
 
 
-    @Override
-    public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }else{
-            super.onBackPressed();
-        }
-    }
-
     public void openFragment(View v) {
 
         getSupportFragmentManager().beginTransaction().show(myFragment).commit();
@@ -247,29 +210,6 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         data.putString("Notify", "You have created a path");
         myFragment.setArguments(data);
         myFragment.addView(notificationCounter);
-
-    }
-
-
-    private void takeNameSurnameUser(){
-
-        db.collection("Users").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                if (!queryDocumentSnapshots.isEmpty()) {
-                    List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista di utenti (id)
-
-                    for (DocumentSnapshot d : listDocument) {    //d è un id ciclato dalla lista
-                        if(idUser.equals( d.getId() )){     //se l'id dell'utente loggato corrisponde all'id della lista
-                            User user = d.toObject(User.class);
-                            name.setText(user.getName());
-                            surname.setText(user.getSurname());
-                            break;
-                        }
-                    }
-                }
-            }
-        });
 
     }
 
@@ -445,11 +385,14 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     }*/
 
 
-    @Override
+    /*@Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch(menuItem.getItemId()){
             case R.id.tb_home:
                 startActivity( new Intent(DashboardActivity.this, DashboardActivity.class) );
+                break;
+            case R.id.tb_profile:
+                startActivity( new Intent(DashboardActivity.this, ProfileActivity.class) );
                 break;
             case R.id.tb_share_path:
                 break;
@@ -463,7 +406,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         }
 
         return false;
-    }
+    }*/
 
 
     public void bottomNavBarClick(){

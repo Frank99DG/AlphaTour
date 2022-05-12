@@ -11,6 +11,12 @@
             />
 
         <item
+            android:id="@+id/tb_profile"
+            android:title="@string/tb_profile"
+            android:icon="@drawable/ic_profile2"
+            />
+
+        <item
             android:id="@+id/tb_share_path"
             android:title="@string/tb_share_path"
             android:icon="@drawable/ic_share"

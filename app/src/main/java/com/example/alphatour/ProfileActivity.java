@@ -2,7 +2,10 @@ package com.example.alphatour;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -18,6 +21,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.alphatour.databinding.ActivityDashboardBinding;
+import com.example.alphatour.databinding.ActivityProfileBinding;
 import com.example.alphatour.dblite.AlphaTourContract;
 import com.example.alphatour.dblite.AlphaTourDbHelper;
 import com.example.alphatour.dblite.CommandDbAlphaTour;
@@ -30,6 +35,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -47,7 +53,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends DrawerBaseActivity {
 
     private CircleImageView profile;
     private FloatingActionButton changeProfile;
@@ -65,15 +71,21 @@ public class ProfileActivity extends AppCompatActivity {
     private StorageReference storegeProfilePick;
     private StorageTask uploadTask;
     private  int i=0;
+    private ActivityProfileBinding activityProfileBinding;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        activityProfileBinding = ActivityProfileBinding.inflate(getLayoutInflater());
+        setContentView(activityProfileBinding.getRoot());
 
-       // getSupportActionBar().setTitle("Home");
+
+        db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+        idUser = user.getUid();
 
         changeProfile = findViewById(R.id.changeProfile);
         profile = findViewById(R.id.profile_image);
@@ -85,15 +97,10 @@ public class ProfileActivity extends AppCompatActivity {
         textUsername = findViewById(R.id.profileUsernameUser);
         loadingBar = findViewById(R.id.profileLoadingBar);
 
+        //impostazione del bottom navigation menu
         bottomNavigationView = findViewById(R.id.bottomNavigationBar);
         bottomNavigationView.setSelectedItemId(R.id.tb_profile); //per partire con la selezione su home
         bottomNavBarClick();
-
-        db = FirebaseFirestore.getInstance();
-        auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
-        idUser = user.getUid();
-
 
         storegeProfilePick= FirebaseStorage.getInstance().getReference();
         if(user == null){
@@ -103,6 +110,7 @@ public class ProfileActivity extends AppCompatActivity {
             showUserProfile();
         }
     }
+
 
     private void showUserProfile() {
 
@@ -275,8 +283,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void updateProfile(View v){
-        Intent intent=new Intent(this,UpdateProfileActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this,UpdateProfileActivity.class));
     }
 
 
