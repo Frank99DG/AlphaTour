@@ -31,14 +31,6 @@ public class Step1 extends Fragment implements Step, BlockingStep {
     private static EditText namePath, descriptionPath;
     private boolean errorFlag = true;
 
-    public static String getDescriptionPath() {
-        return descriptionPath.getText().toString();
-    }
-
-    public static String getNamePath() {
-        return namePath.getText().toString();
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -108,6 +100,14 @@ public class Step1 extends Fragment implements Step, BlockingStep {
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
         Intent intent= new Intent(getContext(), DashboardActivity.class);
         startActivity(intent);
+    }
+
+    public static String getDescriptionPath() {
+        return descriptionPath.getText().toString();
+    }
+
+    public static String getNamePath() {
+        return namePath.getText().toString();
     }
 
 }

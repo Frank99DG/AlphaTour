@@ -41,6 +41,7 @@ import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,9 +49,8 @@ import java.util.Map;
 
 public class Step4 extends Fragment implements Step, BlockingStep {
 
-    public static List<String> zone_select = new ArrayList<>();
-    public static List<String> oggetti_select = new ArrayList<>();
     private int i=0;
+    private int c =0;
     private LinearLayout list_zoneRiepilogo;
     private Dialog dialog;
     private Button dialog_termina, dialog_dismiss;
@@ -59,7 +59,9 @@ public class Step4 extends Fragment implements Step, BlockingStep {
     private FirebaseUser user;
     private Path path;
     private ProgressBar progressBar;
-    private  List<MapZoneAndObject> zoneAndObjectList_ = new ArrayList<MapZoneAndObject>();
+    private static List<MapZoneAndObject> zoneAndObjectList_ = new ArrayList<MapZoneAndObject>();
+    public static List<String> zone_select = new ArrayList<>();
+    public static List<String> oggetti_select = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,8 +95,6 @@ public class Step4 extends Fragment implements Step, BlockingStep {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
 
-            zoneAndObjectList_ = Step3.getZoneAndObjectList();
-
             for(i=0;i<zone_select.size();i++){
                 View zone = getLayoutInflater().inflate(R.layout.row_add_zone_review_creazione_percorso, null, false);
                 TextView textZone = (TextView) zone.findViewById(R.id.textZoneReview);
@@ -105,8 +105,10 @@ public class Step4 extends Fragment implements Step, BlockingStep {
                 deleteZone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        zoneAndObjectList_.remove(zoneAndObjectList_.get(zone.getId()));
-                        zone_select.remove(zone.getId());
+                        int index = zone.getId();
+                        //zoneAndObjectList_.remove(zoneAndObjectList_.get(index));
+                        zoneAndObjectList_.get(zone.getId()).setZone("delete");
+                        //zone_select.remove(zone.getId());
                         list_zoneRiepilogo.removeView(zone);
                     }
                 });
@@ -134,14 +136,6 @@ public class Step4 extends Fragment implements Step, BlockingStep {
         }
     }
 
-    public static List<String> getZone_select() {
-        return zone_select;
-    }
-
-    public static List<String> getOggetti_select() {
-        return oggetti_select;
-    }
-
     @Nullable
     @Override
     public VerificationError verifyStep() {
@@ -160,16 +154,18 @@ public class Step4 extends Fragment implements Step, BlockingStep {
 
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
-        ReviewZoneSelected.getMap_review_object().clear();
     }
 
     @Override
     public void onCompleteClicked(StepperLayout.OnCompleteClickedCallback callback) {
 
+
+
         dialog.show();
         dialog_termina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 savePath();
             }
@@ -177,6 +173,25 @@ public class Step4 extends Fragment implements Step, BlockingStep {
         dialog_dismiss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+               /*
+                int size = zoneAndObjectList_.size();
+                for(int a=0;a<size;a++){
+                    String delete="delete";
+                    if(a<zoneAndObjectList_.size()){
+                        if(delete.matches(zoneAndObjectList_.get(a).getZone())){
+                            zoneAndObjectList_.remove(zoneAndObjectList_.get(a));
+                        }
+                    }
+                }
+
+                for(MapZoneAndObject zone : zoneAndObjectList_){
+                    String delete="delete";
+                    if(delete.matches(zone.getZone())){
+                        zoneAndObjectList_.remove(zone);
+                    }
+                }
+
+                */
                 dialog.dismiss();
             }
         });
@@ -186,22 +201,24 @@ public class Step4 extends Fragment implements Step, BlockingStep {
 
         progressBar.setVisibility(View.VISIBLE);
 
-        List<MapZoneAndObject> zoneAndObjectList= ReviewZoneSelected.getZoneAndObjectList();
-        if(zoneAndObjectList.size()!=0) {
+        List<MapZoneAndObject> zoneAndObjectList= zoneAndObjectList_;
 
             MapZoneAndObject mapZoneAndOb = zoneAndObjectList.get(0);
             Path path=new Path();
-            //path.setName(mapZoneAndOb.getName());
-           // path.setDescription(mapZoneAndOb.getDescription());
+            path.setName(mapZoneAndOb.getName());
+            path.setDescription(mapZoneAndOb.getDescription());
             for (int i = 0; i < zoneAndObjectList.size(); i++) {
                 MapZoneAndObject mapZoneAndObject = zoneAndObjectList.get(i);
-                ZoneChoosed zoneChoosed=new ZoneChoosed();
-                zoneChoosed.setName(mapZoneAndObject.getZone());
-                List<String> obj=mapZoneAndObject.getListObj();
-                for (int j = 0; j< obj.size(); j++) {
-                    zoneChoosed.setObjectChoosed(obj.get(j));
+                String delete = "delete";
+                if(!mapZoneAndObject.getZone().matches(delete)) {
+                    ZoneChoosed zoneChoosed = new ZoneChoosed();
+                    zoneChoosed.setName(mapZoneAndObject.getZone());
+                    List<String> obj = mapZoneAndObject.getListObj();
+                    for (int j = 0; j < obj.size(); j++) {
+                        zoneChoosed.setObjectChoosed(obj.get(j));
+                    }
+                    path.setZonePath(zoneChoosed);
                 }
-                path.setZonePath(zoneChoosed);
             }
                 db.collection("Path")
                         .add(path)
@@ -218,42 +235,6 @@ public class Step4 extends Fragment implements Step, BlockingStep {
                         Toast.makeText(getContext(),"Non è stato possibile creare il percorso",Toast.LENGTH_SHORT).show();
                     }
                 });
-
-        }else{
-            List<MapZoneAndObject> zoneAndObjectListStep3= Step3.getZoneAndObjectList();
-            MapZoneAndObject mapZoneAndObj = zoneAndObjectListStep3.get(0);
-            Path path=new Path();
-         //   path.setName(mapZoneAndObj.getName());
-          //  path.setDescription(mapZoneAndObj.getDescription());
-            for (int i = 0; i < zoneAndObjectListStep3.size(); i++) {
-                MapZoneAndObject mapZoneAndObject = zoneAndObjectListStep3.get(i);
-                ZoneChoosed zoneChoosed=new ZoneChoosed();
-                zoneChoosed.setName(mapZoneAndObject.getZone());
-           //     path.setZonePath(mapZoneAndObject.getZone());
-                List<String> obj=mapZoneAndObject.getListObj();
-                for (int j = 0; j< obj.size(); j++) {
-            //        path.setObjectPath(obj.get(j));
-                    zoneChoosed.setObjectChoosed(obj.get(j));
-                }
-               path.setZonePath(zoneChoosed);
-            }
-
-            db.collection("Path")
-                    .add(path)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            Toast.makeText(getContext(),"Percorso creato con successo",Toast.LENGTH_SHORT).show();
-                            moveToDashboard();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    progressBar.setVisibility(View.GONE);
-                    Toast.makeText(getContext(),"Non è stato possibile creare il percorso",Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
     }
 
     private void moveToDashboard() {
@@ -261,8 +242,6 @@ public class Step4 extends Fragment implements Step, BlockingStep {
         increment_notifyOnDashboard++;
         NotificationCounter.setCount(increment_notifyOnDashboard);
 
-        Step3.getMap_review().clear();
-        ReviewZoneSelected.getMap_review_object().clear();
         list_zoneRiepilogo.removeAllViews();
         zone_select.clear();
         ReviewZoneSelected.getZoneAndObjectList().clear();
@@ -278,4 +257,19 @@ public class Step4 extends Fragment implements Step, BlockingStep {
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
     }
 
+    public static List<MapZoneAndObject> getZoneAndObjectList_() {
+        return zoneAndObjectList_;
+    }
+
+    public static void setZoneAndObjectList_(List<MapZoneAndObject> zoneAndObjectList_) {
+        Step4.zoneAndObjectList_ = zoneAndObjectList_;
+    }
+
+    public static List<String> getZone_select() {
+        return zone_select;
+    }
+
+    public static List<String> getOggetti_select() {
+        return oggetti_select;
+    }
 }

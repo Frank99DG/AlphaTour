@@ -25,7 +25,6 @@ public class ReviewZoneSelected extends AppCompatActivity {
     private String zone;
     private LinearLayout list_object_zone_review;
     private TextView zoneReview,backToReview;
-    private static Map<String, String> map_review_object = new HashMap<String, String>();
     private static List<MapZoneAndObject> zoneAndObjectList = new ArrayList<MapZoneAndObject>();
     private int index;
     private static List<String> listObj = new ArrayList<String>();
@@ -57,9 +56,7 @@ public class ReviewZoneSelected extends AppCompatActivity {
             }
         });
 
-       // map_review_object = Step3.getMap_review();
-
-        zoneAndObjectList = Step3.getZoneAndObjectList();
+        zoneAndObjectList = Step4.getZoneAndObjectList_();
 
         for(int i =0; i<zoneAndObjectList.size();i++){
             if(i == index) {
@@ -75,7 +72,6 @@ public class ReviewZoneSelected extends AppCompatActivity {
                     delete_object.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            // map_review_object.remove(valori.getKey(),valori.getValue());
                             int index = object.getId();
                             listObj.remove(index);
                             list_object_zone_review.removeView(object);
@@ -89,10 +85,6 @@ public class ReviewZoneSelected extends AppCompatActivity {
             }
         }
 
-    }
-
-    public static Map<String, String> getMap_review_object() {
-        return map_review_object;
     }
 
 }
