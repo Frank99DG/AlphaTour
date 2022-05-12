@@ -137,7 +137,7 @@ public class ProfileActivity extends DrawerBaseActivity {
                             image = user.image;
 
                             if (image != null){
-                                final StorageReference fileRef = storegeProfilePick.child(auth.getCurrentUser().getUid());
+                                final StorageReference fileRef = storegeProfilePick.child("UserImage").child(auth.getCurrentUser().getUid());
 
                                 try{
                                     File localFile= File.createTempFile("tempfile",".png");
@@ -222,7 +222,7 @@ public class ProfileActivity extends DrawerBaseActivity {
     private void saveImageProfileOnDbRemote(Uri uri) {
         loadingBar.setVisibility(View.VISIBLE);
         if(uri!=null) {
-            final StorageReference fileRef = storegeProfilePick.child(auth.getCurrentUser().getUid());
+            final StorageReference fileRef = storegeProfilePick.child("UserImage").child(auth.getCurrentUser().getUid());
 
             uploadTask = fileRef.putFile(uri);
 
