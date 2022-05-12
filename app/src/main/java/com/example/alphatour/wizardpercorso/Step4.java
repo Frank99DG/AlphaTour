@@ -44,6 +44,7 @@ import com.stepstone.stepper.VerificationError;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -60,8 +61,8 @@ public class Step4 extends Fragment implements Step, BlockingStep {
     private Path path;
     private ProgressBar progressBar;
     private static List<MapZoneAndObject> zoneAndObjectList_ = new ArrayList<MapZoneAndObject>();
-    public static List<String> zone_select = new ArrayList<>();
-    public static List<String> oggetti_select = new ArrayList<>();
+    private static List<String> zone_select = new ArrayList<>();
+    private static List<String> oggetti_select = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -174,23 +175,14 @@ public class Step4 extends Fragment implements Step, BlockingStep {
             @Override
             public void onClick(View view) {
                /*
-                int size = zoneAndObjectList_.size();
-                for(int a=0;a<size;a++){
-                    String delete="delete";
-                    if(a<zoneAndObjectList_.size()){
-                        if(delete.matches(zoneAndObjectList_.get(a).getZone())){
-                            zoneAndObjectList_.remove(zoneAndObjectList_.get(a));
-                        }
-                    }
-                }
-
-                for(MapZoneAndObject zone : zoneAndObjectList_){
+                Iterator<MapZoneAndObject> it = zoneAndObjectList_.iterator();
+                while(it.hasNext()){
+                    MapZoneAndObject zone = it.next();
                     String delete="delete";
                     if(delete.matches(zone.getZone())){
-                        zoneAndObjectList_.remove(zone);
+                       it.remove();
                     }
                 }
-
                 */
                 dialog.dismiss();
             }
