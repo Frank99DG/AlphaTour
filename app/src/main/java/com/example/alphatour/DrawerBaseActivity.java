@@ -8,15 +8,19 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alphatour.oggetti.User;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,8 +28,15 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DrawerBaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -34,7 +45,9 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
     private FrameLayout container;
     private NavigationView navigationView;
     private View headerView;
+    private CircleImageView photoHeader;
     private TextView nameHeader,surnameHeader;
+    private StorageReference storegeProfilePick;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
     private FirebaseUser user;
@@ -46,6 +59,7 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer_base);
 
+        storegeProfilePick= FirebaseStorage.getInstance().getReference();
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
@@ -76,9 +90,10 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
 
         //impostazione informazioni utenti nell'header del navigation view
         headerView = navigationView.getHeaderView(0);
+        photoHeader = (CircleImageView) headerView.findViewById(R.id.photoProfile);
         nameHeader = (TextView) headerView.findViewById(R.id.nameProfile);
         surnameHeader = (TextView) headerView.findViewById(R.id.surnameProfile);
-        takeNameSurnameUser();
+        takePhotoNameSurnameUser();
 
 
 
@@ -103,7 +118,29 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         }
     }
 
-    private void takeNameSurnameUser(){
+    private void takePhotoNameSurnameUser(){
+
+        final StorageReference fileRef = storegeProfilePick.child("UserImage").child(idUser);
+
+        try{
+            File localFile= File.createTempFile("tempfile",".png");
+            fileRef.getFile(localFile)
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Bitmap bitmap= BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                            photoHeader.setImageBitmap(bitmap);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                }
+            });
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
 
         db.collection("Users").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override

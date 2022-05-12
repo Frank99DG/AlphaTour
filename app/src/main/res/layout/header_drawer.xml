@@ -10,11 +10,26 @@
     android:padding="16dp"
     android:orientation="vertical">
 
-    <ImageView
+    <!--<ImageView
+        android:id="@+id/photoProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:src="@mipmap/ic_launcher_round"/>
+        android:src="@mipmap/ic_launcher_round"/>-->
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/photoProfile"
+        android:layout_width="78dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_imageprofile"
+        app:civ_border_color="#FFFFFF"
+        app:civ_border_width="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/nameProfile"
