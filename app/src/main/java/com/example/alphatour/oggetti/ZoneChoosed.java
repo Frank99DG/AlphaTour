@@ -31,4 +31,12 @@ public class ZoneChoosed {
     public void setObjectChoosed(String objectChoosed) {
         this.objectChoosed.add(objectChoosed);
     }
+
+    @Override
+    public String toString() {
+        return "ZoneChoosed{" +
+                "name='" + name + '\'' +
+                ", objectChoosed=" + objectChoosed +
+                '}';
+    }
 }

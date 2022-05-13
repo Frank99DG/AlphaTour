@@ -92,4 +92,19 @@ public class ElementString {
     public void setQrData(String qrData) {
         this.qrData = qrData;
     }
+
+    @Override
+    public String toString() {
+        return "ElementString{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", zone='" + zone + '\'' +
+                ", photo='" + photo + '\'' +
+                ", qrCode='" + qrCode + '\'' +
+                ", idZone='" + idZone + '\'' +
+                ", idUser='" + idUser + '\'' +
+                ", qrData='" + qrData + '\'' +
+                ", IdPhotoAndQrCode=" + IdPhotoAndQrCode +
+                '}';
+    }
 }

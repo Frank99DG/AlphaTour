@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.devzone.checkabletextview.CheckableTextView;
 import com.devzone.checkabletextview.CheckedListener;
+import com.example.alphatour.CreateJsonActivity;
 import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.NotificationCounter;
 import com.example.alphatour.NotifyFragment;
@@ -40,6 +41,10 @@ import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
+
+import org.jgrapht.Graph;
+import org.jgrapht.graph.DefaultEdge;
+import org.jgrapht.graph.SimpleGraph;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -63,6 +68,12 @@ public class Step4 extends Fragment implements Step, BlockingStep {
     private static List<MapZoneAndObject> zoneAndObjectList_ = new ArrayList<MapZoneAndObject>();
     private static List<String> zone_select = new ArrayList<>();
     private static List<String> oggetti_select = new ArrayList<>();
+    private static List<ZoneChoosed> zoneChooseds = new ArrayList<ZoneChoosed>();
+    private static Graph<ZoneChoosed,DefaultEdge> graph=new SimpleGraph<>(DefaultEdge .class);
+
+    public static Graph<ZoneChoosed, DefaultEdge> getGraph() {
+        return graph;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -205,9 +216,15 @@ public class Step4 extends Fragment implements Step, BlockingStep {
                 if(!mapZoneAndObject.getZone().matches(delete)) {
                     ZoneChoosed zoneChoosed = new ZoneChoosed();
                     zoneChoosed.setName(mapZoneAndObject.getZone());
+
                     List<String> obj = mapZoneAndObject.getListObj();
                     for (int j = 0; j < obj.size(); j++) {
                         zoneChoosed.setObjectChoosed(obj.get(j));
+                    }
+                    graph.addVertex(zoneChoosed);
+                    zoneChooseds.add(zoneChoosed);
+                    if(i>=1){
+                        graph.addEdge(zoneChooseds.get(i-1),zoneChooseds.get(i));
                     }
                     path.setZonePath(zoneChoosed);
                 }
@@ -240,7 +257,7 @@ public class Step4 extends Fragment implements Step, BlockingStep {
 
         DashboardActivity.setFirstZoneChosen(false);
         NotificationCounter.setSend_notify(true);
-        Intent intent= new Intent(getContext(), DashboardActivity.class);
+        Intent intent= new Intent(getContext(), CreateJsonActivity.class);
         startActivity(intent);
         progressBar.setVisibility(View.GONE);
     }
