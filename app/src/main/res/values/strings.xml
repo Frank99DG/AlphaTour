@@ -100,14 +100,19 @@
     <string name="profile">Profilo</string>
     <string name="date">Data</string>
     <string name="weekly">Settimanale</string>
-    <string name="monday">LUN</string>
-    <string name="tuesday">MAR</string>
-    <string name="wednesday">MER</string>
-    <string name="thursday">GIO</string>
-    <string name="friday">VEN</string>
-    <string name="saturday">SAB</string>
-    <string name="sunday">DOM</string>
+    <string name="mon">LUN</string>
+    <string name="tue">MAR</string>
+    <string name="wed">MER</string>
+    <string name="thu">GIO</string>
+    <string name="fri">VEN</string>
+    <string name="sat">SAB</string>
+    <string name="sun">DOM</string>
     <string name="new_event">Nuovo Evento</string>
+    <string name="start_time">Ora Inizio</string>
+    <string name="time">Ora</string>
+    <string name="daily">Giornaliero</string>
+
+
 
     <string name="dashboard_button_back">Torna alla dashboard</string>
     <string name="zones_button_next">Crea Zona</string>
