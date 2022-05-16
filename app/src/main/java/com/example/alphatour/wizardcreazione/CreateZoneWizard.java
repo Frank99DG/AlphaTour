@@ -21,12 +21,22 @@ import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.alphatour.R;
+import com.example.alphatour.oggetti.Place;
+import com.example.alphatour.oggetti.Zone;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
@@ -40,6 +50,10 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
     private static  ArrayList<String> zone_list = new ArrayList<>();
     private ViewPager vpPager;
     private ImageView imgDialog;
+    private FirebaseAuth auth;
+    private FirebaseFirestore db;
+    private FirebaseUser user;
+    private List<DocumentSnapshot> listaDocumenti;
 
     public static ArrayList<String> getZone_list() {
         return zone_list;
@@ -53,6 +67,11 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
                              @Nullable Bundle savedInstanceState) {
 
         View view=inflater.inflate(R.layout.fragment_crea_zone_wizard, container, false);
+
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        user = auth.getCurrentUser();
+
 
         addZone = view.findViewById(R.id.buttonAddElement);
         nameZone = view.findViewById(R.id.inputNomeZona);
@@ -68,19 +87,34 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
 
          yes= dialog.findViewById(R.id.btn_okay);
          cancel= dialog.findViewById(R.id.btn_cancel);
-        titleDialog=dialog.findViewById(R.id.titleDialog);
-        textDialog=dialog.findViewById(R.id.textDialog);
-        imgDialog=dialog.findViewById(R.id.imageDialog);
+         titleDialog=dialog.findViewById(R.id.titleDialog);
+         textDialog=dialog.findViewById(R.id.textDialog);
+         imgDialog=dialog.findViewById(R.id.imageDialog);
 
-        LoadPreferences();
+       // LoadPreferences();
+
+        db.collection("Zones")
+                .whereEqualTo("idUser",user.getUid())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            listaDocumenti = queryDocumentSnapshots.getDocuments();
+                        }
+                    }
+                });
 
 
         addZone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String name = nameZone.getText().toString();
-                if (!name.isEmpty()){
-                    zoneCreated=true;
+                if (!name.isEmpty()) {
+                    boolean duplicate = duplicateControl(name);
+                    if (!duplicate){
+                        zoneCreated = true;
                     final View zoneView = getLayoutInflater().inflate(R.layout.row_add_zone, null, false);
                     ImageView removeZone = (ImageView) zoneView.findViewById(R.id.deleteZone);
                     TextView zone = (TextView) zoneView.findViewById(R.id.displayZone);
@@ -88,27 +122,29 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
                     layout_list.addView(zoneView);
                     zone_list.add(name);
 
-                removeZone.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.show();
-                        titleDialog.setText("Elimina Zona");
-                        textDialog.setText("Sei sicuro di voler eliminare la Zona creata ?");
-                        imgDialog.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
+                    removeZone.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.show();
+                            titleDialog.setText("Elimina Zona");
+                            textDialog.setText("Sei sicuro di voler eliminare la Zona creata ?");
+                            imgDialog.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
 
-                        yes.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Toast.makeText(getContext(), "Hai eliminato la zona", Toast.LENGTH_LONG).show();
-                                layout_list.removeView(zoneView);
-                                dialog.dismiss();
-                                zone_list.remove(name);
-                            }
-                        });
+                            yes.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Toast.makeText(getContext(), "Hai eliminato la zona", Toast.LENGTH_LONG).show();
+                                    layout_list.removeView(zoneView);
+                                    dialog.dismiss();
+                                    zone_list.remove(name);
+                                }
+                            });
+                        }
+                    });
+                    nameZone.setText(null);
+                }else{
+                        Toast.makeText(getContext(), "La zona che vuoi creare esiste già", Toast.LENGTH_LONG).show();
                     }
-                });
-                nameZone.setText(null);
-
                 }else{
                     nameZone.setError(getString(R.string.required_field));
                     nameZone.requestFocus();
@@ -125,6 +161,20 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
 
 
         return view;
+    }
+
+    private boolean duplicateControl(String name) {
+        boolean flag=false;
+
+        if(listaDocumenti.size()>0){
+            for(DocumentSnapshot d:listaDocumenti){
+                Zone zone=d.toObject(Zone.class);
+                if(zone.getName().matches(name)){
+                    flag=true;
+                }
+            }
+        }
+        return flag;
     }
 
 

@@ -1,8 +1,12 @@
 package com.example.alphatour.wizardcreazione;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -18,11 +22,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.alphatour.DashboardActivity;
+import com.example.alphatour.ImportPhotoObjectActivity;
 import com.example.alphatour.ModifyObjectActivity;
 import com.example.alphatour.R;
+import com.example.alphatour.ReadCsv;
 import com.example.alphatour.oggetti.Place;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,6 +43,11 @@ import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +65,10 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
     private FirebaseFirestore db;
     private String item;
     private Button qrScan;
+    //private Button csv,ph;
     private FirebaseUser user;
+    //private int requestCod=1;
+    //private List<ReadCsv> listLineCsv=new ArrayList<ReadCsv>();
 
     public static String getNamePlace() {
         return NamePlace;
@@ -79,6 +95,8 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
         city = view.findViewById(R.id.inputCityPlace);
         typology = view.findViewById(R.id.inputTypologyPlace);
         qrScan=view.findViewById(R.id.inputQr);
+       // csv=view.findViewById(R.id.csvBtn);
+       // ph=view.findViewById(R.id.uploadphoto);
         typology_list.add(getString(R.string.museum));
         typology_list.add(getString(R.string.fair));
         typology_list.add(getString(R.string.archaeological_site));
@@ -105,6 +123,15 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
             }
         });
 
+        if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+
+            if(ActivityCompat.shouldShowRequestPermissionRationale((Activity) getContext(),Manifest.permission.READ_EXTERNAL_STORAGE)){
+
+            }else{
+                ActivityCompat.requestPermissions((Activity) getContext(),new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},120);
+            }
+        }
+
 
         db.collection("Places")
                 .whereEqualTo("idUser",user.getUid())
@@ -125,6 +152,24 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
                 }
             }
                 });
+
+       /* csv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent=new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("text/comma-separated-values");
+                startActivityForResult(intent,requestCod);
+            }
+        });*/
+
+       /* ph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getContext(), ImportPhotoObjectActivity.class);
+                startActivity(intent);
+            }
+        });*/
 
 
         return view;
@@ -263,5 +308,76 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
         SavePreferences();
     }
 
+    /*@Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCod==requestCode && resultCode== Activity.RESULT_OK){
+
+            if(data==null){
+                return;
+            }else{
+                Uri uri = data.getData();
+                Toast.makeText(getContext(),uri.getPath(),Toast.LENGTH_SHORT).show();
+                String path=uri.getPath();
+                path=path.substring(path.indexOf(":")+1);
+                File file =new File(path);
+                try {
+                    BufferedReader read=new BufferedReader(new FileReader(file));
+                    String line="";
+                    Boolean isEmpty=true;
+                    while((line=read.readLine())!=null){
+                        isEmpty=false;
+                        String[] token=line.split(",");
+                        ReadCsv readCsv= new ReadCsv();
+                        boolean flag=false;
+                        for(int i=0;i< token.length;i++){
+
+                            if(token[i]==null){
+                                flag=true;
+                            }
+                        }
+                        if(!flag) {
+                            if(!token[0].matches("nameZone")) {
+                                readCsv.setNameZone(token[0]);
+                                readCsv.setTitleObject(token[1]);
+                                readCsv.setDescriptionObject(token[2]);
+                                readCsv.setQrDataObject(token[3]);
+                                readCsv.setLinkImageObject(token[4]);
+                                listLineCsv.add(readCsv);
+                            }
+                        }else{
+
+                            Toast.makeText(getContext(),"Errore duratnte l'importazione del file, alcuni"+
+                                    "campi potrebbero essere vuoti",Toast.LENGTH_LONG).show();
+                            line=null;
+                        }
+                    }
+
+                    if(isEmpty){
+                        Toast.makeText(getContext(),"Errore duratnte l'importazione del file, alcuni"+
+                                "campi potrebbero essere vuoti",Toast.LENGTH_LONG).show();
+                    }
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(grantResults.length>0&& grantResults[0]==PackageManager.PERMISSION_GRANTED){
+
+            Toast.makeText(getContext(),"Permission granted",Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(getContext(),"Permission not granted",Toast.LENGTH_LONG).show();
+        }
+        return;
+    }*/
 
 }

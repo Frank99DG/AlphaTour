@@ -23,6 +23,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/csvBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:onClick="scanQrCode"
+        android:text="Attività"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toEndOf="@+id/textPlace"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionCreatePlace" />
+
     <TextView
         android:id="@+id/textPlace"
         android:layout_width="190dp"
@@ -35,6 +48,19 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descriptionCreatePlace" />
+
+    <Button
+        android:id="@+id/uploadphoto"
+        android:layout_width="141dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:onClick="scanQrCode"
+        android:text="foto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/csvBtn" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/namePlaceLayout"
