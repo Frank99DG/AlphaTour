@@ -53,7 +53,7 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
     private FirebaseAuth auth;
     private FirebaseFirestore db;
     private FirebaseUser user;
-    private List<DocumentSnapshot> listaDocumenti;
+    private List<DocumentSnapshot> listaDocumenti=new ArrayList<DocumentSnapshot>();
 
     public static ArrayList<String> getZone_list() {
         return zone_list;
