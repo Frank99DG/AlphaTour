@@ -53,7 +53,7 @@ public class AddElementActivity extends AppCompatActivity{
     private FirebaseAuth auth;
     private FirebaseUser user;
     private FirebaseFirestore db;
-    private List<DocumentSnapshot> listaDocumenti;
+    private List<DocumentSnapshot> listaDocumenti=new ArrayList<DocumentSnapshot>();
 
 
     public static Element getElement() {
