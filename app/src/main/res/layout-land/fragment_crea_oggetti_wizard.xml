@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:background="@drawable/sfondo"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".wizardcreazione.CreateObjectWizard">
+
+        <TextView
+            android:id="@+id/elementText"
+            android:layout_width="189dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="112dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="111dp"
+            android:fontFamily="@font/alata"
+            android:text="Nuovo Oggetto"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonAddElement"
+            android:layout_width="199dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="112dp"
+            android:layout_marginTop="27dp"
+            android:layout_marginEnd="100dp"
+            android:drawableEnd="@drawable/ic_add"
+            android:onClick="addEl"
+            android:text="Aggiungi Oggetto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/elementText" />
+
+
+    <TextView
+        android:id="@+id/elementNew"
+        android:layout_width="192dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="107dp"
+        android:fontFamily="@font/alata"
+        android:text="OGGETTI CREATI"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAddElement" />
+
+    <androidx.core.widget.NestedScrollView
+
+        android:layout_width="416dp"
+        android:layout_height="523dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/elementNew">
+
+        <LinearLayout
+            android:id="@+id/listElementLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"/>
+
+    </androidx.core.widget.NestedScrollView>
+
+   <!-- <ProgressBar
+        android:id="@+id/objectLoadingBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="116dp"
+        android:elevation="10dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/elementText" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

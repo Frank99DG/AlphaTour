@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true">
+
+
+        <Button
+            android:id="@+id/saveObject"
+            android:layout_width="139dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="152dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bordi_tondi_button"
+            android:ems="10"
+            android:onClick="saveObject"
+            android:text="Salva"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="409dp"
+            android:layout_height="3dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputQrCode" />
+
+        <TextView
+            android:id="@+id/textElement"
+            android:layout_width="182dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="213dp"
+            android:fontFamily="@font/alata"
+            android:text="Nuovo Oggetto"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.712"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/typologyPlaceLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="208dp"
+            android:layout_height="56dp"
+            android:layout_margin="35dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="81dp"
+            android:hint="@string/select_zone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.537"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textElement">
+
+            <AutoCompleteTextView
+                android:id="@+id/inputTypologyZone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <EditText
+            android:id="@+id/inputElement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="81dp"
+            android:ems="10"
+            android:hint="Titolo"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/typologyPlaceLayout" />
+
+        <EditText
+            android:id="@+id/inputDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="81dp"
+            android:ems="10"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:maxLines="20"
+            android:minLines="10"
+            android:hint="Descrizione"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputElement" />
+
+        <ProgressBar
+            android:id="@+id/qrCodeLoadingBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.54" />
+
+        <Button
+            android:id="@+id/inputPhoto"
+            android:layout_width="184dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="38dp"
+            android:layout_marginEnd="81dp"
+            android:ems="10"
+            android:onClick="uploadImageElement"
+            android:text="@string/photo_button"
+            android:background="@drawable/bordi_tondi_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputDescription" />
+
+        <Button
+            android:id="@+id/inputQrCode"
+            android:layout_width="184dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="81dp"
+            android:ems="10"
+            android:text="GENERA CODICE QR"
+            android:onClick="generateQrCodeActivity"
+            android:textColorHint="#FDFCFC"
+            android:background="@drawable/bordi_tondi_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputPhoto" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
