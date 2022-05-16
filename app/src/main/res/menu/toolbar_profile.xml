@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/tb_update"
+        android:title="@string/tb_update"
+        android:icon="@drawable/ic_pencil"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/tb_notify"
+        android:title="@string/tb_notify"
+        android:icon="@drawable/ic_notification_icon_prova"
+        app:showAsAction="ifRoom"
+        />
+
+
+
+</menu>

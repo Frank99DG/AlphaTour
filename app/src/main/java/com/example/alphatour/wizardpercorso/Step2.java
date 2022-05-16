@@ -22,6 +22,7 @@ import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.R;
 import com.example.alphatour.oggetti.Constraint;
 import com.example.alphatour.oggetti.ElementString;
+import com.example.alphatour.oggetti.Place;
 import com.example.alphatour.oggetti.Zone;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +37,7 @@ import com.stepstone.stepper.VerificationError;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Step2 extends Fragment implements Step, BlockingStep {
 
@@ -55,6 +57,10 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     private Step5 step5_fragment = new Step5();
     private FirebaseAuth auth;
     private FirebaseUser user;
+    private static String Place;
+    private String idPlace;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,10 +70,10 @@ public class Step2 extends Fragment implements Step, BlockingStep {
         list_zone = view.findViewById(R.id.list_zone);
         title_Step2 = view.findViewById(R.id.title_step2);
         loadingbar=view.findViewById(R.id.zoneLoadingBar);
-        auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
 
         db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
 
         getFragmentManager().beginTransaction().replace(R.id.riepilogo,step5_fragment).hide(step5_fragment).commit();
 
@@ -86,11 +92,41 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     }
 
 
+
+    public void getIdPlace() {
+
+        Place = Step1.getPlacePath();
+
+        db.collection("Places").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                if (!queryDocumentSnapshots.isEmpty()) {
+                    List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista luoghi
+
+                    for (DocumentSnapshot d : listDocument) {
+                        Place place = d.toObject(Place.class);
+
+                        if (Place.equals(place.getName())){
+                            idPlace = d.getId();
+                            break;
+                        }
+
+                    }
+                }
+            }
+        });
+    }
+
+
+
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
 
+            getIdPlace();
 
             loadingbar.setVisibility(View.VISIBLE);
             db.collection("Zones").whereEqualTo("idUser", user.getUid() ).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -104,18 +140,19 @@ public class Step2 extends Fragment implements Step, BlockingStep {
                         if(!DashboardActivity.isFirstZoneChosen()) {
                             for (DocumentSnapshot d : listDocument) {
 
-                                Zone zon = d.toObject(Zone.class);
+                                Zone zone = d.toObject(Zone.class);
 
-                                View zone = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso, null, false);
-                                CheckableTextView textZone1 = (CheckableTextView) zone.findViewById(R.id.textObjectss);
+                                if(idPlace.equals(zone.getIdPlace())) {
+                                    View zoneView = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso, null, false);
+                                    CheckableTextView textZone1 = (CheckableTextView) zoneView.findViewById(R.id.textObjectss);
 
-                                textZone1.setText(zon.getName());
-                                array_database.add(zon.getName());
+                                    textZone1.setText(zone.getName());
+                                    array_database.add(zone.getName());
 
-                                arrayZone.add(textZone1);
-                                list_zone.addView(zone);
-                                deleteView.add(zone);
-
+                                    arrayZone.add(textZone1);
+                                    list_zone.addView(zoneView);
+                                    deleteView.add(zoneView);
+                                }
                             }
 
 
@@ -220,6 +257,7 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
 
+
         for(int i= 0;i<arrayZone.size();i++){
             arrayZone.get(i).setChecked(false,false);
         }
@@ -297,7 +335,7 @@ public class Step2 extends Fragment implements Step, BlockingStep {
 
     }
 
-/*
+    /*
     @Override
     public void onClick(View view) {
         if (view.getId()==R.id.call_fragment){

@@ -27,10 +27,10 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.alphatour.DashboardActivity;
-import com.example.alphatour.ImportPhotoObjectActivity;
+//import com.example.alphatour.ImportPhotoObjectActivity;
 import com.example.alphatour.ModifyObjectActivity;
 import com.example.alphatour.R;
-import com.example.alphatour.ReadCsv;
+//import com.example.alphatour.ReadCsv;
 import com.example.alphatour.oggetti.Place;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
