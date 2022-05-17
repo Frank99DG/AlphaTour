@@ -8,6 +8,7 @@ public class Zone {
     private String name;
     private String idPlace;
     private String idUser;
+    private String namePlace;
     //il grafo è non orientato (da A a B è uguale da B ad A)
     //private Graph<ElementString,DefaultEdge> elementsZone = new SimpleGraph<>(DefaultEdge.class);
 
@@ -25,10 +26,11 @@ public class Zone {
 
     }
 
-    public Zone(String name,String idPlace,String idUser) {
+    public Zone(String name,String idPlace,String namePlace,String idUser) {
         this.name = name;
         this.idPlace = idPlace;
         this.idUser = idUser;
+        this.namePlace = namePlace;
 
     }
 
@@ -55,6 +57,14 @@ public class Zone {
 
     public void setIdUser(String idUser) {
         this.idUser = idUser;
+    }
+
+    public String getNamePlace() {
+        return namePlace;
+    }
+
+    public void setNamePlace(String namePlace) {
+        this.namePlace = namePlace;
     }
 
     @Override
