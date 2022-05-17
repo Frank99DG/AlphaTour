@@ -44,6 +44,8 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation ('eu.livotov.labs.android:CAMView:2.0.1@aar') {transitive=true}
     implementation 'org.jgrapht:jgrapht-core:1.5.1'
+    implementation 'org.jgrapht:jgrapht-io:1.5.1'
+    implementation 'org.jgrapht:jgrapht-ext:1.5.1'
     implementation 'com.github.dhaval2404:imagepicker:2.1'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

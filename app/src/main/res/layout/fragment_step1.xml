@@ -30,20 +30,20 @@
 
     <com.google.android.material.textfield.TextInputLayout
 
-        android:id="@+id/textInputLayout"
+        android:id="@+id/namePathLayout"
         android:layout_width="321dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginBottom="420dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="130dp"
         android:background="@drawable/bordi_tondi"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <EditText
-            android:id="@+id/namePath"
-            android:layout_width="321dp"
-            android:layout_height="60dp"
+            android:id="@+id/inputNamePath"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:autofillHints="no"
             android:background="@drawable/bordi_tondi"
             android:drawableStart="@drawable/ic_percorso"
@@ -51,39 +51,70 @@
             android:ems="10"
             android:hint="@string/name_path"
             android:inputType="textPersonName"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
             android:textColorHint="#757575"
             tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/placePathLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
         android:layout_width="321dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="300dp"
-        android:background="@drawable/bordi_tondi"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        app:layout_constraintTop_toBottomOf="@+id/namePathLayout">
 
-        <EditText
-            android:id="@+id/descriptionPath"
-            android:layout_width="321dp"
-            android:layout_height="60dp"
-            android:autofillHints="no"
+        <AutoCompleteTextView
+            android:id="@+id/inputPlacePath"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@drawable/bordi_tondi"
-            android:drawableStart="?attr/actionModePasteDrawable"
+            android:drawableStart="@drawable/ic_museum2"
             android:drawablePadding="12dp"
-            android:ems="10"
-            android:hint="@string/description_path"
-            android:inputType="textShortMessage"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:textColorHint="#757575"
-            tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+            android:hint="Scegli luogo"
+            android:inputType="none"
+            android:padding="12dp"
+            tools:layout_editor_absoluteX="110dp"
+            tools:layout_editor_absoluteY="325dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+
+    <!--<com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/descriptionPathLyout"
+        android:layout_width="321dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bordi_tondi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/placePathLayout">
+
+
+
+    </com.google.android.material.textfield.TextInputLayout>-->
+
+    <EditText
+        android:id="@+id/inputDescriptionPath"
+        android:layout_width="321dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="40dp"
+        android:autofillHints="no"
+        android:background="@drawable/bordi_tondi"
+        android:drawableStart="?attr/actionModePasteDrawable"
+        android:drawablePadding="8dp"
+        android:gravity="top"
+        android:hint="@string/description_path"
+        android:inputType="textMultiLine"
+        android:padding="12dp"
+        android:paddingTop="12dp"
+        android:textAllCaps="false"
+        android:textColorHint="#757575"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/placePathLayout"
+        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

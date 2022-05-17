@@ -91,8 +91,12 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     private long idPhotoAndQrCode,id;
     private FirebaseUser user;
     private FirebaseAuth auth;
-    private List<Constraint> listConstranints=new ArrayList<Constraint>();
+    private List<Constraint> listConstranints = new ArrayList<Constraint>();
     private String data;
+    private String idPlace;
+    private int i,j;
+    private boolean flag1 = false;
+    private boolean flag2 = false;
 
 
     public CreateConstraintsWizard() {
@@ -269,9 +273,6 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
             public void onClick(View view) {
                 loadingBar.setVisibility(View.VISIBLE);
                 savePlace();
-                saveZones(CreateZoneWizard.getZone_list());
-                saveConstraints();
-                saveObjects(CreateObjectWizard.getElementList());
                 dialog.dismiss();
 
                 new Handler().postDelayed(new Runnable() {
@@ -306,12 +307,16 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
 
     private void saveConstraints() {
 
-        for (int i=0;i<listConstranints.size();i++){
+        for (j=0;j<listConstranints.size();j++){
             db.collection("Constraints")
-                    .add(listConstranints.get(i))
+                    .add(listConstranints.get(j))
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
+                            if(j == listConstranints.size() && flag2 == false) {
+                                saveObjects(CreateObjectWizard.getElementList());
+                                flag2 = true;
+                            }
                             success=true;
                         }
                     });
@@ -329,6 +334,8 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
+                        idPlace = documentReference.getId();
+                        saveZones(CreateZoneWizard.getZone_list());
                         success=true;
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -344,14 +351,18 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
 
     private void saveZones(ArrayList<String> zone_list) {
 
-        for(int i=0;i<zone_list.size();i++){
-            Zone zone=new Zone(user.getUid(),zone_list.get(i));
+        for(i=0;i<zone_list.size();i++){
+            Zone zone=new Zone(zone_list.get(i),idPlace,user.getUid());
 
             db.collection("Zones")
                     .add(zone)
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
+                            if(i == zone_list.size() && flag1 == false ){
+                                saveConstraints();
+                                flag1 = true;
+                            }
                             success=true;
                         }
                     }).addOnFailureListener(new OnFailureListener() {

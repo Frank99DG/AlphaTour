@@ -35,6 +35,7 @@
         android:id="@+id/nameProfile"
         android:layout_width="59dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:paddingTop="8dp"
         android:text="@string/name" />
 
@@ -42,6 +43,7 @@
         android:id="@+id/surnameProfile"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
         android:paddingTop="8dp"
         android:text="@string/surname" />
 

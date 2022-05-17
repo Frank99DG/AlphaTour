@@ -385,29 +385,6 @@ public class DashboardActivity extends DrawerBaseActivity {
     }*/
 
 
-    /*@Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        switch(menuItem.getItemId()){
-            case R.id.tb_home:
-                startActivity( new Intent(DashboardActivity.this, DashboardActivity.class) );
-                break;
-            case R.id.tb_profile:
-                startActivity( new Intent(DashboardActivity.this, ProfileActivity.class) );
-                break;
-            case R.id.tb_share_path:
-                break;
-            case R.id.tb_logout:
-                loadingBar.setVisibility(View.VISIBLE);
-                auth.signOut();
-                startActivity( new Intent(DashboardActivity.this, LoginActivity.class) );
-                Toast.makeText(this, "Ti sei disconnesso", Toast.LENGTH_LONG).show();
-                finishAffinity(); //Chiude tutte le attività presenti nello Stack, evita che il tasto back porti alla dashboard dopo il logout
-                loadingBar.setVisibility(View.GONE);
-        }
-
-        return false;
-    }*/
-
 
     public void bottomNavBarClick(){
 

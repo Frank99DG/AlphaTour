@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:text="Nome:"
+        android:text="@string/name"
         android:textSize="20dp"
         android:textAlignment="center"
         android:textColor="@color/black"/>
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:text="Ora Inizio:"
+        android:text="@string/start_time"
         android:textSize="20dp"
         android:textAlignment="center"
         android:textColor="@color/black"/>
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:text="Data"
+        android:text="@string/date"
         android:textSize="20dp"
         android:textAlignment="center"
         android:textColor="@color/black"/>
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:text="Ora"
+        android:text="@string/time"
         android:textSize="20dp"
         android:textAlignment="center"
         android:textColor="@color/black"/>
@@ -73,7 +73,7 @@
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Salva"
+        android:text="@string/save"
         android:background="@null"
         android:onClick="saveEventAction"
         android:layout_gravity="center"

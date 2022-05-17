@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Daily"
+        android:text="@string/daily"
         android:background="@null"
         android:onClick="dailyAction"
         android:textColor="#3F51B5"
@@ -68,7 +68,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="LUN"
+            android:text="@string/mon"
             android:textColor="@color/gray"
             android:textAlignment="center"
             android:textSize="16sp"/>
@@ -77,7 +77,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="MAR"
+            android:text="@string/tue"
             android:textColor="@color/gray"
             android:textAlignment="center"
             android:textSize="16sp"/>
@@ -86,7 +86,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="MER"
+            android:text="@string/wed"
             android:textColor="@color/gray"
             android:textAlignment="center"
             android:textSize="16sp"/>
@@ -95,7 +95,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="GIO"
+            android:text="@string/thu"
             android:textColor="@color/gray"
             android:textAlignment="center"
             android:textSize="16sp"/>
@@ -104,7 +104,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="VEN"
+            android:text="@string/fri"
             android:textColor="@color/gray"
             android:textAlignment="center"
             android:textSize="16sp"/>
@@ -113,7 +113,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="SAB"
+            android:text="@string/sat"
             android:textColor="@color/gray"
             android:textAlignment="center"
             android:textSize="16sp"/>
@@ -122,7 +122,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="DOM"
+            android:text="@string/sun"
             android:textColor="@color/gray"
             android:textAlignment="center"
             android:textSize="16sp"/>
@@ -138,7 +138,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nuovo Evento"
+        android:text="@string/new_event"
         android:background="@null"
         android:onClick="newEventAction"
         android:layout_gravity="center"

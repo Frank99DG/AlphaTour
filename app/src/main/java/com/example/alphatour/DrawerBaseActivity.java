@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -163,6 +165,21 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        //if(container. DASHBOARD VIEW){
+            inflater.inflate(R.menu.toolbar_dashboard, menu);
+        //}else if(container. PROFILE VIEW){
+            //inflater.inflate(R.menu.toolbar_profile, menu);
+        //}else if(container. MY PATHS VIEW){
+            //inflater.inflate(R.menu.toolbar_my_paths, menu);
+        //}
+        return true;
+    }
+
+
+
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch(menuItem.getItemId()){
             case R.id.tb_home:
@@ -184,6 +201,7 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
 
         return false;
     }
+
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
