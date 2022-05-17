@@ -1,9 +1,12 @@
 package com.example.alphatour.wizardcreazione;
 
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,6 +32,9 @@ import android.widget.Toast;
 
 import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.R;
+import com.example.alphatour.dblite.AlphaTourContract;
+import com.example.alphatour.dblite.AlphaTourDbHelper;
+import com.example.alphatour.dblite.CommandDbAlphaTour;
 import com.example.alphatour.oggetti.Constraint;
 import com.example.alphatour.oggetti.Element;
 import com.example.alphatour.oggetti.ElementString;
@@ -273,6 +279,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
             public void onClick(View view) {
                 loadingBar.setVisibility(View.VISIBLE);
                 savePlace();
+                saveOnDbLocal(zone_list,CreateObjectWizard.getElementList());
                 dialog.dismiss();
 
                 new Handler().postDelayed(new Runnable() {
@@ -352,7 +359,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     private void saveZones(ArrayList<String> zone_list) {
 
         for(i=0;i<zone_list.size();i++){
-            Zone zone=new Zone(zone_list.get(i),idPlace,user.getUid());
+            Zone zone=new Zone(zone_list.get(i),idPlace,null,user.getUid());
 
             db.collection("Zones")
                     .add(zone)
@@ -644,6 +651,117 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                 });
             }
         });
+    }
+    private void saveOnDbLocal(ArrayList<String> zone_list, List<Element> elementList) {
+
+        savePlaceLocal();
+        saveZonesLocal(zone_list);
+        saveConstraintsLocal();
+        saveObjectsLocal(elementList);
+    }
+
+    private long saveObjectsLocal(List<Element> elementList) {
+        long newRowId=-1;
+        AlphaTourDbHelper dbAlpha = new AlphaTourDbHelper(getContext());
+        SQLiteDatabase db = dbAlpha.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        for (int i=0;i<elementList.size();i++) {
+
+            Element elm= elementList.get(i);
+            String idZone=getIdZone(elm);
+            values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ELEMENT_ID_ZONE,idZone);
+            values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ELEMENT_NAME,elm.getTitle());
+            values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ELEMENT_DESCRIPTION,elm.getDescription());
+            values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ELEMENT_PHOTO,elm.getPhoto().toString());
+            values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ELEMENT_QR_CODE,elm.getQrData());
+            values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ELEMENT_LOAD,"false");
+            newRowId=db.insert(AlphaTourContract.AlphaTourEntry.NAME_TABLE_ELEMENT,AlphaTourContract.AlphaTourEntry.COLUMN_NAME_NULLABLE,values);
+        }
+
+        return newRowId;
+    }
+
+    private String getIdZone(Element elm) {
+        String idZone="";
+        AlphaTourDbHelper dbAlpha = new AlphaTourDbHelper(getContext());
+        SQLiteDatabase db = dbAlpha.getReadableDatabase();
+
+        Cursor cursor=db.rawQuery(CommandDbAlphaTour.Command.SELECT_ID_ZONE,new String[]{elm.getZoneRif()});
+        if(cursor.moveToFirst()){
+            idZone= cursor.getString(cursor.getColumnIndexOrThrow(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ZONE_ID));
+        }
+        return idZone;
+    }
+
+    private long saveConstraintsLocal() {
+
+        AlphaTourDbHelper dbAlpha = new AlphaTourDbHelper(getContext());
+        SQLiteDatabase db = dbAlpha.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        long newRowId=-1;
+
+        for (j=0;j<listConstranints.size();j++){
+            Constraint constraint=listConstranints.get(j);
+            values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_CONSTRAINTS_FROM_ZONE,constraint.getFromZone());
+            values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_CONSTRAINTS_IN_ZONE,constraint.getInZone());
+            values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_CONSTRAINTS_LOAD,"false");
+            newRowId=db.insert(AlphaTourContract.AlphaTourEntry.NAME_TABLE_CONSTRAINTS,AlphaTourContract.AlphaTourEntry.COLUMN_NAME_NULLABLE,values);
+        }
+        return newRowId;
+    }
+
+    private long saveZonesLocal(ArrayList<String> zone_list) {
+        long newRowId=-1;
+
+        AlphaTourDbHelper dbAlpha = new AlphaTourDbHelper(getContext());
+        SQLiteDatabase db = dbAlpha.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        idPlace=getIdPlace(CreatePlaceWizard.getNamePlace());
+
+        for(i=0;i<zone_list.size();i++) {
+
+
+            values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ZONE_NAME,zone_list.get(i));
+            values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ZONE_ID_PLACE,idPlace);
+            values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ZONE_LOAD,"false");
+            newRowId=db.insert(AlphaTourContract.AlphaTourEntry.NAME_TABLE_ZONE,AlphaTourContract.AlphaTourEntry.COLUMN_NAME_NULLABLE,values);
+        }
+
+        return newRowId;
+    }
+
+    private String getIdPlace(String s) {
+        String idPl="";
+
+        AlphaTourDbHelper dbAlpha = new AlphaTourDbHelper(getContext());
+        SQLiteDatabase db = dbAlpha.getReadableDatabase();
+
+        Cursor cursor=db.rawQuery(CommandDbAlphaTour.Command.SELECT_ID_PLACE,new String[]{s});
+        if(cursor.moveToFirst()){
+            idPl= cursor.getString(cursor.getColumnIndexOrThrow(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PLACE_ID));
+        }
+
+
+        return idPl;
+    }
+
+    private long savePlaceLocal() {
+        long newRowId;
+
+        AlphaTourDbHelper dbAlpha = new AlphaTourDbHelper(getContext());
+        SQLiteDatabase db = dbAlpha.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PLACE_NAME,CreatePlaceWizard.getNamePlace());
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PLACE_CITY,CreatePlaceWizard.getCity());
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PLACE_TYPOLOGY,CreatePlaceWizard.getCity());
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PLACE_LOAD,"false");
+
+        newRowId=db.insert(AlphaTourContract.AlphaTourEntry.NAME_TABLE_PLACE,AlphaTourContract.AlphaTourEntry.COLUMN_NAME_NULLABLE,values);
+
+        return newRowId;
     }
 
 }
