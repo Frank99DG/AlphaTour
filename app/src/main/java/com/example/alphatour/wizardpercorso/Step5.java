@@ -1,5 +1,6 @@
 package com.example.alphatour.wizardpercorso;
 
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,14 +14,19 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.alphatour.R;
+import com.example.alphatour.oggetti.MapZoneAndObject;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Step5 extends Fragment  {
     
     private ImageView close_fragment;
     private LinearLayout closeLayout;
+    public static List<MapZoneAndObject> zoneAndObjectList_ = new ArrayList<MapZoneAndObject>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +58,10 @@ public class Step5 extends Fragment  {
                 getFragmentManager().beginTransaction().hide(Step5.this).commit();
             }
             });
+    }
+
+    public static List<MapZoneAndObject> getZoneAndObjectList_() {
+        return zoneAndObjectList_;
     }
 
 }
