@@ -27,6 +27,7 @@ public class Step5 extends Fragment  {
     private ImageView close_fragment;
     private LinearLayout closeLayout;
     public static List<MapZoneAndObject> zoneAndObjectList_ = new ArrayList<MapZoneAndObject>();
+    private static List<String> zone_select = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,6 +63,14 @@ public class Step5 extends Fragment  {
 
     public static List<MapZoneAndObject> getZoneAndObjectList_() {
         return zoneAndObjectList_;
+    }
+
+    public static void setZoneAndObjectList_(List<MapZoneAndObject> zoneAndObjectList_) {
+        Step5.zoneAndObjectList_ = zoneAndObjectList_;
+    }
+
+    public static List<String> getZone_select() {
+        return zone_select;
     }
 
 }
