@@ -76,6 +76,13 @@ public class Step1 extends Fragment implements Step, BlockingStep {
         placePath.setAdapter(adapterItems);
         descriptionPath = view.findViewById(R.id.inputDescriptionPath);
 
+        placePath.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                placePath.setError(null);
+            }
+        });
+
 
         // Inflate the layout for this fragment
         return view;
@@ -126,6 +133,7 @@ public class Step1 extends Fragment implements Step, BlockingStep {
             error =new VerificationError("Compila tutti i campi");
         }else{
             Place = PlacePath;
+            Step2.setPlace(PlacePath);
         }
         return error;
     }

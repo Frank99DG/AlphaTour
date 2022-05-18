@@ -24,6 +24,24 @@ public class PercorsoWizard extends AppCompatActivity {
     Button button;
     private StepAdapter stepAdapter;
     private int i;
+    private static String zone;
+    private static boolean zonePassFromReview=false;
+
+    public static boolean isZonePassFromReview() {
+        return zonePassFromReview;
+    }
+
+    public static void setZonePassFromReview(boolean zonePassFromReview) {
+        PercorsoWizard.zonePassFromReview = zonePassFromReview;
+    }
+
+    public static String getZone() {
+        return zone;
+    }
+
+    public static void setZone(String zone) {
+        PercorsoWizard.zone = zone;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

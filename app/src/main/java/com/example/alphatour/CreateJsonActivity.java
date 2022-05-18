@@ -23,10 +23,12 @@ import android.os.Parcelable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alphatour.oggetti.ElementString;
+import com.example.alphatour.oggetti.MapZoneAndObject;
 import com.example.alphatour.oggetti.Zone;
 import com.example.alphatour.oggetti.ZoneChoosed;
 import com.example.alphatour.wizardpercorso.Step4;
@@ -56,42 +58,74 @@ import org.jgrapht.nio.IntegerIdProvider;
 import org.jgrapht.nio.json.JSONExporter;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 public class CreateJsonActivity extends AppCompatActivity {
 
-    private Button btn,btn1,yesFinal,cancelFinal;
+    private Button btn, btn1, yesFinal, cancelFinal;
     private ConstraintLayout layt;
     private Dialog dialog;
-    private TextView titleDialog,textDialog;
+    private TextView titleDialog, textDialog;
+    private static List<MapZoneAndObject> zoneAndObjectListReviewPath = new ArrayList<MapZoneAndObject>();
+    private LinearLayout list_path;
+    private ConstraintLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_json);
-        btn=findViewById(R.id.button3);
-        layt=findViewById(R.id.layoutJson);
-        btn1=findViewById(R.id.button4);
+        btn = findViewById(R.id.button3);
+        layt = findViewById(R.id.layoutJson);
+        btn1 = findViewById(R.id.button4);
 
-        dialog=new Dialog(this);
+        dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_permission);
         dialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroun_dialog));
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.setCancelable(false);
-        dialog.getWindow().getAttributes().windowAnimations=R.style.DialogAnimation;
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
 
 
-        yesFinal= dialog.findViewById(R.id.btn_termina_permission);
-        titleDialog=dialog.findViewById(R.id.titleDialog_permission);
-        textDialog=dialog.findViewById(R.id.textDialog_permission);
+        yesFinal = dialog.findViewById(R.id.btn_termina_permission);
+        titleDialog = dialog.findViewById(R.id.titleDialog_permission);
+        textDialog = dialog.findViewById(R.id.textDialog_permission);
 
-        if(checkPermission()){
-            Toast.makeText(this,"Permission granted",Toast.LENGTH_LONG).show();
-        }else{
-            if(ActivityCompat.shouldShowRequestPermissionRationale(CreateJsonActivity.this,Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+
+
+        zoneAndObjectListReviewPath = Step4.getZoneAndObjectList_();
+        list_path = findViewById(R.id.list_path);
+        layout = findViewById(R.id.layout);
+
+        for(int i=0; i<zoneAndObjectListReviewPath.size();i++){
+            View zone = getLayoutInflater().inflate(R.layout.row_add_textview_path, null,false);
+            TextView textZone = (TextView) zone.findViewById(R.id.textZonePath);
+
+            if(i % 2 == 0){
+               // LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(200, 50);
+              //  params.setMarginStart(50);
+              //  textZone.setLayoutParams(params);
+            } else {
+                LinearLayout.LayoutParams paramss = new LinearLayout.LayoutParams(500, 100);
+                paramss.setMarginStart(170);
+                textZone.setLayoutParams(paramss);
+
+            }
+
+            textZone.setText(zoneAndObjectListReviewPath.get(i).getZone());
+            list_path.addView(zone);
+        }
+
+
+
+        if (checkPermission()) {
+            Toast.makeText(this, "Permission granted", Toast.LENGTH_LONG).show();
+        } else {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(CreateJsonActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 dialog.show();
                 yesFinal.setText("OK");
 
@@ -109,7 +143,7 @@ public class CreateJsonActivity extends AppCompatActivity {
                         requestPermission();
                     }
                 });
-            }else{
+            } else {
                 requestPermission();
             }
 
@@ -119,19 +153,19 @@ public class CreateJsonActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Graph<ZoneChoosed,DefaultEdge> graph= Step4.getGraph();
+                Graph<ZoneChoosed, DefaultEdge> graph = Step4.getGraph();
                 JSONExporter<ZoneChoosed, DefaultEdge> exporter = new JSONExporter<>(v -> String.valueOf(v));
                 exporter.setEdgeIdProvider(new IntegerIdProvider<>(1));
                 // ByteArrayOutputStream os = new ByteArrayOutputStream();
-                File file= null;
+                File file = null;
                 try {
 
-                    File fil=new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"Percorso.json");
-                    FileOutputStream fos= new FileOutputStream(fil);
-                   // file = File.createTempFile("Percorso",".json");
+                    File fil = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "Percorso.json");
+                    FileOutputStream fos = new FileOutputStream(fil);
+                    // file = File.createTempFile("Percorso",".json");
                     exporter.exportGraph(graph, fos);
                     fos.close();
-                    Toast.makeText(CreateJsonActivity.this,"Saved to "+getFilesDir()+"/"+ "Percorso.json",Toast.LENGTH_LONG).show();
+                    Toast.makeText(CreateJsonActivity.this, "Saved to " + getFilesDir() + "/" + "Percorso.json", Toast.LENGTH_LONG).show();
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -143,15 +177,15 @@ public class CreateJsonActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Context context=CreateJsonActivity.this;
-                String str="{ \"zona\": \"medioevo\",\n"+
-                            " \"oggetto\": \"oggetto1\",\n"+
-                           " \"oggetto\": \"oggetto 2\",\n"+
-                           " \"zona1\": \"zona2\", \n"+
-                           " \"oggetto\": \"oggetto1\", \n"+
-                           " \"oggettto\": \"oggetto2\" }";
+                Context context = CreateJsonActivity.this;
+                String str = "{ \"zona\": \"medioevo\",\n" +
+                        " \"oggetto\": \"oggetto1\",\n" +
+                        " \"oggetto\": \"oggetto 2\",\n" +
+                        " \"zona1\": \"zona2\", \n" +
+                        " \"oggetto\": \"oggetto1\", \n" +
+                        " \"oggettto\": \"oggetto2\" }";
                 try {
-                    Graph<ZoneChoosed,DefaultEdge> graph= Step4.getGraph();
+                    Graph<ZoneChoosed, DefaultEdge> graph = Step4.getGraph();
 
                     /*Zone zone=new Zone();
                     Zone zone1=new Zone();
@@ -180,15 +214,14 @@ public class CreateJsonActivity extends AppCompatActivity {
 
                     JSONExporter<ZoneChoosed, DefaultEdge> exporter = new JSONExporter<>(v -> String.valueOf(v));
                     exporter.setEdgeIdProvider(new IntegerIdProvider<>(1));
-                   // ByteArrayOutputStream os = new ByteArrayOutputStream();
-                    File file= File.createTempFile("Percorso",".json");
+                    // ByteArrayOutputStream os = new ByteArrayOutputStream();
+                    File file = File.createTempFile("Percorso", ".json");
                     exporter.exportGraph(graph, file);
 
 
-
-                    Intent intent=new Intent(Intent.ACTION_SEND);
+                    Intent intent = new Intent(Intent.ACTION_SEND);
                     intent.setType("application/json");
-                    Uri uri= FileProvider.getUriForFile(Objects.requireNonNull(getApplicationContext()),
+                    Uri uri = FileProvider.getUriForFile(Objects.requireNonNull(getApplicationContext()),
                             BuildConfig.APPLICATION_ID + ".provider", file);
                     intent.putExtra(Intent.EXTRA_STREAM, uri);
                     startActivity(intent);
@@ -204,10 +237,11 @@ public class CreateJsonActivity extends AppCompatActivity {
 
     }
 
+
     private boolean checkPermission(){
 
-        int cameraPermission= ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        return cameraPermission== PackageManager.PERMISSION_GRANTED;
+        int storagePermission= ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        return storagePermission== PackageManager.PERMISSION_GRANTED;
     }
 
     private void requestPermission(){
@@ -228,4 +262,7 @@ public class CreateJsonActivity extends AppCompatActivity {
         }
     }
 
+    public static void setZoneAndObjectListReviewPath(List<MapZoneAndObject> zoneAndObjectListReviewPath) {
+        CreateJsonActivity.zoneAndObjectListReviewPath = zoneAndObjectListReviewPath;
+    }
 }
