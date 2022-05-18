@@ -164,19 +164,6 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        //if(container. DASHBOARD VIEW){
-            inflater.inflate(R.menu.toolbar_dashboard, menu);
-        //}else if(container. PROFILE VIEW){
-            //inflater.inflate(R.menu.toolbar_profile, menu);
-        //}else if(container. MY PATHS VIEW){
-            //inflater.inflate(R.menu.toolbar_my_paths, menu);
-        //}
-        return true;
-    }
-
 
 
     @Override

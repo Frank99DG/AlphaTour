@@ -9,15 +9,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.devzone.checkabletextview.CheckableTextView;
 import com.example.alphatour.R;
 import com.example.alphatour.oggetti.MapZoneAndObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 public class ReviewZoneSelected extends AppCompatActivity {
 
@@ -63,7 +59,7 @@ public class ReviewZoneSelected extends AppCompatActivity {
                 listObj = zoneAndObjectList.get(i).getListObj();
 
                 for (int c = 0; c < listObj.size(); c++) {
-                    View object = getLayoutInflater().inflate(R.layout.row_add_object_for_zone_review, null, false);
+                    View object = getLayoutInflater().inflate(R.layout.row_object_review_path, null, false);
                     TextView objects = (TextView) object.findViewById(R.id.textObjectReview);
                     ImageView delete_object = object.findViewById(R.id.deleteObject_review_zone);
 

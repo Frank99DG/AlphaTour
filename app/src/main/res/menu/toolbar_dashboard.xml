@@ -8,8 +8,7 @@
         android:id="@+id/tb_notify"
         android:title="@string/tb_notify"
         android:icon="@drawable/ic_notification_icon_prova"
-        app:showAsAction="ifRoom"
-        />
+        app:showAsAction="ifRoom" />
 
 
 </menu>

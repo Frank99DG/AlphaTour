@@ -32,9 +32,7 @@ import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Step3 extends Fragment implements Step, BlockingStep {
 
@@ -112,7 +110,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
                                                         for (QueryDocumentSnapshot document : task.getResult()) {
                                                             ElementString element = document.toObject(ElementString.class);
 
-                                                            View object = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso, null, false);
+                                                            View object = getLayoutInflater().inflate(R.layout.row_selection_zones_elements, null, false);
                                                             CheckableTextView textZone1 = (CheckableTextView) object.findViewById(R.id.textObjectss);
 
 

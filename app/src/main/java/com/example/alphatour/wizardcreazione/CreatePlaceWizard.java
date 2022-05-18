@@ -61,12 +61,13 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
     private static String NamePlace,City,Typology;
     private ProgressBar loadingBar;
     private boolean errorFlag=true;
-    private FirebaseAuth auth;
     private FirebaseFirestore db;
+    private FirebaseAuth auth;
+    private FirebaseUser user;
+    private String idUser;
     private String item;
     private Button qrScan;
     //private Button csv,ph;
-    private FirebaseUser user;
     //private int requestCod=1;
     //private List<ReadCsv> listLineCsv=new ArrayList<ReadCsv>();
 
@@ -87,9 +88,11 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
                              Bundle savedInstanceState) {
 
         View view=inflater.inflate(R.layout.fragment_crea_luogo, container, false);
-        auth = FirebaseAuth.getInstance();
+
         db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+        idUser = user.getUid();
 
         namePlace = view.findViewById(R.id.inputNamePlace);
         city = view.findViewById(R.id.inputCityPlace);
@@ -133,24 +136,24 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
         }
 
 
-        db.collection("Places")
-                .whereEqualTo("idUser",user.getUid())
+        /*db.collection("Places")
+                .whereEqualTo("idUser",idUser)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                if (!queryDocumentSnapshots.isEmpty()) {
-                    List<DocumentSnapshot> listaDocumenti = queryDocumentSnapshots.getDocuments();
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            List<DocumentSnapshot> listDocuments = queryDocumentSnapshots.getDocuments();
 
-                    for (DocumentSnapshot d : listaDocumenti) {
-                        Place place= d.toObject(Place.class);
-                        namePlace.setText(place.getName());
-                        city.setText(place.getCity());
-                        typology.setText(place.getTypology());
+                            for (DocumentSnapshot d : listDocuments) {
+                                Place place= d.toObject(Place.class);
+                                namePlace.setText(place.getName());
+                                city.setText(place.getCity());
+                                typology.setText(place.getTypology());
+                            }
+                        }
                     }
-                }
-            }
                 });
 
        /* csv.setOnClickListener(new View.OnClickListener() {

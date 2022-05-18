@@ -126,7 +126,7 @@ public class Step4 extends Fragment implements Step, BlockingStep {
 
             counter=zone_select.size();
             for(i=0;i<zone_select.size();i++){
-                View zone = getLayoutInflater().inflate(R.layout.row_add_zone_review_creazione_percorso, null, false);
+                View zone = getLayoutInflater().inflate(R.layout.row_zone_review_path, null, false);
                 TextView textZone = (TextView) zone.findViewById(R.id.textZoneReview);
                 ImageView deleteZone = zone.findViewById(R.id.deleteZone_review);
 

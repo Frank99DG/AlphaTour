@@ -15,8 +15,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -109,6 +112,31 @@ public class ProfileActivity extends DrawerBaseActivity {
             loadingBar.setVisibility(View.VISIBLE);
             showUserProfile();
         }
+    }
+
+
+    //inserimento pulsanti toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar_profile, menu);
+        return true;
+    }
+
+    //funzionamento pulsanti toolbar
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.tb_notify:
+                return true;
+            case R.id.tb_update:
+                startActivity(new Intent(this, UpdateProfileActivity.class));
+                return true;
+            default:
+                return onOptionsItemSelected(item);
+
+        }
+
     }
 
 

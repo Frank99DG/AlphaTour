@@ -108,7 +108,7 @@ public class Step2 extends Fragment implements Step, BlockingStep {
                             Zone zone = d.toObject(Zone.class);
 
                             if(idPlace.matches(zone.getIdPlace())) {
-                                View zoneView = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso, null, false);
+                                View zoneView = getLayoutInflater().inflate(R.layout.row_selection_zones_elements, null, false);
                                 CheckableTextView textZone1 = (CheckableTextView) zoneView.findViewById(R.id.textObjectss);
 
                                 textZone1.setText(zone.getName());
@@ -165,7 +165,7 @@ public class Step2 extends Fragment implements Step, BlockingStep {
                                     }
                                     if(constraint.getFromZone().matches(abc)){
 
-                                        View zone = getLayoutInflater().inflate(R.layout.row_add_zone_creazione_percorso, null, false);
+                                        View zone = getLayoutInflater().inflate(R.layout.row_selection_zones_elements, null, false);
                                         CheckableTextView textZone1 = (CheckableTextView) zone.findViewById(R.id.textObjectss);
 
                                         textZone1.setText(constraint.getInZone());

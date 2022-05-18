@@ -146,11 +146,8 @@ public class UpdateProfileActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void buttonUpdateProfile(View view) {
-        updateProfile(user);
-    }
 
-    private void updateProfile(FirebaseUser utente){
+    public void updateProfile(View view) {
 
         Boolean control = inputControl(editName.getText().toString(),editSurname.getText().toString(),editDateOfBirth.getText().toString(),
                 editUsername.getText().toString(),editEmail.getText().toString());
@@ -278,4 +275,5 @@ public class UpdateProfileActivity extends AppCompatActivity {
         });
 
     }
+
 }

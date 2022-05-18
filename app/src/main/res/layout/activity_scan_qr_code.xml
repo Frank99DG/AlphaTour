@@ -35,11 +35,11 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="665dp"
         android:layout_marginEnd="20dp"
-        android:padding="12dp"
         android:background="@drawable/bordi_tondi_button"
-        android:visibility="gone"
+        android:padding="12dp"
         android:text="@string/modify_object"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        android:visibility="gone" />
 
 
 </RelativeLayout>

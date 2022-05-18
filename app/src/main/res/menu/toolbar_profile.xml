@@ -9,6 +9,7 @@
         android:title="@string/tb_update"
         android:icon="@drawable/ic_pencil"
         app:showAsAction="ifRoom"
+
         />
 
     <item
@@ -16,6 +17,7 @@
         android:title="@string/tb_notify"
         android:icon="@drawable/ic_notification_icon_prova"
         app:showAsAction="ifRoom"
+
         />
 
 

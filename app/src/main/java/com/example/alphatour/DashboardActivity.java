@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,26 +15,19 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.alphatour.databinding.ActivityDashboardBinding;
 import com.example.alphatour.oggetti.ElementString;
 import com.example.alphatour.oggetti.Place;
-import com.example.alphatour.oggetti.User;
 import com.example.alphatour.oggetti.Zone;
+import com.example.alphatour.qrcode.ScanQrCodeActivity;
 import com.example.alphatour.wizardcreazione.CreationWizard;
 import com.example.alphatour.wizardpercorso.PercorsoWizard;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -71,7 +66,6 @@ public class DashboardActivity extends DrawerBaseActivity {
     private static String zona_scelta;
     private static String zona_vecchia;
     private ActivityDashboardBinding activityDashboardBinding;
-
     private int count;
 
     @Override
@@ -100,9 +94,31 @@ public class DashboardActivity extends DrawerBaseActivity {
         bottomNavBarClick();
 
         //impostazioni notifiche
-        notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
-        ft.replace(R.id.container,myFragment).hide(myFragment).commit();
+        //notificationCounter = new NotificationCounter(findViewById(R.id.notificationNumber));
+        //ft.replace(R.id.container,myFragment).hide(myFragment).commit();
 
+
+    }
+
+
+    //inserimento pulsanti toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar_dashboard, menu);
+        return true;
+    }
+
+    //funzionamento pulsanti toolbar
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.tb_notify:
+                return true;
+            default:
+                return onOptionsItemSelected(item);
+
+        }
 
     }
 
@@ -112,9 +128,9 @@ public class DashboardActivity extends DrawerBaseActivity {
         super.onPause();
 
         //notifiche
-        TextView view = (TextView) findViewById(R.id.notificationNumber);
+        /*TextView view = (TextView) findViewById(R.id.notificationNumber);
         String  counter_notify = (String) view.getText();
-        NotificationCounter.setCount(Integer.parseInt(counter_notify));
+        NotificationCounter.setCount(Integer.parseInt(counter_notify));*/
 
     }
 
@@ -123,7 +139,7 @@ public class DashboardActivity extends DrawerBaseActivity {
         super.onResume();
 
         //notifiche
-        if(NotificationCounter.getSend_notify()==true) {
+        /*if(NotificationCounter.getSend_notify()==true) {
             Toast.makeText(this, "You have a new notification", Toast.LENGTH_LONG).show();
             NotificationCounter.setSend_notify(false);
         }
@@ -141,7 +157,7 @@ public class DashboardActivity extends DrawerBaseActivity {
                 notificationCounter.increaseNumber();
             }invioProva.setN_notify(0);
             ageText.setText("Counter is: " + n_notify);
-        }
+        }*/
 
     }
 
@@ -150,7 +166,7 @@ public class DashboardActivity extends DrawerBaseActivity {
         super.onSaveInstanceState(savedInstanceState);
 
         //salvataggio notifiche
-       savedInstanceState.putCharSequence(KEY_COUNTER, notificationCounter.getNotificationNumber().getText());
+       //savedInstanceState.putCharSequence(KEY_COUNTER, notificationCounter.getNotificationNumber().getText());
 
     }
 
@@ -159,7 +175,7 @@ public class DashboardActivity extends DrawerBaseActivity {
         super.onRestoreInstanceState(savedInstanceState);
 
         //restore notifiche
-      this.notificationCounter.setTextNotify(savedInstanceState,KEY_COUNTER);
+      //this.notificationCounter.setTextNotify(savedInstanceState,KEY_COUNTER);
     }
 
     //per rimuovere il focus e la tastiera quando si clicca fuori dalla AutoCompleteTextView
@@ -219,42 +235,46 @@ public class DashboardActivity extends DrawerBaseActivity {
 
         List<String> list = new ArrayList<String>();
 
-        db.collection("Elements").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("Elements")
+                .whereEqualTo("idUser",idUser)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
 
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
                 if (!queryDocumentSnapshots.isEmpty()) {
-                    List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista elementi
+                    List<DocumentSnapshot> listDocuments = queryDocumentSnapshots.getDocuments(); //lista elementi
 
-                    for (DocumentSnapshot d : listDocument) {
+                    for (DocumentSnapshot d : listDocuments) {
                         ElementString element = d.toObject(ElementString.class);
 
-                        if( idUser.equals(element.getIdUser()) ){
                             String titleElement = element.getTitle();
                             list.add(titleElement);
-                        }
+
                     }
                 }
             }
         });
 
 
-        db.collection("Zones").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("Zones")
+                .whereEqualTo("idUser",idUser)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
 
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
                 if (!queryDocumentSnapshots.isEmpty()) {
-                    List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista zone
+                    List<DocumentSnapshot> listDocuments = queryDocumentSnapshots.getDocuments(); //lista zone
 
-                    for (DocumentSnapshot d : listDocument) {
+                    for (DocumentSnapshot d : listDocuments) {
                         Zone zone = d.toObject(Zone.class);
 
-                        if( idUser.equals(zone.getIdUser()) ){
-                            String nameZone = zone.getName();
-                            list.add(nameZone);
-                        }
+                        String nameZone = zone.getName();
+                        list.add(nameZone);
+
 
 
                     }
@@ -263,7 +283,10 @@ public class DashboardActivity extends DrawerBaseActivity {
         });
 
 
-        db.collection("Places").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("Places")
+                .whereEqualTo("idUser",idUser)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
 
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -274,10 +297,9 @@ public class DashboardActivity extends DrawerBaseActivity {
                     for (DocumentSnapshot d : listDocument) {
                         Place place = d.toObject(Place.class);
 
-                        if( idUser.equals(place.getIdUser()) ){
-                            String namePlace = place.getName();
-                            list.add(namePlace);
-                        }
+                        String namePlace = place.getName();
+                        list.add(namePlace);
+
 
                     }
                 }
@@ -310,8 +332,11 @@ public class DashboardActivity extends DrawerBaseActivity {
                                 ElementString element = d.toObject(ElementString.class);
 
                                 if( item.equals(element.getTitle()) ){
-                                    startActivity(new Intent(DashboardActivity.this, ModifyObjectActivity.class));
+                                    Intent intent = new Intent(DashboardActivity.this, ModifyObjectActivity.class);
+                                    intent.putExtra("data",element.getQrData()); //passo il qr code perchè ModifyObject cerca tra i qr code
+                                    startActivity(intent);
                                     inputSearch.setText(null);
+                                    break;
                                 }
                             }
                         }
@@ -333,6 +358,7 @@ public class DashboardActivity extends DrawerBaseActivity {
                                 if( item.equals(zone.getName())  ){
                                     startActivity(new Intent(DashboardActivity.this, ModifyZoneActivity.class));
                                     inputSearch.setText(null);
+                                    break;
                                 }
 
 
@@ -356,6 +382,7 @@ public class DashboardActivity extends DrawerBaseActivity {
                                 if( item.equals(place.getName()) ){
                                     startActivity(new Intent(DashboardActivity.this, ModifyPlaceActivity.class));
                                     inputSearch.setText(null);
+                                    break;
                                 }
 
                             }
@@ -368,6 +395,11 @@ public class DashboardActivity extends DrawerBaseActivity {
 
     }
 
+
+    public void scanQrCode(View v){
+        startActivity(new Intent(DashboardActivity.this, ScanQrCodeActivity.class));
+    }
+
     public void openRouteWizard(View v){
         startActivity(new Intent(DashboardActivity.this, PercorsoWizard.class));
     }
@@ -378,11 +410,11 @@ public class DashboardActivity extends DrawerBaseActivity {
 
     /*public void openCalendar(View v){
         startActivity(new Intent(DashboardActivity.this, .class));
-    }
+    }*/
 
     public void openUpdatePlace(View v){
-        startActivity(new Intent(DashboardActivity.this, .class));
-    }*/
+        startActivity(new Intent(DashboardActivity.this, ListPlacesActivity.class));
+    }
 
 
 

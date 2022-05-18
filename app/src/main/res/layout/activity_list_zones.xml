@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/sfondo"
+    tools:context=".ListPlacesActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true">
+
+
+        <TextView
+            android:id="@+id/listZonesText"
+            android:layout_width="189dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="111dp"
+            android:layout_marginTop="76dp"
+            android:layout_marginEnd="111dp"
+            android:fontFamily="@font/alata"
+            android:text="Lista Zone"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/specificPlaceText"
+            android:layout_width="189dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="111dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="111dp"
+            android:fontFamily="@font/alata"
+            android:text="Place"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listZonesText" />
+
+        <TextView
+            android:id="@+id/updateZoneInfo"
+            android:layout_width="301dp"
+            android:layout_height="63dp"
+            android:layout_marginStart="111dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="108dp"
+            android:fontFamily="@font/alata"
+            android:text="seleziona la zona che desideri modificare"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.513"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/specificPlaceText" />
+
+        <ProgressBar
+            android:id="@+id/updatePlaceLoadingBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="64dp"
+            android:elevation="10dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/listZonesText" />
+
+        <LinearLayout
+            android:id="@+id/listZonesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/updateZoneInfo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</androidx.core.widget.NestedScrollView>
