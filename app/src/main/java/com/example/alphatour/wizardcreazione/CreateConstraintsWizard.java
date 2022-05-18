@@ -4,12 +4,15 @@ import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
+import com.example.alphatour.connection.Receiver;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +35,7 @@ import android.widget.Toast;
 
 import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.R;
+import com.example.alphatour.connection.Receiver;
 import com.example.alphatour.dblite.AlphaTourContract;
 import com.example.alphatour.dblite.AlphaTourDbHelper;
 import com.example.alphatour.dblite.CommandDbAlphaTour;
@@ -60,6 +64,7 @@ import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
+import android.net.ConnectivityManager;
 
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultEdge;
@@ -103,6 +108,8 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     private int i,j;
     private boolean flag1 = false;
     private boolean flag2 = false;
+    private Receiver receiver;
+    private long res=-1;
 
 
     public CreateConstraintsWizard() {
@@ -233,8 +240,27 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     }
 
 
-    public void saveZonesAndConstraintInGraph() {
+    @Override
+    public void onResume() {
+        super.onResume();
+        /**controllo connessione**/
+        receiver=new Receiver();
 
+        broadcastIntent();
+    }
+
+    private void broadcastIntent() {
+        requireActivity().registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        requireActivity().unregisterReceiver(receiver);
+    }
+
+
+    public void saveZonesAndConstraintInGraph() {
         Graph<Zone,DefaultEdge> zones = new SimpleDirectedGraph<>(DefaultEdge.class);
 
         for (String nameZone : zone_list){
@@ -278,15 +304,19 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
             @Override
             public void onClick(View view) {
                 loadingBar.setVisibility(View.VISIBLE);
+                if(receiver.isConnected()){
+                    savePlace();
+                }else{
+                    res=saveOnDbLocal(zone_list,CreateObjectWizard.getElementList());
+                }
                 savePlace();
-                saveOnDbLocal(zone_list,CreateObjectWizard.getElementList());
                 dialog.dismiss();
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
 
-                        if(success) {
+                        if(success || res!=-1) {
                             Intent intent = new Intent(getContext(), DashboardActivity.class);
                             startActivity(intent);
                             loadingBar.setVisibility(View.GONE);
@@ -652,12 +682,15 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
             }
         });
     }
-    private void saveOnDbLocal(ArrayList<String> zone_list, List<Element> elementList) {
+    private long saveOnDbLocal(ArrayList<String> zone_list, List<Element> elementList) {
 
-        savePlaceLocal();
-        saveZonesLocal(zone_list);
-        saveConstraintsLocal();
-        saveObjectsLocal(elementList);
+        long result=-1;
+        result=savePlaceLocal();
+        result=saveZonesLocal(zone_list);
+        result=saveConstraintsLocal();
+        result=saveObjectsLocal(elementList);
+
+        return result;
     }
 
     private long saveObjectsLocal(List<Element> elementList) {
