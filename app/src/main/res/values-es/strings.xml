@@ -118,6 +118,15 @@
     <string name="description">Descripción</string>
     <string name="photo_object">foto del objeto</string>
     <string name="zone_of_belonging">Zona de pertenencia</string>
+    <string name="delete_zone">Borrar Zona</string>
+    <string name="delete_zone_text">¿Está seguro de que desea eliminar la zona creada?</string>
+    <string name="cancel">Cancelar</string>
+    <string name="delete">Eliminar</string>
+    <string name="new_object">Nuevo Objeto</string>
+    <string name="add_object">Agregar Objeto</string>
+    <string name="created_objects">OBJETOS CREADOS</string>
+    <string name="new_zone">Nueva Area</string>
+
 
     <string name="dashboard_button_back">Volver a dashboard</string>
     <string name="zones_button_next">Crear zonas</string>

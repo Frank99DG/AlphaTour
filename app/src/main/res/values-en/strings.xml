@@ -118,6 +118,14 @@
     <string name="description">Description</string>
     <string name="photo_object">Photo of the object</string>
     <string name="zone_of_belonging">Zone of belonging</string>
+    <string name="delete_zone">Delete Zone</string>
+    <string name="delete_zone_text">Are you sure you want to delete the created zone?</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="new_object">New Object</string>
+    <string name="add_object">Add Oggetto</string>
+    <string name="created_objects">CREATED OBJECTS</string>
+    <string name="new_zone">New Area</string>
 
     <string name="dashboard_button_back">Back to the dashboard</string>
     <string name="zones_button_next">Create Zone</string>

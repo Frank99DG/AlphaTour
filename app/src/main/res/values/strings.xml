@@ -123,6 +123,17 @@
     <string name="description">Descrizione</string>
     <string name="photo_object">Foto oggetto</string>
     <string name="zone_of_belonging">Zona di appartenenza</string>
+    <string name="delete_zone">Elimina Zona</string>
+    <string name="delete_zone_text">Sei sicuro di voler eliminare la zona creata ?</string>
+    <string name="cancel">Annulla</string>
+    <string name="delete">Elimina</string>
+    <string name="new_object">Nuovo Oggetto</string>
+    <string name="add_object">Aggiungi Oggetto</string>
+    <string name="created_objects">OGGETTI CREATI</string>
+    <string name="new_zone">Nuova Zona</string>
+
+
+
 
     <string name="dashboard_button_back">Torna alla dashboard</string>
     <string name="zones_button_next">Crea Zona</string>
