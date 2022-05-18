@@ -110,6 +110,9 @@
     <string name="time">Time</string>
     <string name="daily">Daily</string>
 
+    <string name="change_password_text">Change the password after entering the current one</string>
+    <string name="object_details">Object details</string>
+
 
     <string name="dashboard_button_back">Back to the dashboard</string>
     <string name="zones_button_next">Create Zone</string>

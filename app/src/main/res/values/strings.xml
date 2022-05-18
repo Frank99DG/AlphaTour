@@ -114,6 +114,9 @@
     <string name="time">Ora</string>
     <string name="daily">Giornaliero</string>
 
+    <string name="change_password_text">Modifica la password dopo l’inserimento di quella corrente</string>
+    <string name="object_details">Dettagli oggetto</string>
+
 
     <string name="dashboard_button_back">Torna alla dashboard</string>
     <string name="zones_button_next">Crea Zona</string>

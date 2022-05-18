@@ -110,6 +110,9 @@
     <string name="time">Heure</string>
     <string name="daily">Du Quotidien</string>
 
+    <string name="change_password_text">Changer le mot de passe après avoir saisi celui en cours</string>
+    <string name="object_details">Détails de l'objet</string>
+
     <string name="dashboard_button_back">Retour au dashboard</string>
     <string name="zones_button_next">Créer une zone</string>
     <string name="place_button_back">Retour aux données Localisation</string>
