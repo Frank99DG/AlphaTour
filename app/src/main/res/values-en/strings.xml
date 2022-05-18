@@ -112,7 +112,12 @@
 
     <string name="change_password_text">Change the password after entering the current one</string>
     <string name="object_details">Object details</string>
-
+    <string name="object_title">Object title</string>
+    <string name="object_description">Object description</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="photo_object">Photo of the object</string>
+    <string name="zone_of_belonging">Zone of belonging</string>
 
     <string name="dashboard_button_back">Back to the dashboard</string>
     <string name="zones_button_next">Create Zone</string>

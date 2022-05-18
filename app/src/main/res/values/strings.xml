@@ -92,6 +92,7 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_activity_navigation">NavigationActivity</string>
 
+
     <string name="qr_generator">Il tuo codice apparirà qui</string>
     <string name="qr_embedded">Aggiungi il nome oggetto da inserire nel QR Code</string>
     <string name="qr_generate">Genera QR Code</string>
@@ -116,7 +117,12 @@
 
     <string name="change_password_text">Modifica la password dopo l’inserimento di quella corrente</string>
     <string name="object_details">Dettagli oggetto</string>
-
+    <string name="object_title">Titolo oggetto</string>
+    <string name="object_description">Descrizione oggetto</string>
+    <string name="title">Titolo</string>
+    <string name="description">Descrizione</string>
+    <string name="photo_object">Foto oggetto</string>
+    <string name="zone_of_belonging">Zona di appartenenza</string>
 
     <string name="dashboard_button_back">Torna alla dashboard</string>
     <string name="zones_button_next">Crea Zona</string>

@@ -112,8 +112,12 @@
 
     <string name="change_password_text">Cambiar la contraseña después de ingresar la actual</string>
     <string name="object_details">Detalles del objeto</string>
-
-
+    <string name="object_title">Título del objeto</string>
+    <string name="object_description">Descripción del objeto</string>
+    <string name="title">Título</string>
+    <string name="description">Descripción</string>
+    <string name="photo_object">foto del objeto</string>
+    <string name="zone_of_belonging">Zona de pertenencia</string>
 
     <string name="dashboard_button_back">Volver a dashboard</string>
     <string name="zones_button_next">Crear zonas</string>
