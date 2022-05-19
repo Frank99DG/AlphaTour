@@ -42,6 +42,10 @@
     <string name="tb_profile">PROFILE</string>
     <string name="tb_home">HOME</string>
     <string name="tb_routes">MY ROUTE</string>
+    <string name="tb_share_path">SHARE PATH</string>
+    <string name="tb_logout">LOGOUT</string>
+    <string name="tb_notify">NOTIFICATIONS</string>
+    <string name="tb_update">UPDATE</string>
     <string name="im_view"> </string>
     <string name="search">Search</string>
     <!--activity_dashboard_curatore(des)end-->
@@ -158,6 +162,14 @@
     <string name="title_creation_3">Create Oblects</string>
     <string name="title_creation_4">Create Constraints</string>
 
+    <string name="element_details">Element details</string>
+    <string name="owner_zone">Zone of Belonging</string>
+    <string name="title_element">Title Element</string>
+    <string name="description_element">Description Element</string>
+    <string name="photo_element">Photo Element</string>
+    <string name="qr_code_element">QrCode Element</string>
+    <string name="save">Save</string>
+
 
     <string name="large_text">
         "Material is the metaphor.\n\n"
@@ -260,10 +272,15 @@
     <string name="end">End</string>
     <string name="backTo_path">Back to create route </string>
     <string name="backTo_zone">Back to choose zone </string>
+    <string name="backTo_review">Back to summary</string>
 
     <string name="string_step2">Select the area you want to visit </string>
     <string name="string_step3">Select the objects you want to visit</string>
     <string name="addzone_step3">Add new zone</string>
+    <string name="title_activity_bbb">BBB</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
     <string name="title_step3">Create your route</string>
 
 </resources>

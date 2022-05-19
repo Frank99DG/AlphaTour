@@ -42,6 +42,10 @@
     <string name="tb_profile">PERFIL</string>
     <string name="tb_home">HOME</string>
     <string name="tb_routes">MIS RUTAS</string>
+    <string name="tb_share_path">COMPARTIR RUTA</string>
+    <string name="tb_logout">LOGOUT</string>
+    <string name="tb_notify">NOTIFICACIONES</string>
+    <string name="tb_update">UPDATE</string>
     <string name="im_view"> </string>
     <string name="search">Busque en</string>
     <!--activity_dashboard_curatore(des)end-->
@@ -159,6 +163,14 @@
     <string name="title_creation_3">Crear objetos</string>
     <string name="title_creation_4">Crear restricciones</string>
 
+    <string name="element_details">Detalles del Artículo</string>
+    <string name="owner_zone">Zona de Pertenencia</string>
+    <string name="title_element">Título del Artículo</string>
+    <string name="description_element">Descripción Artículo</string>
+    <string name="photo_element">Artículo de foto</string>
+    <string name="qr_code_element">QrCode Artículo</string>
+    <string name="save">Guardar</string>
+
 
     <string name="large_text">
         "Material is the metaphor.\n\n"
@@ -263,8 +275,14 @@
     <string name="backTo_zone">Volver a la selección de zonas </string>
     <string name="backTo_review">Volver al resumen</string>
 
+
     <string name="string_step2">Seleccione la zona que desea visitar</string>
     <string name="string_step3">Seleccione los objetos que desea visitar</string>
     <string name="addzone_step3">Añadir otra zona</string>
+    <string name="title_activity_bbb">BBB</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_step3">Crea tu ruta</string>
 
 </resources>
