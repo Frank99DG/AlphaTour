@@ -123,17 +123,14 @@ public class CreateJsonActivity extends AppCompatActivity {
 
 
         if (checkPermission()) {
-            Toast.makeText(this, "Permission granted", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.permission_granted, Toast.LENGTH_LONG).show();
         } else {
             if (ActivityCompat.shouldShowRequestPermissionRationale(CreateJsonActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 dialog.show();
                 yesFinal.setText("OK");
 
-                titleDialog.setText("Richiesta Permesso");
-                textDialog.setText("Caro utente, la prossima schermata ti chiederà di concedere il permesso di scrittura nella memoria " +
-                        "del tuo dispositivo. Ciò è necessario esclusivamente per scaricare sul tuo dispositivo il percorso che hai creato" +
-                        ", così da poterlo avere sempre a portata di mano. Non accederemo in alcun modo ad altri file nè " +
-                        "divulgeremo dati a terze parti. Ti ringraziamo in anticipo !");
+                titleDialog.setText(R.string.permit_required);
+                textDialog.setText(R.string.permission_text);
                 textDialog.setTextColor(getResources().getColor(R.color.black));
 
                 yesFinal.setOnClickListener(new View.OnClickListener() {
@@ -255,9 +252,9 @@ public class CreateJsonActivity extends AppCompatActivity {
 
         if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED ) {
 
-            Toast.makeText(this, "Permission granted", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.permission_granted, Toast.LENGTH_LONG).show();
         }else{
-            Toast.makeText(this,"Permission denied",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.permission_denied,Toast.LENGTH_LONG).show();
 
         }
     }

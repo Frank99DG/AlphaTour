@@ -129,7 +129,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
                     }
 
                     if(registered == false){
-                        Toast.makeText(UpdateProfileActivity.this,"Utente non registrato",Toast.LENGTH_LONG).show();
+                        Toast.makeText(UpdateProfileActivity.this,R.string.unregistered_user,Toast.LENGTH_LONG).show();
                     }else{
                         loadingBar.setVisibility(View.GONE);
                     }

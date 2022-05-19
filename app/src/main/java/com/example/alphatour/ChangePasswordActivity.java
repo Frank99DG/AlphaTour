@@ -135,7 +135,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                                         });
 
                                     } else {
-                                        Toast.makeText(ChangePasswordActivity.this, "Autenticazione fallita, password errata!"/*getString(R.string.login_fallito)*/, Toast.LENGTH_LONG).show();
+                                        Toast.makeText(ChangePasswordActivity.this, R.string.wrong_password/*getString(R.string.login_fallito)*/, Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
                                     }
 

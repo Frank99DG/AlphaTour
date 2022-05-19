@@ -145,7 +145,7 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if (task.isSuccessful()) {
-                                    Toast.makeText(LoginActivity.this, "Accesso compiuto", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(LoginActivity.this, R.string.access_completed, Toast.LENGTH_LONG).show();
                                     startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                                     loadingBar.setVisibility(View.GONE);
 

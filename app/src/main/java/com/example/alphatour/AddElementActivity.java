@@ -161,13 +161,13 @@ public class AddElementActivity extends AppCompatActivity{
                 photo.setError(null);
                 Toast.makeText(AddElementActivity.this, R.string.upload_photo, Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(AddElementActivity.this, "Non hai aggiunto la foto!", Toast.LENGTH_LONG).show();
+                Toast.makeText(AddElementActivity.this, R.string.not_add_photo, Toast.LENGTH_LONG).show();
             }
             //salvataggio foto
         }else{
 
             setQr(GenerateQrCodeActivity.getBitmap());
-            Toast.makeText(AddElementActivity.this,"QrCode generato con successo !", Toast.LENGTH_LONG).show();
+            Toast.makeText(AddElementActivity.this,R.string.qr_generation, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -241,7 +241,7 @@ public class AddElementActivity extends AppCompatActivity{
                 setResult(Activity.RESULT_OK, intent);
                 finish();
             }else{
-                Toast.makeText(AddElementActivity.this, "L'oggetto che vuoi creare esiste già", Toast.LENGTH_LONG).show();
+                Toast.makeText(AddElementActivity.this, R.string.object_already_exists, Toast.LENGTH_LONG).show();
             }
         }
     }

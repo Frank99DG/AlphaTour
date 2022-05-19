@@ -123,9 +123,27 @@
     <string name="cancel">Cancel</string>
     <string name="delete">Delete</string>
     <string name="new_object">New Object</string>
-    <string name="add_object">Add Oggetto</string>
+    <string name="add_object">Add Object</string>
     <string name="created_objects">CREATED OBJECTS</string>
-    <string name="new_zone">New Area</string>
+    <string name="new_zone">New Zone</string>
+    <string name="created_zone">CREATED ZONE</string>
+    <string name="add_zone">Add Zone</string>
+    <string name="constraints_zones">constraints between zones</string>
+    <string name="constraints_zones_text">Decide which direction you can move between zones</string>
+    <string name="not_add_photo">You did not add the photo!</string>
+    <string name="qr_generation">QrCode generated successfully!</string>
+    <string name="object_already_exists">The object you want to create already exists</string>
+    <string name="wrong_password">Authentication failed, wrong password!</string>
+    <string name="permission_text">Dear user, the next screen will ask you to grant write permission to memory " +
+                        "of your device. This is only necessary to download the path you have created" +
+                        ", so that you can always have it at hand. We will not access any other files or" +
+                        "we will disclose data to third parties. Thank you in advance!</string>
+    <string name="permission_granted">Permission granted</string>
+    <string name="permit_required">Permit required</string>
+    <string name="permission_denied">Permission denied</string>
+    <string name="access_completed">access completed</string>
+    <string name="unregistered_user">Unregistered user</string>
+    <string name="object">Object</string>
 
     <string name="dashboard_button_back">Back to the dashboard</string>
     <string name="zones_button_next">Create Zone</string>

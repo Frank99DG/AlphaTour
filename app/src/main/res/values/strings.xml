@@ -131,8 +131,24 @@
     <string name="add_object">Aggiungi Oggetto</string>
     <string name="created_objects">OGGETTI CREATI</string>
     <string name="new_zone">Nuova Zona</string>
-
-
+    <string name="created_zone">ZONE CREATE</string>
+    <string name="add_zone">Aggiungi Zona</string>
+    <string name="constraints_zones">Vincoli tra zone</string>
+    <string name="constraints_zones_text">Decidi in che direzione ci si può spostare tra zone</string>
+    <string name="not_add_photo">Non hai aggiunto la foto!</string>
+    <string name="qr_generation">QrCode generato con successo!</string>
+    <string name="object_already_exists">L’oggetto che vuoi creare esiste già</string>
+    <string name="wrong_password">Autenticazione fallita, password errata!</string>
+    <string name="permission_text">Caro utente, la prossima schermata ti chiederà di concedere il permesso di scrittura nella memoria " +
+                        "del tuo dispositivo. Ciò è necessario esclusivamente per scaricare sul tuo dispositivo il percorso che hai creato" +
+                        ", così da poterlo avere sempre a portata di mano. Non accederemo in alcun modo ad altri file nè " +
+                        "divulgeremo dati a terze parti. Ti ringraziamo in anticipo !</string>
+    <string name="permission_granted">Permesso accordato</string>
+    <string name="permit_required">Richiesta permesso</string>
+    <string name="permission_denied">Permesso negato</string>
+    <string name="access_completed">Accesso compiuto</string>
+    <string name="unregistered_user">Utente non registrato</string>
+    <string name="object">Oggetto</string>
 
 
     <string name="dashboard_button_back">Torna alla dashboard</string>

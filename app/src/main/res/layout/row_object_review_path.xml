@@ -14,7 +14,7 @@
         android:paddingRight="20dp"
         android:background="@android:drawable/editbox_dropdown_light_frame"
         android:gravity="center"
-        android:text="Object"
+        android:text="@string/object"
         android:textColor="@color/Black"
         android:textSize="20dp"
         android:textStyle="bold"
