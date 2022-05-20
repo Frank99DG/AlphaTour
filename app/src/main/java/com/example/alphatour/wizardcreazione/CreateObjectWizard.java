@@ -113,7 +113,6 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
         user = auth.getCurrentUser();
         storegeProfilePick= FirebaseStorage.getInstance().getReference();
 
-
         dialog=new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_delete);
         dialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroun_dialog));

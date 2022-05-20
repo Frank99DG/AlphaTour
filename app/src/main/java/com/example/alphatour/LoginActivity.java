@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Rect;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.MotionEvent;
@@ -17,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.alphatour.connection.Receiver;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -32,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText email, password;
     private ProgressBar loadingBar;
     private FirebaseAuth auth;
+    private Receiver receiver;
 
 
 
@@ -48,8 +52,22 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause() {
+    public void onResume() {
+        super.onResume();
+        /**controllo connessione**/
+        receiver=new Receiver();
+
+        broadcastIntent();
+    }
+
+    private void broadcastIntent() {
+        registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    @Override
+    public void onPause() {
         super.onPause();
+        unregisterReceiver(receiver);
     }
 
 

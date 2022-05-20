@@ -1,5 +1,8 @@
 package com.example.alphatour.wizardpercorso;
 
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,6 +23,7 @@ import com.devzone.checkabletextview.CheckableTextView;
 import com.devzone.checkabletextview.CheckedListener;
 import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.R;
+import com.example.alphatour.connection.Receiver;
 import com.example.alphatour.oggetti.Constraint;
 import com.example.alphatour.oggetti.ElementString;
 import com.example.alphatour.oggetti.Place;
@@ -29,6 +33,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
@@ -59,6 +64,7 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     private FirebaseUser user;
     private static String Place;
     private String idPlace;
+    private Receiver receiver;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,6 +74,7 @@ public class Step2 extends Fragment implements Step, BlockingStep {
         list_zone = view.findViewById(R.id.list_zone);
         title_Step2 = view.findViewById(R.id.title_step2);
         loadingbar=view.findViewById(R.id.zoneLoadingBar);
+
 
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
@@ -89,11 +96,33 @@ public class Step2 extends Fragment implements Step, BlockingStep {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        /**controllo connessione**/
+        receiver=new Receiver();
+
+        broadcastIntent();
+    }
+
+    private void broadcastIntent() {
+        requireActivity().registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        requireActivity().unregisterReceiver(receiver);
+    }
+
+
     public void getZones(){
 
-
-
         loadingbar.setVisibility(View.VISIBLE);
+
+        if(!receiver.isConnected()){
+
+        }
         db.collection("Zones").whereEqualTo("idUser", user.getUid() ).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
 
             @Override
@@ -148,7 +177,7 @@ public class Step2 extends Fragment implements Step, BlockingStep {
                             });
                         }
 
-                    }else {
+                     }else {
                         db.collection("Constraints").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
                             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

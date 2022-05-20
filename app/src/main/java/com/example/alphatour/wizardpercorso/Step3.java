@@ -24,6 +24,7 @@ import com.example.alphatour.oggetti.MapZoneAndObject;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.stepstone.stepper.BlockingStep;
@@ -60,6 +61,8 @@ public class Step3 extends Fragment implements Step, BlockingStep {
         list_object = view.findViewById(R.id.list_object);
 
         db = FirebaseFirestore.getInstance();
+
+
 
         dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_step3);
@@ -200,7 +203,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
             }
         }if(control){
 
-            MapZoneAndObject zoneAndObject = new MapZoneAndObject(DashboardActivity.getZona_scelta(),oggetti_scelti,Step1.getNamePath(),Step1.getDescriptionPath());
+            MapZoneAndObject zoneAndObject = new MapZoneAndObject(DashboardActivity.getZona_scelta(),oggetti_scelti,PercorsoWizard.getNamePath(),PercorsoWizard.getDescriptionPath());
             zoneAndObjectList.add(zoneAndObject);
 
         }

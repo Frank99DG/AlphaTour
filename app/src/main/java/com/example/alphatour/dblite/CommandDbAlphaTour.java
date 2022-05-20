@@ -25,6 +25,7 @@ public final class CommandDbAlphaTour {
         public static final String DROP_TABLE="drop Table if exists";
         public static final String COMMA=",";
         public static final String SPACE=" ";
+        public static final String ALL="*";
 
         /**creazione tabella utente**/
         public static final String CREATE_USER_TABLE=CREATE_TABLE+SPACE+AlphaTourContract.AlphaTourEntry.NAME_TABLE_USER+
@@ -72,22 +73,48 @@ public final class CommandDbAlphaTour {
                 AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ELEMENT_LOAD+SPACE+TYPE_TEXT+")";
 
 
+        /**creazione tabella percorso**/
+        public static final String CREATE_PATH_TABLE=CREATE_TABLE+SPACE+AlphaTourContract.AlphaTourEntry.NAME_TABLE_PATH+
+                "("+AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_ID+SPACE+TYPE_INTEGER+SPACE+PRIMARY_KEY+COMMA+
+                AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_NAME+SPACE+TYPE_TEXT+COMMA+
+                AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_DESCRIPTION+SPACE+TYPE_TEXT+COMMA+
+                //AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_PLACE+SPACE+TYPE_INTEGER+COMMA+
+                AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_LOAD+SPACE+TYPE_TEXT+")";
+
+
+        /**creazione tabella percorso**/
+        public static final String CREATE_PATH_CONTAINS_TABLE=CREATE_TABLE+SPACE+AlphaTourContract.AlphaTourEntry.NAME_TABLE_PATH_CONTAINS+
+                "("+AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_CONTAINS_ID_CONTAINS+SPACE+TYPE_INTEGER+SPACE+PRIMARY_KEY+COMMA+
+                AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_CONTAINS_ID_PATH+SPACE+TYPE_INTEGER+COMMA+
+                AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_CONTAINS_ZONE+SPACE+TYPE_TEXT+COMMA+
+                AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_CONTAINS_OBJECT+SPACE+TYPE_TEXT+COMMA+
+                AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_CONTAINS_LOAD+SPACE+TYPE_TEXT+")";
+
+
+
+
         /**eliminazione tabella utente**/
         public static final String DELETE_USER_TABLE=DROP_TABLE+SPACE+AlphaTourContract.AlphaTourEntry.NAME_TABLE_USER;
 
         /**eliminazione tabella luogo**/
         public static final String DELETE_PLACE_TABLE=DROP_TABLE+SPACE+AlphaTourContract.AlphaTourEntry.NAME_TABLE_PLACE;
 
-        /**eliminazione tabella **/
+        /**eliminazione tabella zone **/
         public static final String DELETE_ZONE_TABLE=DROP_TABLE+SPACE+AlphaTourContract.AlphaTourEntry.NAME_TABLE_ZONE;
 
-        /**eliminazione tabella **/
+        /**eliminazione tabella constraints**/
         public static final String DELETE_CONSTRAINTS_TABLE=DROP_TABLE+SPACE+AlphaTourContract.AlphaTourEntry.NAME_TABLE_CONSTRAINTS;
 
-        /**eliminazione tabella utente**/
+        /**eliminazione tabella element**/
         public static final String DELETE_ELEMENT_TABLE=DROP_TABLE+SPACE+AlphaTourContract.AlphaTourEntry.NAME_TABLE_ELEMENT;
 
-        //aggiornamento dati utente
+        /**eliminazione tabella element**/
+        public static final String DELETE_PATH_TABLE=DROP_TABLE+SPACE+AlphaTourContract.AlphaTourEntry.NAME_TABLE_PATH;
+
+        /**eliminazione tabella element**/
+        public static final String DELETE_PATH_CONTAINS_TABLE=DROP_TABLE+SPACE+AlphaTourContract.AlphaTourEntry.NAME_TABLE_CONSTRAINTS;
+
+        /**aggiornamento dati utente**/
         public static final String SELECT_USER_PROFILE=SELECT+SPACE+AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_ID+SPACE+
                 FROM+SPACE+AlphaTourContract.AlphaTourEntry.NAME_TABLE_USER+SPACE+WHERE+SPACE+
                 AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_EMAIL+SPACE+EQUAL+SPACE+"?";
@@ -101,5 +128,11 @@ public final class CommandDbAlphaTour {
         public static final String SELECT_ID_ZONE=SELECT+SPACE+AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ZONE_ID+SPACE+
                 FROM+SPACE+AlphaTourContract.AlphaTourEntry.NAME_TABLE_ZONE+SPACE+WHERE+SPACE+
                 AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ZONE_NAME+SPACE+EQUAL+SPACE+"?";
+
+        /**recupero id percorso **/
+        public static final String SELECT_ID_PATH=SELECT+SPACE+AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_ID+SPACE+
+                FROM+SPACE+AlphaTourContract.AlphaTourEntry.NAME_TABLE_PATH+SPACE+WHERE+SPACE+
+                AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_NAME+SPACE+EQUAL+SPACE+"?";
+
     }
 }

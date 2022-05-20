@@ -35,7 +35,6 @@ import android.widget.Toast;
 
 import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.R;
-import com.example.alphatour.connection.Receiver;
 import com.example.alphatour.dblite.AlphaTourContract;
 import com.example.alphatour.dblite.AlphaTourDbHelper;
 import com.example.alphatour.dblite.CommandDbAlphaTour;
@@ -64,7 +63,6 @@ import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
-import android.net.ConnectivityManager;
 
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultEdge;
@@ -96,7 +94,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     private TextView titleDialog,textDialog;
     private ProgressBar loadingBar;
     private Map<String, Object> elm = new HashMap<>();
-    private boolean success=false;
+    private boolean success=false, load=true;
     private List<String> uriUploadPhoto=new ArrayList<String>();
     private List<String> uriUploadQrCode=new ArrayList<String>();
     private long idPhotoAndQrCode,id;
@@ -306,10 +304,13 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                 loadingBar.setVisibility(View.VISIBLE);
                 if(receiver.isConnected()){
                     savePlace();
+                    load=true;
+                    res=saveOnDbLocal(zone_list,CreateObjectWizard.getElementList(),load);
                 }else{
-                    res=saveOnDbLocal(zone_list,CreateObjectWizard.getElementList());
+                    savePlace();
+                    load=false;
+                    res=saveOnDbLocal(zone_list,CreateObjectWizard.getElementList(), load);
                 }
-                savePlace();
                 dialog.dismiss();
 
                 new Handler().postDelayed(new Runnable() {
@@ -682,7 +683,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
             }
         });
     }
-    private long saveOnDbLocal(ArrayList<String> zone_list, List<Element> elementList) {
+    private long saveOnDbLocal(ArrayList<String> zone_list, List<Element> elementList, boolean load) {
 
         long result=-1;
         result=savePlaceLocal();
@@ -708,7 +709,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
             values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ELEMENT_DESCRIPTION,elm.getDescription());
             values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ELEMENT_PHOTO,elm.getPhoto().toString());
             values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ELEMENT_QR_CODE,elm.getQrData());
-            values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ELEMENT_LOAD,"false");
+            values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ELEMENT_LOAD,load);
             newRowId=db.insert(AlphaTourContract.AlphaTourEntry.NAME_TABLE_ELEMENT,AlphaTourContract.AlphaTourEntry.COLUMN_NAME_NULLABLE,values);
         }
 
@@ -739,7 +740,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
             Constraint constraint=listConstranints.get(j);
             values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_CONSTRAINTS_FROM_ZONE,constraint.getFromZone());
             values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_CONSTRAINTS_IN_ZONE,constraint.getInZone());
-            values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_CONSTRAINTS_LOAD,"false");
+            values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_CONSTRAINTS_LOAD,load);
             newRowId=db.insert(AlphaTourContract.AlphaTourEntry.NAME_TABLE_CONSTRAINTS,AlphaTourContract.AlphaTourEntry.COLUMN_NAME_NULLABLE,values);
         }
         return newRowId;
@@ -758,7 +759,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
 
             values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ZONE_NAME,zone_list.get(i));
             values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ZONE_ID_PLACE,idPlace);
-            values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ZONE_LOAD,"false");
+            values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_ZONE_LOAD,load);
             newRowId=db.insert(AlphaTourContract.AlphaTourEntry.NAME_TABLE_ZONE,AlphaTourContract.AlphaTourEntry.COLUMN_NAME_NULLABLE,values);
         }
 
@@ -790,7 +791,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
         values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PLACE_NAME,CreatePlaceWizard.getNamePlace());
         values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PLACE_CITY,CreatePlaceWizard.getCity());
         values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PLACE_TYPOLOGY,CreatePlaceWizard.getCity());
-        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PLACE_LOAD,"false");
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PLACE_LOAD,load);
 
         newRowId=db.insert(AlphaTourContract.AlphaTourEntry.NAME_TABLE_PLACE,AlphaTourContract.AlphaTourEntry.COLUMN_NAME_NULLABLE,values);
 

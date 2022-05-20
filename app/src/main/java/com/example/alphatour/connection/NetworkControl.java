@@ -2,7 +2,6 @@ package com.example.alphatour.connection;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
-import android.net.Network;
 import android.net.NetworkInfo;
 
 public class NetworkControl {
@@ -18,7 +17,7 @@ public class NetworkControl {
                 return status;
             }else{
                 if(activityNetwork.getType() == ConnectivityManager.TYPE_MOBILE){
-                    status="Mobile data  enabled";
+                    status="Mobile data enabled";
                     return status;
                 }
             }

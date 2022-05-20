@@ -1,7 +1,12 @@
 package com.example.alphatour.wizardpercorso;
 
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,6 +27,10 @@ import com.example.alphatour.CreateJsonActivity;
 import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.NotificationCounter;
 import com.example.alphatour.R;
+import com.example.alphatour.connection.Receiver;
+import com.example.alphatour.dblite.AlphaTourContract;
+import com.example.alphatour.dblite.AlphaTourDbHelper;
+import com.example.alphatour.dblite.CommandDbAlphaTour;
 import com.example.alphatour.oggetti.MapZoneAndObject;
 import com.example.alphatour.oggetti.Path;
 import com.example.alphatour.oggetti.ZoneChoosed;
@@ -31,6 +40,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
@@ -65,6 +75,7 @@ public class Step4 extends Fragment implements Step, BlockingStep {
     private Dialog dialog_delete;
     private TextView dialog_title;
     private ImageView dialog_delete_image;
+    private Receiver receiver;
 
     public static void setCounter(int counter) {
         Step4.counter = counter;
@@ -88,6 +99,8 @@ public class Step4 extends Fragment implements Step, BlockingStep {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         user = auth.getCurrentUser();
+
+
 
         dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_step4);
@@ -116,6 +129,26 @@ public class Step4 extends Fragment implements Step, BlockingStep {
 
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        /**controllo connessione**/
+        receiver=new Receiver();
+
+        broadcastIntent();
+    }
+
+    private void broadcastIntent() {
+        requireActivity().registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        requireActivity().unregisterReceiver(receiver);
+    }
+
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
@@ -262,22 +295,38 @@ public class Step4 extends Fragment implements Step, BlockingStep {
                     path.setZonePath(zoneChoosed);
                // }
             }
-                db.collection("Path")
-                        .add(path)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Toast.makeText(getContext(),"Percorso creato con successo",Toast.LENGTH_SHORT).show();
-                                //clear_Zones();
-                                moveToDashboard();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
+            if(receiver.isConnected()) {
+
+                savePathRemote(path);
+                savePathLocal(path);
+
+            }else{
+
+                savePathRemote(path);
+                savePathLocal(path);
+                moveToDashboard();
+                progressBar.setVisibility(View.GONE);
+            }
+    }
+
+    private void savePathRemote(Path path) {
+
+        db.collection("Path")
+                .add(path)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
-                    public void onFailure(@NonNull Exception e) {
-                        progressBar.setVisibility(View.GONE);
-                        Toast.makeText(getContext(),"Non è stato possibile creare il percorso",Toast.LENGTH_SHORT).show();
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(getContext(), "Percorso creato con successo", Toast.LENGTH_SHORT).show();
+                        //clear_Zones();
+                        moveToDashboard();
                     }
-                });
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(getContext(), "Non è stato possibile creare il percorso", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void moveToDashboard() {
@@ -301,16 +350,26 @@ public class Step4 extends Fragment implements Step, BlockingStep {
     @Override
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
 
-        for(int i =0; i<zone_select.size();i++){
-            if(i==zone_select.size()-1){
-                PercorsoWizard.setZone(zone_select.get(i));
+        if (zone_select.size() != 0){
+            for (int i = 0; i < zone_select.size(); i++) {
+                if (i == zone_select.size() - 1) {
+                    PercorsoWizard.setZone(zone_select.get(i));
+                }
             }
+
+            Intent intent = new Intent(getContext(), PercorsoWizard.class);
+            intent.putExtra("val", 1);
+            startActivity(intent);
+            PercorsoWizard.setZonePassFromReview(true);
+            DashboardActivity.setFirstZoneChosen(true);
+       }else{
+            PercorsoWizard.setZonePassFromReview(false);
+            DashboardActivity.setFirstZoneChosen(false);
+            Intent intent = new Intent(getContext(), PercorsoWizard.class);
+            intent.putExtra("val", 1);
+            startActivity(intent);
         }
-        PercorsoWizard.setZonePassFromReview(true);
-        DashboardActivity.setFirstZoneChosen(true);
-        Intent intent = new Intent(getContext(), PercorsoWizard.class);
-        intent.putExtra("val", 1);
-        startActivity(intent);
+
     }
 
     public static List<MapZoneAndObject> getZoneAndObjectList_() {
@@ -338,5 +397,50 @@ public class Step4 extends Fragment implements Step, BlockingStep {
 
     public static List<String> getOggetti_select() {
         return oggetti_select;
+    }
+
+    public long savePathLocal(Path path){
+
+        long newRowId=-1;
+        AlphaTourDbHelper dbAlpha = new AlphaTourDbHelper(getContext());
+        SQLiteDatabase db = dbAlpha.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_NAME,path.getName());
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_DESCRIPTION,path.getDescription());
+        values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_LOAD,"false");
+        newRowId=db.insert(AlphaTourContract.AlphaTourEntry.NAME_TABLE_PATH,AlphaTourContract.AlphaTourEntry.COLUMN_NAME_NULLABLE,values);
+
+        SQLiteDatabase db1 = dbAlpha.getWritableDatabase();
+        ContentValues values1 = new ContentValues();
+
+        for(i=0;i<path.getZonePath().size();i++) {
+
+            ZoneChoosed zoneChoosed=path.getZonePath().get(i);
+
+            for(int j=0;j<zoneChoosed.getObjectChoosed().size();j++) {
+
+                values1.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_CONTAINS_ID_PATH, getIdPath(path.getName()));
+                values1.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_CONTAINS_ZONE, zoneChoosed.getName());
+                values1.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_CONTAINS_OBJECT, zoneChoosed.getObjectChoosed().get(j));
+                values1.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_CONTAINS_LOAD, "false");
+                newRowId = db1.insert(AlphaTourContract.AlphaTourEntry.NAME_TABLE_PATH_CONTAINS, AlphaTourContract.AlphaTourEntry.COLUMN_NAME_NULLABLE, values1);
+            }
+        }
+
+        return newRowId;
+    }
+
+    private String getIdPath(String name) {
+        String idP="";
+
+        AlphaTourDbHelper dbAlpha = new AlphaTourDbHelper(getContext());
+        SQLiteDatabase db = dbAlpha.getReadableDatabase();
+
+        Cursor cursor=db.rawQuery(CommandDbAlphaTour.Command.SELECT_ID_PATH,new String[]{name});
+        if(cursor.moveToFirst()){
+            idP= cursor.getString(cursor.getColumnIndexOrThrow(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_ID));
+        }
+        return  idP;
     }
 }

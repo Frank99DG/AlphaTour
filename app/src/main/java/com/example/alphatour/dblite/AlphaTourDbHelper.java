@@ -23,6 +23,8 @@ public class AlphaTourDbHelper extends SQLiteOpenHelper {
         db.execSQL(CommandDbAlphaTour.Command.CREATE_ZONE_TABLE);
         db.execSQL(CommandDbAlphaTour.Command.CREATE_CONSTRAINTS_TABLE);
         db.execSQL(CommandDbAlphaTour.Command.CREATE_ELEMENT_TABLE);
+        db.execSQL(CommandDbAlphaTour.Command.CREATE_PATH_TABLE);
+        db.execSQL(CommandDbAlphaTour.Command.CREATE_PATH_CONTAINS_TABLE);
 
 
 
@@ -43,6 +45,8 @@ public class AlphaTourDbHelper extends SQLiteOpenHelper {
         db.execSQL(CommandDbAlphaTour.Command.DELETE_ZONE_TABLE);
         db.execSQL(CommandDbAlphaTour.Command.DELETE_CONSTRAINTS_TABLE);
         db.execSQL(CommandDbAlphaTour.Command.DELETE_ELEMENT_TABLE);
+        db.execSQL(CommandDbAlphaTour.Command.DELETE_PATH_TABLE);
+        db.execSQL(CommandDbAlphaTour.Command.DELETE_PATH_CONTAINS_TABLE);
 
     }
 }

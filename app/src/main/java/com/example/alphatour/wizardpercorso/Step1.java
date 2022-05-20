@@ -1,6 +1,8 @@
 package com.example.alphatour.wizardpercorso;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.R;
+import com.example.alphatour.connection.Receiver;
 import com.example.alphatour.oggetti.Place;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,7 +49,9 @@ public class Step1 extends Fragment implements Step, BlockingStep {
     private FirebaseUser user;
     private String idUser;
     private static String Place;
-    private boolean errorFlag = true;
+    private boolean errorFlag = true,connected=false;
+    private Receiver receiver;
+    private static String NamePlace;
 
     public static String getPlace() {
         return Place;
@@ -68,6 +73,7 @@ public class Step1 extends Fragment implements Step, BlockingStep {
         idUser = user.getUid();
 
 
+
         View view = inflater.inflate(R.layout.fragment_step1, container, false);
         namePath = view.findViewById(R.id.inputNamePath);
         placePath = view.findViewById(R.id.inputPlacePath);
@@ -80,40 +86,102 @@ public class Step1 extends Fragment implements Step, BlockingStep {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 placePath.setError(null);
+                PercorsoWizard.setPlace(parent.getItemAtPosition(position).toString());
             }
         });
+
+        placePath.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(PercorsoWizard.getPlace()!=null) {
+                    placePath.setText(PercorsoWizard.getPlace());
+                    placePath.showDropDown();
+                }
+            }
+        }, 10);
+/**
+        placePath.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(receiver.isConnected()) {
+                    placesList = getPlacesList();
+                }else{
+                    placesList = getPlacesList();
+                    adapterItems = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item, placesList);
+                    placePath.setAdapter(adapterItems);
+                }
+            }
+        });**/
 
 
         // Inflate the layout for this fragment
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        /**controllo connessione**/
+        receiver=new Receiver();
+
+        broadcastIntent();
+
+        namePath.setText(PercorsoWizard.getNamePath());
+        descriptionPath.setText(PercorsoWizard.getDescriptionPath());
+    }
+
+    private void broadcastIntent() {
+        requireActivity().registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        requireActivity().unregisterReceiver(receiver);
+    }
 
 
     public List<String> getPlacesList() {
 
         List<String> list = new ArrayList<String>();
 
-        db.collection("Places").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        //if(receiver.isConnected()) {
 
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+            db.collection("Places").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
 
-                if (!queryDocumentSnapshots.isEmpty()) {
-                    List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista luoghi
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                    for (DocumentSnapshot d : listDocument) {
-                        Place place = d.toObject(Place.class);
+                    if (!queryDocumentSnapshots.isEmpty()) {
+                        List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista luoghi
 
-                        if( idUser.equals(place.getIdUser()) ){
-                            String namePlace = place.getName();
-                            list.add(namePlace);
+                        for (DocumentSnapshot d : listDocument) {
+                            Place place = d.toObject(Place.class);
+
+                            if (idUser.equals(place.getIdUser())) {
+                                String namePlace = place.getName();
+                                list.add(namePlace);
+                            }
+
                         }
-
+                        /*adapterItems = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item, list);
+                        placePath.setAdapter(adapterItems);*/
                     }
                 }
+            });
+       /* }else{
+
+            AlphaTourDbHelper dbAlpha = new AlphaTourDbHelper(getContext());
+            SQLiteDatabase db = dbAlpha.getReadableDatabase();
+
+            Cursor cursor=db.query(AlphaTourContract.AlphaTourEntry.NAME_TABLE_PLACE,new String[]{AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PLACE_NAME},null,null,
+                    null,null,null);
+
+            if(cursor.moveToFirst()){
+                list.add(cursor.getString(cursor.getColumnIndexOrThrow(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_ID)));
             }
-        });
+        }*/
 
         return list;
 
@@ -134,6 +202,8 @@ public class Step1 extends Fragment implements Step, BlockingStep {
         }else{
             Place = PlacePath;
             Step2.setPlace(PlacePath);
+            PercorsoWizard.setNamePath(NamePath);
+            PercorsoWizard.setDescriptionPath(DescriptionPath);
         }
         return error;
     }
@@ -193,7 +263,8 @@ public class Step1 extends Fragment implements Step, BlockingStep {
 
     public static String getNamePath() {
 
-        return namePath.getText().toString();
+        NamePlace=namePath.getText().toString();
+        return NamePlace;
     }
 
     public static String getPlacePath(){
@@ -206,6 +277,9 @@ public class Step1 extends Fragment implements Step, BlockingStep {
         return descriptionPath.getText().toString();
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
 
-
+    }
 }

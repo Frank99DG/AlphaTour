@@ -26,6 +26,7 @@ public class PercorsoWizard extends AppCompatActivity {
     private int i;
     private static String zone;
     private static boolean zonePassFromReview=false;
+    private static String namePath,descriptionPath,place;
 
     public static boolean isZonePassFromReview() {
         return zonePassFromReview;
@@ -33,6 +34,30 @@ public class PercorsoWizard extends AppCompatActivity {
 
     public static void setZonePassFromReview(boolean zonePassFromReview) {
         PercorsoWizard.zonePassFromReview = zonePassFromReview;
+    }
+
+    public static String getDescriptionPath() {
+        return descriptionPath;
+    }
+
+    public static void setDescriptionPath(String descriptionPath) {
+        PercorsoWizard.descriptionPath = descriptionPath;
+    }
+
+    public static String getNamePath() {
+        return namePath;
+    }
+
+    public static void setNamePath(String namePath) {
+        PercorsoWizard.namePath = namePath;
+    }
+
+    public static String getPlace() {
+        return place;
+    }
+
+    public static void setPlace(String place) {
+        PercorsoWizard.place = place;
     }
 
     public static String getZone() {
