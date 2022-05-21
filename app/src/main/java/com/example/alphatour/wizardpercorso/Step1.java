@@ -200,6 +200,12 @@ public class Step1 extends Fragment implements Step, BlockingStep {
         if(errorFlag){
             error =new VerificationError("Compila tutti i campi");
         }else{
+
+            if(Step4.getZoneAndObjectList_()!=null){
+            if(Step4.getZoneAndObjectList_().size()!=0){
+                    Step4.getZoneAndObjectList_().get(0).setName(NamePath);
+                    Step4.getZoneAndObjectList_().get(0).setDescription(DescriptionPath);
+            }}
             Place = PlacePath;
             Step2.setPlace(PlacePath);
             PercorsoWizard.setNamePath(NamePath);
@@ -257,6 +263,9 @@ public class Step1 extends Fragment implements Step, BlockingStep {
 
     @Override
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
+        PercorsoWizard.setPlace(null);
+        PercorsoWizard.setNamePath("");
+        PercorsoWizard.setDescriptionPath("");
         Intent intent= new Intent(getContext(), DashboardActivity.class);
         startActivity(intent);
     }

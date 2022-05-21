@@ -70,7 +70,7 @@ public class StepperAdapterWizard extends AbstractFragmentStepAdapter {
                 builder
                         .setTitle(R.string.review_path)
                        // .setBackButtonVisible(false)
-                        .setBackButtonLabel("Modifica")
+                        .setBackButtonLabel("Aggiungi zona")
                         .setEndButtonLabel(R.string.end);
                 break;
             default:

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.alphatour.R;
 import com.example.alphatour.oggetti.MapZoneAndObject;
@@ -69,8 +70,12 @@ public class ReviewZoneSelected extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             int index = object.getId();
+                            if(listObj.size()>1){
                             listObj.remove(index);
                             list_object_zone_review.removeView(object);
+                            } else
+                                Toast.makeText(ReviewZoneSelected.this, "Non puoi rimuovere tutti gli oggetti. Se vuoi eliminare la zona, torna al riepilogo.", Toast.LENGTH_SHORT).show();
+
                         }
                     });
 

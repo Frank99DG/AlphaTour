@@ -66,6 +66,7 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     private String idPlace;
     private Receiver receiver;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -185,14 +186,16 @@ public class Step2 extends Fragment implements Step, BlockingStep {
                                 for (DocumentSnapshot d : listConstraint) {
                                     Constraint constraint = d.toObject(Constraint.class);
 
-                                    String abc;
+                                    String zona;
                                     if(PercorsoWizard.isZonePassFromReview()){
-                                        abc = PercorsoWizard.getZone();
+                                        zona = PercorsoWizard.getZone();
+                                        DashboardActivity.setZona_vecchia(zona);
+                                        DashboardActivity.setZona_scelta(zona);
                                     }else {
-                                        abc = DashboardActivity.getZona_scelta();
-                                        DashboardActivity.setZona_vecchia(abc);
+                                        zona = DashboardActivity.getZona_scelta();
+                                        DashboardActivity.setZona_vecchia(zona);
                                     }
-                                    if(constraint.getFromZone().matches(abc)){
+                                    if(constraint.getFromZone().matches(zona)){
 
                                         View zone = getLayoutInflater().inflate(R.layout.row_selection_zones_elements, null, false);
                                         CheckableTextView textZone1 = (CheckableTextView) zone.findViewById(R.id.textObjectss);
@@ -313,9 +316,6 @@ public class Step2 extends Fragment implements Step, BlockingStep {
         deleteView.clear();
         callback.goToNextStep();
 
-        /*for(int i =0; i<oggetti_scelti.size();i++){
-            oggetti_scelti.remove(i);
-        }*/
     }
 
     @Override
@@ -342,12 +342,11 @@ public class Step2 extends Fragment implements Step, BlockingStep {
             } else {
                 control=true;
                 zona_scelta = i;
-                //stringa_scelta = array_database.get(i);
                 DashboardActivity.setZona_scelta(array_database.get(i));
                 return null;
             }
         }
-        if(control==false) error =new VerificationError("Seleziona almeno una zona");
+        if(control==false) error =new VerificationError("Seleziona una zona prima di andare avanti");
 
         return error;
 
@@ -384,16 +383,5 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     public static void setPlace(String place) {
         Place = place;
     }
-
-    /*
-    @Override
-    public void onClick(View view) {
-        if (view.getId()==R.id.call_fragment){
-            getFragmentManager().beginTransaction().replace(R.id.container,new Step5()).commit();
-
-        }
-
-    }
- */
 
 }

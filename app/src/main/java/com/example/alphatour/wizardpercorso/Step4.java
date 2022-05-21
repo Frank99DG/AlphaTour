@@ -227,18 +227,22 @@ public class Step4 extends Fragment implements Step, BlockingStep {
     @Nullable
     @Override
     public VerificationError verifyStep() {
+        VerificationError error=null;
+        if(zone_select.size() <2){
+            return error =new VerificationError("Per creare un percorso devi aggiungere almeno due zone");
+        }
+
         return null;
     }
 
     @Override
     public void onSelected() {
 
-
     }
 
     @Override
     public void onError(@NonNull VerificationError error) {
-
+        Toast.makeText(getContext(),error.getErrorMessage().toString(), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -336,7 +340,6 @@ public class Step4 extends Fragment implements Step, BlockingStep {
 
         list_zoneRiepilogo.removeAllViews();
         zone_select.clear();
-        ReviewZoneSelected.getZoneAndObjectList().clear();
 
 
         DashboardActivity.setFirstZoneChosen(false);
