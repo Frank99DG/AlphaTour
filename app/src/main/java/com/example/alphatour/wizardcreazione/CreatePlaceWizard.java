@@ -112,6 +112,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
                 typology.setError(null);
                 item = parent.getItemAtPosition(position).toString();
             }
+
         });
 
         loadingBar = view.findViewById(R.id.placeLoadingBar);

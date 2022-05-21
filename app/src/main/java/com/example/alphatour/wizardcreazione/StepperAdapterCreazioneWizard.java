@@ -13,6 +13,7 @@ import com.stepstone.stepper.viewmodel.StepViewModel;
 
 public class StepperAdapterCreazioneWizard extends AbstractFragmentStepAdapter {
 
+
     public StepperAdapterCreazioneWizard(@NonNull FragmentManager fm, @NonNull Context context) {
         super(fm, context);
     }

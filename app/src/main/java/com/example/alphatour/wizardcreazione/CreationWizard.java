@@ -33,6 +33,7 @@ public class CreationWizard extends AppCompatActivity {
        /* Intent intent=getIntent();
         int i=intent.getIntExtra("val",-1);*/
 
+
             StepAdapter stepAdapter = new StepperAdapterCreazioneWizard(getSupportFragmentManager(), getApplicationContext()/*, i*/);
             stepperLayout.setAdapter(stepAdapter);
 

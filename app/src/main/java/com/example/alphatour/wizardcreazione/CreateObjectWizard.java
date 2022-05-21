@@ -42,6 +42,7 @@ import java.util.Map;
 
 public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
 
+
     private Button addElement,yes,cancel,yesFinal,cancelFinal;
     private static LinearLayout layout_list;
     private Dialog dialog;
