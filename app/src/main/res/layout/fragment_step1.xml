@@ -6,7 +6,7 @@
     android:focusableInTouchMode="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".wizardpercorso.Step1"
-    android:background="@drawable/sfondo"
+    android:background="@drawable/custom_color"
     android:gravity="center">
 
 
@@ -14,12 +14,12 @@
         android:id="@+id/textView9"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:paddingTop="5dp"
-        android:paddingLeft="8dp"
-        android:paddingBottom="10dp"
-        android:paddingRight="8dp"
-        android:background="@android:drawable/picture_frame"
+        android:background="@drawable/side_nav_bar"
         android:gravity="center"
+        android:paddingLeft="8dp"
+        android:paddingTop="5dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="10dp"
         android:text="@string/create_path"
         android:textAlignment="center"
         android:textColor="@color/Black"

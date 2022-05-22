@@ -4,10 +4,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/sfondo"
+    android:background="@drawable/custom_color"
     tools:context=".wizardpercorso.Step2"
     android:gravity="center">
 
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="409dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="1dp"
+        android:background="@android:drawable/gallery_thumb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view6"
+        android:layout_width="409dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="630dp"
+        android:layout_marginEnd="1dp"
+        android:background="@android:drawable/gallery_thumb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/call_fragment"
@@ -33,7 +59,7 @@
         android:paddingLeft="8dp"
         android:paddingBottom="10dp"
         android:paddingRight="8dp"
-        android:background="@android:drawable/picture_frame"
+        android:background="@drawable/side_nav_bar"
         android:gravity="center"
         android:text="@string/string_step2"
         android:textAlignment="center"
@@ -60,8 +86,8 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="120dp"
+        android:layout_height="520dp"
+        android:layout_marginTop="115dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -69,7 +95,7 @@
             android:id="@+id/list_zone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

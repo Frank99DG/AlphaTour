@@ -62,8 +62,6 @@ public class Step3 extends Fragment implements Step, BlockingStep {
 
         db = FirebaseFirestore.getInstance();
 
-
-
         dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_step3);
         dialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroun_dialog));

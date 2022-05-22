@@ -177,18 +177,13 @@ public class Step4 extends Fragment implements Step, BlockingStep {
 
                                 int index = zone.getId();
                                 int size = counter-index;
-                                //zoneAndObjectList_.remove(zoneAndObjectList_.get(index));
 
-
-                                //zoneAndObjectList_.get(zone.getId()).setZone("delete");
                                 zoneAndObjectList_.subList(index,zone_select.size()).clear();
                                 zone_select.subList(index,zone_select.size()).clear();
                                 list_zoneRiepilogo.removeViews(index,size);
                                 counter=counter-size;
                                 dialog_delete.dismiss();
 
-
-                                //list_zoneRiepilogo.removeView(zone);
                             }
                         });
 

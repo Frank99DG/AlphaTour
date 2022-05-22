@@ -26,12 +26,12 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@android:drawable/gallery_thumb"
-        android:backgroundTint="@color/FireBrick"
+        android:backgroundTint="#238772"
         android:gravity="center"
         android:paddingLeft="10dp"
         android:text="IL TUO PERCORSO"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/Black"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -127,7 +127,7 @@
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:background="@android:drawable/gallery_thumb"
-        android:backgroundTint="@color/FireBrick"
+        android:backgroundTint="#238772"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 

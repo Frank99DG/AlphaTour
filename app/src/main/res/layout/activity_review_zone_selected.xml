@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/sfondo"
+    android:background="@drawable/custom_color"
     tools:context=".wizardpercorso.ReviewZoneSelected">
 
     <TextView
         android:id="@+id/zoneReview"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@android:drawable/picture_frame"
+        android:background="@drawable/side_nav_bar"
         android:gravity="center"
         android:text="TextView"
         android:textAlignment="center"

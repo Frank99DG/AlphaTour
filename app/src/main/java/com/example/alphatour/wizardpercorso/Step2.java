@@ -66,7 +66,6 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     private String idPlace;
     private Receiver receiver;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,7 +74,6 @@ public class Step2 extends Fragment implements Step, BlockingStep {
         list_zone = view.findViewById(R.id.list_zone);
         title_Step2 = view.findViewById(R.id.title_step2);
         loadingbar=view.findViewById(R.id.zoneLoadingBar);
-
 
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
