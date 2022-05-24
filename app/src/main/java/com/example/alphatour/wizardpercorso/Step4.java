@@ -275,6 +275,7 @@ public class Step4 extends Fragment implements Step, BlockingStep {
             Path path=new Path();
             path.setName(mapZoneAndOb.getName());
             path.setDescription(mapZoneAndOb.getDescription());
+            path.setIdUser(user.getUid());
             for (int i = 0; i < zoneAndObjectList_.size(); i++) {
                 MapZoneAndObject mapZoneAndObject = zoneAndObjectList.get(i);
                 //String delete = "delete";

@@ -38,34 +38,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlCompat" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="45dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="342dp"
-        android:layout_marginTop="15dp"
-        android:backgroundTint="#B22135"
-        android:padding="11dp"
-        android:visibility="invisible"
-        app:cornerRadius="10dp"
-        app:icon="@drawable/ic_share"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="45dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="284dp"
-        android:layout_marginTop="15dp"
-        android:backgroundTint="#B22135"
-        android:padding="11dp"
-        android:visibility="invisible"
-        app:cornerRadius="10dp"
-        app:icon="@android:drawable/stat_sys_download"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView2"
         android:layout_width="match_parent"
