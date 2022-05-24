@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.alphatour.R;
 import com.example.alphatour.oggetti.MapZoneAndObject;
@@ -28,6 +29,7 @@ public class Step5 extends Fragment  {
     private LinearLayout closeLayout;
     public static List<MapZoneAndObject> zoneAndObjectList_ = new ArrayList<MapZoneAndObject>();
     private static List<String> zone_select = new ArrayList<>();
+    private TextView zone_selected;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,6 +40,7 @@ public class Step5 extends Fragment  {
         View view = inflater.inflate(R.layout.fragment_step5, container, false);
         close_fragment = view.findViewById(R.id.close_fragment);
         closeLayout = view.findViewById(R.id.closeLayout);
+        zone_selected = (TextView) view.findViewById(R.id.zone_selected);
 
         buttonClick();
 
@@ -51,6 +54,7 @@ public class Step5 extends Fragment  {
             @Override
             public void onClick(View view) {
                 getFragmentManager().beginTransaction().hide(Step5.this).commit();
+
             }
         });
         close_fragment.setOnClickListener(new View.OnClickListener() {

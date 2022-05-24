@@ -153,7 +153,7 @@
     <string name="zones_button_next">Create Zone</string>
     <string name="place_button_back">Back place data</string>
     <string name="objects_button_next">Create Objects</string>
-    <string name="zones_button_back">Back to Create Objects</string>
+    <string name="zones_button_back">Back to Create Zone</string>
     <string name="constraints_button_next">Create Constraints</string>
     <string name="objects_button_back">Back to Create Objects</string>
     <string name="button_complete">Complete</string>
