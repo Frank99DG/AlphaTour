@@ -71,7 +71,7 @@ import java.util.Objects;
 
 public class CreateJsonActivity extends AppCompatActivity {
 
-    private Button btn, btn1, yesFinal, cancelFinal;
+    private Button yesFinal, cancelFinal;
     private ConstraintLayout layt;
     private Dialog dialog;
     private TextView titleDialog, textDialog;
@@ -85,9 +85,7 @@ public class CreateJsonActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_json);
-        btn = findViewById(R.id.button3);
         layt = findViewById(R.id.layoutJson);
-        btn1 = findViewById(R.id.button4);
         name_path = findViewById(R.id.name_path);
         description_path = findViewById(R.id.description_path);
 
@@ -104,11 +102,7 @@ public class CreateJsonActivity extends AppCompatActivity {
         textDialog = dialog.findViewById(R.id.textDialog_permission);
 
         bottomNavigationViewPath = findViewById(R.id.bottomNavigationBarPath);
-        bottomNavigationViewPath.setSelectedItemId(R.id.tb_home_path); //per partire con la selezione su home
-        bottomNavigationViewPath.setSelectedItemId(R.id.tb_share_path);
-        bottomNavigationViewPath.setSelectedItemId(R.id.tb_download);
-
-
+        bottomNavigationViewPath.setSelectedItemId(R.id.tb_home_path);
 
         bottomNavBarPathClick();
 
@@ -163,92 +157,6 @@ public class CreateJsonActivity extends AppCompatActivity {
             }
 
         }
-
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Graph<ZoneChoosed, DefaultEdge> graph = Step4.getGraph();
-                JSONExporter<ZoneChoosed, DefaultEdge> exporter = new JSONExporter<>(v -> String.valueOf(v));
-                exporter.setEdgeIdProvider(new IntegerIdProvider<>(1));
-                // ByteArrayOutputStream os = new ByteArrayOutputStream();
-                File file = null;
-                try {
-
-                    File fil = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "Percorso.json");
-                    FileOutputStream fos = new FileOutputStream(fil);
-                    // file = File.createTempFile("Percorso",".json");
-                    exporter.exportGraph(graph, fos);
-                    fos.close();
-                    Toast.makeText(CreateJsonActivity.this, "Saved to " + getFilesDir() + "/" + "Percorso.json", Toast.LENGTH_LONG).show();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Context context = CreateJsonActivity.this;
-                String str = "{ \"zona\": \"medioevo\",\n" +
-                        " \"oggetto\": \"oggetto1\",\n" +
-                        " \"oggetto\": \"oggetto 2\",\n" +
-                        " \"zona1\": \"zona2\", \n" +
-                        " \"oggetto\": \"oggetto1\", \n" +
-                        " \"oggettto\": \"oggetto2\" }";
-                try {
-                    Graph<ZoneChoosed, DefaultEdge> graph = Step4.getGraph();
-
-                    /*Zone zone=new Zone();
-                    Zone zone1=new Zone();
-                    Zone zone2=new Zone();
-
-                    ElementString elm=new ElementString();
-                    ElementString elm1=new ElementString();
-
-
-                    zone.setName("Medioevo");
-                    zone1.setName("Assiri");
-                    zone2.setName("Sumeri");
-                    elm.setIdZone("Medioevo"); elm.setTitle("Oggetto1"); elm.setDescription("descrizione");
-                    elm.setPhoto("link foto"); elm.setQrCode("qr code");
-                    elm1.setIdZone("Assiri"); elm1.setTitle("Oggetto2"); elm1.setDescription("descr");
-                    elm1.setPhoto("link foto oggetto 2"); elm1.setQrCode("qr code oggetto 2");
-
-                    graph.addVertex(zone);
-                    graph.addVertex(zone1);
-                    graph.addVertex(zone2);
-
-                    graph.addEdge(zone,zone1);
-                    graph.addEdge(zone,zone2);
-                    graph.addEdge(zone1,zone2);
-                    graph.addEdge(zone2,zone1);*/
-
-                    JSONExporter<ZoneChoosed, DefaultEdge> exporter = new JSONExporter<>(v -> String.valueOf(v));
-                    exporter.setEdgeIdProvider(new IntegerIdProvider<>(1));
-                    // ByteArrayOutputStream os = new ByteArrayOutputStream();
-                    File file = File.createTempFile("Percorso", ".json");
-                    exporter.exportGraph(graph, file);
-
-
-                    Intent intent = new Intent(Intent.ACTION_SEND);
-                    intent.setType("application/json");
-                    Uri uri = FileProvider.getUriForFile(Objects.requireNonNull(getApplicationContext()),
-                            BuildConfig.APPLICATION_ID + ".provider", file);
-                    intent.putExtra(Intent.EXTRA_STREAM, uri);
-                    startActivity(intent);
-
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
 
     }
 
@@ -331,6 +239,31 @@ public class CreateJsonActivity extends AppCompatActivity {
                                 " \"oggettto\": \"oggetto2\" }";
                         try {
                             Graph<ZoneChoosed, DefaultEdge> graphh = Step4.getGraph();
+
+                             /*Zone zone=new Zone();
+                            Zone zone1=new Zone();
+                            Zone zone2=new Zone();
+
+                            ElementString elm=new ElementString();
+                            ElementString elm1=new ElementString();
+
+
+                            zone.setName("Medioevo");
+                            zone1.setName("Assiri");
+                            zone2.setName("Sumeri");
+                            elm.setIdZone("Medioevo"); elm.setTitle("Oggetto1"); elm.setDescription("descrizione");
+                            elm.setPhoto("link foto"); elm.setQrCode("qr code");
+                            elm1.setIdZone("Assiri"); elm1.setTitle("Oggetto2"); elm1.setDescription("descr");
+                            elm1.setPhoto("link foto oggetto 2"); elm1.setQrCode("qr code oggetto 2");
+
+                            graph.addVertex(zone);
+                            graph.addVertex(zone1);
+                            graph.addVertex(zone2);
+
+                            graph.addEdge(zone,zone1);
+                            graph.addEdge(zone,zone2);
+                            graph.addEdge(zone1,zone2);
+                            graph.addEdge(zone2,zone1);*/
 
                             JSONExporter<ZoneChoosed, DefaultEdge> exporterr = new JSONExporter<>(v -> String.valueOf(v));
                             exporterr.setEdgeIdProvider(new IntegerIdProvider<>(1));

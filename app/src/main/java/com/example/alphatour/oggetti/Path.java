@@ -2,20 +2,30 @@ package com.example.alphatour.oggetti;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Path {
 
-   private String name,description;
+   private String name,description,idUser;
    private List<ZoneChoosed> zonePath=new ArrayList<ZoneChoosed>();
 
     public Path() {
 
     }
 
-    public Path(String name, String description, List<ZoneChoosed> zonePath) {
+    public Path(String name, String description, String idUser, List<ZoneChoosed> zonePath) {
         this.name = name;
         this.description = description;
+        this.idUser = idUser;
         this.zonePath = zonePath;
+    }
+
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
     }
 
     public String getName() {
