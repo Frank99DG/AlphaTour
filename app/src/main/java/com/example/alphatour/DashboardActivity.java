@@ -333,7 +333,9 @@ public class DashboardActivity extends DrawerBaseActivity {
 
                                 if( item.equals(element.getTitle()) ){
                                     Intent intent = new Intent(DashboardActivity.this, ModifyObjectActivity.class);
-                                    intent.putExtra("data",element.getQrData()); //passo il qr code perchè ModifyObject cerca tra i qr code
+                                    intent.putExtra("data",element.getQrData());
+                                    String dashboardFlag = "1";
+                                    intent.putExtra("dashboardFlag", dashboardFlag);
                                     startActivity(intent);
                                     inputSearch.setText(null);
                                     break;
@@ -356,7 +358,12 @@ public class DashboardActivity extends DrawerBaseActivity {
                                 Zone zone = d.toObject(Zone.class);
 
                                 if( item.equals(zone.getName())  ){
-                                    startActivity(new Intent(DashboardActivity.this, ModifyZoneActivity.class));
+                                    Intent intent = new Intent(DashboardActivity.this, ModifyZoneActivity.class);
+                                    intent.putExtra("Zone", zone.getName());
+                                    intent.putExtra("idPlace", zone.getIdPlace());
+                                    String dashboardFlag = "1";
+                                    intent.putExtra("dashboardFlag", dashboardFlag);
+                                    startActivity(intent);
                                     inputSearch.setText(null);
                                     break;
                                 }
@@ -380,7 +387,11 @@ public class DashboardActivity extends DrawerBaseActivity {
                                 Place place = d.toObject(Place.class);
 
                                 if( item.equals(place.getName()) ){
-                                    startActivity(new Intent(DashboardActivity.this, ModifyPlaceActivity.class));
+                                    Intent intent = new Intent(DashboardActivity.this, ModifyPlaceActivity.class);
+                                    intent.putExtra("Place", place.getName());
+                                    String dashboardFlag = "1";
+                                    intent.putExtra("dashboardFlag", dashboardFlag);
+                                    startActivity(intent);
                                     inputSearch.setText(null);
                                     break;
                                 }
@@ -433,10 +444,10 @@ public class DashboardActivity extends DrawerBaseActivity {
                         startActivity(new Intent(DashboardActivity.this, DashboardActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-                    /*case R.id.tb_routes:
-                        startActivity(new Intent(DashboardActivity.this, .class));
+                    case R.id.tb_routes:
+                        startActivity(new Intent(DashboardActivity.this, MyPathsActivity.class));
                         overridePendingTransition(0,0);
-                        return true;*/
+                        return true;
                 }
 
                 return false;

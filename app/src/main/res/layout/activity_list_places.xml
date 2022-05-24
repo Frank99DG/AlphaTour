@@ -13,6 +13,18 @@
         android:layout_height="wrap_content"
         android:focusableInTouchMode="true">
 
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:onClick="onBackButtonClick"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/back_button" />
+
+
         <TextView
             android:id="@+id/listPlacesText"
             android:layout_width="189dp"
@@ -73,6 +85,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/updatePlaceInfo" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
@@ -274,6 +275,13 @@ public class UpdateProfileActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    public void onBackButtonClick(View view){
+
+        startActivity(new Intent(UpdateProfileActivity.this, ProfileActivity.class));
+        finish();
     }
 
 }

@@ -42,9 +42,11 @@ public class ModifyZoneActivity extends AppCompatActivity {
     private FirebaseUser user;
     private String name;
     private String idUser;
+    private String Place;
+    private String idPlace;
     private String Zone;
     private String idZone;
-    private String idPlace;
+    private String dashboardFlag = "0";
 
 
     @Override
@@ -58,9 +60,11 @@ public class ModifyZoneActivity extends AppCompatActivity {
         idUser = user.getUid();
 
         Intent intent= getIntent();
+        Place = intent.getStringExtra("Place");
+        idPlace = intent.getStringExtra("idPlace");
         Zone = intent.getStringExtra("Zone");
         getIdZone(Zone);
-        idPlace = intent.getStringExtra("idPlace");
+        dashboardFlag = intent.getStringExtra("dashboardFlag");
 
         zoneText = findViewById(R.id.myZoneText);
         nameZone = findViewById(R.id.updateNameZone);
@@ -83,7 +87,6 @@ public class ModifyZoneActivity extends AppCompatActivity {
                                 Zone zone = d.toObject(Zone.class);
 
                                 if(Zone.equals(zone.getName())){
-
                                     zoneText.setText(zone.getName());
                                     nameZone.setText(zone.getName());
                                     break;
@@ -159,8 +162,6 @@ public class ModifyZoneActivity extends AppCompatActivity {
             //salvataggio modifiche su Firebase
             updateZoneOnDbRemote(Name);
 
-            startActivity(new Intent(ModifyZoneActivity.this, ListZonesActivity.class));
-
         }
     }
 
@@ -208,19 +209,26 @@ public class ModifyZoneActivity extends AppCompatActivity {
     public void updateZoneOnDbRemote(String Name){
 
         loadingBar.setVisibility(View.VISIBLE);
-        HashMap<String,Object> placeMap = new HashMap<>();
-        placeMap.put("name",Name);
 
-
-        db.collection("Zone").document(idZone)
+        db.collection("Zones").document(idZone)
                 .update("name",Name)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(Void unused) {
+                    public void onSuccess(Void unused){
                         Toast.makeText(ModifyZoneActivity.this, "Zona aggiornata correttamente", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(ModifyZoneActivity.this, ListZonesActivity.class));
-                        loadingBar.setVisibility(View.GONE);
-                        finishAffinity();
+                        if(dashboardFlag.equals("1")){
+                            startActivity(new Intent(ModifyZoneActivity.this, DashboardActivity.class));
+                            loadingBar.setVisibility(View.GONE);
+                            finish();
+                        }else {
+                            Intent intent = new Intent(ModifyZoneActivity.this, ListZonesActivity.class);
+                            intent.putExtra("Place", Place);
+                            intent.putExtra("idPlace", idPlace);
+                            intent.putExtra("dashboardFlag", dashboardFlag);
+                            startActivity(intent);
+                            loadingBar.setVisibility(View.GONE);
+                            finishAffinity();
+                        }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -233,13 +241,31 @@ public class ModifyZoneActivity extends AppCompatActivity {
     }
 
 
-    public void openElementsList(View v){
+    public void openElementsList(View view){
         Intent intent = new Intent(ModifyZoneActivity.this, ListElementsActivity.class);
-        intent.putExtra("Zone", Zone);
+        intent.putExtra("Place", Place);
         intent.putExtra("idPlace", idPlace);
+        intent.putExtra("Zone", Zone);
+        intent.putExtra("idZone", idZone);
+        intent.putExtra("dashboardFlag", dashboardFlag);
         startActivity(intent);
     }
 
+
+    public void onBackButtonClick(View view){
+
+        if(dashboardFlag.equals("1")){
+            startActivity(new Intent(ModifyZoneActivity.this, DashboardActivity.class));
+            finish();
+        }else {
+            Intent intent = new Intent(ModifyZoneActivity.this, ListZonesActivity.class);
+            intent.putExtra("Place", Place);
+            intent.putExtra("idPlace", idPlace);
+            intent.putExtra("dashboardFlag", dashboardFlag);
+            startActivity(intent);
+            finishAffinity();
+        }
+    }
 
 
 }

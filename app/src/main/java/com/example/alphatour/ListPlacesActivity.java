@@ -25,7 +25,7 @@ public class ListPlacesActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseUser user;
     private String idUser;
-    //private String idPlace;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,17 +59,15 @@ public class ListPlacesActivity extends AppCompatActivity {
 
                                 editablePlace.setText(place.getName());
 
-                                //getIdPlace(place.getName());
-
                                 layout_list.addView(placeView);
 
                                 editablePlace.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View placeView) {
-                                        //getIdPlace(place.getName());
                                         Intent intent = new Intent(ListPlacesActivity.this, ModifyPlaceActivity.class);
                                         intent.putExtra("Place", editablePlace.getText().toString());
-                                        //intent.putExtra("idPlace", getIdPlace(editablePlace.getText().toString()));
+                                        String dashboardFlag = "0"; //per indicare a ModifyPlace che fa parte del Modifica Luogo
+                                        intent.putExtra("dashboardFlag", dashboardFlag);
                                         startActivity(intent);
 
                                     }
@@ -83,6 +81,11 @@ public class ListPlacesActivity extends AppCompatActivity {
 
 
 
+    }
+
+
+    public void onBackButtonClick(View view){
+        startActivity(new Intent(ListPlacesActivity.this, DashboardActivity.class));
     }
 
 

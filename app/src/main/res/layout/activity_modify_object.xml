@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/sfondo"
     tools:context=".ModifyObjectActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,23 +12,22 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/closeDetailsQr"
-            android:layout_width="38dp"
-            android:layout_height="33dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="28dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/backButton"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:onClick="onBackButtonClick"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/ic_delete" />
+            app:srcCompat="@drawable/back_button" />
 
 
         <TextView
             android:id="@+id/textDetailsQr"
             android:layout_width="182dp"
             android:layout_height="37dp"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="213dp"
+            android:layout_marginTop="56dp"
             android:fontFamily="@font/alata"
             android:text="@string/object_details"
             android:textAlignment="center"
@@ -35,50 +35,38 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.057"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:id="@+id/view3"
-            android:layout_width="409dp"
-            android:layout_height="3dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="56dp"
-            android:layout_marginEnd="1dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textZoneQr"
-            android:layout_width="105dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="180dp"
+            android:layout_width="82dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="276dp"
             android:fontFamily="@font/alata"
             android:text="@string/object_title"
             android:textColor="#000000"
             android:textSize="15sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/titleQr"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textZonQr"
-            android:layout_width="155dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="68dp"
+            android:layout_width="158dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="28dp"
             android:fontFamily="@font/alata"
             android:text="@string/zone_of_belonging"
             android:textColor="#000000"
             android:textSize="15sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textDetailsQr" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/placeQr"
@@ -86,13 +74,10 @@
             android:layout_width="208dp"
             android:layout_height="56dp"
             android:layout_margin="35dp"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="81dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.67"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textDetailsQr">
+            app:layout_constraintTop_toBottomOf="@+id/textZonQr">
 
             <AutoCompleteTextView
                 android:id="@+id/inputTypeZoneQr"
@@ -101,77 +86,65 @@
                 android:inputType="none" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
-        <View
-            android:layout_width="409dp"
-            android:layout_height="3dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="164dp"
-            android:layout_marginEnd="1dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <EditText
             android:id="@+id/titleQr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="81dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
             android:ems="10"
             android:hint="@string/title"
             android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view1" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="409dp"
+            android:layout_height="3dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="1dp"
+            android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/placeQr" />
 
-        <View
-            android:layout_width="409dp"
-            android:layout_height="3dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="236dp"
-            android:layout_marginEnd="1dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/textDescriptionQrCode"
-            android:layout_width="93dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="248dp"
+            android:layout_width="86dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="44dp"
             android:fontFamily="@font/alata"
             android:text="@string/object_description"
             android:textColor="#000000"
             android:textSize="15sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/descriptionQr"
+            app:layout_constraintHorizontal_bias="0.538"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textZoneQr" />
 
         <EditText
             android:id="@+id/descriptionQr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="81dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
             android:ems="10"
-            android:textSize="18sp"
             android:gravity="top"
+            android:hint="@string/description"
             android:inputType="textMultiLine"
             android:maxLines="20"
             android:minLines="10"
-            android:hint="@string/description"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleQr" />
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
 
         <ProgressBar
             android:id="@+id/qrCodeLoadingBarQr"
@@ -187,57 +160,59 @@
             app:layout_constraintVertical_bias="0.54" />
 
         <View
-            android:id="@+id/view"
+            android:id="@+id/view2"
             android:layout_width="409dp"
             android:layout_height="3dp"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="500dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="1dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/titleQr" />
 
         <TextView
             android:id="@+id/textPhotoQr"
-            android:layout_width="58dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="520dp"
+            android:layout_width="81dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="220dp"
             android:fontFamily="@font/alata"
             android:text="@string/photo_object"
             android:textColor="#000000"
             android:textSize="15sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/photoQr"
+            app:layout_constraintHorizontal_bias="0.666"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textDescriptionQrCode" />
 
         <ImageView
             android:id="@+id/photoQr"
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:layout_marginStart="120dp"
-            android:layout_marginTop="38dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="81dp"
             android:ems="10"
             android:text="@string/photo_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descriptionQr" />
+            app:layout_constraintTop_toBottomOf="@+id/view3" />
 
         <View
-            android:id="@+id/viewQr"
+            android:id="@+id/view3"
             android:layout_width="409dp"
             android:layout_height="3dp"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="788dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="1dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/descriptionQr" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/changePhotoObjectQr"
@@ -248,50 +223,51 @@
             android:backgroundTint="@color/silver"
             android:clickable="true"
             android:onClick="modifyPhotoObject"
-            app:srcCompat="@drawable/ic_photo_camera"
             app:layout_constraintBottom_toBottomOf="@+id/photoQr"
-            app:layout_constraintEnd_toEndOf="@+id/photoQr" />
+            app:layout_constraintEnd_toEndOf="@+id/photoQr"
+            app:srcCompat="@drawable/ic_photo_camera" />
 
         <TextView
             android:id="@+id/textQr"
-            android:layout_width="66dp"
-            android:layout_height="41dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="804dp"
+            android:layout_width="75dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="236dp"
             android:fontFamily="@font/alata"
             android:text="QrCode Oggetto"
             android:textColor="#000000"
             android:textSize="15sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/qr"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textPhotoQr" />
 
         <ImageView
             android:id="@+id/qr"
             android:layout_width="262dp"
             android:layout_height="248dp"
             android:layout_marginStart="120dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="81dp"
             android:ems="10"
             android:text="GENERA CODICE QR"
             android:textColorHint="#FDFCFC"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/photoQr" />
+            app:layout_constraintTop_toBottomOf="@+id/view4" />
 
         <View
-            android:id="@+id/view5"
+            android:id="@+id/view4"
             android:layout_width="409dp"
             android:layout_height="3dp"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="1060dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="1dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/photoQr" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/changeQr"
@@ -302,22 +278,24 @@
             android:backgroundTint="@color/silver"
             android:clickable="true"
             android:onClick="modifyQrCode"
-            app:srcCompat="@drawable/ic_qr_code"
             app:layout_constraintBottom_toBottomOf="@+id/qr"
-            app:layout_constraintEnd_toEndOf="@+id/qr"/>
+            app:layout_constraintEnd_toEndOf="@+id/qr"
+            app:srcCompat="@drawable/ic_qr_code" />
 
         <Button
             android:id="@+id/modifyObjectQr"
             android:layout_width="139dp"
             android:layout_height="48dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="124dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
             android:background="@drawable/bordi_tondi_button"
             android:ems="10"
             android:onClick="modifyObj"
             android:text="@string/save"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view5" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/qr" />
 
         <ProgressBar
             android:id="@+id/modifyLoadingBar"

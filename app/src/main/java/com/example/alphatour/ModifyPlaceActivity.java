@@ -47,6 +47,7 @@ public class ModifyPlaceActivity extends AppCompatActivity {
     private String idUser;
     private String Place;
     private String idPlace;
+    private String dashboardFlag = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class ModifyPlaceActivity extends AppCompatActivity {
         Intent intent= getIntent();
         Place = intent.getStringExtra("Place");
         getIdPlace(Place);
+        dashboardFlag = intent.getStringExtra("dashboardFlag");
 
         placeText = findViewById(R.id.myPlaceText);
         namePlace = findViewById(R.id.updateNamePlace);
@@ -178,8 +180,6 @@ public class ModifyPlaceActivity extends AppCompatActivity {
             //salvataggio modifiche su Firebase
             updatePlaceOnDbRemote(Name,City,Typology);
 
-            startActivity(new Intent(ModifyPlaceActivity.this, ListPlacesActivity.class));
-
         }
     }
 
@@ -239,10 +239,6 @@ public class ModifyPlaceActivity extends AppCompatActivity {
     public void updatePlaceOnDbRemote(String Name, String City, String Typology){
 
         loadingBar.setVisibility(View.VISIBLE);
-        HashMap<String,Object> placeMap = new HashMap<>();
-        placeMap.put("name",Name);
-        placeMap.put("city",City);
-        placeMap.put("typology",Typology);
 
         db.collection("Places").document(idPlace)
                 .update("name",Name,"city",City,"typology",Typology)
@@ -250,9 +246,15 @@ public class ModifyPlaceActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(ModifyPlaceActivity.this, "Luogo aggiornato correttamente", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(ModifyPlaceActivity.this, ListPlacesActivity.class));
-                        loadingBar.setVisibility(View.GONE);
-                        finishAffinity();
+                        if(dashboardFlag.equals("1")){
+                            startActivity(new Intent(ModifyPlaceActivity.this, DashboardActivity.class));
+                            loadingBar.setVisibility(View.GONE);
+                            finish();
+                        }else {
+                            startActivity(new Intent(ModifyPlaceActivity.this, ListPlacesActivity.class));
+                            loadingBar.setVisibility(View.GONE);
+                            finishAffinity();
+                        }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -265,11 +267,22 @@ public class ModifyPlaceActivity extends AppCompatActivity {
     }
 
 
-    public void openZonesList(View v){
+    public void openZonesList(View view){
         Intent intent = new Intent(ModifyPlaceActivity.this, ListZonesActivity.class);
         intent.putExtra("Place", Place);
         intent.putExtra("idPlace", idPlace);
+        intent.putExtra("dashboardFlag", dashboardFlag);
         startActivity(intent);
+    }
+
+    public void onBackButtonClick(View view){
+        if(dashboardFlag.equals("1")){
+            startActivity(new Intent(ModifyPlaceActivity.this, DashboardActivity.class));
+            finish();
+        }else {
+            startActivity(new Intent(ModifyPlaceActivity.this, ListPlacesActivity.class));
+            finishAffinity();
+        }
     }
 
 

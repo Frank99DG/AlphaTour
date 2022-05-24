@@ -28,7 +28,7 @@ public class ListZonesActivity extends AppCompatActivity {
     private String idUser;
     private String Place;
     private String idPlace;
-    //private String idZone;
+    private String dashboardFlag = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +41,10 @@ public class ListZonesActivity extends AppCompatActivity {
         user = auth.getCurrentUser();
         idUser = user.getUid();
 
-        Intent intent= getIntent();
+        Intent intent = getIntent();
         Place = intent.getStringExtra("Place");
         idPlace = intent.getStringExtra("idPlace");
+        dashboardFlag = intent.getStringExtra("dashboardFlag");
 
         placeText = findViewById(R.id.specificPlaceText);
         placeText.setText(Place);
@@ -74,8 +75,11 @@ public class ListZonesActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(View zoneView) {
                                         Intent intent = new Intent(ListZonesActivity.this, ModifyZoneActivity.class);
-                                        intent.putExtra("Zone", editableZone.getText().toString());
+                                        intent.putExtra("Place", Place);
                                         intent.putExtra("idPlace", idPlace);
+                                        intent.putExtra("Zone", editableZone.getText().toString());
+                                        String dashboardFlag = "0"; //per indicare a ModifyZone che fa parte del Modifica Luogo
+                                        intent.putExtra("dashboardFlag", dashboardFlag);
                                         startActivity(intent);
 
                                     }
@@ -90,5 +94,12 @@ public class ListZonesActivity extends AppCompatActivity {
 
     }
 
+
+    public void onBackButtonClick(View view){
+        Intent intent = new Intent(ListZonesActivity.this, ModifyPlaceActivity.class);
+        intent.putExtra("Place", Place);
+        intent.putExtra("dashboardFlag", dashboardFlag);
+        startActivity(intent);
+    }
 
 }

@@ -191,4 +191,11 @@ public class ChangePasswordActivity extends AppCompatActivity {
             }
         }
     }
+
+
+    public void onBackButtonClick(View view){
+
+        startActivity(new Intent(ChangePasswordActivity.this, UpdateProfileActivity.class));
+        finish();
+    }
 }

@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.alphatour.oggetti.Element;
 import com.example.alphatour.oggetti.ElementString;
+import com.example.alphatour.oggetti.Place;
 import com.example.alphatour.oggetti.User;
 import com.example.alphatour.oggetti.Zone;
 import com.example.alphatour.qrcode.GenerateQrCodeActivity;
@@ -56,10 +57,8 @@ public class ModifyObjectActivity extends AppCompatActivity {
     private static Bitmap newQr;
     private static Uri newUri;
     private AutoCompleteTextView typology;
-    private ImageView close,imagePhoto,imageQrCode;
+    private ImageView imagePhoto,imageQrCode;
     private FloatingActionButton photo,qrCode;
-    private ElementString element;
-    private Zone zone;
     private StorageReference storegeProfilePick;
     private StorageTask uploadTask;
     private ProgressBar loadingBar;
@@ -67,8 +66,10 @@ public class ModifyObjectActivity extends AppCompatActivity {
     private List<String> zoneList = new ArrayList<String>();
     private ArrayAdapter<String> adapterItems;
     private int i=0,j=0;
-    private String newTitle,newDescription,newSensor,idElement,item,Zone, Qrdata;
+    private String newTitle,newDescription,newSensor,idElement,item,Place,idPlace,Zone,idZone,Element,Qrdata;
     private long idPhotoAndQrCode;
+    private String myQrData;
+    private String dashboardFlag = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,9 +80,14 @@ public class ModifyObjectActivity extends AppCompatActivity {
         storegeProfilePick= FirebaseStorage.getInstance().getReference();
 
         Intent intent= getIntent();
-        String data=intent.getStringExtra("data");
+        myQrData = intent.getStringExtra("data");
+        Place = intent.getStringExtra("Place");
+        idPlace = intent.getStringExtra("idPlace");
+        Zone = intent.getStringExtra("Zone");
+        idZone = intent.getStringExtra("idZone");
+        Element = intent.getStringExtra("Element");
+        dashboardFlag = intent.getStringExtra("dashboardFlag");
 
-        close=findViewById(R.id.closeDetailsQr);
         title=findViewById(R.id.titleQr);
         description=findViewById(R.id.descriptionQr);
         photo=findViewById(R.id.changePhotoObjectQr);
@@ -96,7 +102,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
         adapterItems = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,zoneList);
 
         db.collection("Elements")
-                .whereEqualTo("qrData", data)
+                .whereEqualTo("qrData", myQrData)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -120,12 +126,14 @@ public class ModifyObjectActivity extends AppCompatActivity {
                                                     i++;
                                                     for (QueryDocumentSnapshot document : task.getResult()) {
 
-                                                        zone = document.toObject(Zone.class);
-                                                        if (i == 1) {
+                                                        Zone zone = document.toObject(Zone.class);
+
+                                                        if ( i == 1 && zone.getIdPlace().equals(idPlace) ) {
                                                             zoneList.add(zone.getName());
                                                             zoneMap.put(document.getId(), zone.getName());
 
                                                         }
+
                                                         if (document.getId().matches(element.getIdZone())) {
                                                             zone = document.toObject(Zone.class);
 
@@ -142,7 +150,6 @@ public class ModifyObjectActivity extends AppCompatActivity {
                                                                 @Override
                                                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                                                     typology.setError(null);
-                                                                    //selected=true;
                                                                     item = parent.getItemAtPosition(position).toString();
                                                                 }
                                                             });
@@ -177,13 +184,6 @@ public class ModifyObjectActivity extends AppCompatActivity {
             }
         });
 
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                finish();
-            }
-        });
     }
 
 
@@ -280,32 +280,32 @@ public class ModifyObjectActivity extends AppCompatActivity {
 
     public void modifyObj(View view) {
 
-        newTitle=title.getText().toString();
-        newDescription=description.getText().toString();
+        newTitle = title.getText().toString();
+        newDescription = description.getText().toString();
 
-        Boolean error=inputControl(newTitle,newDescription,newSensor);
+        Boolean error = inputControl(newTitle,newDescription,newSensor);
 
         if(error){
             return;
         }else{
             if(item!=null) {
-                saveObject(newTitle, newDescription, newUri, newQr, newSensor, item);
+                saveObject(newTitle, newDescription, newUri, newQr, item);
             }else{
-                saveObject(newTitle, newDescription, newUri, newQr, newSensor, Zone);
+                saveObject(newTitle, newDescription, newUri, newQr, Zone);
             }
         }
     }
 
 
-    private void saveObject(String newTitle, String newDescription, Uri newUri, Bitmap newQr, String newSensor, String newZone) {
+    private void saveObject(String newTitle, String newDescription, Uri newUri, Bitmap newQr, String newZone) {
         loadingBar.setVisibility(View.VISIBLE);
 
-        Iterator it=zoneMap.entrySet().iterator();
+        Iterator it = zoneMap.entrySet().iterator();
         while (it.hasNext()){
-            Map.Entry val=(Map.Entry) it.next();
+            Map.Entry val = (Map.Entry) it.next();
 
             if(newZone.matches(val.getValue().toString())){
-                newZone=val.getKey().toString();
+                newZone = val.getKey().toString();
             }
         }
 
@@ -323,9 +323,24 @@ public class ModifyObjectActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(ModifyObjectActivity.this, "Oggetto aggiornato correttamente", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(ModifyObjectActivity.this, DashboardActivity.class));
-                        loadingBar.setVisibility(View.GONE);
-                        finish();
+                        if(dashboardFlag.equals("1")){
+                            startActivity(new Intent(ModifyObjectActivity.this, DashboardActivity.class));
+                            loadingBar.setVisibility(View.GONE);
+                            finish();
+                        }else if(dashboardFlag.equals("scan")){
+                            loadingBar.setVisibility(View.GONE);
+                            finish();
+                        }else  {
+                            Intent intent = new Intent(ModifyObjectActivity.this, ListElementsActivity.class);
+                            intent.putExtra("Place", Place);
+                            intent.putExtra("idPlace", idPlace);
+                            intent.putExtra("Zone", Zone);
+                            intent.putExtra("idZone", idZone);
+                            intent.putExtra("dashboardFlag", dashboardFlag);
+                            startActivity(intent);
+                            loadingBar.setVisibility(View.GONE);
+                            finishAffinity();
+                        }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -467,4 +482,25 @@ public class ModifyObjectActivity extends AppCompatActivity {
 
         return errorFlag;
     }
+
+    public void onBackButtonClick(View view){
+
+        if(dashboardFlag.equals("1")){
+            startActivity(new Intent(ModifyObjectActivity.this, DashboardActivity.class));
+            finish();
+        }else if(dashboardFlag.equals("scan")){
+            finish();
+        }else {
+            Intent intent = new Intent(ModifyObjectActivity.this, ListElementsActivity.class);
+            intent.putExtra("Place",Place);
+            intent.putExtra("idPlace",idPlace);
+            intent.putExtra("Zone",Zone);
+            intent.putExtra("idZone",idZone);
+            intent.putExtra("dashboardFlag", dashboardFlag);
+            startActivity(intent);
+            finish();
+        }
+
+    }
+
 }

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -108,6 +109,13 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
         }
 
+    }
+
+
+    public void onBackButtonClick(View view){
+
+        startActivity(new Intent(ForgotPasswordActivity.this, LoginActivity.class));
+        finish();
     }
 
 }

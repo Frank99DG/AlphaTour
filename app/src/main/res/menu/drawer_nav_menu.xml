@@ -17,6 +17,12 @@
             />
 
         <item
+            android:id="@+id/tb_routes"
+            android:title="@string/tb_routes"
+            android:icon="@drawable/ic_percorso"
+            />
+
+        <item
             android:id="@+id/tb_share_path"
             android:title="@string/tb_share_path"
             android:icon="@drawable/ic_share"
