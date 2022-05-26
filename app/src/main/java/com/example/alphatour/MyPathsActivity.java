@@ -3,14 +3,19 @@ package com.example.alphatour;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.alphatour.databinding.ActivityDashboardBinding;
 import com.example.alphatour.databinding.ActivityMyPathsBinding;
@@ -23,10 +28,17 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import org.w3c.dom.Text;
 
 import java.util.Iterator;
 import java.util.List;
@@ -40,6 +52,10 @@ public class MyPathsActivity extends DrawerBaseActivity {
     private FirebaseFirestore db;
     private ActivityMyPathsBinding activityMyPathsBinding;
     private BottomNavigationView bottomNavigationView;
+    private Dialog dialog;
+    private Button dialog_delete_path, dialog_dismiss;
+    private TextView dialog_title,dialog_text;
+    private ImageView dialog_delete_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +73,22 @@ public class MyPathsActivity extends DrawerBaseActivity {
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_delete);
+        dialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroun_dialog));
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog_delete_path = dialog.findViewById(R.id.btn_okay);
+        dialog_dismiss = dialog.findViewById(R.id.btn_cancel);
+        dialog_title = dialog.findViewById(R.id.titleDialog);
+        dialog_text = dialog.findViewById(R.id.textDialog);
+        dialog_delete_image= dialog.findViewById(R.id.imageDialog);
+        dialog_delete_image.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
+
+        dialog_title.setText("Elimina percorso");
+        dialog_text.setText("Sei sicuro di voler eliminare il percorso creato?");
+
 
         db.collection("Path").whereEqualTo("idUser", user.getUid() ).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
 
@@ -66,28 +98,66 @@ public class MyPathsActivity extends DrawerBaseActivity {
 
                     List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments();
 
-                    for(DocumentSnapshot d : listDocument){
+                    for (DocumentSnapshot d : listDocument) {
 
                         PathString path = d.toObject(PathString.class);
 
                         View path_view = getLayoutInflater().inflate(R.layout.row_path, null, false);
                         TextView name_path = (TextView) path_view.findViewById(R.id.name_path2);
                         TextView description_path = (TextView) path_view.findViewById(R.id.description_path2);
+                        ImageView delete_path = path_view.findViewById(R.id.delete_path);
 
 
                         name_path.setText(path.getName());
                         description_path.setText(path.getDescription());
 
-                        /*
-                        Iterator it = mappa.entrySet().iterator();
+                        delete_path.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
 
-                        while(it.hasNext()){
-                            Map.Entry entry = (Map.Entry) it.next();
+                                dialog.show();
 
-                            Object c = entry.getValue();
+                                dialog_delete_path.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        list_paths.removeView(path_view);
+                                        db.collection("Path").whereEqualTo("idUser",user.getUid()).
+                                                whereEqualTo("name",path.getName()).
+                                                whereEqualTo("description",path.getDescription()).
+                                                get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                                if (!queryDocumentSnapshots.isEmpty()) {
 
-                        }
-                         */
+                                                    List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments();
+
+                                                    for (DocumentSnapshot d : listDocument) {
+
+                                                        String idPath = d.getId();
+
+                                                        db.collection("Path").document(idPath).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                            @Override
+                                                            public void onSuccess(Void unused) {
+                                                                dialog.dismiss();
+                                                                Toast.makeText(MyPathsActivity.this, "Percorso cancellato con successo", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        });
+                                                    }
+                                                }
+                                            }
+                                        });
+                                    }
+                                });
+
+                                dialog_dismiss.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                            }
+                        });
+
                         list_paths.addView(path_view);
                     }
                 }
@@ -102,7 +172,7 @@ public class MyPathsActivity extends DrawerBaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.toolbar_profile, menu);
+        inflater.inflate(R.menu.toolbar_dashboard, menu);
         return true;
     }
 
@@ -110,10 +180,12 @@ public class MyPathsActivity extends DrawerBaseActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
+            /*
             case R.id.tb_notify:
                 return true;
             case R.id.tb_update:
                 return true;
+             */
             default:
                 return onOptionsItemSelected(item);
 

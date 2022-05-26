@@ -69,7 +69,7 @@
         android:layout_marginBottom="16dp"
         android:background="@android:color/transparent"
         android:stateListAnimator="@null"
-        android:text="@string/ms_back"
+        android:text="@string/cancel"
         android:textAllCaps="false"
         android:textColor="@android:color/holo_blue_dark"
         app:layout_constraintBottom_toBottomOf="parent"
