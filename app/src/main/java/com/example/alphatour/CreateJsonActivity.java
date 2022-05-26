@@ -1,7 +1,9 @@
 package com.example.alphatour;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -16,10 +18,13 @@ import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.FileUtils;
 import android.os.Parcelable;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +65,7 @@ import org.jgrapht.nio.Attribute;
 import org.jgrapht.nio.DefaultAttribute;
 import org.jgrapht.nio.IntegerIdProvider;
 import org.jgrapht.nio.json.JSONExporter;
+import org.w3c.dom.Text;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -80,6 +86,7 @@ public class CreateJsonActivity extends AppCompatActivity {
     private ConstraintLayout layout;
     private BottomNavigationView bottomNavigationViewPath;
     private TextView name_path,description_path;
+    private int i=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,30 +115,81 @@ public class CreateJsonActivity extends AppCompatActivity {
 
         zoneAndObjectListReviewPath = Step4.getZoneAndObjectList_();
 
-
         list_path = findViewById(R.id.list_path);
-        layout = findViewById(R.id.layout);
 
-        for(int i=0; i<zoneAndObjectListReviewPath.size();i++){
-            View zone = getLayoutInflater().inflate(R.layout.row_add_textview_path, null,false);
-            TextView textZone = (TextView) zone.findViewById(R.id.textZonePath);
+        for(i=0; i<zoneAndObjectListReviewPath.size();i++){
+            View zone = getLayoutInflater().inflate(R.layout.row_zone_cardview, null,false);
+            CardView cardZone = (CardView)  zone.findViewById(R.id.card_zone);
+            TextView nameZone = (TextView) zone.findViewById(R.id.zone_name);
+            TextView objectZone = (TextView) zone.findViewById(R.id.object_name);
+            LinearLayout transition = zone.findViewById(R.id.layout_transition);
 
+            zone.setId(i);
 
             if(i==zoneAndObjectListReviewPath.size()-1) {
-                textZone.setText(zoneAndObjectListReviewPath.get(i).getZone());
+                nameZone.setText(zoneAndObjectListReviewPath.get(i).getZone());
                 list_path.addView(zone);
                 View end = getLayoutInflater().inflate(R.layout.row_end_path, null, false);
                 list_path.addView(end);
+
+                cardZone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+                    public void onClick(View view) {
+                        int v = (objectZone.getVisibility() == View.GONE) ? View.VISIBLE : View.GONE;
+                        TransitionManager.beginDelayedTransition(transition, new AutoTransition());
+
+                        final List<String> listObj = zoneAndObjectListReviewPath.get(zone.getId()).getListObj();
+                        final StringBuilder sb = new StringBuilder();
+
+                        for (int j = 0; j < listObj.size(); j++) {
+
+                            String objects = listObj.get(j);
+                            if (j > 0) sb.append("\n");
+                            sb.append(objects);
+
+                            objectZone.setText(sb);
+
+                        }
+
+                        objectZone.setVisibility(v);
+
+                    }
+                });
             }else {
-                textZone.setText(zoneAndObjectListReviewPath.get(i).getZone());
+                nameZone.setText(zoneAndObjectListReviewPath.get(i).getZone());
                 list_path.addView(zone);
+                cardZone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+                    public void onClick(View view) {
+                        int v = (objectZone.getVisibility() == View.GONE) ? View.VISIBLE : View.GONE;
+                        TransitionManager.beginDelayedTransition(transition, new AutoTransition());
+
+                        final List<String> listObj = zoneAndObjectListReviewPath.get(zone.getId()).getListObj();
+                        final StringBuilder sb = new StringBuilder();
+
+                        for (int j = 0; j < listObj.size(); j++) {
+
+                            String objects = listObj.get(j);
+                            if (j > 0) sb.append("\n");
+                            sb.append(objects);
+
+                            objectZone.setText(sb);
+
+                        }
+
+                        objectZone.setVisibility(v);
+
+                    }
+                });
             }
+
             name_path.setText(zoneAndObjectListReviewPath.get(0).getName());
             description_path.setText(zoneAndObjectListReviewPath.get(0).getDescription());
 
 
         }
-
 
 
         if (checkPermission()) {
@@ -140,7 +198,6 @@ public class CreateJsonActivity extends AppCompatActivity {
             if (ActivityCompat.shouldShowRequestPermissionRationale(CreateJsonActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 dialog.show();
                 yesFinal.setText("OK");
-
                 titleDialog.setText(R.string.permit_required);
                 textDialog.setText(R.string.permission_text);
                 textDialog.setTextColor(getResources().getColor(R.color.black));
@@ -188,6 +245,8 @@ public class CreateJsonActivity extends AppCompatActivity {
     public static void setZoneAndObjectListReviewPath(List<MapZoneAndObject> zoneAndObjectListReviewPath) {
         CreateJsonActivity.zoneAndObjectListReviewPath = zoneAndObjectListReviewPath;
     }
+
+
 
 
     public void bottomNavBarPathClick(){

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -38,7 +39,6 @@ public class ReviewZoneSelected extends AppCompatActivity {
         zoneReview = findViewById(R.id.zoneReview);
         backToReview = findViewById(R.id.backToReview);
         list_object_zone_review = findViewById(R.id.list_object_zone_review);
-
 
         Intent intent = getIntent();
         zone = intent.getStringExtra("zone");

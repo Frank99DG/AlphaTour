@@ -22,7 +22,7 @@
         android:paddingBottom="10dp"
         android:text="@string/create_path"
         android:textAlignment="center"
-        android:textColor="@color/Black"
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
