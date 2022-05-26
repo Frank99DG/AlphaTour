@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bordi_tondi"
-            android:drawableStart="@drawable/ic_museum2"
+            android:drawableStart="@drawable/ic_museum_mini"
             android:drawablePadding="12dp"
             android:hint="Scegli luogo"
             android:inputType="none"

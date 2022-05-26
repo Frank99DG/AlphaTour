@@ -249,12 +249,13 @@ public class RegisterActivity extends AppCompatActivity {
                                             finish();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(RegisterActivity.this, getString(R.string.registration_failed) , Toast.LENGTH_LONG).show();
-                                    loadingBar.setVisibility(View.GONE);
-                                }
-                            });
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(RegisterActivity.this, getString(R.string.registration_failed) , Toast.LENGTH_LONG).show();
+                                            loadingBar.setVisibility(View.GONE);
+                                        }
+                                    });
+
                             finish();
 
                         } else {

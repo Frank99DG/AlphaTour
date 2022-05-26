@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,18 +19,23 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.alphatour.databinding.ActivityDashboardBinding;
+import com.example.alphatour.oggetti.TourAdapter;
+import com.example.alphatour.oggetti.TourItem;
 import com.example.alphatour.oggetti.ElementString;
 import com.example.alphatour.oggetti.Place;
 import com.example.alphatour.oggetti.Zone;
 import com.example.alphatour.qrcode.ScanQrCodeActivity;
 import com.example.alphatour.wizardcreazione.CreationWizard;
 import com.example.alphatour.wizardpercorso.PercorsoWizard;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -52,8 +56,8 @@ public class DashboardActivity extends DrawerBaseActivity {
     private FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
     private FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
     private AutoCompleteTextView inputSearch;
-    private static List<String> placesZonesElementsList =new ArrayList<String>();
-    private ArrayAdapter<String> adapterItems;
+    private List<TourItem> placesZonesElementsList = new ArrayList<TourItem>();
+    private TourAdapter adapterItems;
     private String item;
     private BottomNavigationView bottomNavigationView;
     private ProgressBar loadingBar;
@@ -82,8 +86,8 @@ public class DashboardActivity extends DrawerBaseActivity {
 
         //impostazione barra di ricerca luogi,zone,elementi per la modifica
         inputSearch = findViewById(R.id.inputSearch);
-        placesZonesElementsList = getPlacesZonesElementsList();
-        adapterItems = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item, placesZonesElementsList);
+        fillPlacesZonesElementsList();
+        adapterItems = new TourAdapter(this, placesZonesElementsList);
         inputSearch.setAdapter(adapterItems);
         inputSearchClick();
 
@@ -231,26 +235,30 @@ public class DashboardActivity extends DrawerBaseActivity {
 
 
 
-    public List<String> getPlacesZonesElementsList() {
-
-        List<String> list = new ArrayList<String>();
+    public void fillPlacesZonesElementsList() {
 
         db.collection("Elements")
                 .whereEqualTo("idUser",idUser)
                 .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                // Step 1: if activity is no longer valid to use just skip this "task" response.
+                if (isFinishing() || isDestroyed()) return;
 
-                if (!queryDocumentSnapshots.isEmpty()) {
-                    List<DocumentSnapshot> listDocuments = queryDocumentSnapshots.getDocuments(); //lista elementi
+                if(task.isSuccessful()){
 
-                    for (DocumentSnapshot d : listDocuments) {
-                        ElementString element = d.toObject(ElementString.class);
+                    if (task.getResult() != null) {
 
-                            String titleElement = element.getTitle();
-                            list.add(titleElement);
+                        for (QueryDocumentSnapshot d : task.getResult()) {
+
+                            ElementString element = d.toObject(ElementString.class);
+
+                            placesZonesElementsList.add(new TourItem( R.drawable.ic_statue, element.getTitle() ));
+
+                            // Step 2: items are updated
+                            adapterItems.updateList(placesZonesElementsList);
+                        }
 
                     }
                 }
@@ -261,52 +269,58 @@ public class DashboardActivity extends DrawerBaseActivity {
         db.collection("Zones")
                 .whereEqualTo("idUser",idUser)
                 .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        // Step 1: if activity is no longer valid to use just skip this "task" response.
+                        if (isFinishing() || isDestroyed()) return;
 
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if(task.isSuccessful()){
 
-                if (!queryDocumentSnapshots.isEmpty()) {
-                    List<DocumentSnapshot> listDocuments = queryDocumentSnapshots.getDocuments(); //lista zone
+                            if (task.getResult() != null) {
 
-                    for (DocumentSnapshot d : listDocuments) {
-                        Zone zone = d.toObject(Zone.class);
+                                for (QueryDocumentSnapshot d : task.getResult()) {
 
-                        String nameZone = zone.getName();
-                        list.add(nameZone);
+                                    Zone zone = d.toObject(Zone.class);
 
+                                    placesZonesElementsList.add(new TourItem( R.drawable.ic_zone, zone.getName() ));
 
+                                    // Step 2: items are updated
+                                    adapterItems.updateList(placesZonesElementsList);
+                                }
 
+                            }
+                        }
                     }
-                }
-            }
-        });
-
+                });
 
         db.collection("Places")
                 .whereEqualTo("idUser",idUser)
                 .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        // Step 1: if activity is no longer valid to use just skip this "task" response.
+                        if (isFinishing() || isDestroyed()) return;
 
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if(task.isSuccessful()){
 
-                if (!queryDocumentSnapshots.isEmpty()) {
-                    List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista luoghi
+                            if (task.getResult() != null) {
 
-                    for (DocumentSnapshot d : listDocument) {
-                        Place place = d.toObject(Place.class);
+                                for (QueryDocumentSnapshot d : task.getResult()) {
 
-                        String namePlace = place.getName();
-                        list.add(namePlace);
+                                    Place place = d.toObject(Place.class);
 
+                                    placesZonesElementsList.add(new TourItem( R.drawable.ic_museum_mini, place.getName() ));
 
+                                    // Step 2: items are updated
+                                    adapterItems.updateList(placesZonesElementsList);
+                                }
+
+                            }
+                        }
                     }
-                }
-            }
-        });
-
-        return list;
+                });
 
     }
 
@@ -318,7 +332,8 @@ public class DashboardActivity extends DrawerBaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                item = parent.getItemAtPosition(position).toString();
+                TourItem clickedItem = (TourItem) parent.getItemAtPosition(position);
+                String clickedTourText = clickedItem.getTourText();
 
                 db.collection("Elements").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
 
@@ -331,7 +346,7 @@ public class DashboardActivity extends DrawerBaseActivity {
                             for (DocumentSnapshot d : listDocument) {
                                 ElementString element = d.toObject(ElementString.class);
 
-                                if( item.equals(element.getTitle()) ){
+                                if( clickedTourText.equals(element.getTitle()) ){
                                     Intent intent = new Intent(DashboardActivity.this, ModifyObjectActivity.class);
                                     intent.putExtra("data",element.getQrData());
                                     String dashboardFlag = "1";
@@ -357,10 +372,10 @@ public class DashboardActivity extends DrawerBaseActivity {
                             for (DocumentSnapshot d : listDocument) {
                                 Zone zone = d.toObject(Zone.class);
 
-                                if( item.equals(zone.getName())  ){
+                                if( clickedTourText.equals(zone.getName())  ){
                                     Intent intent = new Intent(DashboardActivity.this, ModifyZoneActivity.class);
-                                    intent.putExtra("Zone", zone.getName());
                                     intent.putExtra("idPlace", zone.getIdPlace());
+                                    intent.putExtra("Zone", zone.getName());
                                     String dashboardFlag = "1";
                                     intent.putExtra("dashboardFlag", dashboardFlag);
                                     startActivity(intent);
@@ -386,7 +401,7 @@ public class DashboardActivity extends DrawerBaseActivity {
                             for (DocumentSnapshot d : listDocument) {
                                 Place place = d.toObject(Place.class);
 
-                                if( item.equals(place.getName()) ){
+                                if( clickedTourText.equals(place.getName()) ){
                                     Intent intent = new Intent(DashboardActivity.this, ModifyPlaceActivity.class);
                                     intent.putExtra("Place", place.getName());
                                     String dashboardFlag = "1";

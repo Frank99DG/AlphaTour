@@ -66,7 +66,7 @@ public class ScanQrCodeActivity extends AppCompatActivity {
                      public void onClick(View view) {
                          Intent intent= new Intent(ScanQrCodeActivity.this, ModifyObjectActivity.class);
                          intent.putExtra("data",scanText.getText().toString());
-                         String dashboardFlag = "scan"; //per indicare a ModifyObject che fa parte della scannerizzazione
+                         String dashboardFlag = "1"; //per indicare a ModifyObject che fa parte della scannerizzazione
                          intent.putExtra("dashboardFlag", dashboardFlag);
                          startActivity(intent);
                      }

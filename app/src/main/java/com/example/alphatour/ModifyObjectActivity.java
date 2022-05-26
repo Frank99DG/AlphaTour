@@ -4,12 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -31,6 +35,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -66,7 +71,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
     private List<String> zoneList = new ArrayList<String>();
     private ArrayAdapter<String> adapterItems;
     private int i=0,j=0;
-    private String newTitle,newDescription,newSensor,idElement,item,Place,idPlace,Zone,idZone,Element,Qrdata;
+    private String newTitle,newDescription,idElement,item,Place,idPlace,Zone,idZone,Element,Qrdata;
     private long idPhotoAndQrCode;
     private String myQrData;
     private String dashboardFlag = "0";
@@ -79,15 +84,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         storegeProfilePick= FirebaseStorage.getInstance().getReference();
 
-        Intent intent= getIntent();
-        myQrData = intent.getStringExtra("data");
-        Place = intent.getStringExtra("Place");
-        idPlace = intent.getStringExtra("idPlace");
-        Zone = intent.getStringExtra("Zone");
-        idZone = intent.getStringExtra("idZone");
-        Element = intent.getStringExtra("Element");
-        dashboardFlag = intent.getStringExtra("dashboardFlag");
-
+        //riferimenti alle view
         title=findViewById(R.id.titleQr);
         description=findViewById(R.id.descriptionQr);
         photo=findViewById(R.id.changePhotoObjectQr);
@@ -101,6 +98,21 @@ public class ModifyObjectActivity extends AppCompatActivity {
 
         adapterItems = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,zoneList);
 
+        Intent intent= getIntent();
+        myQrData = intent.getStringExtra("data");
+        Place = intent.getStringExtra("Place");
+        idPlace = intent.getStringExtra("idPlace");
+        Zone = intent.getStringExtra("Zone");
+        idZone = intent.getStringExtra("idZone");
+        Element = intent.getStringExtra("Element");
+        dashboardFlag = intent.getStringExtra("dashboardFlag");
+
+        //settaggio idPlace,idZone se si arriva da dashboard
+        if(dashboardFlag.equals("1")) {
+            getIdPlaceAndIdZone(myQrData);
+        }
+
+        //settaggio dati elemento
         db.collection("Elements")
                 .whereEqualTo("qrData", myQrData)
                 .get()
@@ -186,6 +198,68 @@ public class ModifyObjectActivity extends AppCompatActivity {
 
     }
 
+    //per rimuovere il focus e la tastiera quando si clicca fuori dalla EditText e/o AutoCompleteTextView
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (v instanceof EditText) {
+                Rect outRect = new Rect();
+                v.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int)event.getRawX(), (int)event.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        }
+        return super.dispatchTouchEvent( event );
+    }
+
+    public void getIdPlaceAndIdZone(String myQrData){
+        db.collection("Elements")
+                .whereEqualTo("qrData", myQrData)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+
+                            if (task.getResult() != null) {
+
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                    ElementString element = document.toObject(ElementString.class);
+                                    idZone = element.getIdZone();
+
+                                    db.collection("Zones")
+                                            .get()
+                                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                                @Override
+                                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                                                    if (!queryDocumentSnapshots.isEmpty()) {
+                                                        List<DocumentSnapshot> listDocuments = queryDocumentSnapshots.getDocuments();
+
+                                                        for (DocumentSnapshot d : listDocuments) {
+
+                                                            Zone zone = d.toObject(Zone.class);
+
+                                                            if( idZone.equals(d.getId()) ){
+                                                                idPlace = zone.getIdPlace();
+                                                                break;
+                                                            }
+
+                                                        }
+                                                    }
+                                                }
+                                            });
+                                }
+                            }
+                        }
+                    }
+                });
+    }
 
 
     private void showQrCode() {
@@ -283,7 +357,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
         newTitle = title.getText().toString();
         newDescription = description.getText().toString();
 
-        Boolean error = inputControl(newTitle,newDescription,newSensor);
+        Boolean error = inputControl(newTitle,newDescription);
 
         if(error){
             return;
@@ -322,12 +396,9 @@ public class ModifyObjectActivity extends AppCompatActivity {
                 addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(ModifyObjectActivity.this, "Oggetto aggiornato correttamente", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ModifyObjectActivity.this, "Elemento aggiornato correttamente", Toast.LENGTH_LONG).show();
                         if(dashboardFlag.equals("1")){
-                            startActivity(new Intent(ModifyObjectActivity.this, DashboardActivity.class));
-                            loadingBar.setVisibility(View.GONE);
-                            finish();
-                        }else if(dashboardFlag.equals("scan")){
+                            //startActivity(new Intent(ModifyObjectActivity.this, DashboardActivity.class));
                             loadingBar.setVisibility(View.GONE);
                             finish();
                         }else  {
@@ -339,13 +410,13 @@ public class ModifyObjectActivity extends AppCompatActivity {
                             intent.putExtra("dashboardFlag", dashboardFlag);
                             startActivity(intent);
                             loadingBar.setVisibility(View.GONE);
-                            finishAffinity();
+                            finish();
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ModifyObjectActivity.this, "Non è stato possibile aggiornare i dati dell'oggetto", Toast.LENGTH_LONG).show();
+                Toast.makeText(ModifyObjectActivity.this, "Non è stato possibile aggiornare i dati dell'elemento", Toast.LENGTH_LONG).show();
                 loadingBar.setVisibility(View.GONE);
             }
         });
@@ -465,7 +536,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
         });
     }
 
-    private boolean inputControl(String Title, String Description, String Sensor) {
+    private boolean inputControl(String Title, String Description) {
         Boolean errorFlag = false;
 
         if (Title.isEmpty()) {
@@ -486,9 +557,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
     public void onBackButtonClick(View view){
 
         if(dashboardFlag.equals("1")){
-            startActivity(new Intent(ModifyObjectActivity.this, DashboardActivity.class));
-            finish();
-        }else if(dashboardFlag.equals("scan")){
+            //startActivity(new Intent(ModifyObjectActivity.this, DashboardActivity.class));
             finish();
         }else {
             Intent intent = new Intent(ModifyObjectActivity.this, ListElementsActivity.class);

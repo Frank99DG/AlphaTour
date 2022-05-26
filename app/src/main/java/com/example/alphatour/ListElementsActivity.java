@@ -94,8 +94,9 @@ public class ListElementsActivity extends AppCompatActivity {
                                                         ElementString element = d.toObject(ElementString.class);
 
                                                         if (editableElement.getText().toString().equals(element.getTitle())){
-                                                            myQrData = element.getQrData();
+
                                                             Intent intent = new Intent(ListElementsActivity.this, ModifyObjectActivity.class);
+                                                            myQrData = element.getQrData();
                                                             intent.putExtra("data", myQrData);
                                                             intent.putExtra("Place",Place);
                                                             intent.putExtra("idPlace",idPlace);

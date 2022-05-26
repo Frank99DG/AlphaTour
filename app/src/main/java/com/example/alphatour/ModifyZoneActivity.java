@@ -66,6 +66,11 @@ public class ModifyZoneActivity extends AppCompatActivity {
         getIdZone(Zone);
         dashboardFlag = intent.getStringExtra("dashboardFlag");
 
+        //settaggio Place se si arriva da dashboard
+        if(dashboardFlag.equals("1")) {
+            getPlace(idPlace);
+        }
+
         zoneText = findViewById(R.id.myZoneText);
         nameZone = findViewById(R.id.updateNameZone);
 
@@ -135,6 +140,30 @@ public class ModifyZoneActivity extends AppCompatActivity {
 
                         if (nameZone.equals(zone.getName())){
                             idZone = d.getId();
+                            break;
+                        }
+
+                    }
+                }
+            }
+        });
+    }
+
+    public void getPlace(String idPlace) {
+
+        db.collection("Places").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                if (!queryDocumentSnapshots.isEmpty()) {
+                    List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista luoghi
+
+                    for (DocumentSnapshot d : listDocument) {
+                        Place place = d.toObject(Place.class);
+
+                        if (idPlace.equals(d.getId())){
+                            Place = place.getName();
                             break;
                         }
 

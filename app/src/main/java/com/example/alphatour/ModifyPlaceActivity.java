@@ -115,6 +115,16 @@ public class ModifyPlaceActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        typology_list.add(getString(R.string.museum));
+        typology_list.add(getString(R.string.fair));
+        typology_list.add(getString(R.string.archaeological_site));
+        typology_list.add(getString(R.string.museum_exhibition));
+        adapterItems = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,typology_list);
+        typology.setAdapter(adapterItems);
+    }
 
     //per rimuovere il focus e la tastiera quando si clicca fuori dalla EditText e/o AutoCompleteTextView
     @Override

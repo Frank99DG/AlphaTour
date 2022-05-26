@@ -59,6 +59,7 @@
                         android:background="@drawable/backgroun_dialog"
                         android:drawableStart="@drawable/ic_search"
                         android:hint=" Luoghi, Zone ed Elementi"
+                        android:textSize="14dp"
                         android:inputType="text"
                         android:padding="10dp"
                         tools:layout_editor_absoluteX="110dp"
@@ -352,17 +353,6 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
          -->
-
-        <FrameLayout
-            android:id="@+id/container"
-            android:name="com.example.alphatour.NotifyFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="visible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </FrameLayout>
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
