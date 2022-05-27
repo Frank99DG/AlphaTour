@@ -330,10 +330,10 @@ public class ProfileActivity extends DrawerBaseActivity {
                         startActivity(new Intent(ProfileActivity.this, DashboardActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-                    /*case R.id.tb_routes:
-                        startActivity(new Intent(DashboardActivity.this, .class));
+                    case R.id.tb_routes:
+                        startActivity(new Intent(ProfileActivity.this, MyPathsActivity.class));
                         overridePendingTransition(0,0);
-                        return true;*/
+                        return true;
                 }
 
                 return false;

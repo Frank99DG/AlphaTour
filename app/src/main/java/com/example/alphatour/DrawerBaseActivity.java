@@ -175,7 +175,11 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
             case R.id.tb_profile:
                 startActivity( new Intent(this, ProfileActivity.class) );
                 break;
+            case R.id.tb_routes:
+                startActivity( new Intent(this, MyPathsActivity.class) );
+                break;
             case R.id.tb_share_path:
+              //startActivity( new Intent(this, ) );
                 break;
             case R.id.tb_logout:
                 //loadingBar.setVisibility(View.VISIBLE);
