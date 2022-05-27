@@ -88,6 +88,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
+
             zone_selected.setText(DashboardActivity.getZona_scelta());
             String scelta = DashboardActivity.getZona_scelta();
 

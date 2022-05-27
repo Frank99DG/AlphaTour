@@ -10,10 +10,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.devzone.checkabletextview.CheckableTextView;
 import com.example.alphatour.R;
 import com.example.alphatour.oggetti.MapZoneAndObject;
 import com.stepstone.stepper.Step;
@@ -30,6 +33,10 @@ public class Step5 extends Fragment  {
     public static List<MapZoneAndObject> zoneAndObjectList_ = new ArrayList<MapZoneAndObject>();
     private static List<String> zone_select = new ArrayList<>();
     private TextView zone_selected;
+    private ListView list_zone;
+    private List <CheckableTextView> arrayZone = new ArrayList<CheckableTextView>();
+    public static List<MapZoneAndObject> zoneAndObjectList = new ArrayList<MapZoneAndObject>();
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,7 +47,10 @@ public class Step5 extends Fragment  {
         View view = inflater.inflate(R.layout.fragment_step5, container, false);
         close_fragment = view.findViewById(R.id.close_fragment);
         closeLayout = view.findViewById(R.id.closeLayout);
-        zone_selected = (TextView) view.findViewById(R.id.zone_selected);
+        ListView listView = view.findViewById(R.id.list_zone);
+        list_zone = view.findViewById(R.id.list_zone);
+
+
 
         buttonClick();
 
@@ -64,6 +74,7 @@ public class Step5 extends Fragment  {
             }
             });
     }
+
 
     public static List<MapZoneAndObject> getZoneAndObjectList_() {
         return zoneAndObjectList_;
