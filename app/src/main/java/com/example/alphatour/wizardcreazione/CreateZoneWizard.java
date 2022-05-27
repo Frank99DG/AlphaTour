@@ -40,25 +40,25 @@ import java.util.List;
 import java.util.Set;
 
 public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
-    private int zoneNumber = 1;
+
     private EditText nameZone;
     private Button addZone,yes,cancel;
-    private boolean zoneCreated=false;
+    private static boolean zoneCreated=false;
     private LinearLayout layout_list;
     private Dialog dialog;
     private TextView titleDialog,textDialog;
     private static  ArrayList<String> zone_list = new ArrayList<>();
-    private ViewPager vpPager;
     private ImageView imgDialog;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
     private FirebaseUser user;
     private List<DocumentSnapshot> listaDocumenti=new ArrayList<DocumentSnapshot>();
 
+
+
     public static ArrayList<String> getZone_list() {
         return zone_list;
     }
-
 
 
     @Nullable
@@ -92,7 +92,7 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
          textDialog=dialog.findViewById(R.id.textDialog);
          imgDialog=dialog.findViewById(R.id.imageDialog);
 
-       // LoadPreferences();
+         LoadPreferences();
 
         db.collection("Zones")
                 .whereEqualTo("idUser",user.getUid())
@@ -212,6 +212,7 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
     }
 
     private void LoadPreferences(){
+        Boolean created=false;
         SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         nameZone.setText(sharedPreferences.getString("NameZone",""));
         int size=sharedPreferences.getInt("SizeList",0);
@@ -223,6 +224,18 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
             TextView zone = (TextView) zoneView.findViewById(R.id.displayZone);
             zone.setText(name);
             layout_list.addView(zoneView);
+            for(int j=0;j<zone_list.size();j++){
+
+                if(name.matches(zone_list.get(j))){
+                    created=true;
+                }
+            }
+
+            if(!created){
+                zone_list.add(name);
+            }
+
+
 
             removeZone.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -268,7 +281,6 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
 
         callback.goToPrevStep();
 
-
-
     }
+
 }

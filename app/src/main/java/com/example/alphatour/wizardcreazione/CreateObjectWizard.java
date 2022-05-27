@@ -1,18 +1,21 @@
 package com.example.alphatour.wizardcreazione;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,44 +32,44 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.StorageTask;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
+public class CreateObjectWizard extends Fragment implements Step, BlockingStep, StepperLayout.StepperListener {
 
 
     private Button addElement,yes,cancel,yesFinal,cancelFinal;
     private static LinearLayout layout_list;
     private Dialog dialog;
     private String zone;
-    private List<String> uriUploadPhoto=new ArrayList<String>();
-    private List<String> uriUploadQrCode=new ArrayList<String>();
     private static Bitmap qr;
-    private boolean success=false, created=false;
+    private boolean success=false, created=false, error1 =false;
     private static Uri ph;
     private static List<View> typology_list = new ArrayList<View>();
     private static List<Element> elementList = new ArrayList<Element>();
     private ArrayList<String> zone_list=new ArrayList<>();
     private TextView titleDialog,textDialog;
-    private ProgressBar loadingBar;
     private FirebaseAuth auth;
     private FirebaseUser user;
     private FirebaseFirestore db;
     private StorageReference storegeProfilePick;
-    private StorageTask uploadTask;
     private  Map<String, Object> elm = new HashMap<>();
     private ImageView imgDialog;
 
     public static LinearLayout getLayout_list() {
         return layout_list;
+    }
+
+    public static void setLayout_list(LinearLayout layout_list) {
+        CreateObjectWizard.layout_list = layout_list;
     }
 
     public static List<View> getTypology_list() {
@@ -130,6 +133,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
         textDialog=dialog.findViewById(R.id.textDialog);
         imgDialog=dialog.findViewById(R.id.imageDialog);
 
+        LoadPreferences();
 
         addElement.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,8 +188,10 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
         TextView elementTitle = (TextView) elementView.findViewById(R.id.inputElement);
         elementTitle.setText(element.getTitle());
         layout_list.addView(elementView);
-        element.setPhoto(getPh());
-        element.setQrCode(getQr());
+        if(!element.getSaved()){
+            element.setPhoto(getPh());
+            element.setQrCode(getQr());
+        }
         elementList.add(element);
 
         removeElement.setOnClickListener(new View.OnClickListener() {
@@ -227,11 +233,21 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
         elementTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                 Boolean flag=false;
+                for(int j=0;j<typology_list.size();j++){
+                    if(typology_list.get(j).equals(elementView)){
+                        flag=true;
+                    }
 
-                typology_list.add(elementView);
+                }
+
+                if(!flag){
+                    typology_list.add(elementView);
+                }
+
                 Intent intent =new Intent(getContext(), ElementDetailsActivity.class);
                 intent.putExtra("ZoneList",zone_list);
-                intent.putExtra("zone",zone);
+                intent.putExtra("zone",element.getZoneRif());
                 startActivityForResult(intent,20);
             }
         });
@@ -246,18 +262,34 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
         if(!created){
             error =new VerificationError("Devi creare almeno un oggetto !");
         }
+
         return error;
     }
 
     @Override
     public void onSelected() {
 
+    }
+
+
+    @Override
+    public void onCompleted(View completeButton) {
 
     }
 
     @Override
     public void onError(@NonNull VerificationError error) {
         Toast.makeText(getContext(),error.getErrorMessage().toString(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onStepSelected(int newStepPosition) {
+
+    }
+
+    @Override
+    public void onReturn() {
+
     }
 
     @Override
@@ -300,6 +332,69 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep {
     @Override
     public void onStop() {
         super.onStop();
+        SavePreferences();
+    }
+
+    private void SavePreferences(){
+        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        for(int i=0;i<elementList.size();i++) {
+            if (!elementList.get(i).getSaved()){
+                elementList.get(i).setSaved(true);
+
+                editor.putBoolean("Saved" + i, elementList.get(i).getSaved());
+                editor.putString("Zone" + i, elementList.get(i).getZoneRif());
+                editor.putString("Title" + i, elementList.get(i).getTitle());
+                editor.putString("Description" + i, elementList.get(i).getDescription());
+                editor.putString("Photo" + i, elementList.get(i).getPhoto().toString());
+                editor.putString("QrData" + i, elementList.get(i).getQrData());
+                String qr = convertBitmapToString(elementList.get(i).getQrCode());
+                editor.putString("QrCode" + i, qr);
+            }
+        }
+        editor.putInt("elementListSize",elementList.size());
+        //editor.putInt("layout",getLayout_list());
+        editor.commit();
+    }
+
+    private String convertBitmapToString(Bitmap qrCode) {
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        qrCode.compress(Bitmap.CompressFormat.PNG, 100, baos); //bm is the bitmap object
+        byte[] b = baos.toByteArray();
+        String encoded = Base64.encodeToString(b, Base64.DEFAULT);
+        return encoded;
+    }
+
+
+    private Bitmap convertStringToBitmap(String encoded) {
+
+        byte[] imageAsBytes = Base64.decode(encoded.getBytes(), Base64.DEFAULT);
+        Bitmap bitmap=BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
+        return bitmap;
+    }
+
+    private void LoadPreferences(){
+
+        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        int size=sharedPreferences.getInt("elementListSize",0);
+        elementList.clear();
+
+        for(int i=0;i<size;i++){
+            created=true;
+            Element element=new Element();
+            element.setSaved(sharedPreferences.getBoolean("Saved"+i,true));
+            element.setZoneRif(sharedPreferences.getString("Zone"+i,""));
+            element.setTitle(sharedPreferences.getString("Title"+i,""));
+            element.setDescription(sharedPreferences.getString("Description"+i,""));
+            element.setPhoto(Uri.parse(sharedPreferences.getString("Photo"+i,"")));
+            element.setQrData(sharedPreferences.getString("QrData"+i,""));
+            Bitmap bitmap=convertStringToBitmap(sharedPreferences.getString("QrCode"+i,""));
+            element.setQrCode(bitmap);
+            createdObject(element);
+
+        }
     }
 
 }

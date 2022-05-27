@@ -19,9 +19,10 @@ import com.stepstone.stepper.adapter.StepAdapter;
 
 public class CreationWizard extends AppCompatActivity {
 
-    StepperLayout stepperLayout;
-    StepperLayout.StepperListener step;
-    Button button;
+    private static StepperLayout stepperLayout;
+    private static StepperLayout.StepperListener step;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

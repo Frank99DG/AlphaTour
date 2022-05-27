@@ -80,7 +80,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
 
 
 
-    //private boolean constraintFlag = false;
+    private boolean constraintFlag = true;
     //private boolean listFlag = false;
     private ArrayList<String> zone_list=new ArrayList<>();
     private LinearLayout layout_list;
@@ -96,7 +96,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     private TextView titleDialog,textDialog;
     private ProgressBar loadingBar;
     private Map<String, Object> elm = new HashMap<>();
-    private boolean success=false, load=true;
+    private static boolean success=false, load=true,visible=false;
     private List<String> uriUploadPhoto=new ArrayList<String>();
     private List<String> uriUploadQrCode=new ArrayList<String>();
     private long idPhotoAndQrCode,id;
@@ -114,6 +114,14 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
 
     public CreateConstraintsWizard() {
         // Required empty public constructor
+    }
+
+    public static boolean getVisible() {
+        return visible;
+    }
+
+    public static void setVisible(boolean vis) {
+        CreateConstraintsWizard.visible=vis;
     }
 
 
@@ -427,10 +435,10 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
         VerificationError error = null;
         //String Prova = prova.getText().toString();
         //stepFlag = inputControl(Prova);
-
-        //if(constraintFlag){
-          //  error = new VerificationError("Non puoi tornare indietro");
-        //}
+        constraintFlag=true;
+        if(constraintFlag){
+            error = new VerificationError("Non puoi tornare indietro");
+        }
         return error;
 
 
@@ -446,6 +454,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     public void onError(@NonNull VerificationError error) {
         Toast.makeText(getContext(),error.getErrorMessage().toString(), Toast.LENGTH_LONG).show();
     }
+
 
 
 

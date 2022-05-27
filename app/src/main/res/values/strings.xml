@@ -139,9 +139,9 @@
     <string name="qr_generation">QrCode generato con successo!</string>
     <string name="object_already_exists">L’oggetto che vuoi creare esiste già</string>
     <string name="wrong_password">Autenticazione fallita, password errata!</string>
-    <string name="permission_text">Caro utente, la prossima schermata ti chiederà di concedere il permesso di scrittura nella memoria " +
-                        "del tuo dispositivo. Ciò è necessario esclusivamente per scaricare sul tuo dispositivo il percorso che hai creato" +
-                        ", così da poterlo avere sempre a portata di mano. Non accederemo in alcun modo ad altri file nè " +
+    <string name="permission_text">Caro utente, la prossima schermata ti chiederà di concedere il permesso di scrittura nella memoria "
+                        "del tuo dispositivo. Ciò è necessario esclusivamente per scaricare sul tuo dispositivo il percorso che hai creato"
+                        ", così da poterlo avere sempre a portata di mano. Non accederemo in alcun modo ad altri file nè "
                         "divulgeremo dati a terze parti. Ti ringraziamo in anticipo !</string>
     <string name="permission_granted">Permesso accordato</string>
     <string name="permit_required">Richiesta permesso</string>
@@ -283,5 +283,8 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_step3">Crea il tuo percorso</string>
+    <string name="permission_qr_text">"Caro utente, la prossima schermata ti chiederà di concedere il permesso di utilizzare la"
+                         "fotocamera. Ciò è necessario esclusivamente per poter scansionare il codice qr degli oggetti del tuo museo."
+                         "Ti ringraziamo in anticipo !"</string>
 
 </resources>

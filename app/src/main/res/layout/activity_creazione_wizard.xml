@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".wizardcreazione.CreationWizard">
 
-    <!--<Button
-        android:id="@+id/buttonShare"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="100dp"
-        android:text="Condividi"
-        android:onClick="ShareFile"/>-->
 
     <com.stepstone.stepper.StepperLayout
         android:id="@+id/stepperLayoutCreazione"
@@ -21,6 +13,7 @@
         android:layout_height="match_parent"
         app:ms_showBackButtonOnFirstStep="true"
         app:ms_showErrorStateEnabled="true"
+        app:ms_tabNavigationEnabled="false"
         app:ms_stepperType="tabs" />
 
 </RelativeLayout>

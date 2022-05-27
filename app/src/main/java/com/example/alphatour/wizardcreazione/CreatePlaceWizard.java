@@ -28,13 +28,19 @@ import androidx.fragment.app.Fragment;
 
 import com.example.alphatour.DashboardActivity;
 //import com.example.alphatour.ImportPhotoObjectActivity;
+import com.example.alphatour.ImportPhotoObjectActivity;
 import com.example.alphatour.ModifyObjectActivity;
 import com.example.alphatour.R;
 //import com.example.alphatour.ReadCsv;
+import com.example.alphatour.ReadCsv;
 import com.example.alphatour.oggetti.Place;
+import com.example.alphatour.oggetti.Zone;
+import com.example.alphatour.wizardpercorso.PercorsoWizard;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -67,9 +73,11 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
     private String idUser;
     private String item;
     private Button qrScan;
-    //private Button csv,ph;
-    //private int requestCod=1;
-    //private List<ReadCsv> listLineCsv=new ArrayList<ReadCsv>();
+    private Button csv,ph;
+    private int requestCod=1;
+    private List<ReadCsv> listLineCsv=new ArrayList<ReadCsv>();
+    private Boolean place=false;
+
 
     public static String getNamePlace() {
         return NamePlace;
@@ -94,29 +102,45 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
         user = auth.getCurrentUser();
         idUser = user.getUid();
 
+
         namePlace = view.findViewById(R.id.inputNamePlace);
         city = view.findViewById(R.id.inputCityPlace);
         typology = view.findViewById(R.id.inputTypologyPlace);
         qrScan=view.findViewById(R.id.inputQr);
-       // csv=view.findViewById(R.id.csvBtn);
-       // ph=view.findViewById(R.id.uploadphoto);
-        typology_list.add(getString(R.string.museum));
-        typology_list.add(getString(R.string.fair));
-        typology_list.add(getString(R.string.archaeological_site));
-        typology_list.add(getString(R.string.museum_exhibition));
-        adapterItems = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_dropdown_item,typology_list);
+        csv=view.findViewById(R.id.csvBtn);
+        ph=view.findViewById(R.id.uploadphoto);
+
+        if(typology_list.size()<4) {
+            typology_list.add(getString(R.string.museum));
+            typology_list.add(getString(R.string.fair));
+            typology_list.add(getString(R.string.archaeological_site));
+            typology_list.add(getString(R.string.museum_exhibition));
+
+        }
+
+        adapterItems = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, typology_list);
         typology.setAdapter(adapterItems);
-        typology.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+
+
+
+
+
+        /*typology.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 typology.setError(null);
                 item = parent.getItemAtPosition(position).toString();
             }
+        });*/
 
-        });
+
+
 
         loadingBar = view.findViewById(R.id.placeLoadingBar);
-        LoadPreferences();
+         LoadPreferences();
+
+
 
         qrScan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,17 +151,8 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
             }
         });
 
-        if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
 
-            if(ActivityCompat.shouldShowRequestPermissionRationale((Activity) getContext(),Manifest.permission.READ_EXTERNAL_STORAGE)){
-
-            }else{
-                ActivityCompat.requestPermissions((Activity) getContext(),new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},120);
-            }
-        }
-
-
-        /*db.collection("Places")
+       /* db.collection("Places")
                 .whereEqualTo("idUser",idUser)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -155,9 +170,9 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
                             }
                         }
                     }
-                });
+                });*/
 
-       /* csv.setOnClickListener(new View.OnClickListener() {
+        /*csv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -167,30 +182,62 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
             }
         });*/
 
-       /* ph.setOnClickListener(new View.OnClickListener() {
+        ph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getContext(), ImportPhotoObjectActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
 
 
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        typology_list.clear();
+        typology_list.add(getString(R.string.museum));
+        typology_list.add(getString(R.string.fair));
+        typology_list.add(getString(R.string.archaeological_site));
+        typology_list.add(getString(R.string.museum_exhibition));
+        adapterItems = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, typology_list);
+        typology.setAdapter(adapterItems);
+
+
+        typology.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                typology.setError(null);
+                item = parent.getItemAtPosition(position).toString();
+            }
+        });
+
+        typology.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                typology.setText(item);
+
+
+            }
+        }, 10);
+
+    }
 
     @Nullable
     @Override
     public VerificationError verifyStep() {
 
         VerificationError error=null;
-         NamePlace = namePlace.getText().toString();
-         City = city.getText().toString();
-         Typology = typology.getText().toString();
+        NamePlace = namePlace.getText().toString();
+        City = city.getText().toString();
+        Typology = typology.getText().toString();
         errorFlag = inputControl(NamePlace, City, Typology);
         if(errorFlag){
-             error =new VerificationError("Compila tutti i campi");
+            error =new VerificationError("Compila tutti i campi");
         }
         return error;
     }
@@ -239,16 +286,6 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
 
-            StepperLayout step;
-            loadingBar.setVisibility(View.VISIBLE);
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    callback.goToNextStep();
-                    loadingBar.setVisibility(View.GONE);
-                }
-            }, 2000L);
-
     }
 
     @Override
@@ -280,7 +317,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
 
             namePlace.setText(savedInstanceState.getCharSequence("NamePlace"));
             city.setText(savedInstanceState.getCharSequence("City"));
-           // typology.setHint(savedInstanceState.getCharSequence("Typology"));
+            // typology.setHint(savedInstanceState.getCharSequence("Typology"));
         }
 
     }
@@ -290,7 +327,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("NamePlace", namePlace.getText().toString());
         editor.putString("City",city.getText().toString());
-        editor.putString("Typology",typology.getText().toString());
+        editor.putString("Typology",item);
         editor.commit();   // I missed to save the data to preference here,.
     }
 
@@ -299,11 +336,13 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
         namePlace.setText(sharedPreferences.getString("NamePlace",""));
         city.setText(sharedPreferences.getString("City",""));
         item=sharedPreferences.getString("Typology","");
-        if(item==""){
+
+
+        /*if(item==""){
             typology.setHint("Tipologia");
         }else{
             typology.setHint(sharedPreferences.getString("Typology",""));
-        }
+        }*/
     }
 
     @Override
@@ -312,7 +351,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
         SavePreferences();
     }
 
-    /*@Override
+    @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCod==requestCode && resultCode== Activity.RESULT_OK){
@@ -341,12 +380,21 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
                             }
                         }
                         if(!flag) {
-                            if(!token[0].matches("nameZone")) {
-                                readCsv.setNameZone(token[0]);
-                                readCsv.setTitleObject(token[1]);
-                                readCsv.setDescriptionObject(token[2]);
-                                readCsv.setQrDataObject(token[3]);
-                                readCsv.setLinkImageObject(token[4]);
+                            if(!token[0].matches("namePlace")) {
+
+                                if(token[0]!=null&&token[1]!=null&&token[1]!=null){
+                                    readCsv.setNamePlace(token[0]);
+                                    readCsv.setCityPlace(token[1]);
+                                    readCsv.setTypologyPlace(token[2]);
+                                    place=true;
+                                }
+                                readCsv.setNameZone(token[3]);
+                                readCsv.setTitleObject(token[4]);
+                                readCsv.setDescriptionObject(token[5]);
+                                readCsv.setQrDataObject(token[6]);
+                                readCsv.setLinkImageObject(token[7]);
+                                readCsv.setFromZone(token[8]);
+                                readCsv.setInZone(token[9]);
                                 listLineCsv.add(readCsv);
                             }
                         }else{
@@ -360,6 +408,14 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
                     if(isEmpty){
                         Toast.makeText(getContext(),"Errore duratnte l'importazione del file, alcuni"+
                                 "campi potrebbero essere vuoti",Toast.LENGTH_LONG).show();
+                    }else{
+
+                        if(place){
+                            // savePlace();
+                        }else{
+
+                        }
+
                     }
 
                 } catch (FileNotFoundException e) {
@@ -382,6 +438,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
             Toast.makeText(getContext(),"Permission not granted",Toast.LENGTH_LONG).show();
         }
         return;
-    }*/
+    }
+
 
 }

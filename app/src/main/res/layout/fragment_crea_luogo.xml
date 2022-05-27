@@ -14,12 +14,13 @@
         android:id="@+id/descriptionCreatePlace"
         android:layout_width="343dp"
         android:layout_height="76dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="36dp"
         android:text="Crea da qui il luogo da far visitare agli utenti"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,6 +32,7 @@
         android:inputType="textPersonName"
         android:onClick="scanQrCode"
         android:text="Attività"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.36"
         app:layout_constraintStart_toEndOf="@+id/textPlace"
@@ -53,14 +55,14 @@
         android:id="@+id/uploadphoto"
         android:layout_width="141dp"
         android:layout_height="51dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="124dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:onClick="scanQrCode"
-        android:text="foto"
+        android:text="Importa dati"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/csvBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/descriptionCreateFirstZone" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/namePlaceLayout"
@@ -118,10 +120,10 @@
 
     <TextView
         android:id="@+id/descriptionCreateFirstZone"
-        android:layout_width="343dp"
-        android:layout_height="76dp"
+        android:layout_width="346dp"
+        android:layout_height="87dp"
         android:layout_marginTop="32dp"
-        android:text="Inizia a creare le zone che compongono il luogo"
+        android:text="Inizia a creare le zone che compongono il luogo oppure carica i dati da file"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -139,6 +141,7 @@
         android:inputType="textPersonName"
         android:onClick="scanQrCode"
         android:text="Attività"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descriptionCreateFirstZone" />

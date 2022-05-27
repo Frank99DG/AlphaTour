@@ -9,6 +9,7 @@ public class Zone {
     private String idPlace;
     private String idUser;
     private String namePlace;
+    private int idPl;
     //il grafo è non orientato (da A a B è uguale da B ad A)
     //private Graph<ElementString,DefaultEdge> elementsZone = new SimpleGraph<>(DefaultEdge.class);
 
@@ -34,6 +35,14 @@ public class Zone {
 
     }
 
+
+    public int getIdPl() {
+        return idPl;
+    }
+
+    public void setIdPl(int idPl) {
+        this.idPl = idPl;
+    }
 
     public String getName() {
         return name;

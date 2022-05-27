@@ -83,14 +83,15 @@ public class ElementDetailsActivity extends AppCompatActivity {
         layout=CreateObjectWizard.getLayout_list();
 
 
-        for(int i=0;i<layout.getChildCount()&&i<list.size() ;i++){
-
-            if(layout.getChildAt(i).equals(list.get(i))){
-                element=elementList.get(i);
+        for(int i=0;i<layout.getChildCount();i++){
+            for(int j=0;j<list.size() ;j++){
+            if(layout.getChildAt(i).equals(list.get(j))) {
+                element = elementList.get(i);
                 title.setText(element.getTitle());
                 description.setText(element.getDescription());
                 imagePhoto.setImageURI(element.getPhoto());
                 imageQrCode.setImageBitmap(element.getQrCode());
+            }
             }
         }
 

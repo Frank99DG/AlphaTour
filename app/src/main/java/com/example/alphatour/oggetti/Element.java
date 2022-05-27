@@ -7,8 +7,11 @@ public class Element{
 
     private String title,description,zone,idZone,idUser,qrData;
     private long idPhotoAndQrCode;
+    private String idPhotoAndQrCodeString;
     private  Uri photo;
     private  Bitmap qrCode;
+    private int idZon;
+    private Boolean saved=false;
 
     public Element(){
 
@@ -29,6 +32,22 @@ public class Element{
         this.description=description;
         this.photo=photo;
         this.qrCode=qrCode;
+    }
+
+    public Boolean getSaved() {
+        return saved;
+    }
+
+    public void setSaved(Boolean saved) {
+        this.saved = saved;
+    }
+
+    public int getIdZon() {
+        return idZon;
+    }
+
+    public void setIdZon(int idZon) {
+        this.idZon = idZon;
     }
 
     public void setTitle(String title) {
@@ -101,6 +120,14 @@ public class Element{
 
     public void setQrData(String qrData) {
         this.qrData = qrData;
+    }
+
+    public String getIdPhotoAndQrCodeString() {
+        return idPhotoAndQrCodeString;
+    }
+
+    public void setIdPhotoAndQrCodeString(String idPhotoAndQrCodeString) {
+        this.idPhotoAndQrCodeString = idPhotoAndQrCodeString;
     }
 
     @Override

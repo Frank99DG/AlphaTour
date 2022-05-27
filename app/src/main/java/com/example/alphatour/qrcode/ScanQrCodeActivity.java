@@ -6,14 +6,17 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.ModifyObjectActivity;
 import com.example.alphatour.R;
 
@@ -25,6 +28,8 @@ public class ScanQrCodeActivity extends AppCompatActivity {
     private TextView scanText;
     private ScannerLiveView scannerLiveView;
     private Button modifyObject;
+    private Dialog dialog;
+    private TextView yesFinal,titleDialog,textDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,21 +40,52 @@ public class ScanQrCodeActivity extends AppCompatActivity {
         scanText=findViewById(R.id.textScan);
         modifyObject=findViewById(R.id.buttonModifyObject);
 
-        if(checkPermission()){
-            Toast.makeText(this,"Permission granted",Toast.LENGTH_LONG).show();
-        }else{
-            requestPermission();
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_permission);
+        dialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroun_dialog));
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
+
+        yesFinal = dialog.findViewById(R.id.btn_termina_permission);
+        titleDialog = dialog.findViewById(R.id.titleDialog_permission);
+        textDialog = dialog.findViewById(R.id.textDialog_permission);
+
+
+        if (checkPermission()) {
+            Toast.makeText(this, R.string.permission_granted, Toast.LENGTH_LONG).show();
+        } else {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(ScanQrCodeActivity.this, Manifest.permission.CAMERA)) {
+                dialog.show();
+                yesFinal.setText("OK");
+
+                titleDialog.setText(R.string.permit_required);
+                textDialog.setText(R.string.permission_qr_text);
+                textDialog.setTextColor(getResources().getColor(R.color.black));
+
+                yesFinal.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        requestPermission();
+                    }
+                });
+            } else {
+                requestPermission();
+            }
+
         }
 
         scannerLiveView.setScannerViewEventListener(new ScannerLiveView.ScannerViewEventListener() {
             @Override
             public void onScannerStarted(ScannerLiveView scanner) {
-                Toast.makeText(ScanQrCodeActivity.this,"Scaner Started...",Toast.LENGTH_LONG).show();
+               // Toast.makeText(ScanQrCodeActivity.this,"Scaner Started...",Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onScannerStopped(ScannerLiveView scanner) {
-                Toast.makeText(ScanQrCodeActivity.this,"Scaner Stopped...",Toast.LENGTH_LONG).show();
+  //              Toast.makeText(ScanQrCodeActivity.this,"Scaner Stopped...",Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -109,9 +145,11 @@ public class ScanQrCodeActivity extends AppCompatActivity {
 
         if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED ) {
 
-            Toast.makeText(this, "Permission granted", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "Permission granted", Toast.LENGTH_LONG).show();
         }else{
-                Toast.makeText(this,"Permission denied",Toast.LENGTH_LONG).show();
+                //Toast.makeText(this,"Permission denied",Toast.LENGTH_LONG).show();
+                Intent intent= new Intent(ScanQrCodeActivity.this, DashboardActivity.class);
+                startActivity(intent);
 
         }
     }
