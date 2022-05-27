@@ -1,6 +1,7 @@
 package com.example.alphatour.wizardpercorso;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -31,11 +32,15 @@ public class Step5 extends Fragment  {
     private ImageView close_fragment;
     private LinearLayout closeLayout;
     public static List<MapZoneAndObject> zoneAndObjectList_ = new ArrayList<MapZoneAndObject>();
+    private LinearLayout list_zoneR;
+
+
+    private static int counter;
     private static List<String> zone_select = new ArrayList<>();
-    private TextView zone_selected;
-    private ListView list_zone;
-    private List <CheckableTextView> arrayZone = new ArrayList<CheckableTextView>();
-    public static List<MapZoneAndObject> zoneAndObjectList = new ArrayList<MapZoneAndObject>();
+    private int i=0;
+
+
+
 
 
     @Override
@@ -47,8 +52,7 @@ public class Step5 extends Fragment  {
         View view = inflater.inflate(R.layout.fragment_step5, container, false);
         close_fragment = view.findViewById(R.id.close_fragment);
         closeLayout = view.findViewById(R.id.closeLayout);
-        ListView listView = view.findViewById(R.id.list_zone);
-        list_zone = view.findViewById(R.id.list_zone);
+
 
 
 
@@ -60,10 +64,18 @@ public class Step5 extends Fragment  {
 
     private void buttonClick() {
 
+        /*list_zoneR.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Step4.getZoneAndObjectList_();
+                getFragmentManager().beginTransaction().show(Step5.this).commit();
+
+            }
+        });*/
         closeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getFragmentManager().beginTransaction().hide(Step5.this).commit();
+
 
             }
         });
@@ -73,19 +85,29 @@ public class Step5 extends Fragment  {
                 getFragmentManager().beginTransaction().hide(Step5.this).commit();
             }
             });
-    }
+        /*
+        list_zoneR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Step4.getZoneAndObjectList_();
+                getFragmentManager().beginTransaction().show(Step5.this).commit();
 
+
+            }
+
+         */
+
+    }
+ /*
 
     public static List<MapZoneAndObject> getZoneAndObjectList_() {
+
+
         return zoneAndObjectList_;
     }
 
     public static void setZoneAndObjectList_(List<MapZoneAndObject> zoneAndObjectList_) {
         Step5.zoneAndObjectList_ = zoneAndObjectList_;
     }
-
-    public static List<String> getZone_select() {
-        return zone_select;
-    }
-
+ */
 }
