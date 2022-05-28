@@ -3,6 +3,7 @@ package com.example.alphatour;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
@@ -11,20 +12,17 @@ import androidx.core.content.FileProvider;
 
 import android.Manifest;
 import android.app.Dialog;
-import android.app.DownloadManager;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.FileUtils;
-import android.os.Parcelable;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,46 +31,28 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.alphatour.oggetti.ElementString;
 import com.example.alphatour.oggetti.MapZoneAndObject;
-import com.example.alphatour.oggetti.Zone;
 import com.example.alphatour.oggetti.ZoneChoosed;
 import com.example.alphatour.wizardpercorso.PercorsoWizard;
 import com.example.alphatour.wizardpercorso.ReviewZoneSelected;
 import com.example.alphatour.wizardpercorso.Step4;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.snackbar.Snackbar;
-import com.mxgraph.layout.mxCircleLayout;
-import com.mxgraph.layout.mxIGraphLayout;
-import com.mxgraph.swing.mxGraphComponent;
-import com.mxgraph.swing.view.mxInteractiveCanvas;
-import com.mxgraph.util.mxCellRenderer;
+import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.jgrapht.Graph;
-import org.jgrapht.ext.JGraphXAdapter;
 import org.jgrapht.graph.DefaultEdge;
 
 
-import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import org.jgrapht.graph.SimpleGraph;
-import org.jgrapht.nio.Attribute;
-import org.jgrapht.nio.DefaultAttribute;
 import org.jgrapht.nio.IntegerIdProvider;
 import org.jgrapht.nio.json.JSONExporter;
-import org.w3c.dom.Text;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class CreateJsonActivity extends AppCompatActivity {
@@ -84,9 +64,10 @@ public class CreateJsonActivity extends AppCompatActivity {
     private static List<MapZoneAndObject> zoneAndObjectListReviewPath = new ArrayList<MapZoneAndObject>();
     private LinearLayout list_path;
     private ConstraintLayout layout;
-    private BottomNavigationView bottomNavigationViewPath;
+    private BottomAppBar bottomAppBarPath;
     private TextView name_path,description_path;
     private int i=0;
+    private FloatingActionButton home_path_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +76,8 @@ public class CreateJsonActivity extends AppCompatActivity {
         layt = findViewById(R.id.layoutJson);
         name_path = findViewById(R.id.name_path);
         description_path = findViewById(R.id.description_path);
+        home_path_button = findViewById(R.id.home_path_button);
+
 
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_permission);
@@ -108,10 +91,10 @@ public class CreateJsonActivity extends AppCompatActivity {
         titleDialog = dialog.findViewById(R.id.titleDialog_permission);
         textDialog = dialog.findViewById(R.id.textDialog_permission);
 
-        bottomNavigationViewPath = findViewById(R.id.bottomNavigationBarPath);
-        bottomNavigationViewPath.setSelectedItemId(R.id.tb_home_path);
+        bottomAppBarPath = findViewById(R.id.bottomAppBarPath);
+        setSupportActionBar(bottomAppBarPath);
 
-        bottomNavBarPathClick();
+        bottomAppBarPathClick();
 
         zoneAndObjectListReviewPath = Step4.getZoneAndObjectList_();
 
@@ -217,6 +200,14 @@ public class CreateJsonActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.bottom_path_menu,menu);
+
+        return true;
+    }
+
 
     private boolean checkPermission(){
 
@@ -249,14 +240,30 @@ public class CreateJsonActivity extends AppCompatActivity {
 
 
 
-    public void bottomNavBarPathClick(){
+    public void bottomAppBarPathClick(){
 
-        bottomNavigationViewPath.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        home_path_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            public void onClick(View view) {
+                Step4.setZoneAndObjectList_(null);
+                zoneAndObjectListReviewPath.clear();
+                PercorsoWizard.setDescriptionPath("");
+                PercorsoWizard.setNamePath("");
+                PercorsoWizard.setPlace(null);
+                ReviewZoneSelected.getZoneAndObjectList().clear();
+                Intent i = new Intent(CreateJsonActivity.this, DashboardActivity.class);
+                startActivity(i);
+                overridePendingTransition(0,0);
+            }
+        });
+
+        bottomAppBarPath.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
 
                 switch(item.getItemId()){
-                    case R.id.tb_download:
+                    case R.id.download_path:
                         Graph<ZoneChoosed, DefaultEdge> graph = Step4.getGraph();
                         JSONExporter<ZoneChoosed, DefaultEdge> exporter = new JSONExporter<>(v -> String.valueOf(v));
                         exporter.setEdgeIdProvider(new IntegerIdProvider<>(1));
@@ -275,19 +282,7 @@ public class CreateJsonActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         return true;
-
-                    case R.id.tb_home_path:
-                        Step4.setZoneAndObjectList_(null);
-                        zoneAndObjectListReviewPath.clear();
-                        PercorsoWizard.setDescriptionPath("");
-                        PercorsoWizard.setNamePath("");
-                        PercorsoWizard.setPlace(null);
-                        ReviewZoneSelected.getZoneAndObjectList().clear();
-                        Intent i = new Intent(CreateJsonActivity.this, DashboardActivity.class);
-                        startActivity(i);
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.tb_share:
+                    case R.id.share_path:
 
                         Context context = CreateJsonActivity.this;
                         String str = "{ \"zona\": \"medioevo\",\n" +
@@ -351,6 +346,7 @@ public class CreateJsonActivity extends AppCompatActivity {
                 return false;
             }
         });
+
 
     }
 }
