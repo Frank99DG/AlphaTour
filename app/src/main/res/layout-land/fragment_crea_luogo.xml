@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".wizardcreazione.CreatePlaceWizard"
+    android:background="@drawable/sfondo"
+    android:id="@+id/frm"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/descriptionCreatePlace"
+        android:layout_width="343dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="36dp"
+        android:text="Crea da qui il luogo da far visitare agli utenti"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/csvBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:onClick="scanQrCode"
+        android:text="Attività"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toEndOf="@+id/textPlace"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionCreatePlace" />
+
+    <TextView
+        android:id="@+id/textPlace"
+        android:layout_width="190dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="310dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/alata"
+        android:text="Dati Luogo"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionCreatePlace" />
+
+    <Button
+        android:id="@+id/uploadphoto"
+        android:layout_width="141dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="300dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:onClick="scanQrCode"
+        android:text="Importa dati"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionCreateFirstZone" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/namePlaceLayout"
+        android:layout_width="208dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPlace">
+
+        <EditText
+            android:id="@+id/inputNamePlace"
+            android:layout_width="208dp"
+            android:layout_height="56dp"
+            android:background="@drawable/bordi_tondi"
+            android:ems="10"
+            android:hint="Nome"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cityPlaceLayout"
+        android:layout_width="208dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/namePlaceLayout">
+
+        <EditText
+            android:id="@+id/inputCityPlace"
+            android:layout_width="208dp"
+            android:layout_height="56dp"
+            android:background="@drawable/bordi_tondi"
+            android:ems="10"
+            android:hint="Città"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/typologyPlaceLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="208dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cityPlaceLayout">
+
+        <AutoCompleteTextView
+            android:id="@+id/inputTypologyPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/descriptionCreateFirstZone"
+        android:layout_width="346dp"
+        android:layout_height="87dp"
+        android:layout_marginTop="32dp"
+        android:text="Inizia a creare le zone che compongono il luogo oppure carica i dati da file"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/typologyPlaceLayout" />
+
+    <Button
+        android:id="@+id/inputQr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:onClick="scanQrCode"
+        android:text="Attività"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionCreateFirstZone" />
+
+    <ProgressBar
+        android:id="@+id/placeLoadingBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

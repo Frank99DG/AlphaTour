@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.devzone.checkabletextview.CheckableTextView
+            android:id="@+id/textObjectss"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="204dp"
+            android:layout_marginTop="32dp"
+            android:background="@android:drawable/editbox_dropdown_light_frame"
+            android:gravity="center"
+            app:ctv_AnimType="scale"
+            app:ctv_IconChecked="false"
+            app:ctv_IconTint="#5CCD2F"
+            app:ctv_RippleAlpha="40"
+            app:ctv_RippleFillEnabled="true"
+            app:ctv_RippleTint="@color/green"
+            app:ctv_TextColor="@color/Black"
+            app:ctv_TextSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--
+        <com.devzone.checkabletextview.CheckableTextView
+            android:id="@+id/textZone2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:background="@android:drawable/editbox_dropdown_light_frame"
+            app:ctv_AnimType="scale"
+            app:ctv_IconChecked="false"
+            app:ctv_IconTint="#5CCD2F"
+            app:ctv_TextColor="@color/Black"
+            app:ctv_TextSize="20dp" />
+
+        <com.devzone.checkabletextview.CheckableTextView
+            android:id="@+id/textZone3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="152dp"
+            android:background="@android:drawable/editbox_dropdown_light_frame"
+            app:ctv_AnimType="scale"
+            app:ctv_IconChecked="false"
+            app:ctv_IconTint="#5CCD2F"
+            app:ctv_TextColor="@color/Black"
+            app:ctv_TextSize="20dp" />
+            -->
+
+
+    </RelativeLayout>

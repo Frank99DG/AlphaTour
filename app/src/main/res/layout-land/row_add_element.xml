@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/deleteElement"
+        android:layout_width="38dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="76dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/inputElement"
+        app:layout_constraintTop_toBottomOf="@+id/dividerElement"
+        app:srcCompat="@android:drawable/ic_delete"/>
+
+    <TextView
+        android:id="@+id/inputElement"
+        android:layout_width="212dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/object"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dividerElement" />
+
+    <View
+        android:id="@+id/dividerElement"
+        android:layout_width="730dp"
+        android:layout_height="3dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
