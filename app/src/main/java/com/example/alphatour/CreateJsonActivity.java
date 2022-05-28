@@ -145,7 +145,7 @@ public class CreateJsonActivity extends AppCompatActivity {
                         for (int j = 0; j < listObj.size(); j++) {
 
                             String objects = listObj.get(j);
-                            if (j > 0) sb.append("\n");
+                            if (j > 0) sb.append(",\n");
                             sb.append(objects);
 
                             objectZone.setText(sb);
@@ -172,7 +172,7 @@ public class CreateJsonActivity extends AppCompatActivity {
                         for (int j = 0; j < listObj.size(); j++) {
 
                             String objects = listObj.get(j);
-                            if (j > 0) sb.append("\n");
+                            if (j > 0) sb.append(",\n");
                             sb.append(objects);
 
                             objectZone.setText(sb);
