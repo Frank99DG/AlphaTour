@@ -121,6 +121,7 @@ public class MyPathsActivity extends DrawerBaseActivity {
                                     @Override
                                     public void onClick(View view) {
                                         list_paths.removeView(path_view);
+                                        dialog.dismiss();
                                         db.collection("Path").whereEqualTo("idUser",user.getUid()).
                                                 whereEqualTo("name",path.getName()).
                                                 whereEqualTo("description",path.getDescription()).
@@ -138,7 +139,6 @@ public class MyPathsActivity extends DrawerBaseActivity {
                                                         db.collection("Path").document(idPath).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                                             @Override
                                                             public void onSuccess(Void unused) {
-                                                                dialog.dismiss();
                                                                 Toast.makeText(MyPathsActivity.this, "Percorso cancellato con successo", Toast.LENGTH_SHORT).show();
                                                             }
                                                         });

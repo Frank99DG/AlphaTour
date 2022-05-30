@@ -4,18 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/Relative"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:textAlignment="viewStart">
 
     <TextView
         android:id="@+id/textZoneReview"
-        android:layout_width="250dp"
+        android:layout_width="280dp"
         android:layout_height="50dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="28dp"
         android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:drawableLeft="?android:attr/actionModeFindDrawable"
+        android:drawablePadding="3dp"
+        android:drawableTint="@color/DarkCyan"
         android:gravity="center"
+        android:paddingLeft="5dp"
         android:text="Zone"
-        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -26,11 +30,12 @@
         android:id="@+id/deleteZone_review"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="320dp"
+        android:layout_marginStart="345dp"
         android:layout_marginTop="36dp"
         app:layout_constraintStart_toEndOf="@+id/textZoneReview"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_delete" />
+
     <!--
         <LinearLayout
             android:id="@+id/linearLayout2"

@@ -27,10 +27,6 @@ public class ReviewZoneSelected extends AppCompatActivity {
     private int index;
     private static List<String> listObj = new ArrayList<String>();
 
-    public static List<MapZoneAndObject> getZoneAndObjectList() {
-        return zoneAndObjectList;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,5 +83,7 @@ public class ReviewZoneSelected extends AppCompatActivity {
         }
 
     }
-
+    public static List<MapZoneAndObject> getZoneAndObjectList() {
+        return zoneAndObjectList;
+    }
 }

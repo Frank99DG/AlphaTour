@@ -372,6 +372,7 @@ public class CreateJsonActivity extends AppCompatActivity {
         if(e.isEmpty()) ReviewZoneSelected.getZoneAndObjectList().clear();
         if(f.isEmpty()) CreateJsonActivity.getZoneAndObjectListReviewPath().clear();
 
+        zoneAndObjectListReviewPath.clear();
         DashboardActivity.setFirstZoneChosen(false);
         PercorsoWizard.setDescriptionPath("");
         PercorsoWizard.setNamePath("");

@@ -63,15 +63,6 @@ public class Step1 extends Fragment implements Step, BlockingStep {
     private TextView dialog_title,dialog_text;
     private ImageView dialog_delete_image;
 
-    public static String getPlace() {
-        return Place;
-    }
-
-    public static void setPlace(String place) {
-        Place = place;
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -281,6 +272,32 @@ public class Step1 extends Fragment implements Step, BlockingStep {
         return errorFlag;
     }
 
+
+    private void moveToDashboard(){
+
+        List<String> a = Step4.getZone_select();
+        List<String> b = Step4.getOggetti_select();
+        List<String> c = Step2.getArray_database();
+        List<MapZoneAndObject> d = Step4.getZoneAndObjectList_();
+        List<MapZoneAndObject> e = ReviewZoneSelected.getZoneAndObjectList();
+        List<MapZoneAndObject> f = CreateJsonActivity.getZoneAndObjectListReviewPath();
+
+        if(a.isEmpty()) Step4.getZone_select().clear();
+        if(b.isEmpty()) Step4.getOggetti_select().clear();
+        if(c.isEmpty()) Step2.getArray_database().clear();
+        if(d.isEmpty()) Step4.getZoneAndObjectList_().clear();
+        if(e.isEmpty()) ReviewZoneSelected.getZoneAndObjectList().clear();
+        if(f.isEmpty()) CreateJsonActivity.getZoneAndObjectListReviewPath().clear();
+
+        DashboardActivity.setFirstZoneChosen(false);
+        PercorsoWizard.setDescriptionPath("");
+        PercorsoWizard.setNamePath("");
+        PercorsoWizard.setPlace(null);
+
+        Intent intent= new Intent(getContext(), DashboardActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onSelected() {
 
@@ -325,34 +342,14 @@ public class Step1 extends Fragment implements Step, BlockingStep {
         return descriptionPath.getText().toString();
     }
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
 
+    public static String getPlace() {
+        return Place;
     }
 
-    private void moveToDashboard(){
-
-        List<String> a = Step4.getZone_select();
-        List<String> b = Step4.getOggetti_select();
-        List<String> c = Step2.getArray_database();
-        List<MapZoneAndObject> d = Step4.getZoneAndObjectList_();
-        List<MapZoneAndObject> e = ReviewZoneSelected.getZoneAndObjectList();
-        List<MapZoneAndObject> f = CreateJsonActivity.getZoneAndObjectListReviewPath();
-
-        if(a.isEmpty()) Step4.getZone_select().clear();
-        if(b.isEmpty()) Step4.getOggetti_select().clear();
-        if(c.isEmpty()) Step2.getArray_database().clear();
-        if(d.isEmpty()) Step4.getZoneAndObjectList_().clear();
-        if(e.isEmpty()) ReviewZoneSelected.getZoneAndObjectList().clear();
-        if(f.isEmpty()) CreateJsonActivity.getZoneAndObjectListReviewPath().clear();
-
-        DashboardActivity.setFirstZoneChosen(false);
-        PercorsoWizard.setDescriptionPath("");
-        PercorsoWizard.setNamePath("");
-        PercorsoWizard.setPlace(null);
-
-        Intent intent= new Intent(getContext(), DashboardActivity.class);
-        startActivity(intent);
+    public static void setPlace(String place) {
+        Place = place;
     }
+
+
 }
