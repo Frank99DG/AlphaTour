@@ -283,8 +283,9 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_step3">Crea il tuo percorso</string>
-    <string name="permission_qr_text">"Caro utente, la prossima schermata ti chiederà di concedere il permesso di utilizzare la"
+    <string name="permission_photo_text">"Caro utente, la prossima schermata ti chiederà di concedere il permesso di utilizzare la"
                          "fotocamera. Ciò è necessario esclusivamente per poter scansionare il codice qr degli oggetti del tuo museo."
                          "Ti ringraziamo in anticipo !"</string>
+
 
 </resources>
