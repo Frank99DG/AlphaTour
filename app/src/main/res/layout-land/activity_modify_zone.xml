@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/frm"
     android:layout_height="match_parent"
     tools:layout_editor_absoluteX="1dp"
     tools:layout_editor_absoluteY="1dp">
@@ -13,7 +14,6 @@
     android:focusableInTouchMode="true"
     tools:context=".wizardcreazione.CreatePlaceWizard"
     android:background="@drawable/sfondo"
-    android:id="@+id/frm"
     android:gravity="center">
 
 
@@ -81,7 +81,7 @@
         android:id="@+id/listZonesButton"
         android:layout_width="208dp"
         android:layout_height="57dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="56dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:onClick="openElementsList"
