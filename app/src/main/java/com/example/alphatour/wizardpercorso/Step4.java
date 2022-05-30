@@ -25,7 +25,6 @@ import android.widget.Toast;
 
 import com.example.alphatour.CreateJsonActivity;
 import com.example.alphatour.DashboardActivity;
-import com.example.alphatour.NotificationCounter;
 import com.example.alphatour.R;
 import com.example.alphatour.connection.Receiver;
 import com.example.alphatour.dblite.AlphaTourContract;
@@ -40,7 +39,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
@@ -130,25 +128,6 @@ public class Step4 extends Fragment implements Step, BlockingStep {
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        /**controllo connessione**/
-        receiver=new Receiver();
-
-        broadcastIntent();
-    }
-
-    private void broadcastIntent() {
-        requireActivity().registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        requireActivity().unregisterReceiver(receiver);
-    }
-
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
@@ -231,23 +210,12 @@ public class Step4 extends Fragment implements Step, BlockingStep {
     }
 
     @Override
-    public void onSelected() {
-
-    }
-
-    @Override
     public void onError(@NonNull VerificationError error) {
         Toast.makeText(getContext(),error.getErrorMessage().toString(), Toast.LENGTH_LONG).show();
     }
 
     @Override
-    public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
-    }
-
-    @Override
     public void onCompleteClicked(StepperLayout.OnCompleteClickedCallback callback) {
-
-
 
         dialog.show();
         dialog_termina.setOnClickListener(new View.OnClickListener() {
@@ -304,7 +272,7 @@ public class Step4 extends Fragment implements Step, BlockingStep {
 
                 savePathRemote(path);
                 savePathLocal(path);
-                moveToDashboard();
+                moveToCreateJsonActivity();
                 progressBar.setVisibility(View.GONE);
             }
     }
@@ -317,8 +285,7 @@ public class Step4 extends Fragment implements Step, BlockingStep {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Toast.makeText(getContext(), "Percorso creato con successo", Toast.LENGTH_SHORT).show();
-                        //clear_Zones();
-                        moveToDashboard();
+                        moveToCreateJsonActivity();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -329,19 +296,12 @@ public class Step4 extends Fragment implements Step, BlockingStep {
         });
     }
 
-    private void moveToDashboard() {
-        int increment_notifyOnDashboard = NotificationCounter.getCount();
-        increment_notifyOnDashboard++;
-        NotificationCounter.setCount(increment_notifyOnDashboard);
-
+    private void moveToCreateJsonActivity() {
         list_zoneRiepilogo.removeAllViews();
         zone_select.clear();
 
-
         DashboardActivity.setFirstZoneChosen(false);
-        NotificationCounter.setSend_notify(true);
         Intent intent= new Intent(getContext(), CreateJsonActivity.class);
-        //intent.putExtra("Arraylist",zoneAndObjectList_);
         startActivity(intent);
         progressBar.setVisibility(View.GONE);
     }
@@ -369,33 +329,6 @@ public class Step4 extends Fragment implements Step, BlockingStep {
             startActivity(intent);
         }
 
-    }
-
-    public static List<MapZoneAndObject> getZoneAndObjectList_() {
-        return zoneAndObjectList_;
-    }
-
-    public static void setZoneAndObjectList_(List<MapZoneAndObject> zoneAndObjectList_) {
-        Step4.zoneAndObjectList_ = zoneAndObjectList_;
-    }
-
-    private void clear_Zones(){
-        Iterator<MapZoneAndObject> it = zoneAndObjectList_.iterator();
-        while(it.hasNext()){
-            MapZoneAndObject zone = it.next();
-            String delete="delete";
-            if(delete.matches(zone.getZone())){
-                it.remove();
-            }
-        }
-    }
-
-    public static List<String> getZone_select() {
-        return zone_select;
-    }
-
-    public static List<String> getOggetti_select() {
-        return oggetti_select;
     }
 
     public long savePathLocal(Path path){
@@ -441,5 +374,60 @@ public class Step4 extends Fragment implements Step, BlockingStep {
             idP= cursor.getString(cursor.getColumnIndexOrThrow(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_PATH_ID));
         }
         return  idP;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        /**controllo connessione**/
+        receiver=new Receiver();
+
+        broadcastIntent();
+    }
+
+    private void broadcastIntent() {
+        requireActivity().registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        requireActivity().unregisterReceiver(receiver);
+    }
+
+    public static List<String> getZone_select() {
+        return zone_select;
+    }
+
+    public static List<String> getOggetti_select() {
+        return oggetti_select;
+    }
+
+    public static List<MapZoneAndObject> getZoneAndObjectList_() {
+        return zoneAndObjectList_;
+    }
+
+    public static void setZoneAndObjectList_(List<MapZoneAndObject> zoneAndObjectList_) {
+        Step4.zoneAndObjectList_ = zoneAndObjectList_;
+    }
+
+    private void clear_Zones(){
+        Iterator<MapZoneAndObject> it = zoneAndObjectList_.iterator();
+        while(it.hasNext()){
+            MapZoneAndObject zone = it.next();
+            String delete="delete";
+            if(delete.matches(zone.getZone())){
+                it.remove();
+            }
+        }
+    }
+
+    @Override
+    public void onSelected() {
+
+    }
+
+    @Override
+    public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
     }
 }

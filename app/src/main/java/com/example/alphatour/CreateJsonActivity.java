@@ -35,6 +35,7 @@ import com.example.alphatour.oggetti.MapZoneAndObject;
 import com.example.alphatour.oggetti.ZoneChoosed;
 import com.example.alphatour.wizardpercorso.PercorsoWizard;
 import com.example.alphatour.wizardpercorso.ReviewZoneSelected;
+import com.example.alphatour.wizardpercorso.Step2;
 import com.example.alphatour.wizardpercorso.Step4;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -68,6 +69,7 @@ public class CreateJsonActivity extends AppCompatActivity {
     private TextView name_path,description_path;
     private int i=0;
     private FloatingActionButton home_path_button;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -233,27 +235,15 @@ public class CreateJsonActivity extends AppCompatActivity {
         }
     }
 
-    public static void setZoneAndObjectListReviewPath(List<MapZoneAndObject> zoneAndObjectListReviewPath) {
-        CreateJsonActivity.zoneAndObjectListReviewPath = zoneAndObjectListReviewPath;
-    }
-
-
-
-
     public void bottomAppBarPathClick(){
 
 
         home_path_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Step4.setZoneAndObjectList_(null);
-                zoneAndObjectListReviewPath.clear();
-                PercorsoWizard.setDescriptionPath("");
-                PercorsoWizard.setNamePath("");
-                PercorsoWizard.setPlace(null);
-                ReviewZoneSelected.getZoneAndObjectList().clear();
-                Intent i = new Intent(CreateJsonActivity.this, DashboardActivity.class);
-                startActivity(i);
+
+                moveToDashboard();
+                finishAffinity();
                 overridePendingTransition(0,0);
             }
         });
@@ -349,4 +339,46 @@ public class CreateJsonActivity extends AppCompatActivity {
 
 
     }
+
+    public static List<MapZoneAndObject> getZoneAndObjectListReviewPath() {
+        return zoneAndObjectListReviewPath;
+    }
+
+    public static void setZoneAndObjectListReviewPath(List<MapZoneAndObject> zoneAndObjectListReviewPath) {
+        CreateJsonActivity.zoneAndObjectListReviewPath = zoneAndObjectListReviewPath;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+     moveToDashboard();
+
+    }
+
+    private void moveToDashboard(){
+
+        List<String> a = Step4.getZone_select();
+        List<String> b = Step4.getOggetti_select();
+        List<String> c = Step2.getArray_database();
+        List<MapZoneAndObject> d = Step4.getZoneAndObjectList_();
+        List<MapZoneAndObject> e = ReviewZoneSelected.getZoneAndObjectList();
+        List<MapZoneAndObject> f = CreateJsonActivity.getZoneAndObjectListReviewPath();
+
+        if(a.isEmpty()) Step4.getZone_select().clear();
+        if(b.isEmpty()) Step4.getOggetti_select().clear();
+        if(c.isEmpty()) Step2.getArray_database().clear();
+        if(d.isEmpty()) Step4.getZoneAndObjectList_().clear();
+        if(e.isEmpty()) ReviewZoneSelected.getZoneAndObjectList().clear();
+        if(f.isEmpty()) CreateJsonActivity.getZoneAndObjectListReviewPath().clear();
+
+        DashboardActivity.setFirstZoneChosen(false);
+        PercorsoWizard.setDescriptionPath("");
+        PercorsoWizard.setNamePath("");
+        PercorsoWizard.setPlace(null);
+
+        Intent intent= new Intent(CreateJsonActivity.this, DashboardActivity.class);
+        startActivity(intent);
+    }
+
 }

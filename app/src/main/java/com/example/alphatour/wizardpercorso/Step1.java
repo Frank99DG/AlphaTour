@@ -1,5 +1,6 @@
 package com.example.alphatour.wizardpercorso;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
@@ -15,12 +16,17 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.alphatour.CreateJsonActivity;
 import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.R;
 import com.example.alphatour.connection.Receiver;
+import com.example.alphatour.oggetti.MapZoneAndObject;
 import com.example.alphatour.oggetti.Place;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,6 +58,10 @@ public class Step1 extends Fragment implements Step, BlockingStep {
     private boolean errorFlag = true,connected=false;
     private Receiver receiver;
     private static String NamePlace;
+    private Dialog dialog;
+    private Button dialog_delete_path, dialog_dismiss;
+    private TextView dialog_title,dialog_text;
+    private ImageView dialog_delete_image;
 
     public static String getPlace() {
         return Place;
@@ -72,6 +82,37 @@ public class Step1 extends Fragment implements Step, BlockingStep {
         user = auth.getCurrentUser();
         idUser = user.getUid();
 
+        dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.dialog_delete);
+        dialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroun_dialog));
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog_delete_path = dialog.findViewById(R.id.btn_okay);
+        dialog_dismiss = dialog.findViewById(R.id.btn_cancel);
+        dialog_title = dialog.findViewById(R.id.titleDialog);
+        dialog_text = dialog.findViewById(R.id.textDialog);
+        dialog_delete_image= dialog.findViewById(R.id.imageDialog);
+        dialog_delete_image.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
+
+
+        dialog_title.setText("Attenzione");
+        dialog_text.setText("Sei sicuro di voler tornare indietro? i dati inseriti durante la creazione del percorso verranno persi");
+        dialog_delete_path.setText("Torna alla dashboard");
+
+        dialog_delete_path.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moveToDashboard();
+            }
+        });
+
+        dialog_dismiss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
 
 
         View view = inflater.inflate(R.layout.fragment_step1, container, false);
@@ -263,11 +304,9 @@ public class Step1 extends Fragment implements Step, BlockingStep {
 
     @Override
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
-        PercorsoWizard.setPlace(null);
-        PercorsoWizard.setNamePath("");
-        PercorsoWizard.setDescriptionPath("");
-        Intent intent= new Intent(getContext(), DashboardActivity.class);
-        startActivity(intent);
+
+        dialog.show();
+
     }
 
     public static String getNamePath() {
@@ -290,5 +329,30 @@ public class Step1 extends Fragment implements Step, BlockingStep {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
+    }
+
+    private void moveToDashboard(){
+
+        List<String> a = Step4.getZone_select();
+        List<String> b = Step4.getOggetti_select();
+        List<String> c = Step2.getArray_database();
+        List<MapZoneAndObject> d = Step4.getZoneAndObjectList_();
+        List<MapZoneAndObject> e = ReviewZoneSelected.getZoneAndObjectList();
+        List<MapZoneAndObject> f = CreateJsonActivity.getZoneAndObjectListReviewPath();
+
+        if(a.isEmpty()) Step4.getZone_select().clear();
+        if(b.isEmpty()) Step4.getOggetti_select().clear();
+        if(c.isEmpty()) Step2.getArray_database().clear();
+        if(d.isEmpty()) Step4.getZoneAndObjectList_().clear();
+        if(e.isEmpty()) ReviewZoneSelected.getZoneAndObjectList().clear();
+        if(f.isEmpty()) CreateJsonActivity.getZoneAndObjectListReviewPath().clear();
+
+        DashboardActivity.setFirstZoneChosen(false);
+        PercorsoWizard.setDescriptionPath("");
+        PercorsoWizard.setNamePath("");
+        PercorsoWizard.setPlace(null);
+
+        Intent intent= new Intent(getContext(), DashboardActivity.class);
+        startActivity(intent);
     }
 }

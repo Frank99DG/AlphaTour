@@ -66,6 +66,23 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     private String idPlace;
     private Receiver receiver;
 
+    public static int getZona_scelta() {
+        return zona_scelta;
+    }
+
+    public static void setZona_scelta(int zona_scelta) {
+        Step2.zona_scelta = zona_scelta;
+    }
+
+    public static List<String> getArray_database() {
+        return array_database;
+    }
+
+    public static void setArray_database(List<String> array_database) {
+        Step2.array_database = array_database;
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
