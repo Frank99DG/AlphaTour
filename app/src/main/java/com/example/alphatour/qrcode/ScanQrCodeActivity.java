@@ -61,7 +61,7 @@ public class ScanQrCodeActivity extends AppCompatActivity {
                 yesFinal.setText("OK");
 
                 titleDialog.setText(R.string.permit_required);
-                textDialog.setText(R.string.permission_qr_text);
+                textDialog.setText(R.string.permission_photo_text);
                 textDialog.setTextColor(getResources().getColor(R.color.black));
 
                 yesFinal.setOnClickListener(new View.OnClickListener() {
