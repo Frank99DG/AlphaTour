@@ -19,7 +19,7 @@
         android:drawableTint="@color/DarkCyan"
         android:gravity="center"
         android:paddingLeft="5dp"
-        android:text="Zone"
+        android:text="@string/zone"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"

@@ -170,7 +170,10 @@
     <string name="photo_element">Artículo de foto</string>
     <string name="qr_code_element">QrCode Artículo</string>
     <string name="save">Guardar</string>
-
+    <string name="search_text">Lugares, Zona y Elementos</string>
+    <string name="import_text">¡¡¡No olvides copiar el enlace de las fotos en tu documento!!!</string>
+    <string name="import_photo_text">Aquí puede cargar fotos de los artículos, descargar el documento en blanco e importar el documento completo.</string>
+    <string name="item_list">lista de Articulos</string>
 
     <string name="large_text">
         "Material is the metaphor.\n\n"
@@ -284,5 +287,45 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_step3">Crea tu ruta</string>
+    <string name="permission_photo_text">"Estimado usuario, la siguiente pantalla le pedirá que otorgue permiso para usar el "
+                         "cámara. Esto solo es necesario para poder escanear el código QR de los objetos en tu museo".
+                         "¡Le agradecemos de antemano!"</string>
+    <string name="zone">Áreas</string>
+    <string name="list_elements_text">seleccione el elemento que desea cambiar</string>
+    <string name="places_list">Lista de Lugares</string>
+    <string name="list_places_text">seleccione el lugar que creó que desea cambiar</string>
+    <string name="zone_list">Lista de Zonas</string>
+    <string name="list_zones_text">seleccione la zona que desea cambiar</string>
+    <string name="upload_photos">Subir fotos</string>
+    <string name="place_data">Colocar Datos</string>
+    <string name="city">Ciudad</string>
+    <string name="save_changes">Guardar Cambios</string>
+    <string name="qr_object">Objeto de Código QR</string>
+    <string name="place">Lugar</string>
+    <string name="zone_data">Datos de Zona</string>
+    <string name="update_profile_text">Ahora puede actualizar los detalles de su perfil</string>
+    <string name="insert_name">Introduzca su nombre</string>
+    <string name="insert_surname">Ingrese su apellido</string>
+    <string name="insert_email">Ingrese correo electrónico</string>
+    <string name="insert_birth_date">Ingrese fecha de nacimiento</string>
+    <string name="insert_username">Introduzca su nombre de usuario</string>
+    <string name="update_profile">Actualización del perfil</string>
+    <string name="choose">Elige qué hacer:</string>
+    <string name="dialog_step3_text">Quiere agregar otra zona o ir a la vista de resumen (en el resumen puede volver a agregar zonas)</string>
+    <string name="view_summary">Ver resumen</string>
+    <string name="finish_creating_route">Terminar de crear ruta:</string>
+    <string name="dialog_step4_text">¿Seguro que quieres terminar de crear la ruta?</string>
+    <string name="finish_route">Terminar ruta</string>
+    <string name="activities">Actividades</string>
+    <string name="creates_place_text1">Crear el lugar para que los usuarios visiten desde aquí</string>
+    <string name="import_data">Datos de importacion</string>
+    <string name="creates_place_text2">Empieza a crear las zonas que componen el lugar o carga los datos desde archivo</string>
+    <string name="notify">Notificaciones</string>
+    <string name="choose_place">Elige lugar</string>
+    <string name="path_name">Nombre de la ruta:</string>
+    <string name="path_description">Descripción de la ruta:</string>
+    <string name="place_zone_element">Lugar/Zona/Elemento</string>
+    <string name="item_to_update">Elemento a actualizar</string>
+
 
 </resources>

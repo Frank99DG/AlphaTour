@@ -171,6 +171,11 @@
     <string name="photo_element">Foto Elemento</string>
     <string name="qr_code_element">QrCode Elemento</string>
     <string name="save">Salva</string>
+    <string name="search_text">Luoghi, Zone ed Elementi</string>
+    <string name="import_text">Non dimenticarti di copiare il link delle foto nel tuo documento !!!</string>
+    <string name="import_photo_text">Qui puoi caricare le foto degli elementi, scaricare il documento vuoto, e importare il documento compilato.</string>
+    <string name="item_list">Lista Elementi</string>
+
 
     <string name="large_text">
         "Material is the metaphor.\n\n"
@@ -277,7 +282,7 @@
 
     <string name="string_step2">Seleziona la zona che vuoi visitare </string>
     <string name="string_step3">Seleziona gli oggetti che vuoi visitare</string>
-    <string name="addzone_step3">Aggiungi un altra zona</string>
+    <string name="addzone_step3">Aggiungi un’altra zona</string>
     <string name="title_activity_bbb">BBB</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -286,6 +291,41 @@
     <string name="permission_photo_text">"Caro utente, la prossima schermata ti chiederà di concedere il permesso di utilizzare la"
                          "fotocamera. Ciò è necessario esclusivamente per poter scansionare il codice qr degli oggetti del tuo museo."
                          "Ti ringraziamo in anticipo !"</string>
-
+    <string name="zone">Zone</string>
+    <string name="list_elements_text">seleziona l’elemento che desideri modificare</string>
+    <string name="places_list">Lista Luoghi</string>
+    <string name="list_places_text">seleziona il luogo da te creato che desideri modificare</string>
+    <string name="zone_list">Lista Zone</string>
+    <string name="list_zones_text">seleziona la zona che desideri modificare</string>
+    <string name="upload_photos">Carica foto</string>
+    <string name="place_data">Dati Luogo</string>
+    <string name="city">Città</string>
+    <string name="save_changes">Salva Modifiche</string>
+    <string name="qr_object">QrCode Oggetto</string>
+    <string name="place">Luogo</string>
+    <string name="zone_data">Dati Zona</string>
+    <string name="update_profile_text">Ora puoi aggiornare i dettagli del tuo profilo</string>
+    <string name="insert_name">Inserisci il nome</string>
+    <string name="insert_surname">Inserisci il cognome</string>
+    <string name="insert_email">Inserisci email</string>
+    <string name="insert_birth_date">Inserisci data nascita</string>
+    <string name="insert_username">Inserisci username</string>
+    <string name="update_profile">Aggiorna Profilo</string>
+    <string name="choose">Scegli cosa fare:</string>
+    <string name="dialog_step3_text">Vuoi aggiungere un’altra zona o andare alla visualizzazione del riepilogo (nel riepilogo potrai ritornare ad aggiungere zone)</string>
+    <string name="view_summary">Visualizza Riepilogo</string>
+    <string name="finish_creating_route">Termina creazione percorso:</string>
+    <string name="dialog_step4_text">Sei sicuro di voler terminare la creazione del percorso?</string>
+    <string name="finish_route">Termina percorso</string>
+    <string name="activities">Attività</string>
+    <string name="creates_place_text1">Crea da qui il luogo da far visitare agli utenti</string>
+    <string name="import_data">Importa dati</string>
+    <string name="creates_place_text2">Inizia a creare le zone che compongono il luogo oppure carica i dati da file</string>
+    <string name="notify">Notifiche</string>
+    <string name="choose_place">Scegli luogo</string>
+    <string name="path_name">Nome del percorso:</string>
+    <string name="path_description">Descrizione del percorso:</string>
+    <string name="place_zone_element">Luogo/Zona/Elemento</string>
+    <string name="item_to_update">Elemento da aggiornare</string>
 
 </resources>

@@ -169,6 +169,10 @@
     <string name="photo_element">Photo Element</string>
     <string name="qr_code_element">QrCode Element</string>
     <string name="save">Save</string>
+    <string name="search_text">Places, Zone and Elements</string>
+    <string name="import_text">Don’t forget to copy the link of the photos in your document !!!</string>
+    <string name="import_photo_text">Here you can upload photos of the items, download the blank document, and import the completed document.</string>
+    <string name="item_list">Item List</string>
 
 
     <string name="large_text">
@@ -282,5 +286,45 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_step3">Create your route</string>
+    <string name="permission_photo_text">"Dear user, the next screen will ask you to grant permission to use the"
+                         "camera. This is only necessary to be able to scan the QR code of the objects in your museum."
+                         "We thank you in advance!"</string>
+    <string name="zone">Zone</string>
+    <string name="list_elements_text">select the item you want to change</string>
+    <string name="places_list">Places List</string>
+    <string name="list_places_text">select the place you created that you want to change</string>
+    <string name="zone_list">Zone List</string>
+    <string name="list_zones_text">select the zone you want to change</string>
+    <string name="upload_photos">Upload photos</string>
+    <string name="place_data">Place Data</string>
+    <string name="city">City</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="qr_object">QrCode Object</string>
+    <string name="place">Place</string>
+    <string name="zone_data">Zone Data</string>
+    <string name="update_profile_text">You can now update your profile details</string>
+    <string name="insert_name">Enter your name</string>
+    <string name="insert_surname">Enter your surname</string>
+    <string name="insert_email">Enter email</string>
+    <string name="insert_birth_date">Enter date of birth</string>
+    <string name="insert_username">Enter username</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="choose">Choose what to do:</string>
+    <string name="dialog_step3_text">You want to add another zone or go to the summary view (in the summary you can go back to adding zones)</string>
+    <string name="view_summary">View Summary</string>
+    <string name="finish_creating_route">Finish creating route:</string>
+    <string name="dialog_step4_text">Are you sure you want to finish creating the route?</string>
+    <string name="finish_route">Finish route</string>
+    <string name="activities">Activities</string>
+    <string name="creates_place_text1">Create the place for users to visit from here</string>
+    <string name="import_data">Import data</string>
+    <string name="creates_place_text2">Start creating the zones that make up the place or load the data from file</string>
+    <string name="notify">Notify</string>
+    <string name="choose_place">Choose place</string>
+    <string name="path_name">Path name:</string>
+    <string name="path_description">Path description:</string>
+    <string name="place_zone_element">Place/Zone/Element</string>
+    <string name="item_to_update">Item to update</string>
+
 
 </resources>

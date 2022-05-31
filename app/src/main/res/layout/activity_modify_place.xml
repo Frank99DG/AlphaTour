@@ -44,7 +44,7 @@
         android:layout_height="36dp"
         android:layout_marginTop="28dp"
         android:fontFamily="@font/alata"
-        android:text="Dati Luogo"
+        android:text="@string/place_data"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -67,7 +67,7 @@
             android:layout_height="56dp"
             android:background="@drawable/bordi_tondi"
             android:ems="10"
-            android:hint="Nome"
+            android:hint="@string/name"
             android:inputType="textPersonName" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,7 +86,7 @@
             android:layout_height="56dp"
             android:background="@drawable/bordi_tondi"
             android:ems="10"
-            android:hint="Città"
+            android:hint="@string/city"
             android:inputType="textPersonName" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,7 +115,7 @@
         android:layout_marginTop="36dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Lista Zone"
+        android:text="@string/zone_list"
         android:onClick="openZonesList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -129,7 +129,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:onClick="updatePlace"
-        android:text="Salva Modifiche"
+        android:text="@string/save_changes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"

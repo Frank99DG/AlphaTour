@@ -15,7 +15,7 @@
         android:layout_width="343dp"
         android:layout_height="76dp"
         android:layout_marginTop="36dp"
-        android:text="Crea da qui il luogo da far visitare agli utenti"
+        android:text="@string/creates_place_text1"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -31,7 +31,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:onClick="scanQrCode"
-        android:text="Attività"
+        android:text="@string/activities"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.36"
@@ -45,7 +45,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/alata"
-        android:text="Dati Luogo"
+        android:text="@string/place_data"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:onClick="scanQrCode"
-        android:text="Importa dati"
+        android:text="@string/import_data"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descriptionCreateFirstZone" />
 
@@ -79,7 +79,7 @@
             android:layout_height="56dp"
             android:background="@drawable/bordi_tondi"
             android:ems="10"
-            android:hint="Nome"
+            android:hint="@string/name"
             android:inputType="textPersonName" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,7 +98,7 @@
             android:layout_height="56dp"
             android:background="@drawable/bordi_tondi"
             android:ems="10"
-            android:hint="Città"
+            android:hint="@string/city"
             android:inputType="textPersonName" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,7 +123,7 @@
         android:layout_width="346dp"
         android:layout_height="87dp"
         android:layout_marginTop="32dp"
-        android:text="Inizia a creare le zone che compongono il luogo oppure carica i dati da file"
+        android:text="@string/creates_place_text2"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -140,7 +140,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:onClick="scanQrCode"
-        android:text="Attività"
+        android:text="@string/activities"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

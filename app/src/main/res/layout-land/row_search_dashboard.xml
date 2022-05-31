@@ -20,7 +20,7 @@
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         android:padding="15dp"
         android:textSize="14dp"
-        android:text="Place/Zone/Element"
+        android:text="@string/place_zone_element"
         android:textColor="@color/black" />
 
 

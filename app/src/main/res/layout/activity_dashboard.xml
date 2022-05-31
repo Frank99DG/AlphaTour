@@ -58,7 +58,7 @@
                         android:layout_height="50dp"
                         android:background="@drawable/backgroun_dialog"
                         android:drawableStart="@drawable/ic_search"
-                        android:hint=" Luoghi, Zone ed Elementi"
+                        android:hint="@string/search_text"
                         android:textSize="14dp"
                         android:inputType="text"
                         android:padding="10dp"

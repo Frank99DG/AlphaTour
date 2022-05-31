@@ -170,7 +170,10 @@
     <string name="photo_element">Élément photo</string>
     <string name="qr_code_element">QrCode Élément</string>
     <string name="save">Sauvegarder</string>
-
+    <string name="search_text">Lieux, zone et éléments</string>
+    <string name="import_text">N’oubliez pas de copier le lien des photos dans votre document !!!</string>
+    <string name="import_photo_text">Ici, vous pouvez télécharger des photos des éléments, télécharger le document vierge et importer le document terminé.</string>
+    <string name="item_list">liste des Articles</string>
 
     <string name="large_text">
         "Material is the metaphor.\n\n"
@@ -283,5 +286,44 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_step3">Créer votre itinéraire</string>
+    <string name="permission_photo_text">"Cher utilisateur, l’écran suivant vous demandera d’accorder l’autorisation d’utiliser le "
+                         "caméra. Ceci est uniquement nécessaire pour pouvoir scanner le code QR des objets de votre musée."
+                         "Nous vous en remercions d'avance!"</string>
+    <string name="zone">Zone</string>
+    <string name="list_elements_text">sélectionnez l’élément que vous souhaitez modifier</string>
+    <string name="places_list">Liste des Lieux</string>
+    <string name="list_places_text">sélectionnez le lieu que vous avez créé et que vous souhaitez modifier</string>
+    <string name="zone_list">Liste des Zones</string>
+    <string name="list_zones_text">sélectionnez la zone que vous souhaitez modifier</string>
+    <string name="upload_photos">Télécharger des photos</string>
+    <string name="place_data">Données de Lieu</string>
+    <string name="city">Ville</string>
+    <string name="save_changes">Sauvegarder</string>
+    <string name="qr_object">Objet de code QR</string>
+    <string name="place">Lieu</string>
+    <string name="zone_data">Données de Zone</string>
+    <string name="update_profile_text">Vous pouvez maintenant mettre à jour les détails de votre profil</string>
+    <string name="insert_name">Entrez votre nom</string>
+    <string name="insert_surname">Entrer votre nom</string>
+    <string name="insert_email">Entrez l’e-mail</string>
+    <string name="insert_birth_date">Entrer date de naissance</string>
+    <string name="insert_username">Entrer username</string>
+    <string name="update_profile">Mettre à jour le profil</string>
+    <string name="choose">Choisissez quoi faire:</string>
+    <string name="dialog_step3_text">Vous souhaitez ajouter une autre zone ou accéder à la vue récapitulative (dans le récapitulatif, vous pouvez revenir à l’ajout de zones)</string>
+    <string name="view_summary">Afficher le résumé</string>
+    <string name="finish_creating_route">Terminer la création de l’itinéraire:</string>
+    <string name="dialog_step4_text">Voulez-vous vraiment terminer la création de l’itinéraire?</string>
+    <string name="finish_route">Terminer l’itinéraire</string>
+    <string name="activities">Activités</string>
+    <string name="creates_place_text1">Créez l’endroit que les utilisateurs pourront visiter à partir d’ici</string>
+    <string name="import_data">Importer des données</string>
+    <string name="creates_place_text2">Commencez à créer les zones qui composent le lieu ou chargez les données à partir du fichier</string>
+    <string name="notify">Notifications</string>
+    <string name="choose_place">Choisissez le lieu</string>
+    <string name="path_name">Nom du chemin:</string>
+    <string name="path_description">Description de l’itinéraire:</string>
+    <string name="place_zone_element">Lieu/Zone/Élément</string>
+    <string name="item_to_update">Article à mettre à jour</string>
 
 </resources>

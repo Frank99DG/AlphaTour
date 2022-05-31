@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
-            android:text="Ora puoi aggiornare i dettagli del tuo profilo "
+            android:text="@string/update_profile_text"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="#8B131111"
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@id/icProfileUpdate"
                 android:layout_marginStart="50dp"
-                android:hint="Nome"
+                android:hint="@string/name"
                 android:textSize="18sp" />
 
             <View
@@ -85,7 +85,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="7dp"
                 android:layout_marginBottom="-20dp"
-                android:hint="Inserisci il nome"
+                android:hint="@string/insert_name"
                 android:inputType="textPersonName"
                 android:padding="6dp"
                 android:textColor="#555555"
@@ -119,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@id/icProfileSurnameUpdate"
                 android:layout_marginStart="50dp"
-                android:hint="Cognome"
+                android:hint="@string/surname"
                 android:textSize="18sp" />
 
             <View
@@ -139,7 +139,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="7dp"
                 android:layout_marginBottom="-20dp"
-                android:hint="Inserisci il cognome"
+                android:hint="@string/insert_surname"
                 android:inputType="textPersonName"
                 android:padding="6dp"
                 android:textColor="#555555"
@@ -173,7 +173,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@id/icEmailUpdate"
                 android:layout_marginStart="50dp"
-                android:hint="Email"
+                android:hint="@string/email_address"
                 android:textSize="18sp" />
 
             <View
@@ -192,7 +192,7 @@
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="7dp"
                 android:layout_marginBottom="-20dp"
-                android:hint="Inserisci email"
+                android:hint="@string/insert_email"
                 android:inputType="textPersonName"
                 android:padding="6dp"
                 android:textColor="#555555"
@@ -227,7 +227,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@id/icDataNascitaUpdate"
                 android:layout_marginStart="50dp"
-                android:hint="Data di nascita"
+                android:hint="@string/birth_date"
                 android:textSize="18sp" />
 
             <View
@@ -245,7 +245,7 @@
                 android:layout_below="@+id/dividerDateBirthUpdate"
                 android:layout_marginStart="50dp"
                 android:layout_marginBottom="-20dp"
-                android:hint="Inserisci data nascita"
+                android:hint="@string/insert_birth_date"
                 android:inputType="textPersonName"
                 android:layout_marginTop="7dp"
                 android:padding="6dp"
@@ -281,7 +281,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@id/icUsernameUpdate"
                 android:layout_marginStart="50dp"
-                android:hint="Username"
+                android:hint="@string/username"
                 android:textSize="18sp" />
 
             <View
@@ -333,7 +333,7 @@
             android:layout_marginLeft="78dp"
             android:layout_marginTop="-55dp"
             android:layout_marginRight="78dp"
-            android:onClick="buttonUpdateProfile"
+            android:onClick="updateProfile"
             android:text="Aggiorna Profilo" />
 
         <TextView

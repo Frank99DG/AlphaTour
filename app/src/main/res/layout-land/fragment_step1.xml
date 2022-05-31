@@ -80,7 +80,7 @@
             android:background="@drawable/bordi_tondi"
             android:drawableStart="@drawable/ic_museum_mini"
             android:drawablePadding="12dp"
-            android:hint="Scegli luogo"
+            android:hint="@string/choose_place"
             android:inputType="none"
             android:padding="12dp"
             tools:layout_editor_absoluteX="110dp"

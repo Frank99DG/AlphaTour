@@ -14,7 +14,7 @@
         android:layout_marginTop="28dp"
         android:background="@android:drawable/editbox_dropdown_light_frame"
         android:gravity="center"
-        android:text="Item to update"
+        android:text="@string/item_to_update"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20dp"
