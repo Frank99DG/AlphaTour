@@ -6,7 +6,9 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Rect;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MotionEvent;
@@ -18,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.alphatour.connection.Receiver;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -34,6 +37,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     private String currentPassword;
     private FirebaseUser user;
     private FirebaseFirestore db;
+    private Receiver receiver;
 
 
     @Override
@@ -68,6 +72,29 @@ public class ChangePasswordActivity extends AppCompatActivity {
             reAuthenticateUser(user);
         }
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        /**controllo connessione**/
+
+        /** 1 indica che questa è una classe che non può funzionare
+         * senza connessione
+         */
+        receiver=new Receiver(1);
+
+        broadcastIntent();
+    }
+
+    private void broadcastIntent() {
+        registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterReceiver(receiver);
     }
 
     //To remove focus and keyboard when click outside EditText

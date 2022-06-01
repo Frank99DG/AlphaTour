@@ -5,25 +5,34 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.Manifest;
+import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.alphatour.connection.Receiver;
 import com.example.alphatour.databinding.ActivityDashboardBinding;
 import com.example.alphatour.databinding.ActivityProfileBinding;
 import com.example.alphatour.dblite.AlphaTourContract;
@@ -75,6 +84,10 @@ public class ProfileActivity extends DrawerBaseActivity {
     private StorageTask uploadTask;
     private  int i=0;
     private ActivityProfileBinding activityProfileBinding;
+    private Dialog dialog;
+    private TextView yesFinal,titleDialog,textDialog;
+    private Receiver receiver;
+    private String[] Permission=new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
 
 
@@ -100,6 +113,19 @@ public class ProfileActivity extends DrawerBaseActivity {
         textUsername = findViewById(R.id.profileUsernameUser);
         loadingBar = findViewById(R.id.profileLoadingBar);
 
+
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_permission);
+        dialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroun_dialog));
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
+
+        yesFinal = dialog.findViewById(R.id.btn_termina_permission);
+        titleDialog = dialog.findViewById(R.id.titleDialog_permission);
+        textDialog = dialog.findViewById(R.id.textDialog_permission);
+
         //impostazione del bottom navigation menu
         bottomNavigationView = findViewById(R.id.bottomNavigationBar);
         bottomNavigationView.setSelectedItemId(R.id.tb_profile); //per partire con la selezione su home
@@ -112,6 +138,30 @@ public class ProfileActivity extends DrawerBaseActivity {
             loadingBar.setVisibility(View.VISIBLE);
             showUserProfile();
         }
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        /**controllo connessione**/
+
+        /** 1 indica che questa è una classe che non può funzionare
+         * senza connessione
+         */
+        receiver=new Receiver(1);
+
+        broadcastIntent();
+    }
+
+    private void broadcastIntent() {
+        registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterReceiver(receiver);
     }
 
 
@@ -185,7 +235,7 @@ public class ProfileActivity extends DrawerBaseActivity {
                                 }catch(IOException e){
                                     e.printStackTrace();
                                 }
-                        }
+                            }
 
                             //stampa dati nelle editText
                             i=-2;
@@ -220,11 +270,11 @@ public class ProfileActivity extends DrawerBaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-            Uri uri = data.getData();
+        Uri uri = data.getData();
 
-            profile.setImageURI(uri);
-            saveImageProfileOnDbRemote(uri);
-            int value=saveImageProfileOnDbLocal(uri);
+        profile.setImageURI(uri);
+        saveImageProfileOnDbRemote(uri);
+        int value=saveImageProfileOnDbLocal(uri);
            /* if(value){
 
             }*/
@@ -243,7 +293,7 @@ public class ProfileActivity extends DrawerBaseActivity {
         db = dbAlpha.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_IMAGE,uri.toString());
-       return db.update(AlphaTourContract.AlphaTourEntry.NAME_TABLE_USER,values,AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_ID+
+        return db.update(AlphaTourContract.AlphaTourEntry.NAME_TABLE_USER,values,AlphaTourContract.AlphaTourEntry.NAME_COLUMN_USER_ID+
                 CommandDbAlphaTour.Command.EQUAL+CommandDbAlphaTour.Command.VALUE,new String[] {idUtenteLocal});
     }
 
@@ -277,7 +327,7 @@ public class ProfileActivity extends DrawerBaseActivity {
                         userMap.put("image",myUri);
 
                         db.collection("Users").document(user.getUid()).
-                        update("image", myUri).
+                                update("image", myUri).
                                 addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
@@ -305,9 +355,31 @@ public class ProfileActivity extends DrawerBaseActivity {
 
     public void changeProfile(View v){
 
-        ImagePicker.with(this)
-                .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)*/
-                .start(20);
+        if (checkPermission()){
+            if (ActivityCompat.shouldShowRequestPermissionRationale(ProfileActivity.this, Manifest.permission.CAMERA)) {
+                dialog.show();
+                yesFinal.setText("OK");
+
+                titleDialog.setText(R.string.permit_required);
+                textDialog.setText(R.string.permission_text);
+                textDialog.setTextColor(getResources().getColor(R.color.black));
+
+                yesFinal.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        requestPermission();
+                    }
+                });
+            } else {
+                requestPermission();
+            }
+        }else{
+            ImagePicker.with(ProfileActivity.this)
+                    .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)*/
+                    .start(20);
+        }
+
     }
 
     public void updateProfile(View v){
@@ -330,16 +402,46 @@ public class ProfileActivity extends DrawerBaseActivity {
                         startActivity(new Intent(ProfileActivity.this, DashboardActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-                    case R.id.tb_routes:
-                        startActivity(new Intent(ProfileActivity.this, MyPathsActivity.class));
+                    /*case R.id.tb_routes:
+                        startActivity(new Intent(DashboardActivity.this, .class));
                         overridePendingTransition(0,0);
-                        return true;
+                        return true;*/
                 }
 
                 return false;
             }
         });
 
+    }
+
+    private boolean checkPermission(){
+
+        for(String permission:Permission){
+            if(ContextCompat.checkSelfPermission(getApplicationContext(), permission)== PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void requestPermission(){
+        final int permissionCode=100;//codice definito da me, servirà nel caso in cui serva controllare più permessi
+        ActivityCompat.requestPermissions(this,Permission,permissionCode);
+
+    }
+
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED ) {
+
+            ImagePicker.with(this)
+                    .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)*/
+                    .start(20);
+        }else{
+            Toast.makeText(this,R.string.permission_denied,Toast.LENGTH_LONG).show();
+
+        }
     }
 
 

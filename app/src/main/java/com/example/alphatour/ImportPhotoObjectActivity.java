@@ -8,18 +8,20 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.app.Activity;
+import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -33,8 +35,7 @@ import com.example.alphatour.oggetti.Place;
 import com.example.alphatour.oggetti.Zone;
 import com.example.alphatour.qrcode.GenerateQrCodeClass;
 import com.example.alphatour.wizardcreazione.CreateObjectWizard;
-import com.example.alphatour.wizardcreazione.CreatePlaceWizard;
-import com.example.alphatour.wizardcreazione.CreateZoneWizard;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -75,6 +76,7 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
     private Uri imageUri;
     private long idPhotoAndQrCode,id;
     private int count=0,i,j,idP=1,idZ=1;
+    private final int FILEWRITE =500, FILEREAD =501;
     private LinearLayout layout_list;
     private List<String> linkList= new ArrayList<String>();
     private String uriUploadPhoto,idPlace;
@@ -83,13 +85,17 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
     private List<Zone> listZone=new ArrayList<Zone>();
     private List<Element> listElement=new ArrayList<Element>();
     private List<Place> listPlace=new ArrayList<Place>();
-    private boolean place=false,flag1=false,flag2=false,loadConstraints=false;
+    private boolean place=false,flag1=false,flag2=false,loadConstraints=false, perm =false;
     private boolean success=false, load=true;
     private List<String> uriUploadQrCode=new ArrayList<String>();
     private FirebaseUser user;
     private FirebaseAuth auth;
     private List<Constraint> listConstranints = new ArrayList<Constraint>();
     private Map<String, Object> elm = new HashMap<>();
+    private Dialog dialog;
+    private TextView yesFinal,titleDialog,textDialog;
+    private String[] Permission=new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    private ProgressBar loadingbar;
 
 
     @Override
@@ -102,10 +108,24 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
         addPhoto=findViewById(R.id.cardPhoto);
         downloadEmpty=findViewById(R.id.cardDocEmpty);
         loadFull=findViewById(R.id.cardDocFull);
-        progressBar=findViewById(R.id.photoLoadingBar);
+        progressBar=findViewById(R.id.phLoadingBar);
         layout_list=findViewById(R.id.listphotoLayout);
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_permission);
+        dialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroun_dialog));
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
+
+        yesFinal = dialog.findViewById(R.id.btn_termina_permission);
+        titleDialog = dialog.findViewById(R.id.titleDialog_permission);
+        textDialog = dialog.findViewById(R.id.textDialog_permission);
+
+
 
         DocumentReference docRef = db.collection("LastIdPhotoAndQrCode").document("1");
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -134,52 +154,100 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
         addPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
-                startActivityForResult(Intent.createChooser(intent, "Seleziona immagini"),300);
+                verifyPermission();
+                if(perm) {
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                    intent.setType("image/*");
+                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                    startActivityForResult(Intent.createChooser(intent, "Seleziona immagini"), 300);
+                }
             }
         });
 
         loadFull.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("text/comma-separated-values");
-                startActivityForResult(intent,100);
+                verifyPermission();
+                if(perm) {
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                    intent.setType("text/comma-separated-values");
+                    startActivityForResult(intent, 100);
+                }
             }
         });
 
         downloadEmpty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                verifyPermission();
+                if (perm) {
 
-                File fil = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "CsvEmpty.csv");
-                FileOutputStream fos = null;
-                try {
-                    fos = new FileOutputStream(fil);
-                    String line="namePlace,cityPlace,typologyPlace,nameZone,titleObject,descriptionObject,qrData,linkImageObject,fromZone,inZone";
-                    fos.write(line.getBytes(StandardCharsets.UTF_8),0,line.length());
-                    fos.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    String state = Environment.getExternalStorageState();
+                    //external storage availability check
+                    if (!Environment.MEDIA_MOUNTED.equals(state)) {
+                        return;
+                    }
+
+                    File fil = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), "CsvEmpty.csv");
+                    FileOutputStream fos = null;
+                    try {
+                        fos = new FileOutputStream(fil);
+                        String line = "namePlace,cityPlace,typologyPlace,nameZone,titleObject,descriptionObject,qrData,linkImageObject,fromZone,inZone";
+                        fos.write(line.getBytes(StandardCharsets.UTF_8), 0, line.length());
+                        fos.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    Toast.makeText(ImportPhotoObjectActivity.this, "Saved to " + getFilesDir() + "/" + "CsvEmpty", Toast.LENGTH_LONG).show();
                 }
-                // file = File.createTempFile("Percorso",".json");
-                Toast.makeText(ImportPhotoObjectActivity.this, "Saved to " + getFilesDir() + "/" + "Percorso.json", Toast.LENGTH_LONG).show();
             }
         });
 
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
 
-            if(ActivityCompat.shouldShowRequestPermissionRationale((Activity) this,Manifest.permission.READ_EXTERNAL_STORAGE)){
+    }
 
-            }else{
-                ActivityCompat.requestPermissions((Activity) this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},120);
+
+    private void verifyPermission(){
+        if (checkPermission()){
+            if (ActivityCompat.shouldShowRequestPermissionRationale(ImportPhotoObjectActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                dialog.show();
+                yesFinal.setText("OK");
+
+                titleDialog.setText(R.string.permit_required);
+                textDialog.setText(R.string.permission_text);
+                textDialog.setTextColor(getResources().getColor(R.color.black));
+
+                yesFinal.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        requestPermission();
+                    }
+                });
+            } else {
+                requestPermission();
+            }
+        }else{
+            perm=true;
+        }
+    }
+
+    private boolean checkPermission(){
+
+        for(String permission:Permission){
+            if(ContextCompat.checkSelfPermission(getApplicationContext(), permission)== PackageManager.PERMISSION_GRANTED) {
+                return false;
             }
         }
+        return true;
+    }
 
+    private void requestPermission(){
+        int permissionCode=200; //codice definito da me, servirà nel caso in cui serva controllare più permessi
+        ActivityCompat.requestPermissions(this,Permission,permissionCode);
 
     }
 
@@ -378,6 +446,8 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
 
     private void readCsv(Intent data) {
 
+        progressBar.setVisibility(View.VISIBLE);
+
         if(data==null){
             return;
         }else{
@@ -503,16 +573,33 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
                         Toast.makeText(ImportPhotoObjectActivity.this,"Errore duratnte l'importazione del file, alcuni"+
                                 "campi potrebbero essere vuoti",Toast.LENGTH_LONG).show();
                         line=null;
+                        progressBar.setVisibility(View.GONE);
                     }
                 }
 
                 if(isEmpty){
                     Toast.makeText(ImportPhotoObjectActivity.this,"Errore duratnte l'importazione del file, alcuni"+
                             "campi potrebbero essere vuoti",Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
                 }else{
 
                     savePlace();
                     saveConstraints();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            if(success) {
+                                Intent intent = new Intent(ImportPhotoObjectActivity.this, DashboardActivity.class);
+                                startActivity(intent);
+                                progressBar.setVisibility(View.GONE);
+                            }else{
+                                Toast.makeText(ImportPhotoObjectActivity.this, "Salvataggio Luogo non riuscito" , Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.GONE);
+                            }
+                        }
+                    }, 2000L);
                 }
 
             } catch (FileNotFoundException e) {
@@ -544,13 +631,15 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if(grantResults.length>0&& grantResults[0]==PackageManager.PERMISSION_GRANTED){
+        if(grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED &&
+                grantResults[1]== PackageManager.PERMISSION_GRANTED) {
+                perm=true;
 
-            Toast.makeText(this,"Permission granted",Toast.LENGTH_LONG).show();
         }else{
-            Toast.makeText(this,"Permission not granted",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.permission_denied,Toast.LENGTH_LONG).show();
+
         }
-        return;
+
     }
 
 

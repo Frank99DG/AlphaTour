@@ -21,6 +21,18 @@ public class Receiver extends BroadcastReceiver {
     private Button yesFinal;
     private TextView titleDialog,textDialog;
     private Boolean flag=false;
+    /**serve per coontrollare se la chiamata proviene dal login**/
+    private int controlValue;
+
+    public  Receiver(){
+
+    }
+
+    public  Receiver(int val){
+
+        this.controlValue=val;
+    }
+
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -50,14 +62,20 @@ public class Receiver extends BroadcastReceiver {
         });
 
         if(status.isEmpty() || status.matches("No internet is available")){
-            //dialog.show();
+
+            if(controlValue==1){
+                dialog.show();
+            }
             flag=false;
+            Toast.makeText(context,status,Toast.LENGTH_LONG).show();
         }else{
             flag=true;
         }
 
-        Toast.makeText(context,status,Toast.LENGTH_LONG).show();
+
     }
+
+
 
     public Boolean isConnected() {
         return flag;

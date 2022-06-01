@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Rect;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Patterns;
@@ -20,6 +22,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.alphatour.connection.Receiver;
 import com.example.alphatour.dblite.AlphaTourContract;
 import com.example.alphatour.dblite.AlphaTourDbHelper;
 import com.example.alphatour.dblite.CommandDbAlphaTour;
@@ -46,6 +49,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseUser user;
     private String idUser;
+    private Receiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +72,29 @@ public class UpdateProfileActivity extends AppCompatActivity {
         showUserProfile();
 
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        /**controllo connessione**/
+
+        /** 1 indica che questa è una classe che non può funzionare
+         * senza connessione
+         */
+        receiver=new Receiver(1);
+
+        broadcastIntent();
+    }
+
+    private void broadcastIntent() {
+        registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterReceiver(receiver);
     }
 
 

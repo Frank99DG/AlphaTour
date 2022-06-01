@@ -7,10 +7,12 @@ import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.MotionEvent;
@@ -21,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.alphatour.connection.Receiver;
 import com.example.alphatour.dblite.AlphaTourContract;
 import com.example.alphatour.dblite.AlphaTourDbHelper;
 import com.example.alphatour.oggetti.User;
@@ -54,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener onDateSetListener;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
-
+    private Receiver receiver;
 
 
     @Override
@@ -80,6 +83,29 @@ public class RegisterActivity extends AppCompatActivity {
 
         loadingBar = findViewById(R.id.registerLoadingBar);
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        /**controllo connessione**/
+
+        /** 1 indica che questa è una classe che non può funzionare
+         * senza connessione
+         */
+        receiver=new Receiver(1);
+
+        broadcastIntent();
+    }
+
+    private void broadcastIntent() {
+        registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterReceiver(receiver);
     }
 
     @Override

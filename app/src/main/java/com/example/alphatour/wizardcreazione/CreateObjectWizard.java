@@ -347,7 +347,9 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
                 editor.putString("Zone" + i, elementList.get(i).getZoneRif());
                 editor.putString("Title" + i, elementList.get(i).getTitle());
                 editor.putString("Description" + i, elementList.get(i).getDescription());
-                editor.putString("Photo" + i, elementList.get(i).getPhoto().toString());
+                if(elementList.get(i).getPhoto().toString()!=null) {
+                    editor.putString("Photo" + i,elementList.get(i).getPhoto().toString());
+                }
                 editor.putString("QrData" + i, elementList.get(i).getQrData());
                 String qr = convertBitmapToString(elementList.get(i).getQrCode());
                 editor.putString("QrCode" + i, qr);

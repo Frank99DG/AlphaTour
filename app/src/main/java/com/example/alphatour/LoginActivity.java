@@ -65,7 +65,11 @@ public class LoginActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         /**controllo connessione**/
-        receiver=new Receiver();
+
+        /** 1 indica che questa è una classe che non può funzionare
+         * senza connessione
+         */
+        receiver=new Receiver(1);
 
         broadcastIntent();
     }

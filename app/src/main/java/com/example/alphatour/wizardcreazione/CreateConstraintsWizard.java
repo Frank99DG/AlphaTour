@@ -110,6 +110,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     private boolean flag2 = false;
     private Receiver receiver;
     private long res=-1;
+    private ImageView imgDialog;
 
 
     public CreateConstraintsWizard() {
@@ -155,6 +156,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
         titleDialog=dialog.findViewById(R.id.titleDialog);
         textDialog=dialog.findViewById(R.id.textDialog);
         loadingBar=view.findViewById(R.id.objectLoadingBar);
+        imgDialog=dialog.findViewById(R.id.imageDialog);
 
         DocumentReference docRef = db.collection("LastIdPhotoAndQrCode").document("1");
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -307,6 +309,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
         titleDialog.setText("Completa inserimenti");
         textDialog.setText("Sei sicuro di voler completare la creazione dei luoghi e degli oggetti ? ");
         yesFinal.setText("Si");
+        imgDialog.setImageDrawable(getResources().getDrawable(R.drawable.dialog_constraints_complete));
 
         yesFinal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -435,10 +438,8 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
         VerificationError error = null;
         //String Prova = prova.getText().toString();
         //stepFlag = inputControl(Prova);
-        constraintFlag=true;
-        if(constraintFlag){
-            error = new VerificationError("Non puoi tornare indietro");
-        }
+
+
         return error;
 
 

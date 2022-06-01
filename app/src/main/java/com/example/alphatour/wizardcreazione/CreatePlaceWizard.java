@@ -215,7 +215,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
             }
         });
 
-        typology.postDelayed(new Runnable() {
+        /*typology.postDelayed(new Runnable() {
             @Override
             public void run() {
 
@@ -223,7 +223,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
 
 
             }
-        }, 10);
+        }, 10);*/
 
     }
 
@@ -286,6 +286,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
 
+        callback.goToNextStep();
     }
 
     @Override

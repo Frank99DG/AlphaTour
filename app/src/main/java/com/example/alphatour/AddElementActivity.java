@@ -1,23 +1,31 @@
 package com.example.alphatour;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alphatour.oggetti.Element;
@@ -47,13 +55,16 @@ public class AddElementActivity extends AppCompatActivity{
     private static Bitmap qr;
     private String item;
     private static  Element element;
-    private boolean errorFlag=false;
+    private boolean errorFlag=false,permission=false;
     private boolean flagPhoto=false;
     private boolean flagQrCode=false;
     private FirebaseAuth auth;
     private FirebaseUser user;
     private FirebaseFirestore db;
     private List<DocumentSnapshot> listaDocumenti= new ArrayList<DocumentSnapshot>();
+    private Dialog dialog;
+    private TextView yesFinal,titleDialog,textDialog;
+    private String[] Permission=new String[]{Manifest.permission.CAMERA};
 
 
     public static Element getElement() {
@@ -92,6 +103,19 @@ public class AddElementActivity extends AppCompatActivity{
         generateQrCode = findViewById(R.id.inputQrCode);
         description = findViewById(R.id.inputDescription);
         photo= findViewById(R.id.inputPhoto);
+
+
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_permission);
+        dialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroun_dialog));
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+
+
+        yesFinal = dialog.findViewById(R.id.btn_termina_permission);
+        titleDialog = dialog.findViewById(R.id.titleDialog_permission);
+        textDialog = dialog.findViewById(R.id.textDialog_permission);
 
         ArrayList<String> zone_list=CreateZoneWizard.getZone_list();
 
@@ -145,9 +169,32 @@ public class AddElementActivity extends AppCompatActivity{
 
 
     public void uploadImageElement(View v){
-        ImagePicker.with(AddElementActivity.this)
-                .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)*/
-                .start(20);
+
+        if (checkPermission()){
+            if (ActivityCompat.shouldShowRequestPermissionRationale(AddElementActivity.this, Manifest.permission.CAMERA)) {
+                dialog.show();
+                yesFinal.setText("OK");
+
+                titleDialog.setText(R.string.permit_required);
+                textDialog.setText(R.string.permission_text);
+                textDialog.setTextColor(getResources().getColor(R.color.black));
+
+                yesFinal.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                        requestPermission();
+                    }
+                });
+            } else {
+                requestPermission();
+            }
+        }else{
+            permission=true;
+            ImagePicker.with(AddElementActivity.this)
+                    .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)*/
+                    .start(20);
+        }
     }
 
     @Override
@@ -208,19 +255,28 @@ public class AddElementActivity extends AppCompatActivity{
 
         if(flagPhoto==false){
 
-            photo.setError(getString(R.string.required_field));
-            photo.requestFocus();
-            errorFlag=true;
+            if(permission) {
+                photo.setError(getString(R.string.required_field));
+                photo.requestFocus();
+                errorFlag = true;
+            }else{
+                uri=Uri.parse("");
+                setPhoto(uri);
+                element.setPhoto(uri);
+            }
         }else{
-            element.setPhoto(uri);
-            setPhoto(uri);
-            errorFlag = false;
+            if(uri!=null) {
+                element.setPhoto(uri);
+                setPhoto(uri);
+                errorFlag = false;
+            }
         }
 
         if(GenerateQrCodeActivity.getQrFlag()==false){
-            generateQrCode.setError(getString(R.string.required_field));
-            generateQrCode.requestFocus();
-            errorFlag = true;
+                generateQrCode.setError(getString(R.string.required_field));
+                generateQrCode.requestFocus();
+                errorFlag = true;
+
         }else{
             element.setQrCode(GenerateQrCodeActivity.getBitmap());
             setQr(GenerateQrCodeActivity.getBitmap());
@@ -258,6 +314,38 @@ public class AddElementActivity extends AppCompatActivity{
             }
         }
         return flag;
+    }
+
+    private boolean checkPermission(){
+
+        for(String permission:Permission){
+           if(ContextCompat.checkSelfPermission(getApplicationContext(), permission)== PackageManager.PERMISSION_GRANTED) {
+               return false;
+           }
+        }
+        return true;
+    }
+
+    private void requestPermission(){
+        final int permissionCode=200;//codice definito da me, servirà nel caso in cui serva controllare più permessi
+        ActivityCompat.requestPermissions(this,Permission,permissionCode);
+
+    }
+
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED &&
+                grantResults[1]== PackageManager.PERMISSION_GRANTED ) {
+
+            permission=true;
+            ImagePicker.with(AddElementActivity.this)
+                    .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)*/
+                    .start(20);
+        }else{
+            Toast.makeText(this,R.string.permission_denied,Toast.LENGTH_LONG).show();
+
+        }
     }
 
 }
