@@ -19,7 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.alphatour.databinding.ActivityDashboardBinding;
-import com.example.alphatour.oggetti.TourAdapter;
+import com.example.alphatour.TourAdapter;
 import com.example.alphatour.oggetti.TourItem;
 import com.example.alphatour.oggetti.ElementString;
 import com.example.alphatour.oggetti.Place;

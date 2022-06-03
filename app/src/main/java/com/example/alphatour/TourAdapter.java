@@ -1,4 +1,4 @@
-package com.example.alphatour.oggetti;
+package com.example.alphatour;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.alphatour.R;
+import com.example.alphatour.oggetti.TourItem;
 
 import java.util.ArrayList;
 import java.util.List;
