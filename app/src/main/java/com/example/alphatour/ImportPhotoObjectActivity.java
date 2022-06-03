@@ -631,8 +631,7 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if(grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED &&
-                grantResults[1]== PackageManager.PERMISSION_GRANTED) {
+        if(grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED ) {
                 perm=true;
 
         }else{
@@ -684,8 +683,12 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
+                                if(i==zone_list.size() && flag1==false) {
+                                    flag1 = true;
+                                    saveObjects(listElement);
+                                }
                                 success = true;
-                                saveObjects(listElement);
+
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
