@@ -327,5 +327,20 @@
     <string name="path_description">Descrizione del percorso:</string>
     <string name="place_zone_element">Luogo/Zona/Elemento</string>
     <string name="item_to_update">Elemento da aggiornare</string>
+    <string name="logged_out">Ti sei disconnesso</string>
+    <string name="link_not_generated">Non è stato possibile generare il link delle foto</string>
+    <string name="link_copied">link copiato negli appunti</string>
+    <string name="fields_may_be_empty">Errore durante l’importazione del file, alcuni campi potrebbero essere vuoti</string>
+    <string name="place_save_failed">Salvataggio Luogo non riuscito</string>
+    <string name="zone_saving_failed">Salvataggio Zone non riuscito</string>
+    <string name="not_possible_save_zone">Non è stato possibile salvare le zone e gli oggetti creati!!!</string>
+    <string name="zones_objects_created">Zone e Oggetti creati con successo</string>
+    <string name="not_load_data_object">Non è stato possibile caricare i dati dell’oggetto !!!</string>
+    <string name="object_not_found">Oggetto non trovato !!!</string>
+    <string name="qr_not_generated">Qr Code non generato !</string>
+    <string name="item_update">Elemento aggiornato correttamente</string>
+    <string name="item_not_update">Non è stato possibile aggiornare i dati dell’elemento</string>
+    <string name="object_update">Oggetto aggiornato correttamente</string>
+    <string name="object_not_update">Non è stato possibile aggiornare i dati dell’oggetto</string>
 
 </resources>

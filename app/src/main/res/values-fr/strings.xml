@@ -325,5 +325,22 @@
     <string name="path_description">Description de l’itinéraire:</string>
     <string name="place_zone_element">Lieu/Zone/Élément</string>
     <string name="item_to_update">Article à mettre à jour</string>
+    <string name="logged_out">Vous êtes déconnecté</string>
+    <string name="link_not_generated">Le lien photo n’a pas pu être généré</string>
+    <string name="link_copied">lien copié dans le presse papier</string>
+    <string name="fields_may_be_empty">Erreur lors de l’importation du fichier, certains champs peuvent être vides</string>
+    <string name="place_save_failed">Échec de l’enregistrement du lieu</string>
+    <string name="zone_saving_failed">Échec de l’enregistrement de la zone</string>
+    <string name="not_possible_save_zone">Il n’a pas été possible de sauvegarder les zones et les objets créés !!!</string>
+    <string name="zones_objects_created">Zones et objets créés avec succès</string>
+    <string name="not_load_data_object">Il n’a pas été possible de charger les données de l’objet !!!</string>
+    <string name="object_not_found">Objet non trouvé !!!</string>
+    <string name="qr_not_generated">Code Qr non généré!</string>
+    <string name="item_update">Article mis à jour avec succès</string>
+    <string name="item_not_update">Les données de l’élément n’ont pas pu être mises à jour</string>
+    <string name="object_update">Objet mis à jour avec succès</string>
+    <string name="object_not_update">Les données de l’objet n’ont pas pu être mises à jour</string>
+
+
 
 </resources>

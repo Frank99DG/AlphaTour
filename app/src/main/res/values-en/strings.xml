@@ -325,6 +325,21 @@
     <string name="path_description">Path description:</string>
     <string name="place_zone_element">Place/Zone/Element</string>
     <string name="item_to_update">Item to update</string>
+    <string name="logged_out">You have logged out</string>
+    <string name="link_not_generated">The photo link could not be generated</string>
+    <string name="link_copied">link copied to clipboard</string>
+    <string name="fields_may_be_empty">Error while importing the file, some fields may be empty</string>
+    <string name="place_save_failed">Place save failed</string>
+    <string name="zone_saving_failed">Zone saving failed</string>
+    <string name="not_possible_save_zone">It was not possible to save the zones and objects created !!!</string>
+    <string name="zones_objects_created">Zones and Objects created successfully</string>
+    <string name="not_load_data_object">It was not possible to load the data of the object !!!</string>
+    <string name="object_not_found">Object not found !!!</string>
+    <string name="qr_not_generated">Qr Code not generated!</string>
+    <string name="item_update">Item updated successfully</string>
+    <string name="item_not_update">The item data could not be updated</string>
+    <string name="object_update">Object updated successfully</string>
+    <string name="object_not_update">The object data could not be updated</string>
 
 
 </resources>

@@ -185,7 +185,7 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
                 //loadingBar.setVisibility(View.VISIBLE);
                 auth.signOut();
                 startActivity( new Intent(this, LoginActivity.class) );
-                Toast.makeText(this, "Ti sei disconnesso", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.logged_out, Toast.LENGTH_LONG).show();
                 finishAffinity(); //Chiude tutte le attività presenti nello Stack, evita che il tasto back porti alla dashboard dopo il logout
                 //loadingBar.setVisibility(View.GONE);
         }

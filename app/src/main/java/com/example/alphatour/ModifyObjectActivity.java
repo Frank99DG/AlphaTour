@@ -168,21 +168,21 @@ public class ModifyObjectActivity extends AppCompatActivity {
                                                         }
                                                     }
                                                 } else {
-                                                    Toast.makeText(ModifyObjectActivity.this, "Non è stato possibile caricare i dati dell'oggetto !!!", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(ModifyObjectActivity.this, R.string.not_load_data_object, Toast.LENGTH_LONG).show();
                                                     loadingBar.setVisibility(View.GONE);
                                                 }
                                             }
                                         });
                             }
                         }else{
-                                Toast.makeText(ModifyObjectActivity.this, "Oggetto non trovato !!!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(ModifyObjectActivity.this, R.string.object_not_found, Toast.LENGTH_LONG).show();
                                 loadingBar.setVisibility(View.GONE);
                                 Intent intent=new Intent(ModifyObjectActivity.this,DashboardActivity.class);
                                 startActivity(intent);
                             }
 
                         } else {
-                            Toast.makeText(ModifyObjectActivity.this, "Non è stato possibile caricare i dati dell'oggetto", Toast.LENGTH_LONG).show();
+                            Toast.makeText(ModifyObjectActivity.this, R.string.not_load_data_object, Toast.LENGTH_LONG).show();
                             loadingBar.setVisibility(View.GONE);
                             Intent intent=new Intent(ModifyObjectActivity.this,DashboardActivity.class);
                             startActivity(intent);
@@ -191,7 +191,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ModifyObjectActivity.this, "Oggetto non trovato !!!", Toast.LENGTH_LONG).show();
+                Toast.makeText(ModifyObjectActivity.this, R.string.object_not_found , Toast.LENGTH_LONG).show();
                 loadingBar.setVisibility(View.GONE);
             }
         });
@@ -278,7 +278,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(ModifyObjectActivity.this, "Non è stato possibile caricare i dati dell'oggetto", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ModifyObjectActivity.this, R.string.not_load_data_object, Toast.LENGTH_LONG).show();
                     loadingBar.setVisibility(View.GONE);
                 }
             });
@@ -303,7 +303,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(ModifyObjectActivity.this, "Non è stato possibile caricare i dati dell'oggetto", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ModifyObjectActivity.this, R.string.not_load_data_object, Toast.LENGTH_LONG).show();
                     loadingBar.setVisibility(View.GONE);
                 }
             });
@@ -335,7 +335,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
                 Toast.makeText(ModifyObjectActivity.this, R.string.upload_photo, Toast.LENGTH_LONG).show();
                 imagePhoto.setImageURI(newUri);
             } else {
-                Toast.makeText(ModifyObjectActivity.this, "Non hai aggiunto la foto!", Toast.LENGTH_LONG).show();
+                Toast.makeText(ModifyObjectActivity.this, R.string.not_add_photo, Toast.LENGTH_LONG).show();
             }
             //salvataggio foto
         }else{
@@ -344,9 +344,9 @@ public class ModifyObjectActivity extends AppCompatActivity {
                 imageQrCode.setImageBitmap(GenerateQrCodeActivity.getBitmap());
                 newQr = GenerateQrCodeActivity.getBitmap();
                 Qrdata=GenerateQrCodeActivity.getData();
-                Toast.makeText(ModifyObjectActivity.this, "QrCode generato con successo !", Toast.LENGTH_LONG).show();
+                Toast.makeText(ModifyObjectActivity.this, R.string.qr_generation, Toast.LENGTH_LONG).show();
             }else{
-                Toast.makeText(ModifyObjectActivity.this, "QrCode non generato !", Toast.LENGTH_LONG).show();
+                Toast.makeText(ModifyObjectActivity.this, R.string.qr_not_generated, Toast.LENGTH_LONG).show();
             }
         }
 
@@ -396,7 +396,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
                 addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(ModifyObjectActivity.this, "Elemento aggiornato correttamente", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ModifyObjectActivity.this, R.string.item_update, Toast.LENGTH_LONG).show();
                         if(dashboardFlag.equals("1")){
                             //startActivity(new Intent(ModifyObjectActivity.this, DashboardActivity.class));
                             loadingBar.setVisibility(View.GONE);
@@ -416,7 +416,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ModifyObjectActivity.this, "Non è stato possibile aggiornare i dati dell'elemento", Toast.LENGTH_LONG).show();
+                Toast.makeText(ModifyObjectActivity.this, R.string.item_not_update, Toast.LENGTH_LONG).show();
                 loadingBar.setVisibility(View.GONE);
             }
         });
@@ -453,7 +453,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
                             addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
-                                    Toast.makeText(ModifyObjectActivity.this, "Oggetto aggiornato correttamente", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(ModifyObjectActivity.this, R.string.object_update, Toast.LENGTH_LONG).show();
                                     startActivity(new Intent(ModifyObjectActivity.this, DashboardActivity.class));
                                     loadingBar.setVisibility(View.GONE);
                                     finish();
@@ -461,7 +461,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
                             }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(ModifyObjectActivity.this, "Non è stato possibile aggiornare i dati dell'oggetto", Toast.LENGTH_LONG).show();
+                            Toast.makeText(ModifyObjectActivity.this, R.string.object_not_update, Toast.LENGTH_LONG).show();
                             loadingBar.setVisibility(View.GONE);
                         }
                     });
@@ -515,7 +515,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
                                     addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
-                                            Toast.makeText(ModifyObjectActivity.this, "Oggetto aggiornato correttamente", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(ModifyObjectActivity.this, R.string.object_update, Toast.LENGTH_LONG).show();
                                             startActivity(new Intent(ModifyObjectActivity.this, DashboardActivity.class));
                                             loadingBar.setVisibility(View.GONE);
                                             finish();
@@ -523,7 +523,7 @@ public class ModifyObjectActivity extends AppCompatActivity {
                                     }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(ModifyObjectActivity.this, "Non è stato possibile aggiornare i dati dell'oggetto", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(ModifyObjectActivity.this, R.string.object_not_update, Toast.LENGTH_LONG).show();
                                     loadingBar.setVisibility(View.GONE);
                                 }
                             });

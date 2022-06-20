@@ -302,7 +302,7 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
                         createNewView(data);
 
                     } else {
-                        Toast.makeText(ImportPhotoObjectActivity.this, "Non è stato possibile generare il link della foto", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ImportPhotoObjectActivity.this, R.string.link_not_generated, Toast.LENGTH_LONG).show();
                         progressBar.setVisibility(View.GONE);
                     }
                 }
@@ -347,7 +347,7 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
                         }
 
                     } else {
-                        Toast.makeText(ImportPhotoObjectActivity.this, "Non è stato possibile generare il link delle foto", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ImportPhotoObjectActivity.this, R.string.link_not_generated, Toast.LENGTH_LONG).show();
                         progressBar.setVisibility(View.GONE);
                     }
                 }
@@ -384,7 +384,7 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
                     ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                     ClipData clipData = ClipData.newPlainText("link", copied);
                     clipboardManager.setPrimaryClip(clipData);
-                    Toast.makeText(ImportPhotoObjectActivity.this, "link copiato negli appunti", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ImportPhotoObjectActivity.this, R.string.link_copied, Toast.LENGTH_LONG).show();
                 }
             });
 
@@ -418,7 +418,7 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
                         ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                         ClipData clipData = ClipData.newPlainText("link", copied);
                         clipboardManager.setPrimaryClip(clipData);
-                        Toast.makeText(ImportPhotoObjectActivity.this, "link copiato negli appunti", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ImportPhotoObjectActivity.this, R.string.link_copied, Toast.LENGTH_LONG).show();
                     }
                 });
             }
@@ -570,16 +570,14 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
                         }
                     }else{
 
-                        Toast.makeText(ImportPhotoObjectActivity.this,"Errore duratnte l'importazione del file, alcuni"+
-                                "campi potrebbero essere vuoti",Toast.LENGTH_LONG).show();
+                        Toast.makeText(ImportPhotoObjectActivity.this,R.string.fields_may_be_empty,Toast.LENGTH_LONG).show();
                         line=null;
                         progressBar.setVisibility(View.GONE);
                     }
                 }
 
                 if(isEmpty){
-                    Toast.makeText(ImportPhotoObjectActivity.this,"Errore duratnte l'importazione del file, alcuni"+
-                            "campi potrebbero essere vuoti",Toast.LENGTH_LONG).show();
+                    Toast.makeText(ImportPhotoObjectActivity.this,R.string.fields_may_be_empty,Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                 }else{
 
@@ -595,7 +593,7 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 progressBar.setVisibility(View.GONE);
                             }else{
-                                Toast.makeText(ImportPhotoObjectActivity.this, "Salvataggio Luogo non riuscito" , Toast.LENGTH_LONG).show();
+                                Toast.makeText(ImportPhotoObjectActivity.this, R.string.place_save_failed , Toast.LENGTH_LONG).show();
                                 progressBar.setVisibility(View.GONE);
                             }
                         }
@@ -661,7 +659,7 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ImportPhotoObjectActivity.this, "Salvataggio Luogo non riuscito", Toast.LENGTH_LONG).show();
+                Toast.makeText(ImportPhotoObjectActivity.this, R.string.place_save_failed, Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
             }
         });
@@ -693,7 +691,7 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(ImportPhotoObjectActivity.this, "Salvataggio Zone non riuscito", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ImportPhotoObjectActivity.this, R.string.zone_saving_failed, Toast.LENGTH_LONG).show();
                     }
                 });
             }
@@ -766,7 +764,7 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 success=false;
-                Toast.makeText(ImportPhotoObjectActivity.this, "Non è stato possibile salvare le zone e gli oggetti creati!!!", Toast.LENGTH_LONG).show();
+                Toast.makeText(ImportPhotoObjectActivity.this, R.string.not_possible_save_zone, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -830,14 +828,14 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
                                                             @Override
                                                             public void onSuccess(Void unused) {
                                                                 success=true;
-                                                                Toast.makeText(ImportPhotoObjectActivity.this, "Zone e Oggetti creati con successo", Toast.LENGTH_LONG).show();
+                                                                Toast.makeText(ImportPhotoObjectActivity.this, R.string.zones_objects_created, Toast.LENGTH_LONG).show();
                                                                 progressBar.setVisibility(View.GONE);
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                     @Override
                                                     public void onFailure(@NonNull Exception e) {
                                                         success=false;
-                                                        Toast.makeText(ImportPhotoObjectActivity.this, "Non è stato possibile salvare le zone e gli oggetti creati!!!", Toast.LENGTH_LONG).show();
+                                                        Toast.makeText(ImportPhotoObjectActivity.this, R.string.not_possible_save_zone, Toast.LENGTH_LONG).show();
                                                         progressBar.setVisibility(View.GONE);
                                                     }
                                                 });

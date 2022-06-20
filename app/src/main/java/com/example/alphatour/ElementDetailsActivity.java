@@ -317,13 +317,13 @@ public class ElementDetailsActivity extends AppCompatActivity {
                 imagePhoto.setImageURI(uri);
                 setPh(uri);
             } else {
-                Toast.makeText(ElementDetailsActivity.this, "Non hai aggiunto la foto!", Toast.LENGTH_LONG).show();
+                Toast.makeText(ElementDetailsActivity.this, R.string.not_add_photo, Toast.LENGTH_LONG).show();
             }
             //salvataggio foto
         }else{
             imageQrCode.setImageBitmap(GenerateQrCodeActivity.getBitmap());
             setQr(GenerateQrCodeActivity.getBitmap());
-            Toast.makeText(ElementDetailsActivity.this,"QrCode generato con successo !", Toast.LENGTH_LONG).show();
+            Toast.makeText(ElementDetailsActivity.this, R.string.qr_generation, Toast.LENGTH_LONG).show();
         }
     }
 
