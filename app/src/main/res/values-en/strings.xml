@@ -340,6 +340,30 @@
     <string name="item_not_update">The item data could not be updated</string>
     <string name="object_update">Object updated successfully</string>
     <string name="object_not_update">The object data could not be updated</string>
-
+    <string name="place_update">Place updated successfully</string>
+    <string name="place_not_update">The location could not be updated</string>
+    <string name="zone_update">Zone updated successfully</string>
+    <string name="zone_not_update">The zone could not be updated</string>
+    <string name="path_delete">Path successfully deleted</string>
+    <string name="delete_path">Delete path</string>
+    <string name="delete_created_path">Are you sure you want to delete the created path?</string>
+    <string name="user_data_not_available">An error has occurred: user data is not available !!!</string>
+    <string name="updated_picture">You have updated your profile picture</string>
+    <string name="picture_not_update">It was not possible to update the profile picture!</string>
+    <string name="image_not_selected">Image not selected!</string>
+    <string name="account_update">Account updated successfully</string>
+    <string name="account_not_update">It was not possible to update the account</string>
+    <string name="zone_already_connected">The area has already been connected</string>
+    <string name="zone_connected_itself">A zone cannot be connected to itself</string>
+    <string name="constraint_eliminated">Constraint eliminated</string>
+    <string name="complete_creation_place">Are you sure you want to complete the creation of the places and objects?</string>
+    <string name="yes">Yes</string>
+    <string name="delete_object">Delete Object</string>
+    <string name="delete_object_text">Are you sure you want to delete the created object?</string>
+    <string name="deleted_object">You have deleted the object</string>
+    <string name="constraint_creation">Constraint Creation</string>
+    <string name="constraint_creation_text">Continuing with the creation of constraints it will no longer be possible to modify zones and objects created in the previous phase. Do you want to continue?</string>
+    <string name="deleted_zone">You cleared the area</string>
+    <string name="zone_already_exists">The zone you want to create already exists</string>
 
 </resources>

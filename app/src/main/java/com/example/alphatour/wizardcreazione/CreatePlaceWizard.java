@@ -400,15 +400,13 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
                             }
                         }else{
 
-                            Toast.makeText(getContext(),"Errore duratnte l'importazione del file, alcuni"+
-                                    "campi potrebbero essere vuoti",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),R.string.fields_may_be_empty,Toast.LENGTH_LONG).show();
                             line=null;
                         }
                     }
 
                     if(isEmpty){
-                        Toast.makeText(getContext(),"Errore duratnte l'importazione del file, alcuni"+
-                                "campi potrebbero essere vuoti",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),R.string.fields_may_be_empty,Toast.LENGTH_LONG).show();
                     }else{
 
                         if(place){
@@ -434,9 +432,9 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
 
         if(grantResults.length>0&& grantResults[0]==PackageManager.PERMISSION_GRANTED){
 
-            Toast.makeText(getContext(),"Permission granted",Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(),R.string.permission_granted,Toast.LENGTH_LONG).show();
         }else{
-            Toast.makeText(getContext(),"Permission not granted",Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(),R.string.permission_denied,Toast.LENGTH_LONG).show();
         }
         return;
     }

@@ -340,7 +340,30 @@
     <string name="item_not_update">Les données de l’élément n’ont pas pu être mises à jour</string>
     <string name="object_update">Objet mis à jour avec succès</string>
     <string name="object_not_update">Les données de l’objet n’ont pas pu être mises à jour</string>
-
-
+    <string name="place_update">Lieu mis à jour avec succès</string>
+    <string name="place_not_update">L’emplacement n’a pas pu être mis à jour</string>
+    <string name="zone_update">Zone mise à jour avec succès</string>
+    <string name="zone_not_update">La zone n’a pas pu être mise à jour</string>
+    <string name="path_delete">Chemin supprimé avec succès</string>
+    <string name="delete_path">Supprimer le chemin</string>
+    <string name="delete_created_path">Voulez-vous vraiment supprimer le chemin créé?</string>
+    <string name="user_data_not_available">Une erreur s’est produite : les données utilisateur ne sont pas disponibles !!!</string>
+    <string name="updated_picture">Vous avez mis à jour votre photo de profil</string>
+    <string name="picture_not_update">Il n’a pas été possible de mettre à jour la photo de profil!</string>
+    <string name="image_not_selected">Image non sélectionnée!</string>
+    <string name="account_update">Compte mis à jour avec succès</string>
+    <string name="account_not_update">Il n’a pas été possible de mettre à jour le compte</string>
+    <string name="zone_already_connected">La zone a déjà été connectée</string>
+    <string name="zone_connected_itself">Une zone ne peut pas être connectée à elle-même</string>
+    <string name="constraint_eliminated">Contrainte éliminée</string>
+    <string name="complete_creation_place">Êtes-vous sûr de vouloir terminer la création des lieux et des objets?</string>
+    <string name="yes">Oui</string>
+    <string name="delete_object">Supprimer l’objet</string>
+    <string name="delete_object_text">Voulez-vous vraiment supprimer l’objet créé?</string>
+    <string name="deleted_object">Vous avez supprimé l’objet</string>
+    <string name="constraint_creation">Création de contraintes</string>
+    <string name="constraint_creation_text">En poursuivant la création de contraintes, il ne sera plus possible de modifier les zones et les objets créés dans la phase précédente. Voulez-vous continuer?</string>
+    <string name="deleted_zone">Vous avez nettoyé la zone</string>
+    <string name="zone_already_exists">La zone que vous souhaitez créer existe déjà</string>
 
 </resources>

@@ -200,13 +200,13 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
 
                 dialog.show();
                 imgDialog.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
-                titleDialog.setText("Elimina Oggetto");
-                textDialog.setText("Sei sicuro di voler eliminare l'oggetto creato ?");
+                titleDialog.setText(R.string.delete_object);
+                textDialog.setText(R.string.delete_object_text);
 
                 yes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getContext(), "Hai eliminato l'oggetto", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), R.string.deleted_object, Toast.LENGTH_LONG).show();
 
                         for(int i=0;i<layout_list.getChildCount();i++){
 
@@ -297,9 +297,8 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
 
         dialog.show();
         imgDialog.setImageDrawable(getResources().getDrawable(R.drawable.ic_cant_back));
-        titleDialog.setText("Creazione Vincoli");
-        textDialog.setText("Proseguendo con la creazione dei vincoli non sarà più possibile modificare zone e oggetti creati" +
-                            " nella fase precedente. Vuoi proseguire ? ");
+        titleDialog.setText(R.string.constraint_creation);
+        textDialog.setText(R.string.constraint_creation_text);
 
         yesFinal.setOnClickListener(new View.OnClickListener() {
             @Override

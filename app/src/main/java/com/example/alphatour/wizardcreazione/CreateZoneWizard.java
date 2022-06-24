@@ -127,14 +127,14 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
                         @Override
                         public void onClick(View view) {
                             dialog.show();
-                            titleDialog.setText("Elimina Zona");
-                            textDialog.setText("Sei sicuro di voler eliminare la Zona creata ?");
+                            titleDialog.setText(R.string.delete_zone);
+                            textDialog.setText(R.string.delete_zone_text);
                             imgDialog.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
 
                             yes.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    Toast.makeText(getContext(), "Hai eliminato la zona", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext(), R.string.deleted_zone, Toast.LENGTH_LONG).show();
                                     layout_list.removeView(zoneView);
                                     dialog.dismiss();
                                     zone_list.remove(name);
@@ -144,7 +144,7 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
                     });
                     nameZone.setText(null);
                 }else{
-                        Toast.makeText(getContext(), "La zona che vuoi creare esiste già", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), R.string.zone_already_exists, Toast.LENGTH_LONG).show();
                     }
                 }else{
                     nameZone.setError(getString(R.string.required_field));
@@ -241,14 +241,14 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
                 @Override
                 public void onClick(View view) {
                     dialog.show();
-                    titleDialog.setText("Elimina Zona");
-                    textDialog.setText("Sei sicuro di voler eliminare la Zona creata ?");
+                    titleDialog.setText(R.string.delete_zone);
+                    textDialog.setText(R.string.delete_zone_text);
                     imgDialog.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
 
                     yes.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Toast.makeText(getContext(), "Hai eliminato la zona", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), R.string.deleted_zone, Toast.LENGTH_LONG).show();
                             layout_list.removeView(zoneView);
                             dialog.dismiss();
                             zone_list.remove(name);

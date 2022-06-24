@@ -341,6 +341,31 @@
     <string name="item_not_update">No se pudieron actualizar los datos del artículo.</string>
     <string name="object_update">Objeto actualizado con éxito</string>
     <string name="object_not_update">Los datos del objeto no se pudieron actualizar</string>
+    <string name="place_update">Lugar actualizado con éxito</string>
+    <string name="place_not_update">No se pudo actualizar la ubicación</string>
+    <string name="zone_update">Zona actualizada con éxito</string>
+    <string name="zone_not_update">No se pudo actualizar la zona</string>
+    <string name="path_delete">Ruta eliminada con éxito</string>
+    <string name="delete_path">Eliminar ruta</string>
+    <string name="delete_created_path">¿Está seguro de que desea eliminar la ruta creada?</string>
+    <string name="user_data_not_available">Ha ocurrido un error: los datos del usuario no están disponibles !!!</string>
+    <string name="updated_picture">Has actualizado tu foto de perfil</string>
+    <string name="picture_not_update">¡No fue posible actualizar la foto de perfil!</string>
+    <string name="image_not_selected">¡Imagen no seleccionada!</string>
+    <string name="account_update">Cuenta actualizada con éxito</string>
+    <string name="account_not_update">No fue posible actualizar la cuenta</string>
+    <string name="zone_already_connected">El área ya ha sido conectada</string>
+    <string name="zone_connected_itself">Una zona no se puede conectar consigo misma</string>
+    <string name="constraint_eliminated">Restricción eliminada</string>
+    <string name="complete_creation_place">¿Está seguro de que desea completar la creación de los lugares y objetos?</string>
+    <string name="yes">Sí</string>
+    <string name="delete_object">Eliminar objeto</string>
+    <string name="delete_object_text">¿Está seguro de que desea eliminar el objeto creado?</string>
+    <string name="deleted_object">Has eliminado el objeto</string>
+    <string name="constraint_creation">Creación de restricciones</string>
+    <string name="constraint_creation_text">Continuando con la creación de restricciones ya no será posible modificar zonas y objetos creados en la fase anterior. ¿Quieres continuar?</string>
+    <string name="deleted_zone">Despejaste el área</string>
+    <string name="zone_already_exists">La zona que quieres crear ya existe</string>
 
 
 </resources>

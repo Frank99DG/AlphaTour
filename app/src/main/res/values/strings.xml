@@ -342,5 +342,34 @@
     <string name="item_not_update">Non è stato possibile aggiornare i dati dell’elemento</string>
     <string name="object_update">Oggetto aggiornato correttamente</string>
     <string name="object_not_update">Non è stato possibile aggiornare i dati dell’oggetto</string>
+    <string name="place_update">Luogo aggiornato correttamente</string>
+    <string name="place_not_update">Non è stato possibile aggiornare il luogo</string>
+    <string name="zone_update">Zona aggiornata correttamente</string>
+    <string name="zone_not_update">Non è stato possibile aggiornare la zona</string>
+    <string name="path_delete">Percorso cancellato con successo</string>
+    <string name="delete_path">Elimina percorso</string>
+    <string name="delete_created_path">Sei sicuro di voler eliminare il percorso creato?</string>
+    <string name="user_data_not_available">Si è verificato un errore: i dati dell’utente non sono disponibili !!!</string>
+    <string name="updated_picture">Hai aggiornato l’immagine di profilo</string>
+    <string name="picture_not_update">Non è stato possibile aggiornare l’immagine di profilo!</string>
+    <string name="image_not_selected">Immagine non selezionata!</string>
+    <string name="account_update">Account aggiornato correttamente</string>
+    <string name="account_not_update">Non è stato possibile aggiornare l’account</string>
+    <string name="zone_already_connected">La zona è gia stata collegata</string>
+    <string name="zone_connected_itself">Una zona non è collegabile con se stessa</string>
+    <string name="constraint_eliminated">Vincolo eliminato</string>
+    <string name="complete_creation_place">Sei sicuro di voler completare la creazione dei luoghi e degli oggetti ?</string>
+    <string name="yes">Si</string>
+    <string name="delete_object">Elimina Oggetto</string>
+    <string name="delete_object_text">Sei sicuro di voler eliminare l’oggetto creato ?</string>
+    <string name="deleted_object">Hai eliminato l’oggetto</string>
+    <string name="constraint_creation">Creazione Vincoli</string>
+    <string name="constraint_creation_text">Proseguendo con la creazione dei vincoli non sarà più possibile modificare zone e oggetti creati nella fase precedente. Vuoi proseguire ?</string>
+    <string name="deleted_zone">Hai eliminato la zona</string>
+    <string name="zone_already_exists">La zona che vuoi creare esiste già</string>
+
+
+
+
 
 </resources>

@@ -86,8 +86,8 @@ public class MyPathsActivity extends DrawerBaseActivity {
         dialog_delete_image= dialog.findViewById(R.id.imageDialog);
         dialog_delete_image.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
 
-        dialog_title.setText("Elimina percorso");
-        dialog_text.setText("Sei sicuro di voler eliminare il percorso creato?");
+        dialog_title.setText(R.string.delete_path);
+        dialog_text.setText(R.string.delete_created_path);
 
 
         db.collection("Path").whereEqualTo("idUser", user.getUid() ).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -139,7 +139,7 @@ public class MyPathsActivity extends DrawerBaseActivity {
                                                         db.collection("Path").document(idPath).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                                             @Override
                                                             public void onSuccess(Void unused) {
-                                                                Toast.makeText(MyPathsActivity.this, "Percorso cancellato con successo", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(MyPathsActivity.this, R.string.path_delete, Toast.LENGTH_SHORT).show();
                                                             }
                                                         });
                                                     }

@@ -133,7 +133,7 @@ public class ProfileActivity extends DrawerBaseActivity {
 
         storegeProfilePick= FirebaseStorage.getInstance().getReference();
         if(user == null){
-            Toast.makeText(ProfileActivity.this,"Si è verificato un errrore: i dati dell'utente non sono disponibili !!!",Toast.LENGTH_LONG).show();
+            Toast.makeText(ProfileActivity.this,R.string.user_data_not_available,Toast.LENGTH_LONG).show();
         }else{
             loadingBar.setVisibility(View.VISIBLE);
             showUserProfile();
@@ -254,7 +254,7 @@ public class ProfileActivity extends DrawerBaseActivity {
                     }
 
                     if(registered == false){
-                        Toast.makeText(ProfileActivity.this,"Utente non registrato",Toast.LENGTH_LONG).show();
+                        Toast.makeText(ProfileActivity.this,R.string.unregistered_user,Toast.LENGTH_LONG).show();
                     }else{
                         loadingBar.setVisibility(View.GONE);
                     }
@@ -331,13 +331,13 @@ public class ProfileActivity extends DrawerBaseActivity {
                                 addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        Toast.makeText(ProfileActivity.this, "Hai aggiornato l'immagine di profilo", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(ProfileActivity.this, R.string.updated_picture, Toast.LENGTH_LONG).show();
                                         loadingBar.setVisibility(View.GONE);
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(ProfileActivity.this, "Non è stato possibile aggiornare l'immagine di profilo!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(ProfileActivity.this, R.string.picture_not_update, Toast.LENGTH_LONG).show();
                                 loadingBar.setVisibility(View.GONE);
                             }
                         });
@@ -347,7 +347,7 @@ public class ProfileActivity extends DrawerBaseActivity {
                 }
             });
         }else{
-            Toast.makeText(ProfileActivity.this,"Immagine non selezionata!",Toast.LENGTH_LONG).show();
+            Toast.makeText(ProfileActivity.this,R.string.image_not_selected,Toast.LENGTH_LONG).show();
             loadingBar.setVisibility(View.GONE);
         }
 

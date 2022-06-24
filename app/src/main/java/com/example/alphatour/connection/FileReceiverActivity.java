@@ -240,15 +240,13 @@ public class FileReceiverActivity extends AppCompatActivity {
                         }
                     }else{
 
-                        Toast.makeText(FileReceiverActivity.this,"Errore duratnte l'importazione del file, alcuni"+
-                                "campi potrebbero essere vuoti",Toast.LENGTH_LONG).show();
+                        Toast.makeText(FileReceiverActivity.this,R.string.fields_may_be_empty,Toast.LENGTH_LONG).show();
                         line = null;
                     }
                 }
 
                 if(isEmpty){
-                    Toast.makeText(FileReceiverActivity.this,"Errore duratnte l'importazione del file, alcuni"+
-                            "campi potrebbero essere vuoti",Toast.LENGTH_LONG).show();
+                    Toast.makeText(FileReceiverActivity.this,R.string.fields_may_be_empty,Toast.LENGTH_LONG).show();
                 }else{
 
                     savePlace();
@@ -263,7 +261,7 @@ public class FileReceiverActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 progressBar.setVisibility(View.GONE);
                             }else{
-                                Toast.makeText(FileReceiverActivity.this, "Salvataggio Luogo non riuscito" , Toast.LENGTH_LONG).show();
+                                Toast.makeText(FileReceiverActivity.this, R.string.place_save_failed , Toast.LENGTH_LONG).show();
                                 progressBar.setVisibility(View.GONE);
                             }
                         }
@@ -313,7 +311,7 @@ public class FileReceiverActivity extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(FileReceiverActivity.this, "Salvataggio Luogo non riuscito", Toast.LENGTH_LONG).show();
+                    Toast.makeText(FileReceiverActivity.this, R.string.place_save_failed, Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                 }
             });
@@ -345,7 +343,7 @@ public class FileReceiverActivity extends AppCompatActivity {
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(FileReceiverActivity.this, "Salvataggio Zone non riuscito", Toast.LENGTH_LONG).show();
+                        Toast.makeText(FileReceiverActivity.this, R.string.zone_saving_failed, Toast.LENGTH_LONG).show();
                     }
                 });
             }
@@ -418,7 +416,7 @@ public class FileReceiverActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 success=false;
-                Toast.makeText(FileReceiverActivity.this, "Non è stato possibile salvare le zone e gli oggetti creati!!!", Toast.LENGTH_LONG).show();
+                Toast.makeText(FileReceiverActivity.this, R.string.not_possible_save_zone, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -482,14 +480,14 @@ public class FileReceiverActivity extends AppCompatActivity {
                                                             @Override
                                                             public void onSuccess(Void unused) {
                                                                 success=true;
-                                                                Toast.makeText(FileReceiverActivity.this, "Zone e Oggetti creati con successo", Toast.LENGTH_LONG).show();
+                                                                Toast.makeText(FileReceiverActivity.this, R.string.zones_objects_created, Toast.LENGTH_LONG).show();
                                                                 progressBar.setVisibility(View.GONE);
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                     @Override
                                                     public void onFailure(@NonNull Exception e) {
                                                         success=false;
-                                                        Toast.makeText(FileReceiverActivity.this, "Non è stato possibile salvare le zone e gli oggetti creati!!!", Toast.LENGTH_LONG).show();
+                                                        Toast.makeText(FileReceiverActivity.this, R.string.not_possible_save_zone, Toast.LENGTH_LONG).show();
                                                         progressBar.setVisibility(View.GONE);
                                                     }
                                                 });

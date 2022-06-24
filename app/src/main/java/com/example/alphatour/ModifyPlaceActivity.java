@@ -255,7 +255,7 @@ public class ModifyPlaceActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(ModifyPlaceActivity.this, "Luogo aggiornato correttamente", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ModifyPlaceActivity.this, R.string.place_update, Toast.LENGTH_LONG).show();
                         if(dashboardFlag.equals("1")){
                             startActivity(new Intent(ModifyPlaceActivity.this, DashboardActivity.class));
                             loadingBar.setVisibility(View.GONE);
@@ -269,7 +269,7 @@ public class ModifyPlaceActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ModifyPlaceActivity.this, "Non è stato possibile aggiornare il luogo", Toast.LENGTH_LONG).show();
+                Toast.makeText(ModifyPlaceActivity.this, R.string.place_not_update, Toast.LENGTH_LONG).show();
                 loadingBar.setVisibility(View.GONE);
             }
         });

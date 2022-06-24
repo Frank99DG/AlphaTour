@@ -289,7 +289,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(UpdateProfileActivity.this, "Account aggiornato correttamente", Toast.LENGTH_LONG).show();
+                        Toast.makeText(UpdateProfileActivity.this, R.string.account_update, Toast.LENGTH_LONG).show();
                         startActivity(new Intent(UpdateProfileActivity.this, ProfileActivity.class));
                         loadingBar.setVisibility(View.GONE);
                         finish();
@@ -297,7 +297,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(UpdateProfileActivity.this, "Non è stato possibile aggiornare l'account", Toast.LENGTH_LONG).show();
+                Toast.makeText(UpdateProfileActivity.this, R.string.account_not_update, Toast.LENGTH_LONG).show();
                 loadingBar.setVisibility(View.GONE);
             }
         });

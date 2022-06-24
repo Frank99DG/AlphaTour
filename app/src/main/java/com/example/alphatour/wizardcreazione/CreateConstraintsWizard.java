@@ -203,10 +203,10 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                     item = parent.getItemAtPosition(position).toString();
 
                     if(link_list.contains(item)){
-                        Toast.makeText(getContext(), "La zona è gia stata collegata", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), R.string.zone_already_connected, Toast.LENGTH_LONG).show();
                         menu_zones.setText(null);
                     }else if(item.equals(nameZone)){
-                        Toast.makeText(getContext(), "Una zona non è collegabile con se stessa", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), R.string.zone_connected_itself, Toast.LENGTH_LONG).show();
                         menu_zones.setText(null);
                     }else{
 
@@ -230,7 +230,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                             @Override
                             public void onClick(View view) {
 
-                                Toast.makeText(getContext(), "Vincolo eliminato", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(), R.string.constraint_eliminated, Toast.LENGTH_LONG).show();
                                 sub_layout_list.removeView(destinationView);
 
                                 name = ((TextView) destinationView.findViewById(R.id.displayZone)).getText();
@@ -306,9 +306,9 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     public void onCompleteClicked(StepperLayout.OnCompleteClickedCallback callback) {
 
         dialog.show();
-        titleDialog.setText("Completa inserimenti");
-        textDialog.setText("Sei sicuro di voler completare la creazione dei luoghi e degli oggetti ? ");
-        yesFinal.setText("Si");
+        titleDialog.setText(R.string.button_complete);
+        textDialog.setText(R.string.complete_creation_place);
+        yesFinal.setText(R.string.yes);
         imgDialog.setImageDrawable(getResources().getDrawable(R.drawable.dialog_constraints_complete));
 
         yesFinal.setOnClickListener(new View.OnClickListener() {
@@ -339,7 +339,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                             editor.clear();
                             editor.commit();
                         }else{
-                            Toast.makeText(getContext(), "Salvataggio Luogo non riuscito" , Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), R.string.place_save_failed , Toast.LENGTH_LONG).show();
                             loadingBar.setVisibility(View.GONE);
                         }
                     }
@@ -392,7 +392,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(), "Salvataggio Luogo non riuscito" , Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.place_save_failed , Toast.LENGTH_LONG).show();
                 loadingBar.setVisibility(View.GONE);
             }
         });
@@ -419,7 +419,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                     }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getContext(), "Salvataggio Zone non riuscito" , Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), R.string.zone_saving_failed , Toast.LENGTH_LONG).show();
                 }
             });
         }
@@ -521,7 +521,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
             @Override
             public void onFailure(@NonNull Exception e) {
                 success=false;
-                Toast.makeText(getContext(), "Non è stato possibile salvare le zone e gli oggetti creati!!!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.not_possible_save_zone, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -594,7 +594,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
                                                 success=false;
-                                                Toast.makeText(getContext(), "Non è stato possibile salvare le zone e gli oggetti creati!!!", Toast.LENGTH_LONG).show();
+                                                Toast.makeText(getContext(), R.string.not_possible_save_zone, Toast.LENGTH_LONG).show();
                                                 loadingBar.setVisibility(View.GONE);
                                             }
                                         });
@@ -671,14 +671,14 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                                                             @Override
                                                             public void onSuccess(Void unused) {
                                                                 success=true;
-                                                                Toast.makeText(getContext(), "Zone e Oggetti creati con successo", Toast.LENGTH_LONG).show();
+                                                                Toast.makeText(getContext(), R.string.zones_objects_created, Toast.LENGTH_LONG).show();
                                                                 loadingBar.setVisibility(View.GONE);
                                                             }
                                                         }).addOnFailureListener(new OnFailureListener() {
                                                     @Override
                                                     public void onFailure(@NonNull Exception e) {
                                                         success=false;
-                                                        Toast.makeText(getContext(), "Non è stato possibile salvare le zone e gli oggetti creati!!!", Toast.LENGTH_LONG).show();
+                                                        Toast.makeText(getContext(), R.string.not_possible_save_zone, Toast.LENGTH_LONG).show();
                                                         loadingBar.setVisibility(View.GONE);
                                                     }
                                                 });

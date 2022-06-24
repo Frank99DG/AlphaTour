@@ -244,7 +244,7 @@ public class ModifyZoneActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused){
-                        Toast.makeText(ModifyZoneActivity.this, "Zona aggiornata correttamente", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ModifyZoneActivity.this, R.string.zone_update, Toast.LENGTH_LONG).show();
                         if(dashboardFlag.equals("1")){
                             startActivity(new Intent(ModifyZoneActivity.this, DashboardActivity.class));
                             loadingBar.setVisibility(View.GONE);
@@ -262,7 +262,7 @@ public class ModifyZoneActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ModifyZoneActivity.this, "Non è stato possibile aggiornare la zona", Toast.LENGTH_LONG).show();
+                Toast.makeText(ModifyZoneActivity.this, R.string.zone_not_update, Toast.LENGTH_LONG).show();
                 loadingBar.setVisibility(View.GONE);
             }
         });
