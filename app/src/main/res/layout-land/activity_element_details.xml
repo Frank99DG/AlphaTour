@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ElementDetailsActivity">
+    tools:context=".ElementDetailsActivity"
+    android:background="@drawable/custom_color">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

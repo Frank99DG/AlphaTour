@@ -35,7 +35,7 @@
             android:layout_marginEnd="112dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_logo_app2" />
+            app:srcCompat="@drawable/logo_alphatour_completo" />
 
         <TextView
             android:id="@+id/registrationUser"
