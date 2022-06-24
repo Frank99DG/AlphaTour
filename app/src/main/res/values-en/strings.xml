@@ -138,9 +138,9 @@
     <string name="qr_generation">QrCode generated successfully!</string>
     <string name="object_already_exists">The object you want to create already exists</string>
     <string name="wrong_password">Authentication failed, wrong password!</string>
-    <string name="permission_text">Dear user, the next screen will ask you to grant write permission to memory " +
-                        "of your device. This is only necessary to download the path you have created" +
-                        ", so that you can always have it at hand. We will not access any other files or" +
+    <string name="permission_text">Dear user, the next screen will ask you to grant write permission to memory "
+                        "of your device. This is only necessary to download the path you have created"
+                        ", so that you can always have it at hand. We will not access any other files or"
                         "we will disclose data to third parties. Thank you in advance!</string>
     <string name="permission_granted">Permission granted</string>
     <string name="permit_required">Permit required</string>

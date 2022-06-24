@@ -138,9 +138,9 @@
     <string name="qr_generation">¡QrCode generado con éxito!</string>
     <string name="object_already_exists">El objeto que desea crear ya existe</string>
     <string name="wrong_password">Autenticación fallida, contraseña incorrecta!</string>
-    <string name="permission_text">Estimado usuario, la siguiente pantalla le pedirá que otorgue permiso de escritura a la memoria " +
-                        "de tu dispositivo. Esto solo es necesario para descargar la ruta que has creado" +
-                        ", para que puedas tenerlo siempre a mano. No accederemos a ningún otro archivo o" +
+    <string name="permission_text">Estimado usuario, la siguiente pantalla le pedirá que otorgue permiso de escritura a la memoria "
+                        "de tu dispositivo. Esto solo es necesario para descargar la ruta que has creado"
+                        ", para que puedas tenerlo siempre a mano. No accederemos a ningún otro archivo o"
                         "Revelaremos datos a terceros. ¡Gracias de antemano!</string>
     <string name="permission_granted">Permiso concedido</string>
     <string name="permit_required">Permiso requerido</string>

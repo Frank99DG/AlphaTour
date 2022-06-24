@@ -138,9 +138,9 @@
     <string name="qr_generation">QrCode généré avec succès!</string>
     <string name="object_already_exists">L’objet que vous souhaitez créer existe déjà</string>
     <string name="wrong_password">Échec de l’authentification, mot de passe erroné !</string>
-    <string name="permission_text">Cher utilisateur, l’écran suivant vous demandera d’accorder l’autorisation d’écriture à la mémoire " +
-                        "de votre appareil. Ceci n’est nécessaire que pour télécharger le chemin que vous avez créé" +
-                        ", afin que vous puissiez toujours l’avoir à portée de main. Nous n’accéderons à aucun autre fichier ou" +
+    <string name="permission_text">Cher utilisateur, l’écran suivant vous demandera d’accorder l’autorisation d’écriture à la mémoire "
+                        "de votre appareil. Ceci n’est nécessaire que pour télécharger le chemin que vous avez créé"
+                        ", afin que vous puissiez toujours l’avoir à portée de main. Nous n’accéderons à aucun autre fichier ou"
                         "nous divulguerons des données à des tiers. Merci d’avance!</string>
     <string name="permission_granted">Permission accordée</string>
     <string name="permit_required">Permis requis</string>
