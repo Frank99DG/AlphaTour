@@ -318,11 +318,11 @@ public class AddElementActivity extends AppCompatActivity{
 
     private boolean checkPermission(){
 
-        for(String permission:Permission){
-           if(ContextCompat.checkSelfPermission(getApplicationContext(), permission)== PackageManager.PERMISSION_GRANTED) {
+
+           if(ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED) {
                return false;
            }
-        }
+
         return true;
     }
 
@@ -336,7 +336,7 @@ public class AddElementActivity extends AppCompatActivity{
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if(grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED &&
-                grantResults[1]== PackageManager.PERMISSION_GRANTED ) {
+                grantResults[0]== PackageManager.PERMISSION_GRANTED ) {
 
             permission=true;
             ImagePicker.with(AddElementActivity.this)
