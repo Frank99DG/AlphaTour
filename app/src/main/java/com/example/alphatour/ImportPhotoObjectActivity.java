@@ -589,6 +589,10 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
                         public void run() {
 
                             if(success) {
+                                listConstranints.clear();
+                                listPlace.clear();
+                                listLineCsv.clear();
+                                listZone.clear();
                                 Intent intent = new Intent(ImportPhotoObjectActivity.this, DashboardActivity.class);
                                 startActivity(intent);
                                 progressBar.setVisibility(View.GONE);
@@ -708,7 +712,7 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
                             if(j == listConstranints.size() && flag2 == false) {
-                                saveObjects(CreateObjectWizard.getElementList());
+                                //saveObjects(CreateObjectWizard.getElementList());
                                 flag2 = true;
                             }
                             success=true;
@@ -758,6 +762,9 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
                                     }
                                 }
                             }
+                            if(i==elmlist.size()-1){
+                                listElement.clear();
+                            }
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -765,6 +772,7 @@ public class ImportPhotoObjectActivity extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
                 success=false;
                 Toast.makeText(ImportPhotoObjectActivity.this, R.string.not_possible_save_zone, Toast.LENGTH_LONG).show();
+
             }
         });
     }
