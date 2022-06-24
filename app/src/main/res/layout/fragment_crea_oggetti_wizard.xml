@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
-    android:background="@drawable/sfondo"
+    android:background="@drawable/custom_color"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".wizardcreazione.CreateObjectWizard">
 

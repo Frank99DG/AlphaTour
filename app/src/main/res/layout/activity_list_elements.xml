@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/sfondo"
+    android:background="@drawable/custom_color"
     tools:context=".ListPlacesActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout

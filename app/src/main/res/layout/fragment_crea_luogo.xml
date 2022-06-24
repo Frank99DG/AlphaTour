@@ -6,7 +6,7 @@
     android:focusableInTouchMode="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".wizardcreazione.CreatePlaceWizard"
-    android:background="@drawable/sfondo"
+    android:background="@drawable/custom_color"
     android:id="@+id/frm"
     android:gravity="center">
 
