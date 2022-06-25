@@ -9,7 +9,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_logo_world"
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_logo_world"
         android:supportsRtl="true"
@@ -93,7 +93,7 @@
             android:name=".UpdateProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".wizardpercorso.PercorsoWizard"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".ForgotPasswordActivity"
@@ -105,7 +105,7 @@
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".wizardpercorso.PercorsoWizard"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
