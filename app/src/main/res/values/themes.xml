@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.AlphaTour" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/turquoise_button</item>
+        <item name="colorPrimaryVariant">@color/turquoise_button</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -18,7 +18,7 @@
     </style>
 
     <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button">
-        <item name="backgroundTint">@color/silver</item> <!-- sfondo bottone -->
+        <item name="backgroundTint">@color/turquoise_button</item> <!-- sfondo bottone -->
     </style>
 
     <style name="Theme.AlphaTour.NoActionBar">

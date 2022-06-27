@@ -121,8 +121,9 @@
         android:layout_marginTop="36dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/zone_list"
         android:onClick="openZonesList"
+        android:text="@string/zone_list"
+        android:textColor="@color/Black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/typologyPlaceLayout" />
@@ -136,6 +137,7 @@
         android:inputType="textPersonName"
         android:onClick="updatePlace"
         android:text="@string/save_changes"
+        android:textColor="@color/Black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"

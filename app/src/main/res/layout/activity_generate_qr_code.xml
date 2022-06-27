@@ -58,7 +58,7 @@
             android:inputType="textImeMultiLine|textMultiLine"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,7 +74,8 @@
         android:background="@drawable/bordi_tondi_button"
         android:onClick="generateQrCode"
         android:text="@string/qr_generate"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
 
 
 </RelativeLayout>

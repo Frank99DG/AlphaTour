@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/backgroun_dialog"
-                android:backgroundTint="@color/CadetBlue"
+                android:backgroundTint="@color/turquoise_button"
                 android:contextClickable="false"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme">

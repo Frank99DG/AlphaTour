@@ -115,7 +115,7 @@
                         android:id="@+id/changeProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/silver"
+                        android:backgroundTint="@color/Silver"
                         android:clickable="true"
                         android:onClick="changeProfile"
                         app:layout_constraintBottom_toBottomOf="@+id/profile_image"

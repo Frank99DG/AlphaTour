@@ -18,10 +18,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/back"
             android:background="@null"
             android:onClick="previousDayAction"
-            android:textColor="#3F51B5"
+            android:text="@string/back"
+            android:textColor="@color/Black"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -40,10 +40,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/forward"
             android:background="@null"
             android:onClick="nextDayAction"
-            android:textColor="#3F51B5"
+            android:text="@string/forward"
+            android:textColor="@color/Black"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -62,11 +62,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_event"
+        android:layout_gravity="center"
         android:background="@null"
         android:onClick="newEventAction"
-        android:layout_gravity="center"
-        android:textColor="#3F51B5"
+        android:text="@string/new_event"
+        android:textColor="@color/Black"
         android:textSize="20sp"
         android:textStyle="bold" />
 

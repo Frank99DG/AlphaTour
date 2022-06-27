@@ -24,40 +24,40 @@
             android:id="@+id/event1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_margin="5dp"
-            android:background="@color/blue"
+            android:layout_weight="1"
+            android:background="@color/turquoise_button"
             android:gravity="center"
-            android:textSize="12sp"
             android:lines="2"
+            android:text="Event 1"
             android:textColor="@color/white"
-            android:text="Event 1"/>
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/event2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_margin="5dp"
-            android:background="@color/blue"
+            android:layout_weight="1"
+            android:background="@color/turquoise_button"
             android:gravity="center"
-            android:textSize="12sp"
             android:lines="2"
+            android:text="Event 2"
             android:textColor="@color/white"
-            android:text="Event 2"/>
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/event3"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_margin="5dp"
-            android:background="@color/blue"
+            android:layout_weight="1"
+            android:background="@color/turquoise_button"
             android:gravity="center"
-            android:textSize="12sp"
             android:lines="2"
+            android:text="Event 3"
             android:textColor="@color/white"
-            android:text="Event 3"/>
+            android:textSize="12sp" />
 
     </LinearLayout>
 

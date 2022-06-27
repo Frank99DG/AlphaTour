@@ -235,7 +235,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/silver"
+            android:backgroundTint="#007FFF"
             android:clickable="true"
             android:onClick="changePhotoElement"
             app:layout_constraintBottom_toBottomOf="@+id/photoElement"

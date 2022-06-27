@@ -80,7 +80,8 @@
         android:background="@drawable/bordi_tondi_button"
         android:onClick="generateQrCode"
         android:text="@string/qr_generate"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
 
 
 </RelativeLayout>

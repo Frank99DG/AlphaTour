@@ -166,4 +166,6 @@
 
     <!-- aggiunto da noi -->
     <color name="gray_button">#655959</color>
+    <color name="turquoise_button">#00CCCC</color>
+
 </resources>
