@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:visibility="visible"
-    tools:context=".ProfileActivity"
+    tools:context=".mainUI.ProfileActivity"
     tools:openDrawer="start">
 
     <!--<com.google.android.material.navigation.NavigationView
@@ -28,7 +28,7 @@
             android:layout_height="match_parent"
             android:background="@color/LightGrey"
             android:orientation="vertical"
-            tools:context=".ProfileActivity">
+            tools:context=".mainUI.ProfileActivity">
 
             <RelativeLayout
                 android:layout_width="match_parent"

@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:visibility="visible"
     android:background="@drawable/custom_color"
-    tools:context=".MyPathsActivity">
+    tools:context=".mainUI.MyPathsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

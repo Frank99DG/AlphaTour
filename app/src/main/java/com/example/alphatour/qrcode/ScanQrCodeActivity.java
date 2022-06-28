@@ -16,8 +16,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.alphatour.DashboardActivity;
-import com.example.alphatour.ModifyObjectActivity;
+import com.example.alphatour.mainUI.DashboardActivity;
+import com.example.alphatour.modifyplace.ModifyObjectActivity;
 import com.example.alphatour.R;
 
 import eu.livotov.labs.android.camview.ScannerLiveView;

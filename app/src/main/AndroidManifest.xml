@@ -15,22 +15,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AlphaTour" >
         <activity
-            android:name=".ListElementsActivity"
+            android:name=".modifyplace.ListElementsActivity"
             android:exported="false" />
         <activity
-            android:name=".ListZonesActivity"
+            android:name=".modifyplace.ListZonesActivity"
             android:exported="false" />
         <activity
-            android:name=".ListPlacesActivity"
+            android:name=".modifyplace.ListPlacesActivity"
             android:exported="false" />
         <activity
-            android:name=".MyPathsActivity"
+            android:name=".mainUI.MyPathsActivity"
             android:exported="false" />
         <activity
-            android:name=".DrawerBaseActivity"
+            android:name=".mainUI.DrawerBaseActivity"
             android:exported="false" />
         <activity
-            android:name=".CreateJsonActivity"
+            android:name=".wizardcreatepath.CreateJsonActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -39,25 +39,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ModifyZoneActivity"
+            android:name=".modifyplace.ModifyZoneActivity"
             android:exported="false" />
         <activity
-            android:name=".ModifyPlaceActivity"
+            android:name=".modifyplace.ModifyPlaceActivity"
             android:exported="false" />
         <activity
-            android:name=".wizardpercorso.ReviewZoneSelected"
+            android:name=".wizardcreatepath.ReviewZoneSelected"
             android:exported="false" />
         <activity
-            android:name=".ElementDetailsActivity"
+            android:name=".wizardcreateplace.ElementDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".AddElementActivity"
+            android:name=".wizardcreateplace.AddElementActivity"
             android:exported="false" />
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".mainUI.WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ModifyObjectActivity"
+            android:name=".modifyplace.ModifyObjectActivity"
             android:exported="false" />
         <activity
             android:name=".qrcode.GenerateQrCodeActivity"
@@ -75,31 +75,31 @@
             android:name=".calendar.WeekViewActivity"
             android:exported="false" />
         <activity
-            android:name=".ChangePasswordActivity"
+            android:name=".userfuction.ChangePasswordActivity"
             android:exported="false" />
         <activity
             android:name=".calendar.CalendarActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".mainUI.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".UpdateProfileActivity"
+            android:name=".userfuction.UpdateProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".userfuction.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ForgotPasswordActivity"
+            android:name=".userfuction.ForgotPasswordActivity"
             android:exported="false" />
         <activity
             android:name=".prova.EventoProvaActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".userfuction.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".DashboardActivity"
+            android:name=".mainUI.DashboardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -108,13 +108,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ImportPhotoObjectActivity"
+            android:name=".wizardcreateplace.ImportPhotoObjectActivity"
             android:exported="false" />
         <activity
-            android:name=".wizardpercorso.PercorsoWizard"
+            android:name=".wizardcreatepath.PercorsoWizard"
             android:exported="false"/>
         <activity
-            android:name=".wizardcreazione.CreationWizard"
+            android:name=".wizardcreateplace.CreationWizard"
             android:exported="false" />
 
         <provider

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
-    tools:context=".DrawerBaseActivity">
+    tools:context=".mainUI.DrawerBaseActivity">
 
     <!--<include layout="@layout/activity_tool_bar"
         android:layout_height="match_parent"

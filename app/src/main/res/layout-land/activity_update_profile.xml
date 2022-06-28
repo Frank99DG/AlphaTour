@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".UpdateProfileActivity"
+    tools:context=".userfuction.UpdateProfileActivity"
     android:background="@color/LightGrey">
 
     <LinearLayout

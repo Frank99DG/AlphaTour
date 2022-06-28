@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/custom_color"
-    tools:context=".CreateJsonActivity">
+    tools:context=".wizardcreatepath.CreateJsonActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomAppBarPath"

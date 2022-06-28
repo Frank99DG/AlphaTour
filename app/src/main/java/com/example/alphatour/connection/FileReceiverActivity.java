@@ -1,38 +1,30 @@
 package com.example.alphatour.connection;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.content.FileProvider;
 
-import android.app.DownloadManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.webkit.URLUtil;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.alphatour.BuildConfig;
-import com.example.alphatour.DashboardActivity;
-import com.example.alphatour.ImportPhotoObjectActivity;
+import com.example.alphatour.mainUI.DashboardActivity;
 import com.example.alphatour.R;
-import com.example.alphatour.ReadCsv;
-import com.example.alphatour.oggetti.Constraint;
-import com.example.alphatour.oggetti.Element;
-import com.example.alphatour.oggetti.ElementString;
-import com.example.alphatour.oggetti.Place;
-import com.example.alphatour.oggetti.Zone;
+import com.example.alphatour.wizardcreateplace.ReadCsv;
+import com.example.alphatour.objectclass.Constraint;
+import com.example.alphatour.objectclass.Element;
+import com.example.alphatour.objectclass.ElementString;
+import com.example.alphatour.objectclass.Place;
+import com.example.alphatour.objectclass.Zone;
 import com.example.alphatour.qrcode.GenerateQrCodeClass;
-import com.example.alphatour.wizardcreazione.CreateObjectWizard;
+import com.example.alphatour.wizardcreateplace.CreateObjectWizard;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -56,12 +48,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class FileReceiverActivity extends AppCompatActivity {
 

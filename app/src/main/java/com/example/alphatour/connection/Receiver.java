@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.alphatour.LoginActivity;
+import com.example.alphatour.userfuction.LoginActivity;
 import com.example.alphatour.R;
 
 public class Receiver extends BroadcastReceiver {

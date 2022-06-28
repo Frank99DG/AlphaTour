@@ -7,7 +7,7 @@
     tools:ignore="SpeakableTextPresentCheck"
     android:fillViewport="true"
     android:background="@drawable/custom_color"
-    tools:context=".RegisterActivity">
+    tools:context=".userfuction.RegisterActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -272,6 +272,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:onClick="saveUserOnDb"
             android:text="@string/create_account"
             app:layout_constraintBottom_toBottomOf="parent"

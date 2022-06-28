@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/custom_color"
     android:gravity="center"
-    tools:context=".wizardpercorso.Step3">
+    tools:context=".wizardcreatepath.Step3">
 
     <!-- TODO: Update blank fragment layout -->
 

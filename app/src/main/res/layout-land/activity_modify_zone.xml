@@ -12,7 +12,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
-    tools:context=".wizardcreazione.CreatePlaceWizard"
+    tools:context=".wizardcreateplace.CreatePlaceWizard"
     android:background="@drawable/custom_color"
     android:gravity="center">
 

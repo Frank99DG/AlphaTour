@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:visibility="visible"
-    tools:context=".DashboardActivity"
+    tools:context=".mainUI.DashboardActivity"
     tools:openDrawer="start">
 
 
@@ -209,6 +209,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginBottom="20dp"
+                    android:onClick="openCalendar"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp"
                     app:layout_columnWeight="1"
@@ -303,57 +304,6 @@
 
 
         </LinearLayout>
-
-
-        <!--
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/bottons"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="480dp"
-                android:visibility="visible"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-
-                <Button
-                    android:id="@+id/createPath"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="136dp"
-                    android:layout_marginBottom="2dp"
-                    android:onClick="createPath"
-                    android:text="Create Path"
-                    android:textColor="#000000"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <Button
-                    android:id="@+id/buttonNotify"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="59dp"
-                    android:layout_marginBottom="12dp"
-                    android:onClick="buttonNotify"
-                    android:text="Notify"
-                    android:textColor="#000000"
-                    app:layout_constraintBottom_toTopOf="@+id/createPath"
-                    app:layout_constraintStart_toEndOf="@+id/mAge2" />
-
-                <TextView
-                    android:id="@+id/mAge2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="44dp"
-                    android:layout_marginTop="100dp"
-                    android:layout_marginEnd="59dp"
-                    android:text="TextView"
-                    app:layout_constraintEnd_toStartOf="@+id/buttonNotify"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-         -->
-
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationBar"
