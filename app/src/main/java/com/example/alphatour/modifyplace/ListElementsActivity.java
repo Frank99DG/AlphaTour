@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.alphatour.R;
+import com.example.alphatour.mainUI.MyPathsActivity;
 import com.example.alphatour.objectclass.ElementString;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -72,6 +75,7 @@ public class ListElementsActivity extends AppCompatActivity {
 
                                 final View elementView = getLayoutInflater().inflate(R.layout.row_update, null, false);
                                 TextView editableElement = (TextView) elementView.findViewById(R.id.itemUpdateText);
+                                ImageView deleteElement = elementView.findViewById(R.id.deleteItem);
 
                                 editableElement.setText(element.getTitle());
 
@@ -115,6 +119,42 @@ public class ListElementsActivity extends AppCompatActivity {
 
                                     }
                                 });
+
+                                deleteElement.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+
+                                        layout_list.removeView(elementView);
+
+                                        db.collection("Elements").
+                                                whereEqualTo("idUser",idUser).
+                                                whereEqualTo("title",editableElement.getText()).
+                                                get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                                if (!queryDocumentSnapshots.isEmpty()) {
+
+                                                    List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments();
+
+                                                    for (DocumentSnapshot d : listDocument) {
+
+                                                        String idElement = d.getId();
+
+                                                        db.collection("Elements").document(idElement).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                            @Override
+                                                            public void onSuccess(Void unused) {
+                                                                Toast.makeText(ListElementsActivity.this, R.string.deleted_object, Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        });
+                                                    }
+                                                }
+                                            }
+                                        });
+
+                                    }
+                                });
+
+
                             }
 
                         }

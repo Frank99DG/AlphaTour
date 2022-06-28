@@ -361,10 +361,11 @@
     <string name="yes">Sí</string>
     <string name="delete_object">Eliminar objeto</string>
     <string name="delete_object_text">¿Está seguro de que desea eliminar el objeto creado?</string>
-    <string name="deleted_object">Has eliminado el objeto</string>
+    <string name="deleted_object">Despejaste el objeto</string>
     <string name="constraint_creation">Creación de restricciones</string>
     <string name="constraint_creation_text">Continuando con la creación de restricciones ya no será posible modificar zonas y objetos creados en la fase anterior. ¿Quieres continuar?</string>
     <string name="deleted_zone">Despejaste el área</string>
+    <string name="deleted_place">Despejaste el lugar</string>
     <string name="zone_already_exists">La zona que quieres crear ya existe</string>
 
 

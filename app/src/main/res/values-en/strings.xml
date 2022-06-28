@@ -360,10 +360,11 @@
     <string name="yes">Yes</string>
     <string name="delete_object">Delete Object</string>
     <string name="delete_object_text">Are you sure you want to delete the created object?</string>
-    <string name="deleted_object">You have deleted the object</string>
+    <string name="deleted_object">You cleared the object</string>
     <string name="constraint_creation">Constraint Creation</string>
     <string name="constraint_creation_text">Continuing with the creation of constraints it will no longer be possible to modify zones and objects created in the previous phase. Do you want to continue?</string>
     <string name="deleted_zone">You cleared the area</string>
+    <string name="deleted_place">You cleared the place</string>
     <string name="zone_already_exists">The zone you want to create already exists</string>
 
 </resources>

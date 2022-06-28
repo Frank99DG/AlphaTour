@@ -363,7 +363,8 @@
     <string name="deleted_object">Vous avez supprimé l’objet</string>
     <string name="constraint_creation">Création de contraintes</string>
     <string name="constraint_creation_text">En poursuivant la création de contraintes, il ne sera plus possible de modifier les zones et les objets créés dans la phase précédente. Voulez-vous continuer?</string>
-    <string name="deleted_zone">Vous avez nettoyé la zone</string>
+    <string name="deleted_zone">Vous avez supprimé la zone</string>
+    <string name="deleted_place">Vous avez supprimé le lieu</string>
     <string name="zone_already_exists">La zone que vous souhaitez créer existe déjà</string>
 
 </resources>

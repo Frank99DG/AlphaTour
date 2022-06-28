@@ -62,7 +62,7 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View view=inflater.inflate(R.layout.fragment_crea_zone_wizard, container, false);
+        View view=inflater.inflate(R.layout.fragment_create_zone_wizard, container, false);
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();

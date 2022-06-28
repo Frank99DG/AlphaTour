@@ -103,7 +103,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_crea_oggetti_wizard, container, false);
+        View view= inflater.inflate(R.layout.fragment_create_element_wizard, container, false);
         addElement=view.findViewById(R.id.buttonAddElement);
         layout_list=view.findViewById(R.id.listElementLayout);
        // loadingBar=view.findViewById(R.id.objectLoadingBar);

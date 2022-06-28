@@ -81,7 +81,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view=inflater.inflate(R.layout.fragment_crea_luogo, container, false);
+        View view=inflater.inflate(R.layout.fragment_create_place_wizard, container, false);
 
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
