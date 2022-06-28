@@ -54,13 +54,7 @@
             android:name=".AddElementActivity"
             android:exported="false" />
         <activity
-            android:name=".provaaaaaaaa"
-            android:exported="false" />
-        <activity
             android:name=".WelcomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".invioProva"
             android:exported="false" />
         <activity
             android:name=".ModifyObjectActivity"
@@ -105,7 +99,7 @@
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".wizardpercorso.PercorsoWizard"
+            android:name=".DashboardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -117,7 +111,7 @@
             android:name=".ImportPhotoObjectActivity"
             android:exported="false" />
         <activity
-            android:name=".DashboardActivity"
+            android:name=".wizardpercorso.PercorsoWizard"
             android:exported="false"/>
         <activity
             android:name=".wizardcreazione.CreationWizard"

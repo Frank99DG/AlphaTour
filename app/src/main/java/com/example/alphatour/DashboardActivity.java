@@ -50,8 +50,6 @@ public class DashboardActivity extends DrawerBaseActivity {
     private TextView ageText;
     private static int n_notify;
     private int a=0;
-    private NotificationCounter notificationCounter;
-    private NotifyFragment myFragment = new NotifyFragment();
     private Bundle data = new Bundle();
     private FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
     private FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -198,39 +196,6 @@ public class DashboardActivity extends DrawerBaseActivity {
             }
         }
         return super.dispatchTouchEvent( event );
-    }
-
-
-    public void openFragment(View v) {
-
-        getSupportFragmentManager().beginTransaction().show(myFragment).commit();
-
-        for (a = 0; a < n_notify; a++){             //Ciclo per aggiungere n_notify da
-            notifyPath();                           //un'altra activity al fragment
-            if(a==n_notify-1) n_notify =0;
-        }
-    }
-
-    public void createPath(View v) {
-        data.putString("Notify", "You have created a path");
-        myFragment.setArguments(data);
-        notificationCounter.increaseNumber();
-        myFragment.addView(notificationCounter);
-    }
-
-
-    public void buttonNotify(View view) {
-        data.putString("Notify", "Random notify");
-        myFragment.setArguments(data);
-        notificationCounter.increaseNumber();
-        myFragment.addView(notificationCounter);
-    }
-
-    public void notifyPath(){
-        data.putString("Notify", "You have created a path");
-        myFragment.setArguments(data);
-        myFragment.addView(notificationCounter);
-
     }
 
 
