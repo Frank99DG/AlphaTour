@@ -3,6 +3,7 @@ package com.example.alphatour.calendar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -24,7 +25,6 @@ public class EventEditActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_edit);
         initWidgets();
@@ -68,6 +68,10 @@ public class EventEditActivity extends AppCompatActivity {
         String eventName = eventNameET.getText().toString();
         EventProva newEvent = new EventProva(eventName, CalendarUtils.selectedDate, timeSelected);
         EventProva.eventsList.add(newEvent);
+        finish();
+    }
+
+    public void onBackButtonClick(View view){
         finish();
     }
 }

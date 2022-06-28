@@ -23,12 +23,6 @@
             />
 
         <item
-            android:id="@+id/tb_share_path"
-            android:title="@string/tb_share_path"
-            android:icon="@drawable/ic_share"
-            />
-
-        <item
             android:id="@+id/tb_logout"
             android:title="@string/tb_logout"
             android:icon="@drawable/ic_logout"

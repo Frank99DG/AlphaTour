@@ -25,7 +25,7 @@
     <string name="username_constraints">Use 4 or more characters</string>
     <string name="existing_email">E-mail already registered</string>
     <string name="invalid_email">Invalid email</string>
-    <string name="password_constraints">Invalid email</string>
+    <string name="password_constraints">Use 8 or more characters with combinations of letters, numbers and symbols</string>
     <string name="create_account">Create an account</string>
     <string name="registration_completed">Complete registration</string>
     <string name="registration_failed">Failed registrazion</string>
@@ -38,7 +38,7 @@
     <string name="tv_route">CREATE PATH</string>
     <string name="tv_place">CREATE A PLACE</string>
     <string name="tv_calendar">CALENDAR</string>
-    <string name="tv_update">MODIFY LUOGO</string>
+    <string name="tv_update">MODIFY PLACE</string>
     <string name="tb_profile">PROFILE</string>
     <string name="tb_home">HOME</string>
     <string name="tb_routes">MY ROUTE</string>

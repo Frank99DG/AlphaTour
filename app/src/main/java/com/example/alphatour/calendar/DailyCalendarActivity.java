@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.R;
 
 import java.time.LocalTime;
@@ -90,5 +91,11 @@ public class DailyCalendarActivity extends AppCompatActivity {
     public void newEventAction(View view) {
 
         startActivity(new Intent(this, EventEditActivity.class));
+    }
+
+    public void onBackButtonClick(View view){
+
+        startActivity(new Intent(DailyCalendarActivity.this, WeekViewActivity.class));
+        finish();
     }
 }

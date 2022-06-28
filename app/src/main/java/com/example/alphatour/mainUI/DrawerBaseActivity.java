@@ -177,16 +177,11 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
             case R.id.tb_routes:
                 startActivity( new Intent(this, MyPathsActivity.class) );
                 break;
-            case R.id.tb_share_path:
-              //startActivity( new Intent(this, ) );
-                break;
             case R.id.tb_logout:
-                //loadingBar.setVisibility(View.VISIBLE);
                 auth.signOut();
                 startActivity( new Intent(this, LoginActivity.class) );
                 Toast.makeText(this, R.string.logged_out, Toast.LENGTH_LONG).show();
                 finishAffinity(); //Chiude tutte le attività presenti nello Stack, evita che il tasto back porti alla dashboard dopo il logout
-                //loadingBar.setVisibility(View.GONE);
         }
 
         return false;

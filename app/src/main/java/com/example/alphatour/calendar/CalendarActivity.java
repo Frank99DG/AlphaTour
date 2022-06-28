@@ -12,7 +12,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.alphatour.ChangePasswordActivity;
+import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.R;
+import com.example.alphatour.UpdateProfileActivity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -76,5 +79,11 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
     public void weeklyAction(View view) {
 
         startActivity(new Intent(this, WeekViewActivity.class));
+    }
+
+    public void onBackButtonClick(View view){
+
+        startActivity(new Intent(CalendarActivity.this, DashboardActivity.class));
+        finish();
     }
 }
