@@ -12,10 +12,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.alphatour.ChangePasswordActivity;
-import com.example.alphatour.DashboardActivity;
 import com.example.alphatour.R;
-import com.example.alphatour.UpdateProfileActivity;
+import com.example.alphatour.mainUI.DashboardActivity;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
