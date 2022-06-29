@@ -53,8 +53,6 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     private FirebaseFirestore db;
     private ProgressBar loadingbar;
     private List<View> deleteView = new ArrayList<View>();
-    private Button callFragment;
-    private Step5 step5_fragment = new Step5();
     private FirebaseAuth auth;
     private FirebaseUser user;
     private static String Place;
@@ -90,19 +88,6 @@ public class Step2 extends Fragment implements Step, BlockingStep {
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
-
-        getFragmentManager().beginTransaction().replace(R.id.riepilogo,step5_fragment).hide(step5_fragment).commit();
-
-        callFragment =view.findViewById(R.id.call_fragment);
-        callFragment.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                getFragmentManager().beginTransaction().show(step5_fragment).commit();
-
-            }
-        });
-
 
         return view;
     }

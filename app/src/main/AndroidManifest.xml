@@ -87,19 +87,16 @@
             android:name=".userfuction.UpdateProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".userfuction.LoginActivity"
+            android:name=".mainUI.DashboardActivity"
             android:exported="false" />
         <activity
             android:name=".userfuction.ForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".prova.EventoProvaActivity"
-            android:exported="false" />
-        <activity
             android:name=".userfuction.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".mainUI.DashboardActivity"
+            android:name=".userfuction.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
