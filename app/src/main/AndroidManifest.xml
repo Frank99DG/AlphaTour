@@ -54,7 +54,7 @@
             android:name=".wizardcreateplace.AddElementActivity"
             android:exported="false" />
         <activity
-            android:name=".mainUI.WelcomeActivity"
+            android:name=".userfuction.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".modifyplace.ModifyObjectActivity"
@@ -96,7 +96,7 @@
             android:name=".userfuction.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".userfuction.LoginActivity"
+            android:name=".mainUI.WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
