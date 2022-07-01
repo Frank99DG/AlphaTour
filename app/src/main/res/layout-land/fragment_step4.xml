@@ -11,33 +11,15 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <View
-        android:id="@+id/view7"
-        android:layout_width="409dp"
-        android:layout_height="10dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="640dp"
-        android:layout_marginEnd="1dp"
-        android:background="@android:drawable/gallery_thumb"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <View
-        android:id="@+id/view8"
-        android:layout_width="730dp"
-        android:layout_height="10dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="1dp"
-        android:background="@android:drawable/gallery_thumb"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
+            <TextView
         android:id="@+id/title_step4"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -85,5 +67,7 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

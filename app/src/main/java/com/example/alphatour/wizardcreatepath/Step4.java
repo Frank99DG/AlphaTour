@@ -135,6 +135,7 @@ public class Step4 extends Fragment implements Step, BlockingStep {
 
         if (isVisibleToUser) {
 
+            PercorsoWizard.setCount(3);
             counter=zone_select.size();
             for(i=0;i<zone_select.size();i++){
                 View zone = getLayoutInflater().inflate(R.layout.row_zone_review_path, null, false);
@@ -222,6 +223,7 @@ public class Step4 extends Fragment implements Step, BlockingStep {
             public void onClick(View view) {
 
                 savePath();
+                PercorsoWizard.setCount(0);
             }
         });
         dialog_dismiss.setOnClickListener(new View.OnClickListener() {
