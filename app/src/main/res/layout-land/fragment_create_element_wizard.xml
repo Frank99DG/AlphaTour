@@ -8,6 +8,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".wizardcreateplace.CreateObjectWizard">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/LightGrey">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_color">
+
         <TextView
             android:id="@+id/elementText"
             android:layout_width="189dp"
@@ -88,5 +99,10 @@
          app:layout_constraintHorizontal_bias="0.498"
          app:layout_constraintStart_toStartOf="parent"
          app:layout_constraintTop_toTopOf="@+id/elementText" />-->
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,17 @@
     android:background="@drawable/custom_color"
     tools:context=".wizardcreateplace.CreateZoneWizard">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/LightGrey">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_color">
+
 
         <!--<Button
             android:id="@+id/buttonAggiungiElemento"
@@ -159,5 +170,9 @@
       app:layout_constraintEnd_toEndOf="@+id/addLuogo"
       app:layout_constraintTop_toBottomOf="@+id/addLuogo" />
 -->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
