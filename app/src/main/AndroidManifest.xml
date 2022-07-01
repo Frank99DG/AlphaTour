@@ -72,7 +72,7 @@
             android:name=".calendar.EventEditActivity"
             android:exported="false" />
         <activity
-            android:name=".calendar.WeekViewActivity"
+            android:name=".calendar.WeeklyCalendarActivity"
             android:exported="false" />
         <activity
             android:name=".userfuction.ChangePasswordActivity"

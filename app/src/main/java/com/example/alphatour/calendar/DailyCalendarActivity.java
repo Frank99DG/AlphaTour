@@ -94,7 +94,7 @@ public class DailyCalendarActivity extends AppCompatActivity {
 
     public void onBackButtonClick(View view){
 
-        startActivity(new Intent(DailyCalendarActivity.this, WeekViewActivity.class));
+        startActivity(new Intent(DailyCalendarActivity.this, WeeklyCalendarActivity.class));
         finish();
     }
 }

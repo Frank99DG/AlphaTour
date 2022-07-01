@@ -13,23 +13,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.core.widget.NestedScrollView
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="630dp"
-            android:fillViewport="true"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck">
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_mint_green"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationBar">
 
-            <LinearLayout
-                android:id="@+id/list_mypaths"
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </androidx.core.widget.NestedScrollView>
+                android:layout_height="630dp"
+                android:fillViewport="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SpeakableTextPresentCheck">
+
+                <LinearLayout
+                    android:id="@+id/list_mypaths"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </androidx.core.widget.NestedScrollView>
+
+        </ScrollView>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationBarPaths"
+            android:id="@+id/bottomNavigationBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

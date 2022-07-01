@@ -9,15 +9,6 @@
     tools:context=".mainUI.ProfileActivity"
     tools:openDrawer="start">
 
-    <!--<com.google.android.material.navigation.NavigationView
-        android:id="@+id/navViewProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:visibility="visible"
-        app:headerLayout="@layout/header_hamburger"
-        app:menu="@menu/drawer_nav_menu" />-->
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -38,63 +29,6 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-
-                    <!--<androidx.appcompat.widget.Toolbar
-                        android:id="@+id/toolbarProfile"
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:background="@drawable/side_nav_bar"
-                        android:minHeight="?attr/actionBarSize"
-                        android:paddingTop="16dp"
-                        android:paddingBottom="16dp"
-                        android:theme="?attr/actionBarTheme"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            tools:layout_editor_absoluteX="16dp"
-                            tools:layout_editor_absoluteY="16dp">
-
-                            <ImageView
-                                android:id="@+id/updateProfileBotton"
-                                android:layout_width="28dp"
-                                android:layout_height="28dp"
-                                android:layout_marginTop="12dp"
-                                android:layout_marginEnd="70dp"
-                                android:background="@drawable/ic_pencil"
-                                android:onClick="updateProfile"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/textDetailsQr"
-                                android:layout_width="77dp"
-                                android:layout_height="29dp"
-                                android:layout_marginStart="28dp"
-                                android:fontFamily="@font/alata"
-                                android:text="Profilo"
-                                android:textColor="#FFFFFF"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                app:layout_constraintStart_toEndOf="@+id/hamburgerBotton"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-
-                            <include
-                                android:id="@+id/notification_icon_prova"
-                                layout="@layout/notification_icon_prova"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="12dp"
-                                android:layout_marginEnd="16dp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    </androidx.appcompat.widget.Toolbar>-->
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/profile_image"

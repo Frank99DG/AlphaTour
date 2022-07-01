@@ -8,19 +8,31 @@
     android:layout_height="match_parent"
     tools:context=".calendar.DailyCalendarActivity">
 
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:onClick="onBackButtonClick"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_button" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
+
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/back"
             android:background="@null"
             android:onClick="previousDayAction"
+            android:text="@string/back"
             android:textColor="@color/Black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -40,9 +52,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/forward"
             android:background="@null"
             android:onClick="nextDayAction"
+            android:text="@string/forward"
             android:textColor="@color/Black"
             android:textSize="20sp"
             android:textStyle="bold" />

@@ -18,7 +18,7 @@ import com.example.alphatour.R;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener{
+public class WeeklyCalendarActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener{
 
     private TextView monthYearText;
     private RecyclerView calendarRecycleView;
@@ -27,7 +27,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_week_view);
+        setContentView(R.layout.activity_weekly_calendar);
         initWidgets();
         setWeekView();
     }
@@ -99,7 +99,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
 
     public void onBackButtonClick(View view){
 
-        startActivity(new Intent(WeekViewActivity.this, CalendarActivity.class));
+        startActivity(new Intent(WeeklyCalendarActivity.this, CalendarActivity.class));
         finish();
     }
 }

@@ -198,4 +198,29 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
     }
 
+
+    public void loginDirettoProfessore(View v) {
+
+            loadingBar.setVisibility(View.VISIBLE);
+            auth.signInWithEmailAndPassword("fabrizio.balducci@uniba.it", "FabrizioBalducci30L!")
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+
+                            if (task.isSuccessful()) {
+                                Toast.makeText(LoginActivity.this, R.string.access_completed, Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+                                loadingBar.setVisibility(View.GONE);
+
+                            } else {
+                                Toast.makeText(LoginActivity.this, getString(R.string.login_failed), Toast.LENGTH_LONG).show();
+                                loadingBar.setVisibility(View.GONE);
+                            }
+
+                        }
+
+                    });
+
+    }
+
 }

@@ -11,12 +11,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:focusableInTouchMode="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:background="#5CC09F">
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:onClick="onBackButtonClick"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/back_button" />
 
         <TextView
             android:id="@+id/textUpdateProfile"
@@ -299,7 +311,7 @@
                 android:layout_below="@+id/dividerUsernameUpdate"
                 android:layout_marginStart="50dp"
                 android:layout_marginBottom="-20dp"
-                android:hint="Inserisci username"
+                android:hint="@string/insert_username"
                 android:layout_marginTop="7dp"
                 android:inputType="textPersonName"
                 android:padding="6dp"
@@ -334,19 +346,19 @@
             android:layout_marginTop="-55dp"
             android:layout_marginRight="78dp"
             android:onClick="updateProfile"
-            android:text="Aggiorna Profilo" />
+            android:text="@string/update_profile" />
 
         <TextView
             android:id="@+id/textPasswordForgotten"
             android:layout_width="224dp"
             android:layout_height="30dp"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="128dp"
+            android:layout_marginTop="5dp"
             android:onClick="openChangePasswordActivity"
-            android:text="Modifica password"
+            android:text="@string/change_password"
             android:textAlignment="viewStart"
             android:textColor="#8B131111"
             android:textSize="14sp"
             android:textStyle="bold" />
-</LinearLayout>
+    </LinearLayout>
 </ScrollView>

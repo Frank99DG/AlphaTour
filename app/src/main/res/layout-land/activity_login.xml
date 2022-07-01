@@ -94,7 +94,7 @@
         android:id="@+id/textPasswordForgotten"
         android:layout_width="224dp"
         android:layout_height="30dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="18dp"
         android:onClick="openForgotPasswordActivity"
         android:text="@string/forgot_password"
         android:textAlignment="viewStart"
@@ -111,7 +111,7 @@
         android:id="@+id/buttonSignIn"
         android:layout_width="268dp"
         android:layout_height="60dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="18dp"
         android:background="@drawable/bordi_tondi_button"
         android:backgroundTint="#655959"
         android:onClick="userLogin"
@@ -125,46 +125,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textPasswordForgotten"
         app:strokeColor="#423A3A" />
 
-    <TextView
-        android:id="@+id/textAlternative"
-        android:layout_width="132dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/alternative"
-        android:textAlignment="center"
-        android:textColor="#8B131111"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSignIn" />
-
-    <LinearLayout
-        android:id="@+id/socialLayout"
-        android:layout_width="341dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textAlternative">
-
-        <ImageView
-            android:id="@+id/imageGoogle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/google"
-            android:contentDescription="" />
-
-        <ImageView
-            android:id="@+id/imageFacebook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/facebook"
-            android:contentDescription="" />
-    </LinearLayout>
 
     <TextView
         android:id="@+id/textNewAccount"
@@ -178,7 +138,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/socialLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonSignIn" />
 
     <Button
         android:id="@+id/buttonSignUp"
@@ -190,6 +150,7 @@
         android:text="@string/user_registration"
         android:textColor="#CB090808"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
@@ -208,6 +169,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.368" />
 
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="48dp"
+        android:layout_height="42dp"
+        android:onClick="loginDirettoProfessore"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logout" />
 
 
 

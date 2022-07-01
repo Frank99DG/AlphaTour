@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".calendar.WeekViewActivity">
+    tools:context=".calendar.WeeklyCalendarActivity">
 
     <ImageView
         android:id="@+id/backButton"

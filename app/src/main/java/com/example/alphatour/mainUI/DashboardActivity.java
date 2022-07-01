@@ -48,20 +48,9 @@ import java.util.List;
 
 public class DashboardActivity extends DrawerBaseActivity {
 
-    public static final String AGE = "AGE";
-    public static final String N_NOTIFY = "N_NOTIFY";
-    private static final String KEY_COUNTER="KEY_COUNTER";
-
-    private TextView ageText;
-    private static int n_notify;
-    private int a=0;
-    private Bundle data = new Bundle();
-    private FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-    private FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
     private AutoCompleteTextView inputSearch;
     private List<TourItem> placesZonesElementsList = new ArrayList<TourItem>();
     private TourAdapter adapterItems;
-    private String item;
     private BottomNavigationView bottomNavigationView;
     private ProgressBar loadingBar;
     private FirebaseFirestore db;
@@ -73,7 +62,6 @@ public class DashboardActivity extends DrawerBaseActivity {
     private static String zona_scelta;
     private static String zona_vecchia;
     private ActivityDashboardBinding activityDashboardBinding;
-    private int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

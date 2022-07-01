@@ -10,16 +10,6 @@
     tools:context=".mainUI.DashboardActivity"
     tools:openDrawer="start">
 
-
-    <!--<com.google.android.material.navigation.NavigationView
-        android:id="@+id/navViewDashboard"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:visibility="visible"
-        app:headerLayout="@layout/header_hamburger"
-        app:menu="@menu/drawer_nav_menu" />-->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -46,7 +36,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/searchLayout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-                    android:layout_width="265dp"
+                    android:layout_width="295dp"
                     android:layout_height="56dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="15dp"
@@ -59,9 +49,9 @@
                         android:background="@drawable/backgroun_dialog"
                         android:drawableStart="@drawable/ic_search"
                         android:hint="@string/search_text"
-                        android:textSize="14dp"
                         android:inputType="text"
                         android:padding="10dp"
+                        android:textSize="14dp"
                         tools:layout_editor_absoluteX="110dp"
                         tools:layout_editor_absoluteY="325dp" />
 
@@ -274,7 +264,7 @@
                         tools:ignore="UseCompoundDrawables">
 
                         <ImageView
-                            android:layout_width="83dp"
+                            android:layout_width="94dp"
                             android:layout_height="95dp"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="6"
@@ -317,16 +307,6 @@
 
         </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-        <ProgressBar
-            android:id="@+id/dashboardLoadingBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

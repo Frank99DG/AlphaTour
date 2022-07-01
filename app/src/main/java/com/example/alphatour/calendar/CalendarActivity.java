@@ -77,7 +77,7 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
 
     public void weeklyAction(View view) {
 
-        startActivity(new Intent(this, WeekViewActivity.class));
+        startActivity(new Intent(this, WeeklyCalendarActivity.class));
     }
 
     public void onBackButtonClick(View view){
