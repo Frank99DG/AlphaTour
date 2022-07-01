@@ -273,6 +273,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
 
         callback.goToNextStep();
+        CreationWizard.setvalore(1);
     }
 
     @Override
@@ -291,9 +292,11 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putString("NamePlace",namePlace.getText().toString());
-        outState.putString("City",city.getText().toString());
-        outState.putString("Typology",typology.getText().toString());
+        if(namePlace!=null) {
+            outState.putString("NamePlace", namePlace.getText().toString());
+            outState.putString("City", city.getText().toString());
+            outState.putString("Typology", typology.getText().toString());
+        }
     }
 
     @Override

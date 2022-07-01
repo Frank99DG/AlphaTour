@@ -200,6 +200,8 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
                 imgDialog.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
                 titleDialog.setText(R.string.delete_object);
                 textDialog.setText(R.string.delete_object_text);
+                cancel.setText("No");
+                yes.setText("Elimina");
 
                 yes.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -292,7 +294,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
 
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
-
+        CreationWizard.setvalore(3);
         dialog.show();
         imgDialog.setImageDrawable(getResources().getDrawable(R.drawable.ic_cant_back));
         titleDialog.setText(R.string.constraint_creation);

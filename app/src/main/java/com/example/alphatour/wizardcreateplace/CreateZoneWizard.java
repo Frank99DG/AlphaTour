@@ -2,7 +2,9 @@ package com.example.alphatour.wizardcreateplace;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,7 @@ import androidx.annotation.Nullable;
 
 import com.example.alphatour.R;
 import com.example.alphatour.objectclass.Zone;
+import com.example.alphatour.wizardcreatepath.PercorsoWizard;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -264,6 +267,7 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
           callback.goToNextStep();
+        CreationWizard.setvalore(2);
     }
 
     @Override
@@ -278,4 +282,16 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
 
     }
 
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if(newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE){
+            Intent intent = new Intent(getContext(), CreationWizard.class);
+            intent.putExtra("val", 1);
+            Toast.makeText(getContext(),"landscapeeeeeeeeeeee",Toast.LENGTH_LONG).show();
+            startActivity(intent);
+
+        }
+
+    }
 }

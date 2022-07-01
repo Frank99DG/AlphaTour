@@ -85,7 +85,7 @@
 
                 <androidx.gridlayout.widget.GridLayout
                     android:layout_width="match_parent"
-                    android:layout_height="294dp"
+                    android:layout_height="374dp"
                     android:layout_weight="6"
                     android:padding="26dp"
                     app:alignmentMode="alignMargins"
