@@ -7,6 +7,12 @@
     android:background="@drawable/custom_color"
     tools:context=".wizardcreateplace.ImportPhotoObjectActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/LightGrey">
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="378dp"
@@ -130,5 +136,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonAddPhoto" />
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
