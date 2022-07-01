@@ -41,7 +41,7 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/searchLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-                        android:layout_width="804dp"
+                        android:layout_width="591dp"
                         android:layout_height="56dp"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="15dp"

@@ -7,12 +7,6 @@
     android:background="@drawable/custom_color"
     tools:context=".modifyplace.ListPlacesActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/LightGrey">
-
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
@@ -52,7 +46,7 @@
 
         <TextView
             android:id="@+id/specificZoneText"
-            android:layout_width="189dp"
+            android:layout_width="350dp"
             android:layout_height="40dp"
             android:layout_marginStart="111dp"
             android:layout_marginTop="12dp"
@@ -64,7 +58,6 @@
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/listElementsText" />
 
@@ -111,8 +104,5 @@
             app:layout_constraintTop_toBottomOf="@+id/updateElementInfo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </ScrollView>
 
 </androidx.core.widget.NestedScrollView>

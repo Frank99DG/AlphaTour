@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,108 +11,116 @@
     android:id="@+id/frm"
     android:gravity="center">
 
-
-    <ImageView
-        android:id="@+id/backButton"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:onClick="onBackButtonClick"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back_button" />
-
-    <TextView
-        android:id="@+id/myZoneText"
-        android:layout_width="341dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="104dp"
-        android:text="@string/zone"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/datesZone"
-        android:layout_width="123dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/alata"
-        android:text="@string/zone_data"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myZoneText" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/nameZoneLayout"
-        android:layout_width="208dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datesZone">
-
-        <EditText
-            android:id="@+id/updateNameZone"
-            android:layout_width="208dp"
-            android:layout_height="56dp"
-            android:background="@drawable/bordi_tondi"
-            android:ems="10"
-            android:hint="@string/name"
-            android:inputType="textPersonName" />
-    </com.google.android.material.textfield.TextInputLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
-    <Button
-        android:id="@+id/listZonesButton"
-        android:layout_width="208dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="56dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:onClick="openElementsList"
-        android:text="@string/item_list"
-        android:textColor="@color/Black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameZoneLayout" />
+                <ImageView
+                    android:id="@+id/backButton"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp"
+                    android:onClick="onBackButtonClick"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/back_button" />
 
-    <Button
-        android:id="@+id/saveChanges"
-        android:layout_width="208dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:onClick="updateZone"
-        android:text="@string/save_changes"
-        android:textColor="@color/Black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listZonesButton" />
+                <TextView
+                    android:id="@+id/myZoneText"
+                    android:layout_width="400dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="104dp"
+                    android:text="@string/zone"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <ProgressBar
-        android:id="@+id/modifyZoneLoadingBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+                <TextView
+                    android:id="@+id/datesZone"
+                    android:layout_width="123dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="28dp"
+                    android:fontFamily="@font/alata"
+                    android:text="@string/zone_data"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/myZoneText" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nameZoneLayout"
+                    android:layout_width="208dp"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="28dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/datesZone">
+
+                    <EditText
+                        android:id="@+id/updateNameZone"
+                        android:layout_width="208dp"
+                        android:layout_height="56dp"
+                        android:background="@drawable/bordi_tondi"
+                        android:ems="10"
+                        android:hint="@string/name"
+                        android:inputType="textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <Button
+                    android:id="@+id/listZonesButton"
+                    android:layout_width="208dp"
+                    android:layout_height="57dp"
+                    android:layout_marginTop="56dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:onClick="openElementsList"
+                    android:text="@string/item_list"
+                    android:textColor="@color/Black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nameZoneLayout" />
+
+                <Button
+                    android:id="@+id/saveChanges"
+                    android:layout_width="208dp"
+                    android:layout_height="57dp"
+                    android:layout_marginTop="12dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:onClick="updateZone"
+                    android:text="@string/save_changes"
+                    android:textColor="@color/Black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/listZonesButton" />
+
+                <ProgressBar
+                    android:id="@+id/modifyZoneLoadingBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.499" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
