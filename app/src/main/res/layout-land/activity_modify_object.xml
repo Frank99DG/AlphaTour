@@ -101,7 +101,7 @@
 
         <View
             android:id="@+id/view1"
-            android:layout_width="409dp"
+            android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_marginStart="1dp"
             android:layout_marginTop="20dp"
@@ -161,7 +161,7 @@
 
         <View
             android:id="@+id/view2"
-            android:layout_width="409dp"
+            android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_marginStart="1dp"
             android:layout_marginTop="20dp"
@@ -203,7 +203,7 @@
 
         <View
             android:id="@+id/view3"
-            android:layout_width="409dp"
+            android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_marginStart="1dp"
             android:layout_marginTop="20dp"
@@ -257,7 +257,7 @@
 
         <View
             android:id="@+id/view4"
-            android:layout_width="409dp"
+            android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_marginStart="1dp"
             android:layout_marginTop="20dp"
