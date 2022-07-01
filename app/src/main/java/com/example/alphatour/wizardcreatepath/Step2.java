@@ -251,31 +251,33 @@ public class Step2 extends Fragment implements Step, BlockingStep {
 
     public void getIdPlace() {
 
-        db.collection("Places").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        if(db!=null) {
+            db.collection("Places").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
 
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                if (!queryDocumentSnapshots.isEmpty()) {
-                    List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista luoghi
+                    if (!queryDocumentSnapshots.isEmpty()) {
+                        List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista luoghi
 
-                    for (DocumentSnapshot d : listDocument) {
-                        Place place = d.toObject(Place.class);
+                        for (DocumentSnapshot d : listDocument) {
+                            Place place = d.toObject(Place.class);
 
-                        if (Place.matches(place.getName())){
-                            idPlace = d.getId();
-                            getZones();
-                            break;
+                            if (Place.matches(place.getName())) {
+                                idPlace = d.getId();
+                                getZones();
+                                break;
+                            }
+
                         }
-
                     }
+
+
                 }
+            });
+        }
+        }
 
-
-
-            }
-        });
-    }
 
 
 
@@ -283,7 +285,7 @@ public class Step2 extends Fragment implements Step, BlockingStep {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-
+            PercorsoWizard.setCount(1);
             getIdPlace();
 
             }else{
@@ -296,7 +298,6 @@ public class Step2 extends Fragment implements Step, BlockingStep {
 
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
-
 
         for(int i= 0;i<arrayZone.size();i++){
             arrayZone.get(i).setChecked(false,false);

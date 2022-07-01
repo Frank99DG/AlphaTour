@@ -33,11 +33,19 @@ public class PercorsoWizard extends AppCompatActivity {
     private static String zone;
     private static boolean zonePassFromReview=false;
     private static String namePath,descriptionPath,place;
-    private int count=0;
+    private static int count=0;
     private Dialog dialog;
     private Button dialog_delete_path, dialog_dismiss;
     private TextView dialog_title,dialog_text;
     private ImageView dialog_delete_image;
+
+    public static int getCount() {
+        return count;
+    }
+
+    public static void setCount(int count) {
+        PercorsoWizard.count = count;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,19 +88,22 @@ public class PercorsoWizard extends AppCompatActivity {
        // button=findViewById(R.id.buttonShare);
 
         Intent intent=getIntent();
-        i= intent.getIntExtra("val",-1);
 
-        if(intent.getIntExtra("val",-1)==-1) {
+
+            i = intent.getIntExtra("val", count);
+
+            if (intent.getIntExtra("val", count) == count) {
+                stepAdapter = new StepperAdapterWizard(getSupportFragmentManager(), getApplicationContext());
+                stepperLayout.setAdapter(stepAdapter);
+                stepperLayout.setCurrentStepPosition(i);
+            } else {
+                stepAdapter = new StepperAdapterWizard(getSupportFragmentManager(), getApplicationContext());
+                stepperLayout.setAdapter(stepAdapter);
+                stepperLayout.setCurrentStepPosition(i);
+            }
+
             stepAdapter = new StepperAdapterWizard(getSupportFragmentManager(), getApplicationContext());
             stepperLayout.setAdapter(stepAdapter);
-        }else{
-            stepAdapter = new StepperAdapterWizard(getSupportFragmentManager(), getApplicationContext());
-            stepperLayout.setAdapter(stepAdapter);
-            stepperLayout.setCurrentStepPosition(i);
-        }
-
-        stepAdapter = new StepperAdapterWizard(getSupportFragmentManager(), getApplicationContext());
-        stepperLayout.setAdapter(stepAdapter);
 
     }
 
@@ -173,12 +184,12 @@ public class PercorsoWizard extends AppCompatActivity {
         List<MapZoneAndObject> e = ReviewZoneSelected.getZoneAndObjectList();
         List<MapZoneAndObject> f = CreateJsonActivity.getZoneAndObjectListReviewPath();
 
-        if(a.isEmpty()) Step4.getZone_select().clear();
-        if(b.isEmpty()) Step4.getOggetti_select().clear();
-        if(c.isEmpty()) Step2.getArray_database().clear();
-        if(d.isEmpty()) Step4.getZoneAndObjectList_().clear();
-        if(e.isEmpty()) ReviewZoneSelected.getZoneAndObjectList().clear();
-        if(f.isEmpty()) CreateJsonActivity.getZoneAndObjectListReviewPath().clear();
+        if(!a.isEmpty()) Step4.getZone_select().clear();
+        if(!b.isEmpty()) Step4.getOggetti_select().clear();
+        if(!c.isEmpty()) Step2.getArray_database().clear();
+        if(!d.isEmpty()) Step4.getZoneAndObjectList_().clear();
+        if(!e.isEmpty()) ReviewZoneSelected.getZoneAndObjectList().clear();
+        if(!f.isEmpty()) CreateJsonActivity.getZoneAndObjectListReviewPath().clear();
 
         DashboardActivity.setFirstZoneChosen(false);
         PercorsoWizard.setDescriptionPath("");

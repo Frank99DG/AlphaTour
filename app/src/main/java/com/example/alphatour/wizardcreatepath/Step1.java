@@ -153,6 +153,7 @@ public class Step1 extends Fragment implements Step, BlockingStep {
     public void onResume() {
         super.onResume();
 
+        PercorsoWizard.setCount(0);
         /**controllo connessione**/
         receiver=new Receiver();
 
@@ -281,12 +282,12 @@ public class Step1 extends Fragment implements Step, BlockingStep {
         List<MapZoneAndObject> e = ReviewZoneSelected.getZoneAndObjectList();
         List<MapZoneAndObject> f = CreateJsonActivity.getZoneAndObjectListReviewPath();
 
-        if(a.isEmpty()) Step4.getZone_select().clear();
-        if(b.isEmpty()) Step4.getOggetti_select().clear();
-        if(c.isEmpty()) Step2.getArray_database().clear();
-        if(d.isEmpty()) Step4.getZoneAndObjectList_().clear();
-        if(e.isEmpty()) ReviewZoneSelected.getZoneAndObjectList().clear();
-        if(f.isEmpty()) CreateJsonActivity.getZoneAndObjectListReviewPath().clear();
+        if(!a.isEmpty()) Step4.getZone_select().clear();
+        if(!b.isEmpty()) Step4.getOggetti_select().clear();
+        if(!c.isEmpty()) Step2.getArray_database().clear();
+        if(!d.isEmpty()) Step4.getZoneAndObjectList_().clear();
+        if(!e.isEmpty()) ReviewZoneSelected.getZoneAndObjectList().clear();
+        if(!f.isEmpty()) CreateJsonActivity.getZoneAndObjectListReviewPath().clear();
 
         DashboardActivity.setFirstZoneChosen(false);
         PercorsoWizard.setDescriptionPath("");

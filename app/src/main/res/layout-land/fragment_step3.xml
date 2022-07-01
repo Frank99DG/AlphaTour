@@ -11,6 +11,14 @@
     <!-- TODO: Update blank fragment layout -->
 
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
@@ -30,13 +38,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="180dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="130dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -49,47 +56,27 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <TextView
-        android:id="@+id/zone_selected"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="300dp"
-        android:layout_marginTop="22dp"
-        android:background="@android:drawable/gallery_thumb"
-        android:gravity="center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="Zone"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            <TextView
+                android:id="@+id/zone_selected"
+                android:layout_width="350dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="190dp"
+                android:layout_marginTop="22dp"
+                android:background="@android:drawable/gallery_thumb"
+                android:gravity="center"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="10dp"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-    <View
-        android:layout_width="725dp"
-        android:layout_height="10dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="175dp"
-        android:layout_marginEnd="1dp"
-        android:background="@android:drawable/gallery_thumb"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
-        android:layout_width="409dp"
-        android:layout_height="10dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginEnd="1dp"
-        android:background="@android:drawable/gallery_thumb"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -69,7 +69,7 @@ public class MyPathsActivity extends DrawerBaseActivity {
         dialog_title = dialog.findViewById(R.id.titleDialog);
         dialog_text = dialog.findViewById(R.id.textDialog);
         dialog_delete_image= dialog.findViewById(R.id.imageDialog);
-        //dialog_delete_image.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
+        dialog_delete_image.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
 
         dialog_title.setText(R.string.delete_path);
         dialog_text.setText(R.string.delete_created_path);
