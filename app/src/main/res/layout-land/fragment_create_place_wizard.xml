@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/LightGrey">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:focusableInTouchMode="true"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".wizardcreateplace.CreatePlaceWizard"
-    android:background="@drawable/sfondo"
+    android:background="@drawable/custom_color"
     android:id="@+id/frm"
     android:gravity="center">
 
@@ -42,8 +49,8 @@
         android:id="@+id/textPlace"
         android:layout_width="190dp"
         android:layout_height="34dp"
-        android:layout_marginStart="310dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="268dp"
+        android:layout_marginTop="28dp"
         android:fontFamily="@font/alata"
         android:text="@string/place_data"
         android:textSize="20sp"
@@ -56,11 +63,11 @@
         android:layout_width="141dp"
         android:layout_height="51dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="300dp"
+        android:layout_marginEnd="124dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:onClick="scanQrCode"
-        android:text="@string/place_data"
+        android:text="@string/import_data"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descriptionCreateFirstZone" />
 
@@ -68,8 +75,8 @@
         android:id="@+id/namePlaceLayout"
         android:layout_width="208dp"
         android:layout_height="56dp"
-        android:layout_marginStart="250dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textPlace">
 
@@ -87,8 +94,8 @@
         android:id="@+id/cityPlaceLayout"
         android:layout_width="208dp"
         android:layout_height="56dp"
-        android:layout_marginStart="250dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/namePlaceLayout">
 
@@ -107,7 +114,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="208dp"
         android:layout_height="56dp"
-        android:layout_marginStart="250dp"
+        android:layout_marginStart="256dp"
         android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cityPlaceLayout">
@@ -161,3 +168,5 @@
         app:layout_constraintVertical_bias="0.499" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
