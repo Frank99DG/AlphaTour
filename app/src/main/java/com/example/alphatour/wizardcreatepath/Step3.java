@@ -152,6 +152,7 @@ public class Step3 extends Fragment implements Step, BlockingStep {
             @Override
             public void onClick(View view) {
                 DashboardActivity.setFirstZoneChosen(true);
+                PercorsoWizard.setCount(-1);
                 Intent intent = new Intent(getContext(), PercorsoWizard.class);
                 intent.putExtra("val", 1);
                 startActivity(intent);

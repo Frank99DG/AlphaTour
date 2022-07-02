@@ -89,13 +89,12 @@ public class PercorsoWizard extends AppCompatActivity {
 
         Intent intent=getIntent();
 
-
             i = intent.getIntExtra("val", count);
 
-            if (intent.getIntExtra("val", count) == count) {
+            if (count!=-1) {
                 stepAdapter = new StepperAdapterWizard(getSupportFragmentManager(), getApplicationContext());
                 stepperLayout.setAdapter(stepAdapter);
-                stepperLayout.setCurrentStepPosition(i);
+                stepperLayout.setCurrentStepPosition(count);
             } else {
                 stepAdapter = new StepperAdapterWizard(getSupportFragmentManager(), getApplicationContext());
                 stepperLayout.setAdapter(stepAdapter);
@@ -104,8 +103,8 @@ public class PercorsoWizard extends AppCompatActivity {
 
             stepAdapter = new StepperAdapterWizard(getSupportFragmentManager(), getApplicationContext());
             stepperLayout.setAdapter(stepAdapter);
+        }
 
-    }
 
 
     //per rimuovere il focus e la tastiera quando si clicca fuori dalla EditText

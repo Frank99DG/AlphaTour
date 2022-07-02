@@ -51,21 +51,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_step4" />
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_marginTop="129dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:layout_marginTop="80dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/list_zoneRiepilogo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/list_zoneRiepilogo"
+                    android:layout_width="450dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="200dp"
+                    android:orientation="vertical">
 
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

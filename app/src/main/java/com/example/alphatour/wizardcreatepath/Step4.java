@@ -316,7 +316,7 @@ public class Step4 extends Fragment implements Step, BlockingStep {
                     PercorsoWizard.setZone(zone_select.get(i));
                 }
             }
-
+            PercorsoWizard.setCount(-1);
             Intent intent = new Intent(getContext(), PercorsoWizard.class);
             intent.putExtra("val", 1);
             startActivity(intent);
@@ -325,6 +325,7 @@ public class Step4 extends Fragment implements Step, BlockingStep {
        }else{
             PercorsoWizard.setZonePassFromReview(false);
             DashboardActivity.setFirstZoneChosen(false);
+            PercorsoWizard.setCount(-1);
             Intent intent = new Intent(getContext(), PercorsoWizard.class);
             intent.putExtra("val", 1);
             startActivity(intent);
