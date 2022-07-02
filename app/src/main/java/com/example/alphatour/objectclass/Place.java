@@ -4,9 +4,6 @@ public class Place {
 
     private String name,city,typology,idUser;
     private int idPlace;
-    //il grafo è orientato (da A a B è diverso da B ad A)
-    //public static Graph<Zone,DefaultEdge> zonesPlace = new SimpleDirectedGraph<>(DefaultEdge.class);
-
 
     public Place(){
 

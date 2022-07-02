@@ -329,6 +329,7 @@
     <string name="link_not_generated">Le lien photo n’a pas pu être généré</string>
     <string name="link_copied">lien copié dans le presse papier</string>
     <string name="fields_may_be_empty">Erreur lors de l’importation du fichier, certains champs peuvent être vides</string>
+    <string name="place_not_available">Lieu non disponible</string>
     <string name="place_save_failed">Échec de l’enregistrement du lieu</string>
     <string name="zone_saving_failed">Échec de l’enregistrement de la zone</string>
     <string name="not_possible_save_zone">Il n’a pas été possible de sauvegarder les zones et les objets créés !!!</string>

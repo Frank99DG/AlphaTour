@@ -215,7 +215,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                         ImageView removeZone = (ImageView) destinationView.findViewById(R.id.deleteZone);
 
                         in_zone.setText(item);
-                        Constraint constraint=new Constraint(nameZone,item);
+                        Constraint constraint = new Constraint( CreatePlaceWizard.getNamePlace(),nameZone,item );
                         listConstranints.add(constraint);
                         link_list.add(item);
                         sub_layout_list.addView(destinationView);
@@ -268,33 +268,6 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
         super.onPause();
         requireActivity().unregisterReceiver(receiver);
     }
-
-
-    public void saveZonesAndConstraintInGraph() {
-        Graph<Zone,DefaultEdge> zones = new SimpleDirectedGraph<>(DefaultEdge.class);
-
-        for (String nameZone : zone_list){
-            Zone zone = new Zone(nameZone);
-            zones.addVertex(zone);
-        }
-
-        /*for (List list : all_link_lists){
-            for (String  : list){
-                zones.addEdge( , );
-
-            }
-        }*/
-
-        Place place = new Place("NewTopMuseum","Bari","Museo","1");
-        Log.i("Luogo creato:", place.toString());
-
-
-
-
-
-    }
-
-
 
 
     @Override
@@ -764,7 +737,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
         AlphaTourDbHelper dbAlpha = new AlphaTourDbHelper(getContext());
         SQLiteDatabase db = dbAlpha.getWritableDatabase();
         ContentValues values = new ContentValues();
-        idPlace=getIdPlace(CreatePlaceWizard.getNamePlace());
+        idPlace = getIdPlace(CreatePlaceWizard.getNamePlace());
 
         for(i=0;i<zone_list.size();i++) {
 

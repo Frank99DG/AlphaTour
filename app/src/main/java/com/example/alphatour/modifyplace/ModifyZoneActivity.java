@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.alphatour.mainUI.DashboardActivity;
 import com.example.alphatour.R;
+import com.example.alphatour.objectclass.Constraint;
 import com.example.alphatour.objectclass.Place;
 import com.example.alphatour.objectclass.Zone;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ModifyZoneActivity extends AppCompatActivity {
 
@@ -263,6 +265,40 @@ public class ModifyZoneActivity extends AppCompatActivity {
                 loadingBar.setVisibility(View.GONE);
             }
         });
+
+
+        db.collection("Constraints")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                if (!queryDocumentSnapshots.isEmpty()) {
+                    List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista vincoli
+
+                    for (DocumentSnapshot d : listDocument) {
+                        Constraint constraint = d.toObject(Constraint.class);
+
+                        if(constraint.getNamePlace().equals(Place)){
+
+                            if(constraint.getFromZone().equals(Zone)){
+                                db.collection("Constraints").document(d.getId())
+                                        .update("fromZone",Name);
+                            }
+
+                            if(constraint.getInZone().equals(Zone)){
+                                db.collection("Constraints").document(d.getId())
+                                        .update("inZone",Name);
+                            }
+
+                        }
+
+                    }
+                }
+            }
+        });
+
 
     }
 

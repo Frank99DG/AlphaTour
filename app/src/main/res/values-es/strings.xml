@@ -330,6 +330,7 @@
     <string name="link_not_generated">No se pudo generar el enlace de la foto.</string>
     <string name="link_copied">link copiado al portapapeles</string>
     <string name="fields_may_be_empty">Error al importar el archivo, algunos campos pueden estar vacíos</string>
+    <string name="place_not_available">Lugar no disponible</string>
     <string name="place_save_failed">Error al guardar el lugar</string>
     <string name="zone_saving_failed">Error al guardar la zona</string>
     <string name="not_possible_save_zone">¡No fue posible guardar las zonas y los objetos creados!</string>

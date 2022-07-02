@@ -27,9 +27,14 @@ import com.example.alphatour.mainUI.DashboardActivity;
 import com.example.alphatour.modifyplace.ModifyObjectActivity;
 import com.example.alphatour.R;
 //import com.example.alphatour.wizardcreateplace.ReadCsv;
+import com.example.alphatour.modifyplace.ModifyPlaceActivity;
+import com.example.alphatour.objectclass.Place;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
@@ -52,7 +57,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
     private ArrayAdapter<String> adapterItems;
     private static String NamePlace,City,Typology;
     private ProgressBar loadingBar;
-    private boolean errorFlag=true;
+    private boolean errorFlag = true;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
     private FirebaseUser user;
@@ -107,25 +112,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
         adapterItems = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, typology_list);
         typology.setAdapter(adapterItems);
 
-
-
-
-
-
-        /*typology.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-                typology.setError(null);
-                item = parent.getItemAtPosition(position).toString();
-            }
-        });*/
-
-
-
-
         loadingBar = view.findViewById(R.id.placeLoadingBar);
-
-
 
 
         qrScan.setOnClickListener(new View.OnClickListener() {
@@ -136,37 +123,6 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
                 startActivity(intent);
             }
         });
-
-
-       /* db.collection("Places")
-                .whereEqualTo("idUser",idUser)
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-
-                        if (!queryDocumentSnapshots.isEmpty()) {
-                            List<DocumentSnapshot> listDocuments = queryDocumentSnapshots.getDocuments();
-
-                            for (DocumentSnapshot d : listDocuments) {
-                                Place place= d.toObject(Place.class);
-                                namePlace.setText(place.getName());
-                                city.setText(place.getCity());
-                                typology.setText(place.getTypology());
-                            }
-                        }
-                    }
-                });*/
-
-        /*csv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent=new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("text/comma-separated-values");
-                startActivityForResult(intent,requestCod);
-            }
-        });*/
 
         ph.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,29 +157,19 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
             }
         });
 
-        /*typology.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                typology.setText(item);
-
-
-            }
-        }, 10);*/
-
     }
 
     @Nullable
     @Override
     public VerificationError verifyStep() {
 
-        VerificationError error=null;
+        VerificationError error = null;
         NamePlace = namePlace.getText().toString();
         City = city.getText().toString();
         Typology = typology.getText().toString();
         errorFlag = inputControl(NamePlace, City, Typology);
         if(errorFlag){
-            error =new VerificationError("Compila tutti i campi");
+            error = new VerificationError("Compila tutti i campi");
         }
         return error;
     }
@@ -241,26 +187,49 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
 
     public boolean inputControl(String NamePlace, String City, String Typology){
 
-        Boolean errorFlag = false;
+        final Boolean[] mErrorFlag = {false};
 
-        if (NamePlace.isEmpty()) {
-            namePlace.setError(getString(R.string.required_field));
-            namePlace.requestFocus();
-            errorFlag = true;
-        }
+        db.collection("Places").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-        if (City.isEmpty()) {
-            city.setError(getString(R.string.required_field));
-            city.requestFocus();
-            errorFlag = true;
-        }
+                if (!queryDocumentSnapshots.isEmpty()) {
+                    List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments(); //lista luoghi
+
+                    if (NamePlace.isEmpty()) {
+                        namePlace.setError(getString(R.string.required_field));
+                        namePlace.requestFocus();
+                        mErrorFlag[0] = true;
+                    }
+
+                    for (DocumentSnapshot d : listDocument) {
+                        Place place = d.toObject(Place.class);
+
+                        if( NamePlace.equals(place.getName()) ){
+                            namePlace.setError(getString(R.string.place_not_available));
+                            namePlace.requestFocus();
+                            mErrorFlag[0] = true;
+                        }
+                    }
+
+                    if (City.isEmpty()) {
+                        city.setError(getString(R.string.required_field));
+                        city.requestFocus();
+                        mErrorFlag[0] = true;
+                    }
 
 
-        if (Typology.isEmpty()) {
-            typology.setError(getString(R.string.required_field));
-            typology.requestFocus();
-            errorFlag = true;
-        }
+                    if (Typology.isEmpty()) {
+                        typology.setError(getString(R.string.required_field));
+                        typology.requestFocus();
+                        mErrorFlag[0] = true;
+                    }
+
+                }
+            }
+        });
+
+        errorFlag = mErrorFlag[0];
 
         return errorFlag;
 

@@ -329,6 +329,7 @@
     <string name="link_not_generated">The photo link could not be generated</string>
     <string name="link_copied">link copied to clipboard</string>
     <string name="fields_may_be_empty">Error while importing the file, some fields may be empty</string>
+    <string name="place_not_available">Place not available</string>
     <string name="place_save_failed">Place save failed</string>
     <string name="zone_saving_failed">Zone saving failed</string>
     <string name="not_possible_save_zone">It was not possible to save the zones and objects created !!!</string>
