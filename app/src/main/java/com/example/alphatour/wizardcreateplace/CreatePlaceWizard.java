@@ -124,7 +124,7 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
 
 
         loadingBar = view.findViewById(R.id.placeLoadingBar);
-         LoadPreferences();
+
 
 
 
@@ -312,33 +312,12 @@ public class CreatePlaceWizard extends Fragment implements Step, BlockingStep {
 
     }
 
-    private void SavePreferences(){
-        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("NamePlace", namePlace.getText().toString());
-        editor.putString("City",city.getText().toString());
-        editor.putString("Typology",item);
-        editor.commit();   // I missed to save the data to preference here,.
-    }
 
-    private void LoadPreferences(){
-        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-        namePlace.setText(sharedPreferences.getString("NamePlace",""));
-        city.setText(sharedPreferences.getString("City",""));
-        item=sharedPreferences.getString("Typology","");
-
-
-        /*if(item==""){
-            typology.setHint("Tipologia");
-        }else{
-            typology.setHint(sharedPreferences.getString("Typology",""));
-        }*/
-    }
 
     @Override
     public void onStop() {
         super.onStop();
-        SavePreferences();
+
     }
 
     @Override

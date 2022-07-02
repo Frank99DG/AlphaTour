@@ -60,20 +60,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descriptionCreatePlace" />
 
-    <Button
-        android:id="@+id/uploadphoto"
-        android:layout_width="141dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="292dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:onClick="scanQrCode"
-        android:text="@string/import_data"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionCreateFirstZone" />
+            <Button
+                android:id="@+id/uploadphoto"
+                android:layout_width="141dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="360dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:onClick="scanQrCode"
+                android:text="@string/import_data"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionCreateFirstZone" />
 
-    <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/namePlaceLayout"
         android:layout_width="208dp"
         android:layout_height="56dp"

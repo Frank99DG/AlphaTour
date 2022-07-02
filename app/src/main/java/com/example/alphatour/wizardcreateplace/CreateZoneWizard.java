@@ -76,7 +76,7 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
         nameZone = view.findViewById(R.id.inputNomeZona);
         layout_list = view.findViewById(R.id.listZoneLayout);
 
-
+        LoadPreferences();
         dialog=new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_delete);
         dialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.backgroun_dialog));
@@ -84,13 +84,12 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
         dialog.setCancelable(false);
         dialog.getWindow().getAttributes().windowAnimations=R.style.DialogAnimation;
 
-         yes= dialog.findViewById(R.id.btn_okay);
-         cancel= dialog.findViewById(R.id.btn_cancel);
-         titleDialog=dialog.findViewById(R.id.titleDialog);
-         textDialog=dialog.findViewById(R.id.textDialog);
-         imgDialog=dialog.findViewById(R.id.imageDialog);
+        yes= dialog.findViewById(R.id.btn_okay);
+        cancel= dialog.findViewById(R.id.btn_cancel);
+        titleDialog=dialog.findViewById(R.id.titleDialog);
+        textDialog=dialog.findViewById(R.id.textDialog);
+        imgDialog=dialog.findViewById(R.id.imageDialog);
 
-         LoadPreferences();
 
         db.collection("Zones")
                 .whereEqualTo("idUser",user.getUid())
@@ -114,34 +113,37 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
                     boolean duplicate = duplicateControl(name);
                     if (!duplicate){
                         zoneCreated = true;
-                    final View zoneView = getLayoutInflater().inflate(R.layout.row_add_zone, null, false);
-                    ImageView removeZone = (ImageView) zoneView.findViewById(R.id.deleteZone);
-                    TextView zone = (TextView) zoneView.findViewById(R.id.displayZone);
-                    zone.setText(name);
-                    layout_list.addView(zoneView);
-                    zone_list.add(name);
+                        final View zoneView = getLayoutInflater().inflate(R.layout.row_add_zone, null, false);
+                        ImageView removeZone = (ImageView) zoneView.findViewById(R.id.deleteZone);
+                        TextView zone = (TextView) zoneView.findViewById(R.id.displayZone);
+                        zone.setText(name);
+                        layout_list.addView(zoneView);
+                        zone_list.add(name);
 
-                    removeZone.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            dialog.show();
-                            titleDialog.setText(R.string.delete_zone);
-                            textDialog.setText(R.string.delete_zone_text);
-                            imgDialog.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
+                        removeZone.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialog.show();
+                                titleDialog.setText(R.string.delete_zone);
+                                textDialog.setText(R.string.delete_zone_text);
+                                imgDialog.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
 
-                            yes.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Toast.makeText(getContext(), R.string.deleted_zone, Toast.LENGTH_LONG).show();
-                                    layout_list.removeView(zoneView);
-                                    dialog.dismiss();
-                                    zone_list.remove(name);
-                                }
-                            });
-                        }
-                    });
-                    nameZone.setText(null);
-                }else{
+                                yes.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Toast.makeText(getContext(), R.string.deleted_zone, Toast.LENGTH_LONG).show();
+                                        layout_list.removeView(zoneView);
+                                        dialog.dismiss();
+                                        zone_list.remove(name);
+                                        if(zone_list.size()==0){
+                                            zoneCreated=false;
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                        nameZone.setText(null);
+                    }else{
                         Toast.makeText(getContext(), R.string.zone_already_exists, Toast.LENGTH_LONG).show();
                     }
                 }else{
@@ -266,7 +268,7 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
 
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
-          callback.goToNextStep();
+        callback.goToNextStep();
         CreationWizard.setvalore(2);
     }
 
@@ -278,6 +280,7 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
     @Override
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
 
+        CreationWizard.setvalore(0);
         callback.goToPrevStep();
 
     }

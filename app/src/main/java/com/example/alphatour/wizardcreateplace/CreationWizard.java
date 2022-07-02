@@ -49,14 +49,14 @@ public static void setvalore(int val){
             stepAdapter = new StepperAdapterCreazioneWizard(getSupportFragmentManager(), getApplicationContext()/*, i*/);
             stepperLayout.setAdapter(stepAdapter);
         }else{
-            Toast.makeText(this,"landscapeeeeeeeeeeee",Toast.LENGTH_LONG).show();
-            stepAdapter = new StepperAdapterWizard(getSupportFragmentManager(), getApplicationContext());
+
+            stepAdapter = new StepperAdapterCreazioneWizard(getSupportFragmentManager(), getApplicationContext());
             stepperLayout.setAdapter(stepAdapter);
             stepperLayout.setCurrentStepPosition(i);
         }
 
         if(j!=-1){
-            stepAdapter = new StepperAdapterWizard(getSupportFragmentManager(), getApplicationContext());
+            stepAdapter = new StepperAdapterCreazioneWizard(getSupportFragmentManager(), getApplicationContext());
             stepperLayout.setAdapter(stepAdapter);
             stepperLayout.setCurrentStepPosition(j);
         }

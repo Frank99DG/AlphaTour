@@ -106,7 +106,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
         View view= inflater.inflate(R.layout.fragment_create_element_wizard, container, false);
         addElement=view.findViewById(R.id.buttonAddElement);
         layout_list=view.findViewById(R.id.listElementLayout);
-       // loadingBar=view.findViewById(R.id.objectLoadingBar);
+        // loadingBar=view.findViewById(R.id.objectLoadingBar);
 
         zone_list=CreateZoneWizard.getZone_list();
 
@@ -130,7 +130,6 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
         titleDialog=dialog.findViewById(R.id.titleDialog);
         textDialog=dialog.findViewById(R.id.textDialog);
         imgDialog=dialog.findViewById(R.id.imageDialog);
-
         LoadPreferences();
 
         addElement.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +141,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
             }
         });
 
-         return view;
+        return view;
     }
 
     @Override
@@ -200,8 +199,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
                 imgDialog.setImageDrawable(getResources().getDrawable(R.drawable.ic_delete));
                 titleDialog.setText(R.string.delete_object);
                 textDialog.setText(R.string.delete_object_text);
-                cancel.setText("No");
-                yes.setText("Elimina");
+                yes.setText(R.string.delete);
 
                 yes.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -215,6 +213,9 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
                             }
                         }
                         layout_list.removeView(elementView);
+                        if(elementList.size()==0){
+                            created=false;
+                        }
                         dialog.dismiss();
                     }
                 });
@@ -233,7 +234,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
         elementTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 Boolean flag=false;
+                Boolean flag=false;
                 for(int j=0;j<typology_list.size();j++){
                     if(typology_list.get(j).equals(elementView)){
                         flag=true;
@@ -295,6 +296,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
         CreationWizard.setvalore(3);
+        yesFinal.setText("Crea Vincoli");
         dialog.show();
         imgDialog.setImageDrawable(getResources().getDrawable(R.drawable.ic_cant_back));
         titleDialog.setText(R.string.constraint_creation);
@@ -312,7 +314,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
         cancelFinal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               dialog.dismiss();
+                dialog.dismiss();
             }
         });
 
@@ -325,7 +327,8 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
 
     @Override
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
-            callback.goToPrevStep();
+        CreationWizard.setvalore(1);
+        callback.goToPrevStep();
     }
 
     @Override
@@ -333,6 +336,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
         super.onStop();
         SavePreferences();
     }
+
 
     private void SavePreferences(){
         SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
@@ -397,5 +401,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
 
         }
     }
+
+
 
 }
