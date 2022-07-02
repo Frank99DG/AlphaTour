@@ -65,9 +65,16 @@ public class ReviewZoneSelected extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             int index = object.getId();
+
+                            if(index >= listObj.size()){
+                                index=listObj.size()-1;
+                            }
+
                             if(listObj.size()>1){
                             listObj.remove(index);
                             list_object_zone_review.removeView(object);
+
+
                             } else
                                 Toast.makeText(ReviewZoneSelected.this, "Non puoi rimuovere tutti gli oggetti. Se vuoi eliminare la zona, torna al riepilogo.", Toast.LENGTH_SHORT).show();
 

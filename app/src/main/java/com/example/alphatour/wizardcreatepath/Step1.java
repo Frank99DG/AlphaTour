@@ -290,6 +290,7 @@ public class Step1 extends Fragment implements Step, BlockingStep {
 
     private void moveToDashboard(){
 
+        PercorsoWizard.setCount(0);
         List<String> a = Step4.getZone_select();
         List<String> b = Step4.getOggetti_select();
         List<String> c = Step2.getArray_database();
