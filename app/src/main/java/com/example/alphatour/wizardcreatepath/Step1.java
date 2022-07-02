@@ -111,6 +111,7 @@ public class Step1 extends Fragment implements Step, BlockingStep {
         placesList = getPlacesList();
         adapterItems = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item, placesList);
         placePath.setAdapter(adapterItems);
+
         descriptionPath = view.findViewById(R.id.inputDescriptionPath);
 
         placePath.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -161,6 +162,20 @@ public class Step1 extends Fragment implements Step, BlockingStep {
 
         namePath.setText(PercorsoWizard.getNamePath());
         descriptionPath.setText(PercorsoWizard.getDescriptionPath());
+
+        placesList = getPlacesList();
+        adapterItems = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_dropdown_item, placesList);
+        placePath.setAdapter(adapterItems);
+
+        placePath.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                placePath.setError(null);
+                PercorsoWizard.setPlace(parent.getItemAtPosition(position).toString());
+            }
+        });
+
+
     }
 
     private void broadcastIntent() {
