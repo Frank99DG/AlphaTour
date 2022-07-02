@@ -368,6 +368,8 @@
     <string name="deleted_zone">Despejaste el área</string>
     <string name="deleted_place">Despejaste el lugar</string>
     <string name="zone_already_exists">La zona que quieres crear ya existe</string>
+    <string name="event_save_failed">Error al guardar el evento</string>
+    <string name="event_save">Evento exitoso guardado</string>
 
 
 </resources>

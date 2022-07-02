@@ -367,5 +367,7 @@
     <string name="deleted_zone">You cleared the area</string>
     <string name="deleted_place">You cleared the place</string>
     <string name="zone_already_exists">The zone you want to create already exists</string>
+    <string name="event_save_failed">Event save failed</string>
+    <string name="event_save">Successful event save</string>
 
 </resources>

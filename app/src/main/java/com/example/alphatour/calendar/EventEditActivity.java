@@ -103,41 +103,20 @@ public class EventEditActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 idEvent = documentReference.getId();
-                Toast.makeText(EventEditActivity.this, "Salvataggio dell'evento riuscito", Toast.LENGTH_LONG).show();
+                Toast.makeText(EventEditActivity.this, R.string.event_save, Toast.LENGTH_LONG).show();
                 success=true;
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(EventEditActivity.this, "Salvataggio dell'evento non riuscito", Toast.LENGTH_LONG).show();
+                Toast.makeText(EventEditActivity.this, R.string.event_save_failed, Toast.LENGTH_LONG).show();
                 loadingBar.setVisibility(View.GONE);
             }
         });
     }
 
 
-    /*public void showEvents(){
 
-        db.collection("Events").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-
-                if(!queryDocumentSnapshots.isEmpty()){
-                    List<DocumentSnapshot> listDocument = queryDocumentSnapshots.getDocuments();
-
-                    for(DocumentSnapshot d: listDocument){
-
-                        if(d.getId().matches(idUser))
-                    }
-
-
-                }
-
-            }
-        })
-
-
-    }*/
 
     public void onBackButtonClick(View view){
         finish();

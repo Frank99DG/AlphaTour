@@ -367,5 +367,7 @@
     <string name="deleted_zone">Vous avez supprimé la zone</string>
     <string name="deleted_place">Vous avez supprimé le lieu</string>
     <string name="zone_already_exists">La zone que vous souhaitez créer existe déjà</string>
+    <string name="event_save_failed">Échec de la sauvegarde de l’événement</string>
+    <string name="event_save">Sauvegarde réussie de l’événement</string>
 
 </resources>
