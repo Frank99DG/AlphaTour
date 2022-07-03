@@ -386,7 +386,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
 
     private void LoadPreferences(){
 
-        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Objects",Context.MODE_PRIVATE);
         int size=sharedPreferences.getInt("elementListSize",0);
         elementList.clear();
 

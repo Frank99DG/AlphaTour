@@ -220,7 +220,7 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
 
     private void LoadPreferences(){
         Boolean created=false;
-        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Zone",Context.MODE_PRIVATE);
         nameZone.setText(sharedPreferences.getString("NameZone",""));
         int size=sharedPreferences.getInt("SizeList",0);
         for(int i=0;i<size;i++){
