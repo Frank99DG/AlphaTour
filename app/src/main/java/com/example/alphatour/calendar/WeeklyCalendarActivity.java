@@ -47,7 +47,6 @@ public class WeeklyCalendarActivity extends AppCompatActivity implements Calenda
         setContentView(R.layout.activity_weekly_calendar);
         initWidgets();
         setWeekView();
-        showEvents();
     }
 
     private void initWidgets() {

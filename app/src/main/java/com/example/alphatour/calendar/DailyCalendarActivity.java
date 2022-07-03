@@ -1,6 +1,8 @@
 package com.example.alphatour.calendar;
 
+import static com.example.alphatour.calendar.CalendarUtils.dateFromString;
 import static com.example.alphatour.calendar.CalendarUtils.selectedDate;
+import static com.example.alphatour.calendar.CalendarUtils.timeFromString;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -48,7 +50,6 @@ public class DailyCalendarActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         initWidgets();
-        showEvents();
     }
 
     private void initWidgets() {
@@ -58,17 +59,7 @@ public class DailyCalendarActivity extends AppCompatActivity {
         hourListView = findViewById(R.id.hourListView);
     }
 
-    public LocalDate dateFromString(String date) throws ParseException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-        LocalDate localDate = LocalDate.parse(date, formatter);
-        return localDate;
-    }
 
-    public LocalTime timeFromString(String time) throws ParseException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
-        LocalTime localTime = LocalTime.parse(time, formatter);
-        return localTime;
-    }
 
     public void showEvents(){
 

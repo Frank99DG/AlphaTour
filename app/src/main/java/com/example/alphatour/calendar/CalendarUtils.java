@@ -1,5 +1,6 @@
 package com.example.alphatour.calendar;
 
+import java.text.ParseException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -105,6 +106,18 @@ public class CalendarUtils {
         }
 
         return null;
+    }
+
+   public static LocalDate dateFromString(String date) throws ParseException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+        LocalDate localDate = LocalDate.parse(date, formatter);
+        return localDate;
+    }
+
+    public static LocalTime timeFromString(String time) throws ParseException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
+        LocalTime localTime = LocalTime.parse(time, formatter);
+        return localTime;
     }
 
 }
