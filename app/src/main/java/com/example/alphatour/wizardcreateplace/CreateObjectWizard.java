@@ -102,6 +102,10 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
         created=cr;
     }
 
+    public static void clearObject(){
+        elementList.clear();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -343,7 +347,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
 
 
     private void SavePreferences(){
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Objects",Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("ZoneAndObj",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         for(int i=0;i<elementList.size();i++) {
@@ -386,7 +390,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
 
     private void LoadPreferences(){
 
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Objects",Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("ZoneAndObj",Context.MODE_PRIVATE);
         int size=sharedPreferences.getInt("elementListSize",0);
         elementList.clear();
 

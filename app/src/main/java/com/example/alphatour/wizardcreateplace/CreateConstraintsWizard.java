@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -303,15 +304,12 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                             Intent intent = new Intent(getContext(), DashboardActivity.class);
                             startActivity(intent);
                             loadingBar.setVisibility(View.GONE);
-                            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Zone",Context.MODE_PRIVATE);
+                            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("ZoneAndObj",Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.clear();
-                            editor.apply();
-                            SharedPreferences sharedPreferences1 = getActivity().getSharedPreferences("Objects",Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor1 = sharedPreferences1.edit();
-                            editor1.clear();
-                            editor1.apply();
+                            editor.commit();
                             CreateZoneWizard.clearZone();
+                            CreateObjectWizard.clearObject();
                         }else{
                             Toast.makeText(getContext(), R.string.place_save_failed , Toast.LENGTH_LONG).show();
                             loadingBar.setVisibility(View.GONE);
