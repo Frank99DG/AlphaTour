@@ -57,6 +57,13 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
     public static ArrayList<String> getZone_list() {
         return zone_list;
     }
+    public static void setZCreated(boolean cr){
+        zoneCreated=cr;
+    }
+
+    public static void clearZone(){
+       zone_list.clear();
+    }
 
 
     @Nullable
@@ -201,7 +208,7 @@ public class CreateZoneWizard extends Fragment implements Step, BlockingStep {
     }
 
     private void SavePreferences(){
-        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Zone",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("NameZone", nameZone.getText().toString());
         for(int i=0;i<zone_list.size();i++){

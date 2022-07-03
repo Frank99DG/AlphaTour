@@ -49,7 +49,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
     private Dialog dialog;
     private String zone;
     private static Bitmap qr;
-    private boolean success=false, created=false, error1 =false;
+    private static boolean success=false, created=false, error1 =false;
     private static Uri ph;
     private static List<View> typology_list = new ArrayList<View>();
     private static List<Element> elementList = new ArrayList<Element>();
@@ -96,6 +96,10 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
 
     public static void setElementList(List<Element> elementList) {
         CreateObjectWizard.elementList = elementList;
+    }
+
+    public static void setObjCreated(boolean cr){
+        created=cr;
     }
 
     @Nullable
@@ -339,7 +343,7 @@ public class CreateObjectWizard extends Fragment implements Step, BlockingStep, 
 
 
     private void SavePreferences(){
-        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Objects",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         for(int i=0;i<elementList.size();i++) {

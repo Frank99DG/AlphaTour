@@ -19,7 +19,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,10 +62,6 @@ import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
-
-import org.jgrapht.Graph;
-import org.jgrapht.graph.DefaultEdge;
-import org.jgrapht.graph.SimpleDirectedGraph;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -124,6 +119,7 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
     public static void setVisible(boolean vis) {
         CreateConstraintsWizard.visible=vis;
     }
+
 
 
     @Override
@@ -307,10 +303,15 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                             Intent intent = new Intent(getContext(), DashboardActivity.class);
                             startActivity(intent);
                             loadingBar.setVisibility(View.GONE);
-                            SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+                            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("Zone",Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.clear();
-                            editor.commit();
+                            editor.apply();
+                            SharedPreferences sharedPreferences1 = getActivity().getSharedPreferences("Objects",Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor1 = sharedPreferences1.edit();
+                            editor1.clear();
+                            editor1.apply();
+                            CreateZoneWizard.clearZone();
                         }else{
                             Toast.makeText(getContext(), R.string.place_save_failed , Toast.LENGTH_LONG).show();
                             loadingBar.setVisibility(View.GONE);
@@ -327,6 +328,10 @@ public class CreateConstraintsWizard<zone_list> extends Fragment implements Step
                 dialog.dismiss();
             }
         });
+        CreationWizard.setvalore(0);
+        CreateZoneWizard.setZCreated(false);
+        CreateObjectWizard.setObjCreated(false);
+
     }
 
     private void saveConstraints() {
